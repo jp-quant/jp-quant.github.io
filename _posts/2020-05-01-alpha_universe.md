@@ -1,9 +1,9 @@
 ---
 title: "QF Alpha-Research: Introduction"
 date: 2020-05-01
-tags: [alpha,]
+tags: [alpha]
 header:
-  image: "/images/alpha_universe/alpha_banner.png"
+  image: "/images/alpha_universe/alpha_banner.jpg"
 excerpt: "Research works on methods of finding & picking individual assets to formulate an alpha universe for investment portfolios"
 mathjax: "true"
 ---
@@ -72,3 +72,6 @@ It is important to recognize that although for the majority of cases, or all of 
 With that being said, as we will further explore the meanings behind beta & alpha through data-driven research results, the following key-points are essential to consider in generating optimal returns when it comes to systematic investing & trading:
 - A portfolio with high beta and low alpha (even negative alpha) can still have superior performance compared to one with low beta & high alpha ([smart beta strategies](https://www.quantilia.com/smart-beta-strategies/ "smart beta strategies"))
 - The "best performing" portfolio is the one that, on a fundamental level, generate positive returns by knowing WHEN and HOW to align itself with market's volatility/movement (increase beta) & when not to (increase alpha).
+- In short, on average, the overacrhing objective is that we want to align ourselves with the market when it's bullish and steer away from it when it is not. 
+
+As we can already speculate, at a quantitative approach, this requires much advanced mathematical knowledge such as linear algebra, vector calculus, topology, to paint the picture of the shape of market's return and seeking for optimal portfolio positioning. In addition, we will also need knowledge on advanced statistics & differential equations to model its movement through time, accounting nature's unpredictibility with stochastic processes and chaos theory. The math can get as gruesome as one want to venture towards. This is just the research aspect within Quantitative Finance as a whole. There are many other aspects needed in applying & testing a created model, evaluating its performance through robust backtesting, managing draw down and risk in capital & portfolio positionings, etc... In this presented series of my indepdendent research works, I will leverage as many aspects as I can to execute presented ideas with developed technical systems, ensuring the best I can on accurate usages & interpretations of fundamental financial knowledge as a whole.
