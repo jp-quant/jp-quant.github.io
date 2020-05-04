@@ -86,7 +86,7 @@ analytics:
 author:
   name             : "Jack Pham"
   avatar           : "/images/profile_1.jpeg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Algorithmic Trading | Quantitative Research & Analytics | Finance & Accounting | Mathematical Modeling | Technical Development \n Portfolio Showcase of Independent Quantitative Research, Development & Data Science Projects"
+  bio              : "Portfolio Showcase of Independent Quantitative Research, Development & Data Science Projects"
   location         : "United States"
   email            :
   uri              :
