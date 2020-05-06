@@ -134,7 +134,7 @@ Thus, with:
 
 Portfolio's Sharpe/Information Ratio = <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\frac{\frac{\sum_{1}^{N}R_{p_i}}{N}&space;-&space;R_f}{\sqrt{w^\top&space;\cdot&space;\boldsymbol{C}&space;\cdot&space;w}}" title="\frac{\frac{\sum_{1}^{N}R_{p_i}}{N} - R_f}{\sqrt{w^\top \cdot \boldsymbol{C} \cdot w}}" />
 
-As we can see,  there are many potential applications we can have from understanding mean-variance analysis, especially at a portfolio **risk management**, as well as integrating predictive models on top of establishing **boundaries for optimization**, through computational techniques. Thus, this can help us figure out the optimal allocations to be holding at any given time, or even serving as a powerful overarching tool to **perform analytics on assets** using historical data, such as industry analysis, correlational relationships.
+As we can see,  there are many potential applications we can have from understanding mean-variance analysis, especially portfolio **risk management**, as well as integrating predictive models & establishing **boundaries for optimization** exploited by computational power. Thus, this can help us figure out the optimal allocations to be holding at any given time, or even serving as a powerful overarching tool to **perform analysis on assets** using historical data, such as *industry analysis*, *correlational relationships*.
 > More interestingly, we can even utilize & explore the individual terms/components of Portfolio's Sharpe Ratio, combine with abstract vector space & computational techniques, to help identify alphas (we will further explore this in later posts)
 
 ---
