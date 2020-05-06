@@ -9,10 +9,10 @@ minimal_mistakes_skin    : "dark" # "air", "aqua", "contrast", "dark", "dirt", "
 
 # Site Settings
 locale                   : "en-US"
-title                    : "JP Quantitative Portfolio"
+title                    : "Jack's Quantitative Library"
 title_separator          : "-"
 name                     : "Jack Pham"
-description              : "Portfolio Showcase of Independent Data Science Projects + Notes on Quantitative Research & Development"
+description              : "Portfolio of Independent Data Science Projects + Notes on Quantitative Research & Development"
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -86,7 +86,7 @@ analytics:
 author:
   name             : "Jack Pham"
   avatar           : "/images/profile_1.jpeg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Portfolio Showcase of Independent Data Science Projects + Notes on Quantitative Research & Development"
+  bio              : "Portfolio of Independent Data Science Projects + Notes on Quantitative Research & Development"
   location         : "United States"
   email            :
   uri              :
