@@ -89,7 +89,7 @@ We can construct a table of such defined prices & returns of *M*  securities as 
 
 Next, we ask the question on what are the most **optimal allocations**, which we define optimal differently depending on the situation, though primarily, we often regard to a portfolio with the optimal allocations to which maximizes a specific ratio that's widely being used in the investment world to evaluate performance of any portfolio/strategy/security:
 
->**Sharpe Ratio** (or Information Ratio as dubbed by Tulchinsky) = <img src="https://latex.codecogs.com/gif.latex?\frac{\bar{R_p}&space;-&space;R_f}{\sigma_p}" title="\frac{\bar{R_p} - R_f}{\sigma_p}" /> where
+>**Sharpe Ratio** (or Information Ratio as dubbed by Tulchinsky) = <img src="https://latex.codecogs.com/gif.latex?\frac{\bar{R_p}&space;-&space;R_f}{\sigma_p}" title="\frac{\bar{R_p} - R_f}{\sigma_p}" /> where, simplistically speaking,
 <img src="https://latex.codecogs.com/gif.latex?\sigma_p" title="\sigma_p" /> = Portfolio's Volatility = Standard Deviation of Portfolio's Returns,
 <img src="https://latex.codecogs.com/gif.latex?\bar{R_p}" title="\bar{R_p}" /> = Portfolio's Returns
 
@@ -110,32 +110,32 @@ For portfolio's volatility ($$\sigma_p$$), it is more than just finding the stan
 <img src="https://latex.codecogs.com/gif.latex?\boldsymbol{C}&space;=&space;\frac{RET^\top&space;\cdot&space;RET}{N}&space;=&space;\begin{vmatrix}&space;\sigma_1^2&space;&&space;\sigma_{12}&space;&&space;\hdots&space;&&space;\sigma_{1M}&space;\\&space;\sigma_{21}&space;&&space;\sigma_2^2&space;&&space;\hdots&space;&&space;\sigma_{2M}\\&space;\vdots&space;&\vdots&space;&\ddots&space;&\vdots&space;\\&space;\sigma_{M1}&space;&&space;\sigma_{M2}&space;&\hdots&space;&\sigma_M^2&space;\end{vmatrix}" title="\boldsymbol{C} = \frac{RET^\top \cdot RET}{N} = \begin{vmatrix} \sigma_1^2 & \sigma_{12} & \hdots & \sigma_{1M} \\ \sigma_{21} & \sigma_2^2 & \hdots & \sigma_{2M}\\ \vdots &\vdots &\ddots &\vdots \\ \sigma_{M1} & \sigma_{M2} &\hdots &\sigma_M^2 \end{vmatrix}" />
 
 where <img src="https://latex.codecogs.com/gif.latex?\boldsymbol{C}" title="\boldsymbol{C}" /> is a *M x M*   **square matrix**, such that:
-- The diagonal values <img src="https://latex.codecogs.com/gif.latex?\sigma_i^2" title="\sigma_i^2" /> = **standard deviations** of individual security <img src="https://latex.codecogs.com/gif.latex?i&space;=&space;1,2,...,M" title="i = 1,2,...,M" />
-- <img src="https://latex.codecogs.com/gif.latex?\sigma_{ij}" title="\sigma_{ij}" /> where <img src="https://latex.codecogs.com/gif.latex?i\neq&space;j" title="i\neq j" /> are the **covariances** between two different assets.
-><img src="https://latex.codecogs.com/gif.latex?\sigma_{ij}&space;=&space;\sigma_{ji}" title="\sigma_{ij} = \sigma_{ji}" /> implies that  <img src="https://latex.codecogs.com/gif.latex?\boldsymbol{C}" title="\boldsymbol{C}" /> is a **Hermitian Matrix**. This is a very mathematically important fact that opens us to various options of exploration & analysis, to which we will further explore in this series of research.
+- The diagonal values <img src="https://latex.codecogs.com/gif.latex?\sigma_i^2" title="\sigma_i^2" /> = **variances** of individual securities <img src="https://latex.codecogs.com/gif.latex?i&space;=&space;1,2,...,M" title="i = 1,2,...,M" />
+- <img src="https://latex.codecogs.com/gif.latex?\sigma_{ij}" title="\sigma_{ij}" /> where <img src="https://latex.codecogs.com/gif.latex?i\neq&space;j" title="i\neq j" /> are the essential components of, but NOT as, **covariance** between two different assets.
+><img src="https://latex.codecogs.com/gif.latex?\sigma_{ij}&space;=&space;\sigma_{ji}" title="\sigma_{ij} = \sigma_{ji}" /> implies that  <img src="https://latex.codecogs.com/gif.latex?\boldsymbol{C}" title="\boldsymbol{C}" /> is a **Hermitian Matrix**. This is a very mathematically important fact that opens us to various options of exploration & analysis, such as Eigen Decomposition, to which we will further explore in this series of research.
 
 Thus, we proceed on calculating $$\sigma_p$$ using the covariance matrix <img src="https://latex.codecogs.com/gif.latex?\boldsymbol{C}" title="\boldsymbol{C}" />, given any allocation $$w$$ that satisfy the conditions above:
 
 <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\sigma_p&space;=&space;\sqrt{w^\top&space;\cdot&space;\boldsymbol{C}&space;\cdot&space;w}" title="\sigma_p = \sqrt{w^\top \cdot \boldsymbol{C} \cdot w}" />
 
 ---
-##### Summary & Conclusion
+#### Summary & Conclusion
 Putting them together, again, from the historical analysis standpoint, looking purely at historical data points of N time indexes, we want a portfolio with allocations $$w$$ for M securities, with their given (hourly/daily/weekly/etc) returns table $$RET$$, an *N x M* matrix, such that:
 - <img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;\vec{R_p}&space;=&space;RET\cdot&space;w" title="\vec{R_p} = RET\cdot w" /> = Portfolio's individual returns through given N time indexes
 
-- <img src="https://latex.codecogs.com/gif.latex?\dpi{110}&space;\boldsymbol{C}&space;=&space;\frac{RET^\top&space;\cdot&space;RET}{N}" title="\boldsymbol{C} = \frac{RET^\top \cdot RET}{N}" /> = Covariance Matrix of M selected securities (Hermitian)
+- <img src="https://latex.codecogs.com/gif.latex?\dpi{110}&space;\boldsymbol{C}&space;=&space;\frac{RET^\top&space;\cdot&space;RET}{N}" title="\boldsymbol{C} = \frac{RET^\top \cdot RET}{N}" /> = Covariance Matrix (Hermitian) of M selected securities, calculated from N time indexes (different N's = different values)
 
 Thus, with:
-- <img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;\bar{R_p}&space;=&space;\frac{\sum_{1}^{N}R_{p_i}}{N}" title="\bar{R_p} = \frac{\sum_{1}^{N}R_{p_i}}{N}" /> = Portfolio's Average Returns of N time indexes
+- <img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;\bar{R_p}&space;=&space;\frac{\sum_{1}^{N}R_{p_i}}{N}" title="\bar{R_p} = \frac{\sum_{1}^{N}R_{p_i}}{N}" /> = Portfolio's (Historically Calculated from N time indexes or Projected) Returns
 
 - <img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;\sigma_p&space;=&space;\sqrt{w^\top&space;\cdot&space;\boldsymbol{C}&space;\cdot&space;w}" title="\sigma_p = \sqrt{w^\top \cdot \boldsymbol{C} \cdot w}" /> = Portfolio's Volatility/Standard Deviations of (Projected or Historical) Returns
 
-- $$R_f$$ = Risk-Free Rate (usually set as returns rate of T-Bills, SPY, or 0 for simplicity)
+- $$R_f$$ = Risk-Free Rate (usually set as returns rate of T-Bills, or any relatively risk-free assets, or 0 for simplicity)
 
 Portfolio's Sharpe/Information Ratio = <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\frac{\frac{\sum_{1}^{N}R_{p_i}}{N}&space;-&space;R_f}{\sqrt{w^\top&space;\cdot&space;\boldsymbol{C}&space;\cdot&space;w}}" title="\frac{\frac{\sum_{1}^{N}R_{p_i}}{N} - R_f}{\sqrt{w^\top \cdot \boldsymbol{C} \cdot w}}" />
 
-As we can see,  there are many potential applications we can have from understanding mean-variance analysis, especially at a portfolio **risk management**, as well as integrating predictive models on top of establishing **boundaries for optimization**, through computational techniques. Thus, this can help us figure out the optimal allocations to be holding at any given time, or even serving as a powerful overarching tool to **perform analytics on assets** using historical data, such as industry analysis, correlational relationships. 
-> Most interestingly, we can even utilize the individual terms/components of Portfolio's Sharpe Ratio, combine with abstract vector space & computational techniques to help identify alphas (we will further explore this in later posts)
+As we can see,  there are many potential applications we can have from understanding mean-variance analysis, especially at a portfolio **risk management**, as well as integrating predictive models on top of establishing **boundaries for optimization**, through computational techniques. Thus, this can help us figure out the optimal allocations to be holding at any given time, or even serving as a powerful overarching tool to **perform analytics on assets** using historical data, such as industry analysis, correlational relationships.
+> More interestingly, we can even utilize & explore the individual terms/components of Portfolio's Sharpe Ratio, combine with abstract vector space & computational techniques, to help identify alphas (we will further explore this in later posts)
 
 ---
 # Personal Remarks & Important Key Points on Moving Forward
@@ -148,5 +148,5 @@ It is important to recognize that although for the majority of cases, or all of 
 
 With that being said, as we will further explore the meanings behind beta & alpha through data-driven research results, the following key-points are essential to consider in my personal approach on generating optimal returns when it comes to systematic investing & trading:
 - A portfolio with high beta and low alpha (even negative alpha) can still be preferable compared to one with low beta & high alpha ([smart beta strategies](https://www.quantilia.com/smart-beta-strategies/ "smart beta strategies"))
-- The "best performing" portfolio is the one that, on a fundamental level, generate positive returns by knowing WHEN and HOW to align itself with market's volatility/movement (increase beta) & when not to (increase alpha).
--  Quantifying reality to establish definitions of market's conditions is a gray area needed to be carefully treaded. In other words, we seek to approach the topic not just in a purely quantitative way, but rather in a quantitatively rigorous way that is built from & reflects the fundamental foundations of finance as a whole
+- The "best performing" portfolio is the one that, on a fundamental level, generate positive returns, as consistent as it can, knowing WHEN and HOW to align itself with market's volatility/movement (increase beta) & when not to (increase alpha).
+-  Quantifying reality to establish definitions of market's conditions is a gray area needed to be carefully treaded. In other words, we seek to approach the topic not just in a purely quantitative way, but rather in a quantitatively rigorous way that is built from & reflects the fundamental foundations of finance as a whole.
