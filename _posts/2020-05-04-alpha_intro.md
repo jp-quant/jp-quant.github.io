@@ -1,10 +1,10 @@
 ---
-title: "QF Alpha-Research: Introduction & Basic Essentials"
+title: "[Alpha-Research] Introduction & Basic Essentials"
 date: 2020-05-04
 tags: [alpha]
 header:
-  image: "/images/alpha_universe/alpha_banner.jpg"
-excerpt: "Research works on methods of finding & picking individual assets to formulate an alpha universe for investment portfolios"
+  image: "/images/qf_intro_banner.jpg"
+excerpt: "Series of Independent Research Notes/Findings on Finding Alphas"
 mathjax: "true"
 ---
 
@@ -30,6 +30,7 @@ The decision to compose publication(s) of my personal findings through independe
 *Brief coverage on basic foundational topics & key-points on personal approach & understanding towards alpha designs.*
 
 ---
+
 ### CAPM & Beta
 
 In general finance & economics, there exists a commonly known model called the[Capital Asset Pricing Model](https://corporatefinanceinstitute.com/resources/knowledge/finance/what-is-capm-formula/ " Capital Asset Pricing Model") (CAPM) to which can be perceived to serve as the propelling root of cause for the concept of alpha:
@@ -64,7 +65,7 @@ It is important to highlight the definition of alpha being **risk-adjusted/exces
 
 >**Alpha** is the **independent returns** of a portfolio with respect to a selected benchmark.
 
-It is valuable to have high alpha as best as we can, such that statistically, given the definition of alpha, regardless of market's movement, bullish or bearish, even if it crashes, the alpha component of a given portfolio return will not be affected. This is the power of finding alphas in the investing world. 
+It is valuable to have high alpha as best as we can, such that statistically, given the classic definition of alpha, regardless of market's movement, bullish or bearish, even if it crashes, the alpha component of a given portfolio return will not be affected. This is the power of finding alphas in the investing world.
 
 ---
 ### Modern Portfolio Theory 
@@ -75,12 +76,15 @@ Assume we have constructed a portfolio of selected securities (this is an intric
 If we have *M* amount of the selected securities in such portfolio, and given a selected *N*  time indexes (minute/hour/day/week/month/year/etc), we have their N **historical prices** of M securities, each defined as:
 <img src="https://latex.codecogs.com/gif.latex?\vec{p_i}&space;=&space;\begin{vmatrix}&space;p_{i_1}\\&space;p_{i_2}\\&space;\vdots\\&space;p_{i_N}&space;\end{vmatrix}" title="\vec{p_i} = \begin{vmatrix} p_{i_1}\\ p_{i_2}\\ \vdots\\ p_{i_N} \end{vmatrix}" /> where <img src="https://latex.codecogs.com/gif.latex?i&space;=&space;1,2,...,M" title="i = 1,2,...,M" /> indexed as each security in such portfolio
 
+> **NOTE**: Historical prices data are subjected to readjustment for any purpose. We can define them as simple as the open or close prices for each time index, or set it as the average between the two, etc...it is your choice to model the prices for whatever purposes that might follow your theoretical approach on perceiving movements of securities' prices.
+
+
 We then proceed on defining the securities *logarithmic* returns vectors  as:
 
 <img src="https://latex.codecogs.com/gif.latex?\vec{r_i}&space;=&space;\begin{vmatrix}&space;r_{i_1}\\&space;r_{i_2}\\&space;\vdots\\&space;r_{i_N}&space;\end{vmatrix}&space;=&space;\begin{vmatrix}&space;log(\frac{p_{i_2}}{p_{i_1}})\\&space;\\&space;log(\frac{p_{i_3}}{p_{i_2}})\\&space;\vdots\\&space;log(\frac{p_{i_N}}{p_{i_{N-1}}})&space;\end{vmatrix}" title="\vec{r_i} = \begin{vmatrix} r_{i_1}\\ r_{i_2}\\ \vdots\\ r_{i_N} \end{vmatrix} = \begin{vmatrix} log(\frac{p_{i_2}}{p_{i_1}})\\ \\ log(\frac{p_{i_3}}{p_{i_2}})\\ \vdots\\ log(\frac{p_{i_N}}{p_{i_{N-1}}}) \end{vmatrix}" /> 
 
->- We use log to smoothen the returns shape & minimize outliers. This can be good & bad, depending on the situation, as we will further explore.
-- Notice we need the previous price in able to calculate the present return
+>- Another way to calculate the interval returns can as straight forward as percentage change of one point to the next.
+- We use log to smoothen the returns shape & minimize outliers. This can be good & bad, depending on the situation, as we will further explore.
 
 We can construct a table of such defined prices & returns of *M*  securities as an *NxM* matrix, where columns as securities & rows as time indexes, such that:
 <img src="https://latex.codecogs.com/gif.latex?PRICE&space;=&space;\begin{vmatrix}&space;p_{1_1}&p_{2_1}&space;&\hdots&space;&p_{M_1}&space;\\&space;p_{1_2}&p_{2_2}&space;&\hdots&space;&p_{M_2}&space;\\&space;\vdots&\vdots&space;&\ddots&space;&\vdots&space;\\&space;p_{1_N}&p_{2_N}&space;&\hdots&space;&p_{M_N}&space;\end{vmatrix}" title="PRICE = \begin{vmatrix} p_{1_1}&p_{2_1} &\hdots &p_{M_1} \\ p_{1_2}&p_{2_2} &\hdots &p_{M_2} \\ \vdots&\vdots &\ddots &\vdots \\ p_{1_N}&p_{2_N} &\hdots &p_{M_N} \end{vmatrix}" /> , <img src="https://latex.codecogs.com/gif.latex?RET&space;=&space;\begin{vmatrix}&space;r_{1_1}&r_{2_1}&space;&\hdots&space;&r_{M_1}&space;\\&space;r_{1_2}&r_{2_2}&space;&\hdots&space;&r_{M_2}&space;\\&space;\vdots&\vdots&space;&\ddots&space;&\vdots&space;\\&space;r_{1_N}&r_{2_N}&space;&\hdots&space;&r_{M_N}&space;\end{vmatrix}" title="RET = \begin{vmatrix} r_{1_1}&r_{2_1} &\hdots &r_{M_1} \\ r_{1_2}&r_{2_2} &\hdots &r_{M_2} \\ \vdots&\vdots &\ddots &\vdots \\ r_{1_N}&r_{2_N} &\hdots &r_{M_N} \end{vmatrix}" />
@@ -111,8 +115,8 @@ For portfolio's volatility ($$\sigma_p$$), it is more than just finding the stan
 
 where <img src="https://latex.codecogs.com/gif.latex?\boldsymbol{C}" title="\boldsymbol{C}" /> is a *M x M*   **square matrix**, such that:
 - The diagonal values <img src="https://latex.codecogs.com/gif.latex?\sigma_i^2" title="\sigma_i^2" /> = **variances** of individual securities <img src="https://latex.codecogs.com/gif.latex?i&space;=&space;1,2,...,M" title="i = 1,2,...,M" />
-- <img src="https://latex.codecogs.com/gif.latex?\sigma_{ij}" title="\sigma_{ij}" /> where <img src="https://latex.codecogs.com/gif.latex?i\neq&space;j" title="i\neq j" /> are the essential components of, but NOT as, **covariance** between two different assets.
-><img src="https://latex.codecogs.com/gif.latex?\sigma_{ij}&space;=&space;\sigma_{ji}" title="\sigma_{ij} = \sigma_{ji}" /> implies that  <img src="https://latex.codecogs.com/gif.latex?\boldsymbol{C}" title="\boldsymbol{C}" /> is a **Hermitian Matrix**. This is a very mathematically important fact that opens us to various options of exploration & analysis, such as Eigen Decomposition, to which we will further explore in this series of research.
+- <img src="https://latex.codecogs.com/gif.latex?\sigma_{ij}" title="\sigma_{ij}" /> where <img src="https://latex.codecogs.com/gif.latex?i\neq&space;j" title="i\neq j" /> = **covariances** between two different assets i & j.
+><img src="https://latex.codecogs.com/gif.latex?\sigma_{ij}&space;=&space;\sigma_{ji}" title="\sigma_{ij} = \sigma_{ji}" /> implies that  <img src="https://latex.codecogs.com/gif.latex?\boldsymbol{C}" title="\boldsymbol{C}" /> is a **Hermitian Matrix**. This is a very mathematically important fact that opens us to various options of exploration & analysis to which we will further explore in this series of research.
 
 Thus, we proceed on calculating $$\sigma_p$$ using the covariance matrix <img src="https://latex.codecogs.com/gif.latex?\boldsymbol{C}" title="\boldsymbol{C}" />, given any allocation $$w$$ that satisfy the conditions above:
 
@@ -139,7 +143,7 @@ As we can see,  there are many potential applications we can have from understan
 
 ---
 # Personal Remarks & Important Key Points on Moving Forward
-It is important to recognize that although for the majority of cases, or all of them at a relative level, higher alpha is desired as alpha represents the independent (relative to the market) excess returns of a portfolio. However, **That does NOT mean higher alpha means better performance on an absolute sense.** The important concepts we will keep as reminders are:
+It is important to recognize that for the majority of cases, or all of them at a relative level, higher alpha is desired as alpha represents the independent (relative to the market) excess returns of a portfolio. However, **the concept of alpha is a statistical measure, constricted by the overarching market's risk.** The important concepts we will keep as reminders are:
 - There is no rewards without risks, as risk = volatility = movements in values to capitalize (if you want no risks, you should just keep your capital in T-bills, or even cash, as they are classified as the Risk-free rate - $$R_f$$)
 - All potential securities in the market, each with their own risk measure comprises such market as a whole, the market to which we are setting as a benchmark.
 - Constructing a portfolio means picking a selected N amount of securities WITHIN THE MARKET for your specific returns objective
@@ -148,5 +152,5 @@ It is important to recognize that although for the majority of cases, or all of 
 
 With that being said, as we will further explore the meanings behind beta & alpha through data-driven research results, the following key-points are essential to consider in my personal approach on generating optimal returns when it comes to systematic investing & trading:
 - A portfolio with high beta and low alpha (even negative alpha) can still be preferable compared to one with low beta & high alpha ([smart beta strategies](https://www.quantilia.com/smart-beta-strategies/ "smart beta strategies"))
-- The "best performing" portfolio is the one that, on a fundamental level, generate positive returns, as consistent as it can, knowing WHEN and HOW to align itself with market's volatility/movement (increase beta) & when not to (increase alpha).
+- The "best performing" portfolio is the one that, on a fundamental level, generate, on average, the highest positive returns as consistent as it can, knowing WHEN and HOW to align itself with market's volatility/movement (increase beta magnitude) & when not to (decrease beta magnitude), such that such portfolio's measured alpha reaches its global maximum given stated condition(s).
 -  Quantifying reality to establish definitions of market's conditions is a gray area needed to be carefully treaded. In other words, we seek to approach the topic not just in a purely quantitative way, but rather in a quantitatively rigorous way that is built from & reflects the fundamental foundations of finance as a whole.

@@ -4,11 +4,10 @@ permalink: /about/
 header:
   image: "/images/about_me.jpg"
 ---
-Algorithmic Trading | Quantitative Research & Analytics | Finance & Accounting | Mathematical Modeling | Technical Development
+Algorithmic Trading | Quantitative Analytics | Finance & Accounting | Research & Development
 
-- UCSB Mathematics, Minor in Physics
-- 2+ years experience in quantitative research & development, specifically focused on investment & trading strategies in the financial industry 
-- An innate adventurer who feels the most alive quantifying & modeling nature, driven by restless curiosity & thrives through tackling/solving complex puzzles with an analytical mindset & pure mathematics, thus executing ideas through self-cultivated ability in technical development & application.
+- 2+ years experience in quantitative research & development, specifically in modeling data for investment & business strategies
+- An innate adventurer who feels the most alive quantifying & modeling nature, executing ideas through self-cultivated ability in technical development and driven by restless curiosity that thrives through tackling/solving complex puzzles with an analytical mindset & mathematics.
 
 
 ## Languages:
@@ -16,7 +15,6 @@ Algorithmic Trading | Quantitative Research & Analytics | Finance & Accounting |
 - C++ 
 - Matlab
 - R
-- and of course...English
 
 ## Current Research Topics That Keep me Up at Night:
 - ### Quantitative Finance (QF)
