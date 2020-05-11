@@ -1,5 +1,5 @@
 ---
-title: "[] Introduction & Basic Essentials"
+title: "[QF] Introduction & Basic Essentials"
 date: 2020-05-04
 tags: [alpha]
 header:
