@@ -4,7 +4,7 @@ date: 2020-05-04
 tags: [alpha]
 header:
   image: "/images/qf_intro_banner.jpg"
-excerpt: "Series of Independent Research Notes/Findings on Finding Alphas"
+excerpt: "Preface, inspiration, brief coverage on foundational topics & personal remarrks before moving forward"
 mathjax: "true"
 ---
 
