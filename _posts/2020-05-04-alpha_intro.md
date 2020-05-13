@@ -1,10 +1,10 @@
 ---
-title: "[QF] Introduction & Basic Essentials"
+title: "[QF] Introduction & Essential Foundations"
 date: 2020-05-04
-tags: [alpha]
+tags: [qf]
 header:
   image: "/images/qf_intro_banner.jpg"
-excerpt: "Preface, inspiration, brief coverage on foundational topics & personal remarrks before moving forward"
+excerpt: "Preface, Inspiration, Brief Coverage on Foundational Topics & Personal Remarks Before Moving Forward"
 mathjax: "true"
 ---
 
@@ -103,9 +103,19 @@ For the sake of simplicity at the moment, performing analysis from the historica
 Then, we can compute <img src="https://latex.codecogs.com/gif.latex?\bar{R_p}" title="\bar{R_p}" /> as the average returns for N time indexes, being the most commonly used & basic way of calculating it from a historical analysis standpoint, such that <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\bar{R_p}&space;=&space;\frac{\sum_{1}^{N}R_{p_i}}{N}" title="\bar{R_p} = \frac{\sum_{1}^{N}R_{p_i}}{N}" />
 
 
-For portfolio's volatility ($$\sigma_p$$), being the standard deviation of $$R_p$$, we seek to assess this topic in a much more intricate way, as assets exhibit correlational properties, as well as their volatility relationships between each other, and to the market they are in. For any allocations to which we seek to determine to be optimal in our process of optimization, we first calculate the covariance matrix (<img src="https://latex.codecogs.com/gif.latex?\boldsymbol{C}" title="\boldsymbol{C}" />) for *M* selected securities, using the constructed returns table $$RET$$:
+For portfolio's volatility $$\sigma_p$$, being the standard deviation of $$R_p$$, we seek to assess this topic in a much more intricate way, as assets exhibit correlational properties, as well as their volatility relationships between each other, and to the market they are in. For any allocations to which we seek to determine to be optimal in our process of optimization, we first calculate the covariance matrix (<img src="https://latex.codecogs.com/gif.latex?\boldsymbol{C}" title="\boldsymbol{C}" />) for *M* selected securities, using the constructed returns table:
 
-<img src="https://latex.codecogs.com/gif.latex?\boldsymbol{C}&space;=&space;\frac{RET^\top&space;\cdot&space;RET}{N}&space;=&space;\begin{vmatrix}&space;\sigma_1^2&space;&&space;\sigma_{12}&space;&&space;\hdots&space;&&space;\sigma_{1M}&space;\\&space;\sigma_{21}&space;&&space;\sigma_2^2&space;&&space;\hdots&space;&&space;\sigma_{2M}\\&space;\vdots&space;&\vdots&space;&\ddots&space;&\vdots&space;\\&space;\sigma_{M1}&space;&&space;\sigma_{M2}&space;&\hdots&space;&\sigma_M^2&space;\end{vmatrix}" title="\boldsymbol{C} = \frac{RET^\top \cdot RET}{N} = \begin{vmatrix} \sigma_1^2 & \sigma_{12} & \hdots & \sigma_{1M} \\ \sigma_{21} & \sigma_2^2 & \hdots & \sigma_{2M}\\ \vdots &\vdots &\ddots &\vdots \\ \sigma_{M1} & \sigma_{M2} &\hdots &\sigma_M^2 \end{vmatrix}" />
+<img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;RET&space;=&space;\begin{vmatrix}&space;r_{1_1}&r_{2_1}&space;&\hdots&space;&r_{M_1}&space;\\&space;r_{1_2}&r_{2_2}&space;&\hdots&space;&r_{M_2}&space;\\&space;\vdots&\vdots&space;&\ddots&space;&\vdots&space;\\&space;r_{1_N}&r_{2_N}&space;&\hdots&space;&r_{M_N}&space;\end{vmatrix}&space;=&space;\begin{vmatrix}&space;r_{1}&space;&r_{2}&space;&\hdots&space;&r_{M}&space;\end{vmatrix}" title="RET = \begin{vmatrix} r_{1_1}&r_{2_1} &\hdots &r_{M_1} \\ r_{1_2}&r_{2_2} &\hdots &r_{M_2} \\ \vdots&\vdots &\ddots &\vdots \\ r_{1_N}&r_{2_N} &\hdots &r_{M_N} \end{vmatrix} = \begin{vmatrix} r_{1} &r_{2} &\hdots &r_{M} \end{vmatrix}" />
+
+where <img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;r_{i}&space;=&space;\begin{vmatrix}&space;r_{i_1}\\&space;r_{i2}\\&space;\vdots\\&space;r_{i_N}&space;\end{vmatrix}" title="r_{i} = \begin{vmatrix} r_{i_1}\\ r_{i2}\\ \vdots\\ r_{i_N} \end{vmatrix}" /> represents *N* returns of individual security i in M selected securities, such that we can compute the **average returns** <img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;\bar{r_{i}}" title="\bar{r_{i}}" /> which, for simplicity, defined as <img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;\bar{r_{i}}&space;=&space;\frac{\sum_{n=1}^{N}&space;r_{i_n}}{N}" title="\bar{r_{i}} = \frac{\sum_{n=1}^{N} r_{i_n}}{N}" /> (subjected to variation - weighted, rolling, etc...).
+
+We can proceed on de-meaning columns of $$RET$$, obtaining::
+
+<img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;\overline{RET}&space;=&space;\begin{vmatrix}&space;(r_{1_1}&space;-&space;\bar{r_{1}})&(r_{2_1}&space;-&space;\bar{r_{2}})&space;&\hdots&space;&(r_{M_1}&space;-&space;\bar{r_{M}})&space;\\&space;(r_{1_2}&space;-&space;\bar{r_{1}})&space;&(r_{2_2}&space;-&space;\bar{r_{2}})&space;&\hdots&space;&(r_{M_2}&space;-&space;\bar{r_{M}})&space;\\&space;\vdots&\vdots&space;&\ddots&space;&\vdots&space;\\&space;(r_{1_N}&space;-&space;\bar{r_{1}})&(r_{2_N}&space;-&space;\bar{r_{2}})&space;&\hdots&space;&(r_{M_N}&space;-&space;\bar{r_{M}})&space;\end{vmatrix}" title="\overline{RET} = \begin{vmatrix} (r_{1_1} - \bar{r_{1}})&(r_{2_1} - \bar{r_{2}}) &\hdots &(r_{M_1} - \bar{r_{M}}) \\ (r_{1_2} - \bar{r_{1}}) &(r_{2_2} - \bar{r_{2}}) &\hdots &(r_{M_2} - \bar{r_{M}}) \\ \vdots&\vdots &\ddots &\vdots \\ (r_{1_N} - \bar{r_{1}})&(r_{2_N} - \bar{r_{2}}) &\hdots &(r_{M_N} - \bar{r_{M}}) \end{vmatrix}" />
+
+We can now calculate our **sample** covariance matrix:
+
+<img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;\boldsymbol{C}&space;=&space;\frac{\overline{RET}^\top&space;\cdot&space;\overline{RET}}{N-1}&space;=&space;\begin{vmatrix}&space;\sigma_1^2&space;&&space;\sigma_{12}&space;&&space;\hdots&space;&&space;\sigma_{1M}&space;\\&space;\sigma_{21}&space;&&space;\sigma_2^2&space;&&space;\hdots&space;&&space;\sigma_{2M}\\&space;\vdots&space;&\vdots&space;&\ddots&space;&\vdots&space;\\&space;\sigma_{M1}&space;&&space;\sigma_{M2}&space;&\hdots&space;&\sigma_M^2&space;\end{vmatrix}" title="\boldsymbol{C} = \frac{\overline{RET}^\top \cdot \overline{RET}}{N-1} = \begin{vmatrix} \sigma_1^2 & \sigma_{12} & \hdots & \sigma_{1M} \\ \sigma_{21} & \sigma_2^2 & \hdots & \sigma_{2M}\\ \vdots &\vdots &\ddots &\vdots \\ \sigma_{M1} & \sigma_{M2} &\hdots &\sigma_M^2 \end{vmatrix}" />
 
 where <img src="https://latex.codecogs.com/gif.latex?\boldsymbol{C}" title="\boldsymbol{C}" /> is a *M x M* **square matrix**, such that:
 - The diagonal values <img src="https://latex.codecogs.com/gif.latex?\sigma_i^2" title="\sigma_i^2" /> = **variances** of individual securities <img src="https://latex.codecogs.com/gif.latex?i&space;=&space;1,2,...,M" title="i = 1,2,...,M" />
