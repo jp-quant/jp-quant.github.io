@@ -132,7 +132,7 @@ Thus, we proceed on calculating $$\sigma_p$$ using the covariance matrix <img sr
 Putting them together, again, from the historical analysis standpoint, we want a portfolio with allocations $$w$$ for M securities, with their given (hourly/daily/weekly/etc) returns table $$RET$$, an *N x M* matrix, such that:
 - <img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;\vec{R_p}&space;=&space;RET\cdot&space;w" title="\vec{R_p} = RET\cdot w" /> = Portfolio's individual returns through given N time indexes
 
-- <img src="https://latex.codecogs.com/gif.latex?\dpi{110}&space;\boldsymbol{C}&space;=&space;\frac{RET^\top&space;\cdot&space;RET}{N}" title="\boldsymbol{C} = \frac{RET^\top \cdot RET}{N}" /> = Covariance Matrix (Hermitian) of M selected securities, calculated from N time indexes (different N's = different values)
+- <img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;\boldsymbol{C}&space;=&space;\frac{\overline{RET}^\top&space;\cdot&space;\overline{RET}}{N-1}" title="\boldsymbol{C} = \frac{\overline{RET}^\top \cdot \overline{RET}}{N-1}" /> = (Sample) Covariance Matrix of M selected securities, calculated from N time indexes (different N's = different values)
 
 Thus, with:
 - <img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;\bar{R_p}&space;=&space;\frac{\sum_{1}^{N}R_{p_i}}{N}" title="\bar{R_p} = \frac{\sum_{1}^{N}R_{p_i}}{N}" /> = Portfolio's Average Returns (for simplicity)
