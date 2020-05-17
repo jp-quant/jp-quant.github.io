@@ -1,7 +1,7 @@
 ---
 title: "[QF] Introduction & Essential Foundations"
 date: 2020-05-04
-tags: [qf]
+tags: []
 header:
   image: "/images/qf_intro_banner.jpg"
 excerpt: "Preface, Inspiration, Brief Coverage on Foundational Topics & Personal Remarks Before Moving Forward"
