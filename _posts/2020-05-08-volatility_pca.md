@@ -40,7 +40,6 @@ For demonstration purposes moving forward, I have preprocessed & cleaned a retur
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
 from sklearn.decomposition import PCA
 
 #----| Load preprocess RET Table
@@ -534,12 +533,13 @@ ax.legend()
 
 > **REMARK**: The eigen components are orthogonal to each other, encapsulating the magnitudes of standard deviation in both dimensions. We interpret M eigen values as **independently explained variances** that, together, describe the **total variance** of our M selected securities.Such mathematical approach can take us further to any M-dimensional space such that we can describe the entire variance of M securities, in such abstract vector space that we can't visualize, down to the independent components. 
 
-### Plotly 3D Visualization
-For the sake of illustration & fancy observation, below are functions written to actually plot such results for 3 Dimensional Space (M=3) using Plotly, a powerful data visualization module:
+### Plotly 3D Interactive Visualization
+For the sake of illustration & fancy observation, below are functions written to actually plot such results for 3 Dimensional Space (M=3) using [Plotly](https://plotly.com/python/ "Plotly"), a powerful interactive data visualization module:
 
 ```python
+import plotly.graph_objects as go
 #----| Plot (with labels) & return result of 3 selected assets with each other with given table
-def EIGEN_3D(ret,_AX=None,_plotRadius=0.5):
+def EIGEN_3D(ret):
     assert(ret.shape[1] == 3),"3 assets only"
     vectors,lambdas = EIGEN(ret)
     _start = ret.mean(axis=0)
@@ -597,6 +597,14 @@ result["figure"].show()
     };
     
 </script>
+
+---
+# Applications
+*Now that we understand & visualize PCA implementation on time-series, we will proceed on discussing what we can use it for in the context of quant finance & further the horizons of our approach on dissecting volatility as a whole.*
+
+---
+[IN PROGRESS]
+
 
 
 
