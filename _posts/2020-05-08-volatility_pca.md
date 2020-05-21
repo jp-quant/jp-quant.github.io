@@ -566,7 +566,6 @@ def EIGEN_3D(ret):
 
     fig = go.Figure(_DATA_)
     fig.update_layout(
-        title=" -vs- ".join(list(ret.columns)),
         scene=dict(
         xaxis_title=x,
         yaxis_title=y,
@@ -574,7 +573,7 @@ def EIGEN_3D(ret):
     result["figure"] = fig
     return result
 ```
-Observe the results for 3 assets picked as **SPY**(*S&P500 ETF*), **IEF**(*7-10 Year Treasury ETF*) & **GLD** (SPDR Gold Shares), fundamentally representing different asset classes (stocks vs treasury vs gold), thus exihibiting minimal correlations to each other dimensionally.
+Observe the results for **SPY**(*S&P500 ETF*), **IEF**(*7-10 Year Treasury ETF*) & **GLD**(*SPDR Gold ETF*), representing fundamentally different asset classes.
 
 ```python
 result = EIGEN_3D(RET[["SPY","IEF","GLD"]])
@@ -598,13 +597,7 @@ result["figure"].show()
     
 </script>
 
----
-# Applications
-*Now that we understand & visualize PCA implementation on time-series, we will proceed on discussing what we can use it for in the context of quant finance & further the horizons of our approach on dissecting volatility as a whole.*
-
----
-[IN PROGRESS]
-
+> *Now that we understand & visualize PCA implementation on time-series returns data of equities , we will proceed on discussing what we can use it for in the context of quant finance & further the horizons of our approach on dissecting volatility of such market as a whole.*
 
 
 
