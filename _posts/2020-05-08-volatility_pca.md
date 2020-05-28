@@ -495,7 +495,7 @@ If we plot the cummulative returns between the two assets, we can distinctly obs
 <img src="https://i.ibb.co/Zd9h67Z/2.png" alt="2" border="0">
 
 
-Using numpy's linalg module to extract our eigen pairs. Below is our pre-coded function to perform PCA, working on dataframe being inputted & return the eigen vectors & eigen values:
+Using sklearn PCA module to extract our eigen pairs. Below is our pre-coded function to perform PCA, working on dataframe being inputted & return the eigen vectors & eigen values:
 
 ```python
 #----| Perform Eigen Decomposition on Covariance Matrix of any given returns table, standardized/normalized or not
