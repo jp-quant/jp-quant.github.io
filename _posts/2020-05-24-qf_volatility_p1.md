@@ -3,7 +3,7 @@ title: "[QF] Probing Volatility I: Eigen Decomposition of Covariance Matrices"
 date: 2020-05-24
 tags: [research]
 header:
-  image: "/images/qf_vol_part1_banner.png"
+  image: "/images/qf_vol_part1_banner.PNG"
 excerpt: "Exploring volatility through a linear algebraic approach, topics commonly known as Principal Component Analysis (PCA), Clustering Algorithms, etc... in various other non-finance purposes."
 mathjax: "true"
 ---
