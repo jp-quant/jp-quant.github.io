@@ -1,9 +1,9 @@
 ---
 title: "[QF] Probing Volatility I: Eigen Decomposition of Covariance Matrices"
-date: 2020-05-08
+date: 2020-05-24
 tags: [research]
 header:
-  image: "/images/qf_intro_banner.jpg"
+  image: "/images/qf_vol_part1_banner.png"
 excerpt: "Exploring volatility through a linear algebraic approach, topics commonly known as Principal Component Analysis (PCA), Clustering Algorithms, etc... in various other non-finance purposes."
 mathjax: "true"
 ---
@@ -597,8 +597,6 @@ result["figure"].show()
     };
     
 </script>
-
-> *Now that we understand & visualize PCA implementation on time-series returns data of equities , we will proceed on discussing what we can use it for in the context of quant finance & further the horizons of our approach on dissecting volatility of such market as a whole.*
 
 
 
