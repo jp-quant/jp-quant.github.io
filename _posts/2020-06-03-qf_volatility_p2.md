@@ -571,7 +571,7 @@ Thus, our objective is to **find an allocation weight** <img src="https://latex.
 We're just going to select our M securities as the *Utilities* sector for our demonstrative work, since it has the least amount to encompasses such sector. In addition, we split our full $$RET$$ data into 75% in-sample & 25% out-sample, letting the default variable **RET** as in-sample & **RET_outSample** as, of course, the out-sample data. Subsequent optimization steps in solving for the desired allocations weight $$w$$ will be performed on in-sample data:
 
 ```python
-RET,RET_outSample = ioSampleSplit(_RET_[sectors["Health Care"]])
+RET,RET_outSample = ioSampleSplit(_RET_[sectors["Utilities"]])
 ```
 
 ```python
