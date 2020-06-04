@@ -1,10 +1,10 @@
 ---
-title: "[QF] Probing Volatility I: Eigen Decomposition of Covariance Matrices"
-date: 2020-05-24
+title: "[QF] Probing Volatility I: Covariance Matrix & Eigen Decomposition"
+date: 2020-05-26
 tags: [research]
 header:
   image: "/images/qf_vol_part1_banner.PNG"
-excerpt: "Exploring volatility through a linear algebraic approach, topics commonly known as Principal Component Analysis (PCA), Clustering Algorithms, etc... in various other non-finance purposes."
+excerpt: "Exploring volatility through a linear algebraic approach, topics commonly known as Principal Component Analysis (PCA) in various other non-finance purposes."
 mathjax: "true"
 ---
 
@@ -16,7 +16,7 @@ From basic statistics, for <img src="https://latex.codecogs.com/gif.latex?\dpi{1
 - <img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;\sigma_{ij}&space;=&space;\frac{\sum_{1}^{N}(r_{i_n}&space;-&space;\bar{r_i})(r_{j_n}&space;-&space;\bar{r_j})}{N-1}" title="\sigma_{ij} = \frac{\sum_{1}^{N}(r_{i_n} - \bar{r_i})(r_{j_n} - \bar{r_j})}{N-1}" /> for **sample size**
 - <img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;\sigma_{ij}&space;=&space;\frac{\sum_{1}^{N}(r_{i_n}&space;-&space;\bar{r_i})(r_{j_n}&space;-&space;\bar{r_j})}{N}" title="\sigma_{ij} = \frac{\sum_{1}^{N}(r_{i_n} - \bar{r_i})(r_{j_n} - \bar{r_j})}{N}" /> for **population size**
  
-Recall our brief overview in my [initial post](https://jp-quant.github.io/qf_intro/ "initial post") on the basic essential topics of this research series, given a constructed returns table $$RET$$, we obtain the de-meaned version:
+When it comes to investment as a whole, I find most of my work tackling almost every problems related with risk management, or volatility. Recall our previous [brief overview](https://jp-quant.github.io/qf_intro/ "initial post") on the essential topics of this research series, given a constructed returns table $$RET$$, we obtain the de-meaned version:
 <img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;\overline{RET}&space;=&space;\begin{vmatrix}&space;(r_{1_1}&space;-&space;\bar{r_{1}})&(r_{2_1}&space;-&space;\bar{r_{2}})&space;&\hdots&space;&(r_{M_1}&space;-&space;\bar{r_{M}})&space;\\&space;(r_{1_2}&space;-&space;\bar{r_{1}})&space;&(r_{2_2}&space;-&space;\bar{r_{2}})&space;&\hdots&space;&(r_{M_2}&space;-&space;\bar{r_{M}})&space;\\&space;\vdots&\vdots&space;&\ddots&space;&\vdots&space;\\&space;(r_{1_N}&space;-&space;\bar{r_{1}})&(r_{2_N}&space;-&space;\bar{r_{2}})&space;&\hdots&space;&(r_{M_N}&space;-&space;\bar{r_{M}})&space;\end{vmatrix}" title="\overline{RET} = \begin{vmatrix} (r_{1_1} - \bar{r_{1}})&(r_{2_1} - \bar{r_{2}}) &\hdots &(r_{M_1} - \bar{r_{M}}) \\ (r_{1_2} - \bar{r_{1}}) &(r_{2_2} - \bar{r_{2}}) &\hdots &(r_{M_2} - \bar{r_{M}}) \\ \vdots&\vdots &\ddots &\vdots \\ (r_{1_N} - \bar{r_{1}})&(r_{2_N} - \bar{r_{2}}) &\hdots &(r_{M_N} - \bar{r_{M}}) \end{vmatrix}" />
 
 A *N x M* matrix representing N interval (hourly/daily/weekly/etc) returns of M securities, we can construct a **sample size** Covariance Matrix (<img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;\boldsymbol{C}" title="\boldsymbol{C}" />):
@@ -510,7 +510,7 @@ def EIGEN(ret,_simple=False):
     _eigenVectors = pd.DataFrame(eVecs.T,index=ret.columns,columns=_eigenNames)
     return _eigenVectors,_eigenValues
 ```
-With each eigen vector magnified by 3 times the square root of its associated eigen value (since each eigen value represents the directional variance of such eigen vector, as stated above), graphing such vectors on top of the scatter plot, each in both directions, using *matplpotlib* we obtain:
+With each eigen vector magnified by 3 times the square root of its associated eigen value (since each eigen value represents the directional variance of such eigen vector, as stated above), graphing such vectors on top of the scatter plot, each in both directions, using *matplotlib* we obtain:
 
 ```python
 ax = plt.figure().gca()
@@ -574,7 +574,7 @@ def EIGEN_3D(ret):
     result["figure"] = fig
     return result
 ```
-Observe the results for **SPY**(*S&P500 ETF*), **IEF**(*7-10 Year Treasury ETF*) & **GLD**(*SPDR Gold ETF*), representing fundamentally different asset classes.
+Observe the results for **SPY**(*S&P500 ETF*), **IEF**(*7-10 Year Treasury ETF*) & **GLD**(*SPDR Gold ETF*), representing fundamentally different asset classes (Stocks, T-Bills & Gold respectively)
 
 ```python
 result = EIGEN_3D(RET[["SPY","IEF","GLD"]])
@@ -598,8 +598,20 @@ result["figure"].show()
     
 </script>
 
+### Eigen Portfolios
+Before we conclude this first section, I would like to shed light on some concepts that come up once observing this result:
+ - Given we just explore PCA application on finding the **independent/orthogonal eigen vectors** that when each magnified by its respective eigen value, describes the shape of the universe's returns, with each eigen vector <img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;e_i" title="e_i" /> being normalized into a unit vector, such that <img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;||e_i||&space;=&space;1" title="||e_i|| = 1" />
+ - For any allocations weight  of *M* amount of securities, whereas <img src="https://latex.codecogs.com/gif.latex?w&space;=&space;\begin{vmatrix}&space;w_1\\&space;w_2\\&space;\vdots\\&space;w_M&space;\end{vmatrix}" title="w = \begin{vmatrix} w_1\\ w_2\\ \vdots\\ w_M \end{vmatrix}" />  such that <img src="https://latex.codecogs.com/gif.latex?-1&space;\leq&space;w_{i}\leq&space;1" title="-1 \leq w_{i}\leq 1" /> and <img src="https://latex.codecogs.com/gif.latex?\sum_{1}^{M}w_i&space;=&space;1" title="\sum_{1}^{M}w_i = 1" /> we are simply finding a **allocation vector** in M-dimensional space!
+
+We then pose the question:
+> **What if we align our allocations vector in the direction of an eigen vector?**
+ - By simply normalize any eigen vector -- <img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;e_{i}&space;=&space;\begin{vmatrix}&space;e_{i_1}\\&space;e_{i_2}\\&space;\vdots\\&space;e_{i_M}&space;\end{vmatrix}" title="e_{i} = \begin{vmatrix} e_{i_1}\\ e_{i_2}\\ \vdots\\ e_{i_M} \end{vmatrix}" /> -- by its components summation, <img src="https://latex.codecogs.com/gif.latex?\dpi{130}&space;w_{e_i}&space;=&space;\frac{e_i}{e_i&space;\cdot&space;\vec{\boldsymbol{1}}}&space;=&space;\frac{e_i}{\sum_{n=1}^{M}e_{i_n}}" title="w_{e_i} = \frac{e_i}{e_i \cdot \vec{\boldsymbol{1}}} = \frac{e_i}{\sum_{n=1}^{M}e_{i_n}}" />, we obtain an **eigen portfolio**
+
+This is actually a field of study to which there exist many different research papers, feel free to look them up. Although, commonly agreed among the community, empirically proven, the **largest eigen portfolio** (eigen_1) associating with the largest eigen value is referred to as the "market portfolio" when M securities are picked as securities that comprises the market.
+We will touch base on this topic here and there throughout our subsequent work utilizing eigen portfolios.
 
 
-
+---
+*Though we have understood, as well as visualize, the meanings & functionalities of eigen decomposition on a symmetric M x M Covariance Matrix, derived from any given N x M returns table of M securities, we have only learned the ABC of such mathematical language. There arises many questions regarding the invariant nature of such eigen components, implementations & utilities on how we could use such knowledge to benefit our investment decision making. Moving forward to the subsequent chapters, we will start diving deeper into the nature of such eigen components, thus covariance & correlations, in a much heavier quantitative way, specifically with more details on portfolio & risk management and touching base on optimization as a whole*
 
 
