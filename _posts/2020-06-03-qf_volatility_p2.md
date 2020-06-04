@@ -9,32 +9,31 @@ mathjax: "true"
 ---
 
 # Overview & Preparation
->*Optimization*, in general, is simply solving for minimum/maximum solution(s) of a *system of equation(s)* , satisfying given constraints.
+>*Optimization*, in general, is simply solving for minimum/maximum solution(s) of a *system of equation(s)*, satisfying given constraints.
 
 Recalling our brief overview on the basics of Modern Portfolio Theory in my [first QF post](https://jp-quant.github.io/qf_intro/ "first QF post"), one of the metric to which used in evaluating performance of any investment, mirroring somewhat of a standardization technique, is the **Sharpe Ratio**, to which we will dub it as <a href="https://www.codecogs.com/eqnedit.php?latex=\boldsymbol{I}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\boldsymbol{I}" title="\boldsymbol{I}" /></a>:
 
-><img src="https://latex.codecogs.com/gif.latex?\boldsymbol{I}" title="\boldsymbol{I}" />  = <img src="https://latex.codecogs.com/gif.latex?\frac{\bar{R_p}&space;-&space;R_f}{\sigma_p}" title="\frac{\bar{R_p} - R_f}{\sigma_p}" />, where in the perspective of evaluating a portfolio,
-<img src="https://latex.codecogs.com/gif.latex?\bar{R_p}" title="\bar{R_p}" /> = Average Returns
-<img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;\sigma_p" title="\sigma_p" /> = Volatility = Standard Deviation of Returns,
+><img src="https://latex.codecogs.com/gif.latex?\dpi{130}&space;\boldsymbol{I}&space;=&space;\frac{\bar{R_p}&space;-&space;R_f}{\sigma_p}" title="\boldsymbol{I} = \frac{\bar{R_p} - R_f}{\sigma_p}" />, where in the perspective of evaluating a portfolio,
+<img src="https://latex.codecogs.com/gif.latex?\dpi{130}&space;\bar{R_p}" title="\bar{R_p}" /> = Average Returns
+<img src="https://latex.codecogs.com/gif.latex?\dpi{140}&space;\sigma_p" title="\sigma_p" /> = Volatility = Standard Deviation of Returns
 
-In general, we want to **minimize** <img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;\sigma_p" title="\sigma_p" /> & **maximize** <img src="https://latex.codecogs.com/gif.latex?\bar{R_p}" title="\bar{R_p}" />, simply seeking to achieve not just as *highest* & as *consistent* of a returns rate as possible, but also having as little as possible in its maximum drawdown.
+In general, we want to **minimize** $$\sigma_p$$ & **maximize** $$\bar{R_p}$$, simply seeking to achieve not just as *highest* & as *consistent* of a returns rate as possible, but also having as little as possible in its maximum drawdown.
 >In regards to selecting the optimal assets to pick in a portfolio, this is an extensive topic requiring much empirical & fundamental research with additional knowledge on top of our current topic at hand (we will save this for another section).
 
-Let there be *M* amount of securities selected to invest a set amount of capital in, we seek for the optimal allocations, or weights, <img src="https://latex.codecogs.com/gif.latex?w&space;=&space;\begin{vmatrix}&space;w_1\\&space;w_2\\&space;\vdots\\&space;w_M&space;\end{vmatrix}" title="w = \begin{vmatrix} w_1\\ w_2\\ \vdots\\ w_M \end{vmatrix}" />  such that <img src="https://latex.codecogs.com/gif.latex?-1&space;\leq&space;w_{i}\leq&space;1" title="-1 \leq w_{i}\leq 1" /> and <img src="https://latex.codecogs.com/gif.latex?\sum_{1}^{M}w_i&space;=&space;1" title="\sum_{1}^{M}w_i = 1" />, being 100% of our capital. 
+Let there be *M* amount of securities selected to invest a set amount of capital in, we seek for the optimal allocations, or weights, <img src="https://latex.codecogs.com/gif.latex?\dpi{130}&space;w&space;=&space;\begin{vmatrix}&space;w_1\\&space;w_2\\&space;\vdots\\&space;w_M&space;\end{vmatrix}" title="w = \begin{vmatrix} w_1\\ w_2\\ \vdots\\ w_M \end{vmatrix}" />  such that <img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;-1&space;\leq&space;w_{i}\leq&space;1" title="-1 \leq w_{i}\leq 1" /> and <img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;\sum_{1}^{M}w_i&space;=&space;1" title="\sum_{1}^{M}w_i = 1" />, being 100% of our capital. 
 
 >-  If you want **long only** positions, simply set -- <img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;0&space;\leq&space;w_{i}\leq&space;1" title="0 \leq w_{i}\leq 1" /> instead.
-- We are allowing short positions in all of our approaches since we want absolute returns & hedging opportunities, coming from a perspective of an institutional investor, hence each weight can be negative. By capping the weights summation to 1, this simply means we are assuming **100% margin**. 
-- Notice how there has to be more positive than negative to have the summation as 1, such that if we lose 100% of our short positions, we have enough capital value at hand to repay (read more on short margin [here](https://www.investopedia.com/ask/answers/05/marginaccountshortsell.asp "here")).
+- We are allowing short positions in all of our approaches since we want absolute returns & hedging opportunities, coming from a perspective of an institutional investor, hence each weight can be negative.
 
 ---
-Before moving forward, we first need to address the context regarding **M securities** we seek to allocate our capital towards. It is important to keep in mind that we are not just evaluating a performance of a given portfolio to see if the portfolio manager/trader has been performing well, but rather we ourselves are managing such portfolio, evaluating the universe of investment targets to make allocations decision:
+Before moving forward, we first need to address the context regarding *M securities* we seek to allocate our capital towards:
 - At **this** moment in time <img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;t_N" title="t_N" />, as we are performing analysis to make decisions, being the latest timestamp (this is where back-testing will come in, as I will dedicate a series on building an event-driven one from scratch), we have *N* amount of data historically for *M* securities, hence the necessity for an *N x M* returns table.
 - **Looking towards the future**  <img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;t_{N&space;&plus;&space;dN}" title="t_{N + dN}" />, before we seek to find the optimal weights <img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;w" title="w" />, to compute <img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;\sigma_p" title="\sigma_p" /></a> & <img src="https://latex.codecogs.com/gif.latex?\bar{R_p}" title="\bar{R_p}" /> (again please refer to my [first QF post](https://jp-quant.github.io/qf_intro/ "first QF post") for the intricate details), as we will not yet be touching base on such extensive topic that having to deal with prediction (I will dedicate another series for this topic), we need to determine the answers for:
 
-	- **What will the returns <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\hat{r_i}" title="\hat{r_i}" /> be for each security <img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;i&space;=&space;1,2...M" title="i = 1,2...M" />?**
-		>In our demonstrative work, as being used as a factor in various predictive models, we will set <img src="https://latex.codecogs.com/gif.latex?\dpi{140}&space;\hat{r_i}&space;=&space;\bar{r_i}" title="\hat{r_i} = \bar{r_i}" /> being the **average returns "so far"**. Even for such basic definition, we still have hyperparameters like when (how much data points we are looking back) & how to calculate (normal,weighted average, etc...)
-		
-	- **How much "uncertainty" do we have of such <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\hat{r_i}" title="\hat{r_i}" />? In other words, how much will such speculation of <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\hat{r_i}" title="\hat{r_i}" />  deviate, or simply <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\sigma_{\hat{r_i}}" title="\sigma_{\hat{r_i}}" />?**
+	- **What is the returns <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\hat{r_i}" title="\hat{r_i}" /> for each security <img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;i&space;=&space;1,2...M" title="i = 1,2...M" />?**
+		>In our demonstrative work, as being used as a factor in various predictive models, we will set <img src="https://latex.codecogs.com/gif.latex?\dpi{140}&space;\hat{r_i}&space;=&space;\bar{r_i}" title="\hat{r_i} = \bar{r_i}" /> being the **average returns "so far"** (subjective)
+
+	- **How much "uncertainty," or in other words, how much will  <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\hat{r_i}" title="\hat{r_i}" />  deviate, or simply <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\sigma_{\hat{r_i}}" title="\sigma_{\hat{r_i}}" />?**
 		>Given we have set <img src="https://latex.codecogs.com/gif.latex?\dpi{140}&space;\hat{r_i}&space;=&space;\bar{r_i}" title="\hat{r_i} = \bar{r_i}" /> , this will simply be the **standard deviations** of  <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\bar{r_i}" title="\bar{r_i}" />. Thus, we set <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\sigma_{\hat{r_i}}&space;=&space;\sigma_{\bar{r_i}}" title="\sigma_{\hat{r_i}} = \sigma_{\bar{r_i}}" />
 
 ---
@@ -528,8 +527,7 @@ for s in sectors:
     Others: 35
     
 
-Before we proceed on solving the global minimum/maxmimum $$w$$ solutions, specifically minimum variance in the upcoming steps, it's useful to have a function that could take in any given allocation weight & the respective returns table to compute the some evaluation metrics & returns (as well as cummulative returns) data:
-
+Before we proceed on finding the "optimal" $$w$$ solutions, it's useful to have a function that could take in any given allocation weight & the respective returns table to compute the some evaluation metrics & returns (as well as cummulative returns) data:
 
 ```python
 def evaluate_w(RET,_w_):
@@ -542,6 +540,17 @@ def evaluate_w(RET,_w_):
     return {"returns":portfolio_ret,"cummulative_returns":(1+portfolio_ret).cumprod(),"metrics":metrics}
 ```
 
+Since we are going to perform evaluations on multiple weights and compare them to each other, we also wrote a bulk evaluation function that takes in an *M x W* matrix, as *W* different weights of *M* securities, and an *N x M* returns table with N returns of  such M securities:
+
+```python
+def evaluate_bulk_w(_RET_,all_w):
+    RESULTS = {w:evaluate_w(_RET_,all_w[w]) for w in all_w.columns}
+    all_metrics = pd.DataFrame({w:RESULTS[w]["metrics"] for w in RESULTS})
+    all_cumret = pd.DataFrame({w:RESULTS[w]["cummulative_returns"] for w in RESULTS})
+    return {"metrics":all_metrics.T,"cum_ret":all_cumret}
+```
+
+
 In addition, to further evaluate the performances of our extract allocations weights, we will need to split our $$RET$$ data into in-sample & out-sample. Performing calculations to find such weights on the in-sample, then using the weights to apply on the out-sample. This is equivalent to saying:
 > If we use the "optimal" weights, calculated from in-sample data, being the latest possible date and invest at that date, **without any predictive features**, how well will such weight perform?
 
@@ -551,7 +560,8 @@ def ioSampleSplit(df,inSample_pct=0.75):
     return (inSample,df.reindex([i for i in df.index if i not in inSample.index]))
 ```
 
-# Portfolio Optimization
+---
+# Mean-Variance Optimization
 Given a selected M amount of securities, we obtain our Symmetric *M x M* Covariance Matrix (<img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;\boldsymbol{C_{\sigma}}" title="\boldsymbol{C_{\sigma}}" />), calculated from an *N x M* $$RET$$ returns table of *N* returns data of such M securities (again, details in [first QF post](https://jp-quant.github.io/qf_intro/ "first QF post") ), a portfolio's volatility (risk) is calculated as:
 
 ><img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\sigma_p&space;=&space;\sqrt{w^\top&space;\cdot&space;\boldsymbol{C_{\sigma}}&space;\cdot&space;w}" title="\sigma_p = \sqrt{w^\top \cdot \boldsymbol{C_{\sigma}} \cdot w}" />
@@ -582,14 +592,17 @@ RET.cov()
 ```
 
 ---
+## 1. Minimizing Risk
+>Commonly known as the **Minimum Variance Portfolio**, minimizing portfolio's risk serves as the first step for the overaching topic of Portfolio Optimization.
+
 ### 1a. Analytical Solutions
 >**Personal Commentary**: It is important to understand the mathematics behind methods of solving optimization problems, especially aiding in knowing the context of the problem and how solutions exist within a certain boundary, the convexity or linearity, as well as grasping the analytical abstraction drawn to describe any system. There might exist patterns within our analytical steps, to which could allow us to find out some invariances that are even more powerful than solving for such solution.
 
 Going back to my earlier remark above on solving optimization problems, we can simply construct this problem with constraints utilizing the [Lagrangian method](https://scholar.harvard.edu/files/david-morin/files/cmchap6.pdf "Lagrangian method"). My personal exposure to such mathematical technique stemmed from my Physics background, specifically on the topic of [Lagrangian Mechanics](https://en.wikipedia.org/wiki/Lagrangian_mechanics); such modeling technique can be applied to any other system optimization problems in other fields, which in this case being finance.
->**IMPORTANT**: The subsequent analytical steps has to follow the fact that the Covariance Matrix <img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;\boldsymbol{C_{\sigma}}" title="\boldsymbol{C_{\sigma}}" /> has to be **invertible**, meaning it has to be positive definite, or that all our **real eigen values decomposed has to be all positive (>0)**, such that if there are ones that are 0, transformation enacted on eigen vectors associated with such simply implies losing dimension(s) of information, thus getting back to the original will not be possible (we are going to tackle this mathematically in more details later)
+>**IMPORTANT**: The subsequent analytical steps has to follow the fact that the Covariance Matrix <img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;\boldsymbol{C_{\sigma}}" title="\boldsymbol{C_{\sigma}}" /> has to be **invertible**, meaning it has to be positive definite, or that all our **real eigen values decomposed has to be all positive (>0)**
 
 
-In finding the optimal allocations weight of a **Minimum Variance Portfolio**, we seek for the solution of:
+In finding the optimal allocations weight $$w$$ of a *Minimum Variance Portfolio*, we seek for the solution of:
 
 ><img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\underset{w}{min}&space;(w^\top&space;\cdot&space;\boldsymbol{C_{\sigma}}&space;\cdot&space;w)" title="\underset{w}{min} (w^\top \cdot \boldsymbol{C_{\sigma}} \cdot w)" />
 
@@ -621,10 +634,10 @@ Substituting the denominator **1** with our initial constraint equation <img src
 Thus, canceling the Lagrange Multiplier $$\lambda_w$$, we finally have our solution:
 > <img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;w&space;=&space;\frac{\boldsymbol{C_{\sigma}^{-1}}&space;\cdot&space;\boldsymbol{\vec{1}}}{(\boldsymbol{C_{\sigma}^{-1}}&space;\cdot&space;\boldsymbol{\vec{1}})^\top&space;\cdot&space;\boldsymbol{\vec{1}}}" title="w = \frac{\boldsymbol{C_{\sigma}^{-1}} \cdot \boldsymbol{\vec{1}}}{(\boldsymbol{C_{\sigma}^{-1}} \cdot \boldsymbol{\vec{1}})^\top \cdot \boldsymbol{\vec{1}}}" />
 
-- We will demonstrate the derived solution in code below when constructing an overarching function for both computational & analytical approaches.
-- The Lagrangian Method can be further complexified, adding more constraints into the system, with each constraint associated with a Lagrange Multiplier, increasing the dimensionality of the FOCs, then proceed on solving it backwards.
-- From the Sharpe Ratio, we can establish an equality constraint(=) on the portfolio's return, then solve for the global minimum variance solution of such return. Iterating over a range of all possible returns and perform the same step will give you the [efficient frontier](https://en.wikipedia.org/wiki/Efficient_frontier "efficient frontier") (there are many posts demonstrating this. Perhaps I will add one of my own though it is not necessary at the moment). 
-- For the additional mathematics on adding the returns equality constraint, again, check out this [lecture notes](https://faculty.washington.edu/ezivot/econ424/portfolioTheoryMatrix.pdf "lecture notes").
+#### Constraints & The Need for Computation
+The Lagrangian Method can be further complexified, adding more constraints into the system, with each constraint associated with a Lagrange Multiplier, increasing the dimensionality of the FOCs, then proceed on solving it backwards:
+> We can establish an equality constraint(=) on the portfolio's return, then solve for the global minimum variance solution of such return. Iterating over a range of all possible returns and perform the same step will give you the [efficient frontier](https://en.wikipedia.org/wiki/Efficient_frontier "efficient frontier")
+For the additional mathematics on adding the returns equality constraint, again, check out this [lecture notes](https://faculty.washington.edu/ezivot/econ424/portfolioTheoryMatrix.pdf "lecture notes").
 
 When establishing *inequality constraints(<,>,<=,>=)*, the mathematics can get very arduous to go over, let alone an intricate list of equality constraints (=). This is where computational power comes in.
 
@@ -635,7 +648,7 @@ Simply put, we will utilize scipy's minimization function in seeking for the sol
 I encourage learning more on the details of different algorithms for optimization, specifically in knowing the context of the problem constructed (linearity, convexity, etc), as well as, again, the mathematics behind them as much as you can. Scipy offers alot of different optimization functions, as well as algorithms to be implemented when solving; learn about the mathematical optimization [here](http://scipy-lectures.org/advanced/mathematical_optimization/ "here")
 
 ---
-### 1c. Implementations & Comparisons
+### 1c. Implementations & Comparing Two Approahces
 
 Below is our written function that both analytically & computationally, depends on input argument, solves for the global minimum variance weight $$w$$, a unique solution that minimizes portfolio's risk (<img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\sigma_p" title="\sigma_p" />), requiring only an input of any *M x M* covariance matrix of M securities:
 
@@ -666,25 +679,22 @@ def minVar(covariance_matrix,analytical_method=False):
     return pd.Series(data=result.x,index=targets)
 ```
 
-Calculate the Minimum Variance allocations weights for both methods, as well as grabbing their evaluation results:
+Calculate the Minimum Variance allocations weights for both methods & construct table of weights:
 
 ```python
-#----| Compute MinVar Weights
-w_a = minVar(RET.cov(),True)
-w_c = minVar(RET.cov())
-#----| Grab Weights Evaluation Results
-r_a = evaluate_w(RET,w_a)
-r_c = evaluate_w(RET,w_c)
+allWeights = pd.DataFrame({
+    "Analytical":minVar(RET.cov(),True),
+    "Computational":minVar(RET.cov())
+})
 ```
 Observe the the weights comparisons between the two:
 
 ```python
-#----| Plot MinVar Weights
 f = plt.figure(figsize=(16,4))
 ax_a = f.add_subplot(121,title="Minimum Variance Weights (Analytical)")
 ax_c = f.add_subplot(122,title="Minimum Variance Weights (Computational)")
-w_a.plot(kind="bar",ax=ax_a)
-w_c.plot(kind="bar",ax=ax_c)
+allWeights["Analytical"].plot(kind="bar",ax=ax_a)
+allWeights["Computational"].plot(kind="bar",ax=ax_c)
 ```
 
 <img src="https://jp-quant.github.io/images/vol_2/a_vs_c_w.png" alt="1" border="0">
@@ -692,80 +702,90 @@ w_c.plot(kind="bar",ax=ax_c)
 We proceed on first observing the **in-sample** evaluation results between Analytical & Computational solutions, seeing how much they do line up with each other:
 
 ```python
-#----| Grab Weight Evaluation Results for in-sample
-r_a = evaluate_w(RET,w_a)
-r_c = evaluate_w(RET,w_c)
-
-metrics = pd.DataFrame({
-    "Analytical":r_a["metrics"],
-    "Computational":r_c["metrics"]
-})
-cum_ret = pd.DataFrame({
-    "Analytical":r_a["cummulative_returns"],
-    "Computational":r_c["cummulative_returns"]
-})
-
-#----| Plot Evaluation Metrics
+bulk_evals = evaluate_bulk_w(RET,allWeights)
 f = plt.figure(figsize=(16,12))
 ax_m = f.add_subplot(121,title="In-Sample Evaluation")
 ax_cr = f.add_subplot(122,title="In-Sample Cummulative Returns")
-metrics.plot(kind="bar",ax=ax_m)
-cum_ret.plot(ax=ax_cr)
+bulk_evals["metrics"].T.plot(kind="bar",ax=ax_m)
+bulk_evals["cum_ret"].plot(ax=ax_cr)
 ```
 <img src="https://jp-quant.github.io/images/vol_2/a_vs_c_1.png" alt="1" border="0">
 
 With the weights extracted from our in-sample, do the same thing for **out-sample**:
 
 ```python
-#----| Grab Weight Evaluation Results for out-sample
-r_a = evaluate_w(RET_outSample,w_a)
-r_c = evaluate_w(RET_outSample,w_c)
-
-metrics = pd.DataFrame({
-    "Analytical":r_a["metrics"],
-    "Computational":r_c["metrics"]
-})
-cum_ret = pd.DataFrame({
-    "Analytical":r_a["cummulative_returns"],
-    "Computational":r_c["cummulative_returns"]
-})
-
-#----| Plot Evaluation Metrics
+bulk_evals = evaluate_bulk_w(RET_outSample,allWeights)
 f = plt.figure(figsize=(16,12))
 ax_m = f.add_subplot(121,title="Out-Sample Evaluation")
 ax_cr = f.add_subplot(122,title="Out-Sample Cummulative Returns")
-metrics.plot(kind="bar",ax=ax_m)
-cum_ret.plot(ax=ax_cr)
+bulk_evals["metrics"].T.plot(kind="bar",ax=ax_m)
+bulk_evals["cum_ret"].plot(ax=ax_cr)
 ```
+
 <img src="https://jp-quant.github.io/images/vol_2/a_vs_c_2.png" alt="1" border="0">
 
-> **REMARK**: There are some discrepancies between our analytical & computational approaches, if anything a very small one. I theorize that this is due to either when approximating the inverse covariance matrix when solving analytically,or computational iteration approximations. I will add an explanation once I have identified the problem.
+> **REMARK**: There are some discrepancies between our analytical & computational approaches, if anything a very small one. I theorize that this is due to either when approximating the inverse covariance matrix when solving analytically,or computational iteration approximations. I will add an explanation once I have empirically identified the problem.
+
+
 
 ---
+### 2. Eigen Portfolios
+Recall our brief mention in the first post, eigen portfolios are simply the eigen vectors normalized such that the weights follow capital allocation summation <img src="https://latex.codecogs.com/gif.latex?\sum_{1}^{M}w_i&space;=&space;1" title="\sum_{1}^{M}w_i = 1" />.
+>Since each eigen value associated with each eigen vector represents the independent directional variance, that together describes the covariance of M securities, it is **empirically proven** that:
+- The **largest eigen portfolio** associating with the **largest eigen value**, representing a portfolio with the **highest variance**, is referred to as the **market portfolio** when M securities are picked as securities that comprises the market.
 
-### 2. Eigen Portfolios & Variance Minimization
-Recall our brief mention on **eigen portfolios** in the first post, specifically the "market portfolio", or simply the **first eigen vector** normalized such that the weights follow capital allocation summation <img src="https://latex.codecogs.com/gif.latex?\sum_{1}^{M}w_i&space;=&space;1" title="\sum_{1}^{M}w_i = 1" />.
->Such portfolio would represents a portfolio with the **highest variance**, or volatility. Thus with that premise, we would say that, from a **historical standpoint** (this is important to keep in mind, as we will further explore why), the **last eigen portfolio**, being one associated with the **least eigen value**, would represents a portfolio with the **lowest variance**, or volatility.
+>From a **historical standpoint** (this is important to keep in mind in regards to Random Matrix Theory), we **pose the question**:
+- Would the **last eigen portfolio**, being one associated with the **least eigen value**, represent a portfolio with the **lowest variance**?
 
-Modifying our previous function written to extract the eigen pairs, below includes the normalization of the eigen vectors into eigen portfolios:
+Modifying our function written to extract the eigen pairs in the [**previous post**](https://jp-quant.github.io/qf_volatility_p1/ " previous post"), below function normalizes the eigen vectors with their weights summation into eigen portfolios and return the portfolios' weights:
 ```python
-def EIGEN(ret):
-    _pca = PCA().fit(ret)
+def eigen_w(_ret_):
+    _pca = PCA().fit(_ret_)
     eVecs = _pca.components_
     eVals = _pca.explained_variance_
     _eigenNames = ["eigen_"+str(e+1) for e in range(len(eVals))]
     _eigenValues = pd.Series(eVals,index=_eigenNames,name="eigenValues")
     _eigenVectors = pd.DataFrame(eVecs.T,index=ret.columns,columns=_eigenNames)
-    _eigenPortfolios = pd.DataFrame({e:(_eigenVectors[e]/_eigenVectors[e].sum()) for e in _eigenVectors})
-    return {"eVecs":_eigenVectors,"eVals":_eigenValues,_"eWeights":_eigenPortfolios}
+    return pd.DataFrame({e:(_eigenVectors[e]/_eigenVectors[e].sum()) for e in _eigenVectors})
 ```
 
-[IN PROGRESS]
+In constructing our *allWeights* table of different allocations, to which in this case being all the eigen portfolios' weights, we will go ahead and **add the Minimum Variance Portfolio Weights** into it as well:
+
+```python
+eigenWeights = eigen_w(RET)
+allWeights = pd.concat([eigenWeights,minVar(RET.cov()).reindex(eigenWeights.index)],1)
+```
+
+Perform evaluations of the weights on **in-sample** data & plot the results of the **Top 5 with the LEAST Volatility**, we obtain:
+
+```python
+bulk_evals = evaluate_bulk_w(RET,allWeights)
+to_plot = list(bulk_evals["metrics"].sort_values("std").index[:5])
+
+f = plt.figure(figsize=(16,12))
+ax_m = f.add_subplot(121,title="In-Sample Evaluation")
+ax_cr = f.add_subplot(122,title="In-Sample Cummulative Returns")
+bulk_evals["metrics"].T[to_plot].plot(kind="bar",ax=ax_m)
+bulk_evals["cum_ret"][to_plot].plot(ax=ax_cr)
+```
+
+<img src="https://jp-quant.github.io/images/vol_2/me_vs_e_1.png" alt="1" border="0">
 
 
+Now, if we evaluate the weights on **out-sample** data, again plotting the **Top 5 with the LEAST Volatility**:
 
+```python
+bulk_evals = evaluate_bulk_w(RET_outSample,allWeights)
+to_plot = list(bulk_evals["metrics"].sort_values("std").index[:5])
 
+f = plt.figure(figsize=(16,12))
+ax_m = f.add_subplot(121,title="Out-Sample Evaluation")
+ax_cr = f.add_subplot(122,title="Out-Sample Cummulative Returns")
+bulk_evals["metrics"].T[to_plot].plot(kind="bar",ax=ax_m)
+bulk_evals["cum_ret"][to_plot].plot(ax=ax_cr)
+```
 
+<img src="https://jp-quant.github.io/images/vol_2/me_vs_e_2.png" alt="1" border="0">
 
 
 
