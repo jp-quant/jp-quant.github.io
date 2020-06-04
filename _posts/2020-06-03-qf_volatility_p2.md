@@ -634,7 +634,6 @@ Substituting the denominator **1** with our initial constraint equation <img src
 Thus, canceling the Lagrange Multiplier $$\lambda_w$$, we finally have our solution:
 > <img src="https://latex.codecogs.com/gif.latex?\dpi{120}&space;w&space;=&space;\frac{\boldsymbol{C_{\sigma}^{-1}}&space;\cdot&space;\boldsymbol{\vec{1}}}{(\boldsymbol{C_{\sigma}^{-1}}&space;\cdot&space;\boldsymbol{\vec{1}})^\top&space;\cdot&space;\boldsymbol{\vec{1}}}" title="w = \frac{\boldsymbol{C_{\sigma}^{-1}} \cdot \boldsymbol{\vec{1}}}{(\boldsymbol{C_{\sigma}^{-1}} \cdot \boldsymbol{\vec{1}})^\top \cdot \boldsymbol{\vec{1}}}" />
 
-#### Constraints & The Need for Computation
 The Lagrangian Method can be further complexified, adding more constraints into the system, with each constraint associated with a Lagrange Multiplier, increasing the dimensionality of the FOCs, then proceed on solving it backwards:
 > We can establish an equality constraint(=) on the portfolio's return, then solve for the global minimum variance solution of such return. Iterating over a range of all possible returns and perform the same step will give you the [efficient frontier](https://en.wikipedia.org/wiki/Efficient_frontier "efficient frontier")
 For the additional mathematics on adding the returns equality constraint, again, check out this [lecture notes](https://faculty.washington.edu/ezivot/econ424/portfolioTheoryMatrix.pdf "lecture notes").
@@ -769,7 +768,7 @@ bulk_evals["metrics"].T[to_plot].plot(kind="bar",ax=ax_m)
 bulk_evals["cum_ret"][to_plot].plot(ax=ax_cr)
 ```
 
-<img src="https://jp-quant.github.io/images/vol_2/me_vs_e_1.png" alt="1" border="0">
+<img src="https://jp-quant.github.io/images/vol_2/mv_vs_e_1.png" alt="1" border="0">
 
 
 Now, if we evaluate the weights on **out-sample** data, again plotting the **Top 5 with the LEAST Volatility**:
@@ -785,7 +784,7 @@ bulk_evals["metrics"].T[to_plot].plot(kind="bar",ax=ax_m)
 bulk_evals["cum_ret"][to_plot].plot(ax=ax_cr)
 ```
 
-<img src="https://jp-quant.github.io/images/vol_2/me_vs_e_2.png" alt="1" border="0">
+<img src="https://jp-quant.github.io/images/vol_2/mv_vs_e_2.png" alt="1" border="0">
 
 
 
