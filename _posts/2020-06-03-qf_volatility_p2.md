@@ -13,9 +13,9 @@ classes: wide
 # Overview & Preparation
 >*Optimization*, in general, is simply solving for minimum/maximum solution(s) of a *system of equation(s)*, satisfying given constraints.
 
-Recalling our brief overview on the basics of Modern Portfolio Theory in my [first QF post](https://jp-quant.github.io/qf_intro/ "first QF post"), one of the metric to which used in evaluating performance of any investment, mirroring somewhat of a standardization technique, is the **Sharpe Ratio**, to which we will dub it as $$\boldsymbol{I}$$:
+Recalling our brief overview on the basics of Modern Portfolio Theory in my [first QF post](https://jp-quant.github.io/qf_intro/ "first QF post"), one of the metric to which used in evaluating performance of any investment, mirroring somewhat of a standardization technique, is the **Sharpe Ratio**, to which we will dub it as $$\boldsymbol{I_p}$$:
 
->$$\boldsymbol{I} = \frac{\bar{R_p} - R_f}{\sigma_p}$$, where in the perspective of evaluating a portfolio,
+>$$\boldsymbol{I_p} = \frac{\bar{R_p} - R_f}{\sigma_p}$$, where
 $$\bar{R_p}$$ = Average Returns
 $$\sigma_p$$ = Volatility = Standard Deviation of Returns
 
@@ -36,13 +36,13 @@ Before moving forward, we first need to address the context regarding *M securit
 	- What is the returns $$\hat{r_i}$$ for each security $$i = 1,2...M$$?
 		>In our demonstrative work, as being used as a factor in various predictive models, we will set $$\hat{r_i} = \bar{r_i}$$ being the **average returns "so far"** (subjective)
 
-	- How much "uncertainty," or in other words, how much will $$\hat{r_i}$$ deviate, or simply $$\sigma_{\hat{r_i}}$$?
+	- How much "uncertainty," or in other words, how much will $$\hat{r_i}$$ deviate? Or simply, what is $$\sigma_{\hat{r_i}}$$?
 		>Given we have set $$\hat{r_i} = \bar{r_i}$$ , this will simply be the **standard deviations** of $$\bar{r_i}$$. Thus, we set $$\sigma_{\hat{r_i}} = \sigma_{\bar{r_i}}$$.
 
 ---
-Unlike our [**previous post**](https://jp-quant.github.io/qf_volatility_p1/ "previous post") in this series on volatility, this time, we will start with a *N x M*  **daily close** $$RET$$ table of ~1,000 securities in the U.S. Equities market,  dating back approximately **2 years worth of data** since May 1st 2020, or 500-600 data points available.
+Unlike our [**previous post**](https://jp-quant.github.io/qf_volatility_p1/ "previous post") in this series on volatility, this time, we will start with a *N x M*  **daily close** $$RET$$ table of ~1,000 securities in the U.S. Equities market,  dating back **approximately 2 years worth of data** since May 1st 2020, or 600-700 data points available.
 
-Before we proceed, it is important to note that we have over 1,000 securities available. This is dimensionally lacking in data as for our *N x M* returns table $$RET$$ (N < M). It is somewhat similar, although not completely accurate, to saying having 1-2 points when working with 3 assets. We will slightly touch base on this problem in later posts. Although, for now, when working with picking M assets,  we seek for **M < N** as much as we can, that being either:
+Before we proceed, it is important to note that we have over 1,000 securities available. This is dimensionally lacking in data as for our *N x M* returns table $$RET$$ (N < M). It is somewhat similar, although not completely accurate, to saying having 1-2 points when working with 3 assets. We will slightly touch base on this problem in later posts. Although, for now, when working with picking M assets,  we seek for **M < N** as much as we can, especially our purpose is to be able to work with **ANY** universe of investment targets, that being either:
 - Randomizing selection of any given M < N
 - Selection in any specific sector (luckily, with some having the entire sector < N)
 
@@ -69,354 +69,25 @@ sectors = {s:universe_info[universe_info["sector"] == s].index for s in universe
 
 
 ```python
-_RET_
+_RET_.columns,_RET_.index
 ```
 
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>AMG</th>
-      <th>MSI</th>
-      <th>FBHS</th>
-      <th>AMD</th>
-      <th>EVR</th>
-      <th>NKE</th>
-      <th>NRG</th>
-      <th>EV</th>
-      <th>VRSN</th>
-      <th>SNPS</th>
-      <th>...</th>
-      <th>FND</th>
-      <th>CVNA</th>
-      <th>AM</th>
-      <th>IR</th>
-      <th>JHG</th>
-      <th>ATUS</th>
-      <th>JBGS</th>
-      <th>BHF</th>
-      <th>ROKU</th>
-      <th>SWCH</th>
-    </tr>
-    <tr>
-      <th>date</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>10/9/2017</th>
-      <td>-0.002572</td>
-      <td>-0.003809</td>
-      <td>0.000606</td>
-      <td>0.017978</td>
-      <td>-0.015949</td>
-      <td>-0.017318</td>
-      <td>0.009760</td>
-      <td>-0.003002</td>
-      <td>-0.001366</td>
-      <td>0.002785</td>
-      <td>...</td>
-      <td>0.007816</td>
-      <td>-0.029932</td>
-      <td>0.002488</td>
-      <td>0.006744</td>
-      <td>0.000287</td>
-      <td>-0.025749</td>
-      <td>-0.007929</td>
-      <td>-0.014859</td>
-      <td>0.056152</td>
-      <td>-0.091909</td>
-    </tr>
-    <tr>
-      <th>10/10/2017</th>
-      <td>0.005651</td>
-      <td>-0.000224</td>
-      <td>-0.005774</td>
-      <td>0.016931</td>
-      <td>-0.003221</td>
-      <td>0.000194</td>
-      <td>-0.001944</td>
-      <td>0.006392</td>
-      <td>-0.015146</td>
-      <td>-0.000363</td>
-      <td>...</td>
-      <td>-0.002688</td>
-      <td>-0.063414</td>
-      <td>0.016757</td>
-      <td>0.004471</td>
-      <td>0.006016</td>
-      <td>-0.017418</td>
-      <td>0.006713</td>
-      <td>-0.000333</td>
-      <td>-0.067858</td>
-      <td>0.048765</td>
-    </tr>
-    <tr>
-      <th>10/11/2017</th>
-      <td>-0.003387</td>
-      <td>0.002019</td>
-      <td>0.006683</td>
-      <td>0.013053</td>
-      <td>-0.012987</td>
-      <td>-0.009750</td>
-      <td>-0.008601</td>
-      <td>0.002387</td>
-      <td>0.001571</td>
-      <td>0.002175</td>
-      <td>...</td>
-      <td>0.004030</td>
-      <td>0.024868</td>
-      <td>0.000000</td>
-      <td>-0.001488</td>
-      <td>-0.002001</td>
-      <td>-0.033837</td>
-      <td>0.000912</td>
-      <td>0.009439</td>
-      <td>0.031340</td>
-      <td>-0.045090</td>
-    </tr>
-    <tr>
-      <th>10/12/2017</th>
-      <td>-0.004120</td>
-      <td>0.006032</td>
-      <td>0.002872</td>
-      <td>0.022793</td>
-      <td>-0.005242</td>
-      <td>-0.003927</td>
-      <td>0.008211</td>
-      <td>0.004559</td>
-      <td>-0.002682</td>
-      <td>0.022435</td>
-      <td>...</td>
-      <td>-0.001341</td>
-      <td>-0.016986</td>
-      <td>-0.009330</td>
-      <td>0.001116</td>
-      <td>0.007130</td>
-      <td>-0.027839</td>
-      <td>0.000304</td>
-      <td>-0.003964</td>
-      <td>-0.001269</td>
-      <td>0.032485</td>
-    </tr>
-    <tr>
-      <th>10/13/2017</th>
-      <td>-0.001084</td>
-      <td>0.001447</td>
-      <td>-0.000151</td>
-      <td>0.001407</td>
-      <td>-0.001315</td>
-      <td>0.002947</td>
-      <td>0.014689</td>
-      <td>0.009839</td>
-      <td>0.002035</td>
-      <td>-0.001535</td>
-      <td>...</td>
-      <td>-0.010525</td>
-      <td>0.000714</td>
-      <td>-0.008920</td>
-      <td>0.002600</td>
-      <td>0.003121</td>
-      <td>-0.022925</td>
-      <td>-0.005177</td>
-      <td>-0.000497</td>
-      <td>-0.026154</td>
-      <td>0.000507</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>4/27/2020</th>
-      <td>0.101339</td>
-      <td>0.010676</td>
-      <td>0.068505</td>
-      <td>0.005503</td>
-      <td>0.065444</td>
-      <td>0.011253</td>
-      <td>0.032592</td>
-      <td>0.041703</td>
-      <td>0.009851</td>
-      <td>0.007227</td>
-      <td>...</td>
-      <td>0.065038</td>
-      <td>-0.021146</td>
-      <td>0.020834</td>
-      <td>0.033578</td>
-      <td>0.061943</td>
-      <td>0.012889</td>
-      <td>0.031936</td>
-      <td>0.055195</td>
-      <td>0.029987</td>
-      <td>0.043699</td>
-    </tr>
-    <tr>
-      <th>4/28/2020</th>
-      <td>0.020766</td>
-      <td>-0.060111</td>
-      <td>0.058889</td>
-      <td>-0.017500</td>
-      <td>0.012124</td>
-      <td>-0.006398</td>
-      <td>0.000890</td>
-      <td>0.012772</td>
-      <td>-0.014860</td>
-      <td>-0.015100</td>
-      <td>...</td>
-      <td>0.024220</td>
-      <td>-0.084890</td>
-      <td>-0.046422</td>
-      <td>0.017230</td>
-      <td>0.020241</td>
-      <td>-0.015946</td>
-      <td>0.018743</td>
-      <td>0.068626</td>
-      <td>-0.074796</td>
-      <td>-0.053236</td>
-    </tr>
-    <tr>
-      <th>4/29/2020</th>
-      <td>0.031928</td>
-      <td>0.023714</td>
-      <td>0.036964</td>
-      <td>-0.033895</td>
-      <td>0.044477</td>
-      <td>-0.008255</td>
-      <td>0.027215</td>
-      <td>0.046558</td>
-      <td>0.001515</td>
-      <td>0.039897</td>
-      <td>...</td>
-      <td>0.074486</td>
-      <td>0.022998</td>
-      <td>-0.028479</td>
-      <td>0.035244</td>
-      <td>0.005620</td>
-      <td>0.008764</td>
-      <td>0.034730</td>
-      <td>0.072330</td>
-      <td>0.001340</td>
-      <td>-0.010768</td>
-    </tr>
-    <tr>
-      <th>4/30/2020</th>
-      <td>-0.005275</td>
-      <td>-0.034916</td>
-      <td>-0.066805</td>
-      <td>-0.023952</td>
-      <td>-0.041566</td>
-      <td>-0.010157</td>
-      <td>-0.032569</td>
-      <td>-0.012187</td>
-      <td>-0.009029</td>
-      <td>-0.005648</td>
-      <td>...</td>
-      <td>-0.008689</td>
-      <td>-0.057956</td>
-      <td>0.054067</td>
-      <td>-0.041757</td>
-      <td>0.108469</td>
-      <td>-0.014906</td>
-      <td>-0.018097</td>
-      <td>-0.057439</td>
-      <td>0.014206</td>
-      <td>-0.021890</td>
-    </tr>
-    <tr>
-      <th>5/1/2020</th>
-      <td>-0.073998</td>
-      <td>-0.035243</td>
-      <td>0.066223</td>
-      <td>-0.049096</td>
-      <td>-0.032900</td>
-      <td>-0.018991</td>
-      <td>-0.016843</td>
-      <td>-0.070259</td>
-      <td>-0.021568</td>
-      <td>-0.048777</td>
-      <td>...</td>
-      <td>-0.011147</td>
-      <td>-0.052667</td>
-      <td>0.002103</td>
-      <td>-0.033214</td>
-      <td>-0.020317</td>
-      <td>-0.038466</td>
-      <td>-0.028078</td>
-      <td>-0.039672</td>
-      <td>-0.061316</td>
-      <td>0.000000</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+    (Index(['AMG', 'MSI', 'FBHS', 'AMD', 'EVR', 'NKE', 'NRG', 'EV', 'VRSN', 'SNPS',
+            ...
+            'FND', 'CVNA', 'AM', 'IR', 'JHG', 'ATUS', 'JBGS', 'BHF', 'ROKU',
+            'SWCH'],
+           dtype='object', length=984),
+     Index(['10/9/2017', '10/10/2017', '10/11/2017', '10/12/2017', '10/13/2017',
+            '10/16/2017', '10/17/2017', '10/18/2017', '10/19/2017', '10/20/2017',
+            ...
+            '4/20/2020', '4/21/2020', '4/22/2020', '4/23/2020', '4/24/2020',
+            '4/27/2020', '4/28/2020', '4/29/2020', '4/30/2020', '5/1/2020'],
+           dtype='object', name='date', length=635))
 
 
 ```python
 universe_info
 ```
-
-
 
 
 <div>
@@ -541,7 +212,7 @@ def evaluate_w(RET,_w_):
     return {"returns":portfolio_ret,"cummulative_returns":(1+portfolio_ret).cumprod(),"metrics":metrics}
 ```
 
-Since we are going to perform evaluations on multiple weights and compare them to each other, we also wrote a bulk evaluation function that takes in an *M x W* matrix, as *W* different weights of *M* securities, and an *N x M* returns table with N returns of  such M securities:
+Since we are going to perform evaluations on multiple weights and compare them to each other, we also wrote a bulk evaluation function that takes in an *M x W* matrix, as *W* different weights of *M* securities, and an *N x M* returns table with N returns of such M securities:
 
 ```python
 def evaluate_bulk_w(_RET_,all_w):
@@ -553,7 +224,7 @@ def evaluate_bulk_w(_RET_,all_w):
 
 
 In addition, to further evaluate the performances of our extract allocations weights, we will need to split our $$RET$$ data into in-sample & out-sample. Performing calculations to find such weights on the in-sample, then using the weights to apply on the out-sample. This is equivalent to saying:
-> If we use the "optimal" weights, calculated from in-sample data, being the latest possible date and invest at that date, **without any predictive features**, how well will such weight perform?
+> If we use the "optimal" weights, calculated from in-sample data, being the latest possible date and invest at that date, *without any predictive features*, how well will such weight perform in the out-sample, or the future?
 
 ```python
 def ioSampleSplit(df,inSample_pct=0.75):
@@ -563,7 +234,7 @@ def ioSampleSplit(df,inSample_pct=0.75):
 
 ---
 # Mean-Variance Optimization
-Given a selected M amount of securities, we obtain our Symmetric *M x M* Covariance Matrix ($$\boldsymbol{C_{\sigma}}$$), calculated from an *N x M* $$RET$$ returns table of *N* returns data of such M securities (again, details in [first QF post](https://jp-quant.github.io/qf_intro/ "first QF post") ), a portfolio's volatility (risk) is calculated as:
+Given a selected M amount of securities, we obtain our Symmetric *M x M* Covariance Matrix ($$\boldsymbol{C_{\sigma}}$$), calculated from an *N x M* $$RET$$ returns table of *N* returns data of such M securities (again, details in [first QF post](https://jp-quant.github.io/qf_intro/ "first QF post") ), a portfolio's volatility ($$\sigma_p$$) is calculated as:
 
 >$$\sigma_p = \sqrt{w^\top \cdot \boldsymbol{C_{\sigma}} \cdot w}$$
 
@@ -585,7 +256,7 @@ RET.shape, RET_outSample.shape
     ((476, 37), (159, 37))
 
 
-Like before, we will use pandas covariance function to calculated its sample covariance matrix:
+Like before, we will use pandas covariance function to calculated its sample covariance matrix $$\boldsymbol{C_{\sigma}}$$:
 
 
 ```python
@@ -593,12 +264,10 @@ RET.cov()
 ```
 
 ---
-## 1. Minimizing Risk
+## 1. Risk Minimization
 >Commonly known as the **Minimum Variance Portfolio**, minimizing portfolio's risk serves as the first step for the overaching topic of Portfolio Optimization.
 
 ### 1a. Analytical Solutions
->**Personal Commentary**: It is important to understand the mathematics behind methods of solving optimization problems, especially aiding in knowing the context of the problem and how solutions exist within a certain boundary, the convexity or linearity, as well as grasping the analytical abstraction drawn to describe any system. There might exist patterns within our analytical steps, to which could allow us to find out some invariances that are even more powerful than solving for such solution.
-
 Going back to my earlier remark above on solving optimization problems, we can simply construct this problem with constraints utilizing the [Lagrangian method](https://scholar.harvard.edu/files/david-morin/files/cmchap6.pdf "Lagrangian method") ($$\mathcal{L}$$). My personal exposure to such mathematical technique stemmed from my Physics background, specifically on the topic of [Lagrangian Mechanics](https://en.wikipedia.org/wiki/Lagrangian_mechanics); such modeling technique can be applied to any other system optimization problems in other fields, which in this case being finance.
 >**IMPORTANT**: The subsequent analytical steps has to follow the fact that the Covariance Matrix $$\boldsymbol{C_{\sigma}}$$ has to be **invertible**, meaning it has to be positive definite, or that all our **real eigen values decomposed has to be all positive (>0)**
 
@@ -639,10 +308,10 @@ The Lagrangian Method can be further complexified, adding more constraints into 
 > We can establish an equality constraint(=) on the portfolio's return, then solve for the global minimum variance solution of such return. Iterating over a range of all possible returns and perform the same step will give you the [efficient frontier](https://en.wikipedia.org/wiki/Efficient_frontier "efficient frontier")
 For the additional mathematics on adding the returns equality constraint, again, check out this [lecture notes](https://faculty.washington.edu/ezivot/econ424/portfolioTheoryMatrix.pdf "lecture notes").
 
-When establishing *inequality constraints(<,>,<=,>=)*, the mathematics can get very arduous to go over, let alone an intricate list of equality constraints (=). This is where computational power comes in.
+When establishing *inequality constraints(<,>,<=,>=)*, the mathematics can get very arduous to go over, let alone an intricate list of equality constraints (=). This is where computational power comes in handy.
 
 ### 1b. Computational Approach
-> As there already exist many posts online from different individuals showing methods of optimization utilizing CS algorithms, iterating over different guesses to arrive at the solution needed. Therefore, I will not touch base on this approach in much details. [Here](https://kyle-stahl-mn.com/stock-portfolio-optimization "Here") is an example of such work, specifically on our current topic, if you need more details on each step.
+> As there already exist many posts online from different individuals showing methods of optimization utilizing CS algorithms, iterating over different potential solutions *smartly*, given an initial guess, to arrive at the solution needed. Therefore, I will not touch base on this approach in much details. [Here](https://kyle-stahl-mn.com/stock-portfolio-optimization "Here") is an example of such work, specifically on our current topic, if you need more ABC on each step.
 
 Simply put, we will utilize scipy's minimization function in seeking for the solution of our optimization problem, establishing constraints & boundaries for the input $$w$$ until we reach the global minimum. Since the symmetric covariance matrix, assumed invertible, contains quadratic components with a unique minimizer, we opt for the Sequential Least Square Programming (SLSQP) Algorithm for our computational approach.
 I encourage learning more on the details of different algorithms for optimization, specifically in knowing the context of the problem constructed (linearity, convexity, etc), as well as, again, the mathematics behind them as much as you can. Scipy offers alot of different optimization functions, as well as algorithms to be implemented when solving; learn about the mathematical optimization [here](http://scipy-lectures.org/advanced/mathematical_optimization/ "here")
@@ -650,7 +319,7 @@ I encourage learning more on the details of different algorithms for optimizatio
 ---
 ### 1c. Implementations
 
-Below is our written function that both analytically & computationally, depends on input argument, solves for the global minimum variance weight $$w$$, a unique solution that minimizes portfolio's risk $$\sigma_p$$, requiring only an input of any *M x M* covariance matrix of M securities:
+Below is our written function that both analytically & computationally, depends on input argument (analytical on default), solves for the global minimum variance weight $$w$$, a unique solution that minimizes portfolio's risk $$\sigma_p$$, requiring only an input of any *M x M* covariance matrix of M securities:
 
 ```python
 def minVar(covariance_matrix,analytical_method=True):
@@ -684,13 +353,13 @@ Calculate the Minimum Variance allocations weights for both methods & construct 
 ```python
 allWeights = pd.DataFrame({
     "Analytical":minVar(RET.cov()),
-    "Computational":minVar(RET.cov(),False)})
+    "Computational":minVar(RET.cov(),analytical_method = False)})
 ```
 
 Observe the the weights comparisons between the two:
 
 ```python
-f = plt.figure(figsize=(16,4))
+f = plt.figure(figsize=(16,8))
 ax_a = f.add_subplot(121,title="Minimum Variance Weights (Analytical)")
 ax_c = f.add_subplot(122,title="Minimum Variance Weights (Computational)")
 allWeights["Analytical"].plot(kind="bar",ax=ax_a)
@@ -700,10 +369,12 @@ allWeights["Computational"].plot(kind="bar",ax=ax_c)
 <img src="https://jp-quant.github.io/images/vol_2/a_vs_c_w.png">
 
 
-#### *Conclusions*
+#### *Conclusions & Remarks*
 - The discrepancies between our analytical & computational approaches are very small. I theorize that this is due to either when approximating the inverse covariance matrix when solving analytically, or computational errors. I will add an explanation once I have empirically identified the problem.
 - It is **much faster to use the analytical method** to compute our Minimum Variance Portfolio, especially as M increases to which requires more combinations for iterations when utilizing computational approach.
-- We tend to opt for computation when we don't have the concrete mathematics to solve for the optimization problem, or that the constraint is neither linear or quadratic.
+- We tend to opt for computation when we don't have the concrete mathematics to solve for the optimization problem, or that the constraint is neither linear or quadratic, or even convex (harder to find global minimum/maximum solution).
+- The mathematical rigour can get intensive the more we complexify our Lagrangian, so I will add them more if we have the time. For now, it's much easier to use the computational approach for **adding more constraints or changing optimization target**
+	> For example, instead of $$\sigma_p$$, maybe we can change it to $$\boldsymbol{I_p}$$, and perform maximization instead of minimization. Perhaps I will demonstrate this as well later, although it is fairly easy to change up the code (check out [**Scipy Optimization Documentation**](https://docs.scipy.org/doc/scipy/reference/tutorial/optimize.html "Scipy Optimization Documentation"))
 
 ---
 ### 2. Eigen Portfolios
@@ -713,7 +384,7 @@ Recall our brief mention in the first post, eigen portfolios are simply the eige
 
 - For the eigen vectors $$e_{i} = \begin{vmatrix} e_{i_1}\\ e_{i_2}\\ \vdots\\ e_{i_M} \end{vmatrix}$$, each being a unit vector such that $$\left \| e_i \right \| = 1$$,  when multiplied (scaled) by the summation of its components, we obtain the **eigen portfolios** $$w_{e_i} = \frac{e_i}{e_i \cdot \vec{\boldsymbol{1}}} = \frac{e_i}{\sum_{n=1}^{M}e_{i_n}}$$
 
-- The eigen portfolios $$w_{e_i}$$  **no longer are unit vectors**, meaning that $$\left \| w_{e_i} \right \| \neq 1$$.
+- The eigen portfolios $$w_{e_i}$$ **no longer are unit vectors**, meaning that $$\left \| w_{e_i} \right \| \neq 1$$.
 
 - The eigen values $$\lambda_i$$ are interpreted as an **exposure factor** associated with its respective eigen portfolio $$w_{e_i}$$.
 
@@ -755,13 +426,13 @@ bulk_evals["cum_ret"][to_plot].plot(ax=ax_cr)
 <img src="https://jp-quant.github.io/images/vol_2/mv_vs_e_1.png">
 
 
-Now, if we evaluate the weights on **out-sample** data, again plotting the **Top 5 with the LEAST Volatility**:
+Now, if we evaluate the weights, extracted from in-sample, on **out-sample** data, again plotting the **Top 5 with the LEAST Volatility**:
 
 ```python
 bulk_evals = evaluate_bulk_w(RET_outSample,allWeights)
 to_plot = list(bulk_evals["metrics"].sort_values("std").index[:5])
 
-f = plt.figure(figsize=(16,12))
+f = plt.figure(figsize=(9,6))
 ax_m = f.add_subplot(121,title="Out-Sample Evaluation")
 ax_cr = f.add_subplot(122,title="Out-Sample Cummulative Returns")
 bulk_evals["metrics"].T[to_plot].plot(kind="bar",ax=ax_m)
