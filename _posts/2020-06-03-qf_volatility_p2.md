@@ -6,6 +6,8 @@ header:
   image: "/images/qf_vol_part1_banner.PNG"
 excerpt: "Exploring portfolio management by finding minimum/maximum solutions of a constructed system of equations & constraints, specifically for optimization purposes, analytically & computationally, incorporating quantitative techniques though Random Matrix Theory to filter noises & tackling higher dimensions."
 mathjax: "true"
+layout: single
+classes: wide
 ---
 
 # Overview & Preparation
