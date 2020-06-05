@@ -587,6 +587,8 @@ allWeights["Computational"].plot(kind="bar",ax=ax_c)
 
 <img src="https://jp-quant.github.io/images/vol_2/a_vs_c_w.png">
 
+The **Minimum Variance Portfolio** tells us to allocate the majority of our capital in to *IEF, TLT & SHY*, all of which are **T-Bills**! We will observe this result more in-depths below in the next section on Eigen Portfolios.
+
 
 ### *Conclusions & Remarks*
 - The discrepancies between our analytical & computational approaches are very small. I theorize that this is due to either when approximating the inverse covariance matrix when solving analytically, or computational errors. I will add an explanation once I have empirically identified the problem.
