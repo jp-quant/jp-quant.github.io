@@ -861,4 +861,6 @@ def _RMT_(RET,Q=None,sigma=None,include_plots=False,
         result["FILTERED_ax"] = FILTERED_ax
     return result
 ```
-
+<img src="https://jp-quant.github.io/images/vol_2/rmt_0.png" alt="1" border="0">
+<img src="https://jp-quant.github.io/images/vol_2/rmt_1.png" alt="1" border="0">
+<img src="https://jp-quant.github.io/images/vol_2/rmt_2.png" alt="1" border="0">
