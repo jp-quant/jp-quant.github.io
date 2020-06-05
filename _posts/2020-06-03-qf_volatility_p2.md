@@ -655,7 +655,7 @@ I encourage learning more on the details of different algorithms for optimizatio
 Below is our written function that both analytically & computationally, depends on input argument, solves for the global minimum variance weight $$w$$, a unique solution that minimizes portfolio's risk (<img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\sigma_p" title="\sigma_p" />), requiring only an input of any *M x M* covariance matrix of M securities:
 
 ```python
-def minVar(covariance_matrix,analytical_method=False):
+def minVar(covariance_matrix,analytical_method=True):
     if analytical_method:
         inv_cov = np.linalg.pinv(covariance_matrix)
         ones = np.ones(len(inv_cov))
@@ -685,9 +685,8 @@ Calculate the Minimum Variance allocations weights for both methods & construct 
 
 ```python
 allWeights = pd.DataFrame({
-    "Analytical":minVar(RET.cov(),True),
-    "Computational":minVar(RET.cov())
-})
+    "Analytical":minVar(RET.cov()),
+    "Computational":minVar(RET.cov(),False)})
 ```
 
 Observe the the weights comparisons between the two:
@@ -706,7 +705,7 @@ We proceed on first observing the **in-sample** evaluation results between Analy
 
 ```python
 bulk_evals = evaluate_bulk_w(RET,allWeights)
-f = plt.figure(figsize=(16,12))
+f = plt.figure(figsize=(9,6))
 ax_m = f.add_subplot(121,title="In-Sample Evaluation")
 ax_cr = f.add_subplot(122,title="In-Sample Cummulative Returns")
 bulk_evals["metrics"].T.plot(kind="bar",ax=ax_m)
@@ -718,7 +717,7 @@ With the weights extracted from our in-sample, do the same thing for **out-sampl
 
 ```python
 bulk_evals = evaluate_bulk_w(RET_outSample,allWeights)
-f = plt.figure(figsize=(16,12))
+f = plt.figure(figsize=(9,6))
 ax_m = f.add_subplot(121,title="Out-Sample Evaluation")
 ax_cr = f.add_subplot(122,title="Out-Sample Cummulative Returns")
 bulk_evals["metrics"].T.plot(kind="bar",ax=ax_m)
@@ -727,20 +726,27 @@ bulk_evals["cum_ret"].plot(ax=ax_cr)
 
 <img src="https://jp-quant.github.io/images/vol_2/a_vs_c_2.png">
 
-> **REMARK**: There are some discrepancies between our analytical & computational approaches, if anything a very small one. I theorize that this is due to either when approximating the inverse covariance matrix when solving analytically,or computational iteration approximations. I will add an explanation once I have empirically identified the problem.
-
-
+#### *Conclusions*
+- There are some discrepancies between our analytical & computational approaches, if anything a very small one. I theorize that this is due to either when approximating the inverse covariance matrix when solving analytically, or computational iteration approximations. I will add an explanation once I have empirically identified the problem.
+- It is **much faster to use the analytical method** to compute our Minimum Variance Portfolio, especially as M increases to which requires more combinations for iterations when utilizing computational approach.
+- We tend to opt for computation when we don't have the concrete mathematics to solve for the optimization problem, or that the constraint is neither linear or quadratic.
 
 ---
 ### 2. Eigen Portfolios
-Recall our brief mention in the first post, eigen portfolios are simply the eigen vectors normalized such that the weights follow capital allocation summation <img src="https://latex.codecogs.com/gif.latex?\sum_{1}^{M}w_i&space;=&space;1" title="\sum_{1}^{M}w_i = 1" />.
->Since each eigen value associated with each eigen vector represents the independent directional variance, that together describes the covariance of M securities, it is **empirically proven** that:
-- The **largest eigen portfolio** associating with the **largest eigen value**, representing a portfolio with the **highest variance**, is referred to as the **market portfolio** when M securities are picked as securities that comprises the market.
+Recall our brief mention in the first post, eigen portfolios are simply the eigen vectors "scaled" by the summation of its components. We need to address the following **important** fundamental concepts & empirical findings:
 
->From a **historical standpoint** (this is important to keep in mind in regards to Random Matrix Theory), we **pose the question**:
-- Would the **last eigen portfolio**, being one associated with the **least eigen value**, represent a portfolio with the **lowest variance**?
+- The idea of an eigen portfolio is simply an **allocation vector** that **aligns itself in the exact direction of the eigen vector**.
 
-Modifying our function written to extract the eigen pairs in the [**previous post**](https://jp-quant.github.io/qf_volatility_p1/ " previous post"), below function normalizes the eigen vectors with their weights summation into eigen portfolios and return the portfolios' weights:
+- For the eigen vectors $$e_{i} = \begin{vmatrix} e_{i_1}\\ e_{i_2}\\ \vdots\\ e_{i_M} \end{vmatrix}$$, each being a unit vector such that $$\left \| e_i \right \| = 1$$,  when multiplied (scaled) by the summation of its components, we obtain the **eigen portfolios** $$w_{e_i} = \frac{e_i}{e_i \cdot \vec{\boldsymbol{1}}} = \frac{e_i}{\sum_{n=1}^{M}e_{i_n}}$$
+
+- The eigen portfolios $$w_{e_i}$$  **no longer are unit vectors**, meaning that $$\left \| w_{e_i} \right \| \neq 1$$.
+
+- The eigen values $$\lambda_i$$ are interpreted as an **exposure factor** associated with its respective eigen portfolio $$w_{e_i}$$.
+
+- It is *empirically* proven, through other research works, that $$w_{e_1}$$, being the eigen portfolio associated with the eigen vector with the **largest eigen value**, is the **market portfolio**, given the universe of M securities comprising the market.
+
+Modifying our function written to extract the eigen pairs in the [**previous post**](https://jp-quant.github.io/qf_volatility_p1/ " previous post"), below function scaled the eigen vectors with their weights summation into eigen portfolios and return the portfolios' weights:
+
 ```python
 def eigen_w(_ret_):
     _pca = PCA().fit(_ret_)
@@ -765,7 +771,7 @@ Perform evaluations of the weights on **in-sample** data & plot the results of t
 bulk_evals = evaluate_bulk_w(RET,allWeights)
 to_plot = list(bulk_evals["metrics"].sort_values("std").index[:5])
 
-f = plt.figure(figsize=(16,12))
+f = plt.figure(figsize=(9,6))
 ax_m = f.add_subplot(121,title="In-Sample Evaluation")
 ax_cr = f.add_subplot(122,title="In-Sample Cummulative Returns")
 bulk_evals["metrics"].T[to_plot].plot(kind="bar",ax=ax_m)
