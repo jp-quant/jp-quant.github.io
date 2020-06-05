@@ -407,7 +407,6 @@ _RET_
     </tr>
   </tbody>
 </table>
-<p>635 rows × 984 columns</p>
 </div>
 
 
@@ -505,7 +504,6 @@ universe_info
     </tr>
   </tbody>
 </table>
-<p>984 rows × 2 columns</p>
 </div>
 
 
