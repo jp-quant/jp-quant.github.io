@@ -787,7 +787,78 @@ bulk_evals["cum_ret"][to_plot].plot(ax=ax_cr)
 <img src="https://jp-quant.github.io/images/vol_2/mv_vs_e_2.png" alt="1" border="0">
 
 
+[ANALYSIS IN-PROGRESS]
 
+---
+# Random Matrix Theory
+[CONTENT IN-PROGRESS]
 
+http://web.eecs.umich.edu/~rajnrao/Acta05rmt.pdf
 
+```python
+def _RMT_(RET,Q=None,sigma=None,include_plots=False,
+                          exclude_plotting_outliers=True,auto_scale=True):
+    #----| Part 1: Marchenko-Pastur Theoretical eVals
+    T,N = RET.shape
+    Q = Q or (T/N) #---| optimizable
+    sigma = sigma or 1 #---| optimizable
+    min_theoretical_eval = np.power(sigma*(1 - np.sqrt(1/Q)),2)
+    max_theoretical_eval = np.power(sigma*(1 + np.sqrt(1/Q)),2)
+    theoretical_eval_linspace = np.linspace(min_theoretical_eval,max_theoretical_eval,500)
+    def marchenko_pastur_pdf(x,sigma,Q):
+        y=1/Q
+        b=np.power(sigma*(1 + np.sqrt(1/Q)),2) # Largest eigenvalue
+        a=np.power(sigma*(1 - np.sqrt(1/Q)),2) # Smallest eigenvalue
+        return (1/(2*np.pi*sigma*sigma*x*y))*np.sqrt((b-x)*(x-a))*(0 if (x > b or x <a ) else 1)
+    pdf = np.vectorize(lambda x:marchenko_pastur_pdf(x,sigma,Q))
+    eVal_density = pdf(theoretical_eval_linspace)
+    
+    #-----| Part 2a: Calculate Actual eVals from Correlation Matrix & Construct Filtered eVals
+    corr = RET.corr()
+    eVals,eVecs = np.linalg.eigh(corr.values)
+    noise_eVals = eVals[eVals <= max_theoretical_eval]
+    outlier_eVals = eVals[eVals > max_theoretical_eval]
+    filtered_eVals = eVals.copy()
+    filtered_eVals[filtered_eVals <= max_theoretical_eval] = 0 #---| if u dont filter nothing changes...
+    #-----| Part 2b: Construct Filtered Correlation Matrix from Filtered eVals
+    filtered_corr = np.dot(eVecs,np.dot(
+                        np.diag(filtered_eVals),np.transpose(eVecs)
+                                        ))
+    np.fill_diagonal(filtered_corr,1)
+    #----| Part 2c: Construct Filtered Covariance Matrix from Filtered Correlation Matrix
+    cov = RET.cov()
+    standard_deviations = np.sqrt(np.diag(cov.values))
+    filtered_cov = (np.dot(np.diag(standard_deviations), 
+                        np.dot(filtered_corr,np.diag(standard_deviations))))
+    result = {
+        "raw_cov":cov,"raw_corr":corr,
+        "filtered_cov":pd.DataFrame(data=filtered_cov,index=cov.index,columns=cov.columns),
+        "filtered_corr":pd.DataFrame(data=filtered_corr,index=corr.index,columns=corr.columns),
+        "Q":Q,"sigma":sigma,
+        "min_theoretical_eval":min_theoretical_eval,
+        "max_theoretical_eval":max_theoretical_eval,
+        "noise_eVals":noise_eVals,
+        "outlier_eVals":outlier_eVals,
+        "eVals":eVals,"eVecs":eVecs
+    }
+    if include_plots:
+        #----| Plot A = Eigen Densities Comparison of Actual vs Theoretical
+        MP_ax = plt.figure().add_subplot(111)
+        eVals_toPlot = eVals.copy() if (not exclude_plotting_outliers) else eVals[eVals <= max_theoretical_eval+1]
+        MP_ax.hist(eVals_toPlot, density = True, bins=100)
+        MP_ax.set_autoscale_on(True)
+        MP_ax.plot(theoretical_eval_linspace,eVal_density, linewidth=2, color = 'r')
+        MP_ax.set_title(("Q = "+ str(Q) + " | sigma = " + str(sigma)))
+        result["MP_ax"] = MP_ax
+        
+        #----| Plot B = Original vs Filtered Correlation Matrix (from filtered eVals)
+        f = plt.figure()
+        FILTERED_ax = f.add_subplot(121,title="Original")
+        FILTERED_ax.imshow(corr)
+        FILTERED_ax = f.add_subplot(122,title="Filtered")
+        a = FILTERED_ax.imshow(filtered_corr)
+        cbar = f.colorbar(a, ticks=[-1, 0, 1])
+        result["FILTERED_ax"] = FILTERED_ax
+    return result
+```
 
