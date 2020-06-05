@@ -16,15 +16,15 @@ classes: wide
 Recalling our brief overview on the basics of Modern Portfolio Theory in my [first QF post](https://jp-quant.github.io/qf_intro/ "first QF post"), one of the metric to which used in evaluating performance of any investment, mirroring somewhat of a standardization technique, is the **Sharpe Ratio**, to which we will dub it as <img src="https://latex.codecogs.com/gif.latex?\boldsymbol{I}" title="\boldsymbol{I}" />:
 
 ><img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\boldsymbol{I}&space;=&space;\frac{\bar{R_p}&space;-&space;R_f}{\sigma_p}" title="\boldsymbol{I} = \frac{\bar{R_p} - R_f}{\sigma_p}" />, where in the perspective of evaluating a portfolio,
-<img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\bar{R_p}" title="\bar{R_p}" /> = Average Returns
-<img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\sigma_p" title="\sigma_p" /> = Volatility = Standard Deviation of Returns
+$$\bar{R_p}$$ = Average Returns
+$$\sigma_p$$ = Volatility = Standard Deviation of Returns
 
 In general, we want to **minimize** $$\sigma_p$$ & **maximize** $$\bar{R_p}$$, simply seeking to achieve not just as *highest* & as *consistent* of a returns rate as possible, but also having as little as possible in its maximum drawdown.
 >In regards to selecting the optimal assets to pick in a portfolio, this is an extensive topic requiring much empirical & fundamental research with additional knowledge on top of our current topic at hand (we will save this for another section).
 
-Let there be *M* amount of securities selected to invest a set amount of capital in, we seek for the optimal allocations, or weights, <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;w&space;=&space;\begin{vmatrix}&space;w_1\\&space;w_2\\&space;\vdots\\&space;w_M&space;\end{vmatrix}" title="w = \begin{vmatrix} w_1\\ w_2\\ \vdots\\ w_M \end{vmatrix}" />  such that <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;-1&space;\leq&space;w_{i}\leq&space;1" title="-1 \leq w_{i}\leq 1" /> and <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\sum_{1}^{M}w_i&space;=&space;1" title="\sum_{1}^{M}w_i = 1" />, being 100% of our capital. 
+Let there be *M* amount of securities selected to invest a set amount of capital in, we seek for the optimal allocations, or weights, $$w = \begin{vmatrix} w_1\\ w_2\\ \vdots\\ w_M \end{vmatrix}$$  such that $$-1 \leq w_{i}\leq 1$$ and $$\sum_{1}^{M}w_i = 1$$, being 100% of our capital. 
 
->-  If you want **long only** positions, simply set -- <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;0&space;\leq&space;w_{i}\leq&space;1" title="0 \leq w_{i}\leq 1" /> instead.
+>-  If you want **long only** positions, simply set $$0 \leq w_{i}\leq 1$$ instead.
 - We are allowing short positions in all of our approaches since we want absolute returns & hedging opportunities, coming from a perspective of an institutional investor, hence each weight can be negative.
 
 ---
@@ -33,11 +33,11 @@ Before moving forward, we first need to address the context regarding *M securit
 - At **this** moment in time $$t_N$$, as we are performing analysis to make decisions, being the latest timestamp (this is where back-testing will come in, as I will dedicate a series on building an event-driven one from scratch), we have *N* amount of data historically for *M* securities, hence the necessity for an *N x M* returns table.
 - **Looking towards the future**  $$t_{N + dN}$$ , before we seek to find the optimal weights $$w$$, to compute $$\sigma_p$$ & $$\bar{R_p}$$ (again please refer to my [first QF post](https://jp-quant.github.io/qf_intro/ "first QF post") for the intricate details), as we will not yet be touching base on such extensive topic that having to deal with prediction (I will dedicate another series for this topic), we need to determine the answers for:
 
-	- What is the returns <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\hat{r_i}" title="" /> for each security <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;i&space;=&space;1,2...M" title="i = 1,2...M" />?
-		>In our demonstrative work, as being used as a factor in various predictive models, we will set <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\hat{r_i}&space;=&space;\bar{r_i}" title="\hat{r_i} = \bar{r_i}" /> being the **average returns "so far"** (subjective)
+	- What is the returns $$\hat{r_i}$$ for each security $$i = 1,2...M$$?
+		>In our demonstrative work, as being used as a factor in various predictive models, we will set $$\hat{r_i} = \bar{r_i}$$ being the **average returns "so far"** (subjective)
 
-	- How much "uncertainty," or in other words, how much will  <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\hat{r_i}" title="\hat{r_i}" />  deviate, or simply <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\sigma_{\hat{r_i}}" title="\sigma_{\hat{r_i}}" />?
-		>Given we have set <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\hat{r_i}&space;=&space;\bar{r_i}" title="\hat{r_i} = \bar{r_i}" /> , this will simply be the **standard deviations** of  <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\bar{r_i}" title="\bar{r_i}" />. Thus, we set <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\sigma_{\hat{r_i}}&space;=&space;\sigma_{\bar{r_i}}" title="\sigma_{\hat{r_i}} = \sigma_{\bar{r_i}}" />
+	- How much "uncertainty," or in other words, how much will $$\hat{r_i}$$ deviate, or simply $$\sigma_{\hat{r_i}}$$?
+		>Given we have set $$\hat{r_i} = \bar{r_i}$$ , this will simply be the **standard deviations** of $$\bar{r_i}$$. Thus, we set $$\sigma_{\hat{r_i}} = \sigma_{\bar{r_i}}$$.
 
 ---
 Unlike our [**previous post**](https://jp-quant.github.io/qf_volatility_p1/ " previous post") in this series on volatility, this time, we will start with a *N x M*  **daily close** $$RET$$ table of ~1,000 securities in the U.S. Equities market,  dating back approximately **2 years worth of data** since May 1st 2020, or 500-600 data points available.
@@ -565,7 +565,7 @@ def ioSampleSplit(df,inSample_pct=0.75):
 
 ---
 # Mean-Variance Optimization
-Given a selected M amount of securities, we obtain our Symmetric *M x M* Covariance Matrix (<img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\boldsymbol{C_{\sigma}}" title="\boldsymbol{C_{\sigma}}" />), calculated from an *N x M* $$RET$$ returns table of *N* returns data of such M securities (again, details in [first QF post](https://jp-quant.github.io/qf_intro/ "first QF post") ), a portfolio's volatility (risk) is calculated as:
+Given a selected M amount of securities, we obtain our Symmetric *M x M* Covariance Matrix ($$\boldsymbol{C_{\sigma}}$$), calculated from an *N x M* $$RET$$ returns table of *N* returns data of such M securities (again, details in [first QF post](https://jp-quant.github.io/qf_intro/ "first QF post") ), a portfolio's volatility (risk) is calculated as:
 
 ><img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\sigma_p&space;=&space;\sqrt{w^\top&space;\cdot&space;\boldsymbol{C_{\sigma}}&space;\cdot&space;w}" title="\sigma_p = \sqrt{w^\top \cdot \boldsymbol{C_{\sigma}} \cdot w}" />
 
@@ -601,7 +601,7 @@ RET.cov()
 ### 1a. Analytical Solutions
 >**Personal Commentary**: It is important to understand the mathematics behind methods of solving optimization problems, especially aiding in knowing the context of the problem and how solutions exist within a certain boundary, the convexity or linearity, as well as grasping the analytical abstraction drawn to describe any system. There might exist patterns within our analytical steps, to which could allow us to find out some invariances that are even more powerful than solving for such solution.
 
-Going back to my earlier remark above on solving optimization problems, we can simply construct this problem with constraints utilizing the [Lagrangian method](https://scholar.harvard.edu/files/david-morin/files/cmchap6.pdf "Lagrangian method"). My personal exposure to such mathematical technique stemmed from my Physics background, specifically on the topic of [Lagrangian Mechanics](https://en.wikipedia.org/wiki/Lagrangian_mechanics); such modeling technique can be applied to any other system optimization problems in other fields, which in this case being finance.
+Going back to my earlier remark above on solving optimization problems, we can simply construct this problem with constraints utilizing the [Lagrangian method](https://scholar.harvard.edu/files/david-morin/files/cmchap6.pdf "Lagrangian method") ($$\nabla$$). My personal exposure to such mathematical technique stemmed from my Physics background, specifically on the topic of [Lagrangian Mechanics](https://en.wikipedia.org/wiki/Lagrangian_mechanics); such modeling technique can be applied to any other system optimization problems in other fields, which in this case being finance.
 >**IMPORTANT**: The subsequent analytical steps has to follow the fact that the Covariance Matrix <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\boldsymbol{C_{\sigma}}" title="\boldsymbol{C_{\sigma}}" /> has to be **invertible**, meaning it has to be positive definite, or that all our **real eigen values decomposed has to be all positive (>0)**
 
 
@@ -646,13 +646,13 @@ When establishing *inequality constraints(<,>,<=,>=)*, the mathematics can get v
 ### 1b. Computational Approach
 > As there already exist many posts online from different individuals showing methods of optimization utilizing CS algorithms, iterating over different guesses to arrive at the solution needed. Therefore, I will not touch base on this approach in much details. [Here](https://kyle-stahl-mn.com/stock-portfolio-optimization "Here") is an example of such work, specifically on our current topic, if you need more details on each step.
 
-Simply put, we will utilize scipy's minimization function in seeking for the solution of our optimization problem, establishing constraints & boundaries for the input $$w$$ until we reach the global minimum. Since the symmetric covariance matrix contains quadratic components with a unique minimizer, we opt for the Sequential Least Square Programming (SLSQP) Algorithm for our computational approach.
+Simply put, we will utilize scipy's minimization function in seeking for the solution of our optimization problem, establishing constraints & boundaries for the input $$w$$ until we reach the global minimum. Since the symmetric covariance matrix, assumed invertible, contains quadratic components with a unique minimizer, we opt for the Sequential Least Square Programming (SLSQP) Algorithm for our computational approach.
 I encourage learning more on the details of different algorithms for optimization, specifically in knowing the context of the problem constructed (linearity, convexity, etc), as well as, again, the mathematics behind them as much as you can. Scipy offers alot of different optimization functions, as well as algorithms to be implemented when solving; learn about the mathematical optimization [here](http://scipy-lectures.org/advanced/mathematical_optimization/ "here")
 
 ---
-### 1c. Implementations & Comparing Two Approahces
+### 1c. Implementations
 
-Below is our written function that both analytically & computationally, depends on input argument, solves for the global minimum variance weight $$w$$, a unique solution that minimizes portfolio's risk (<img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\sigma_p" title="\sigma_p" />), requiring only an input of any *M x M* covariance matrix of M securities:
+Below is our written function that both analytically & computationally, depends on input argument, solves for the global minimum variance weight $$w$$, a unique solution that minimizes portfolio's risk $$\sigma_p$$, requiring only an input of any *M x M* covariance matrix of M securities:
 
 ```python
 def minVar(covariance_matrix,analytical_method=True):
@@ -701,33 +701,9 @@ allWeights["Computational"].plot(kind="bar",ax=ax_c)
 
 <img src="https://jp-quant.github.io/images/vol_2/a_vs_c_w.png">
 
-We proceed on first observing the **in-sample** evaluation results between Analytical & Computational solutions, seeing how much they do line up with each other:
-
-```python
-bulk_evals = evaluate_bulk_w(RET,allWeights)
-f = plt.figure(figsize=(9,6))
-ax_m = f.add_subplot(121,title="In-Sample Evaluation")
-ax_cr = f.add_subplot(122,title="In-Sample Cummulative Returns")
-bulk_evals["metrics"].T.plot(kind="bar",ax=ax_m)
-bulk_evals["cum_ret"].plot(ax=ax_cr)
-```
-<img src="https://jp-quant.github.io/images/vol_2/a_vs_c_1.png">
-
-With the weights extracted from our in-sample, do the same thing for **out-sample**:
-
-```python
-bulk_evals = evaluate_bulk_w(RET_outSample,allWeights)
-f = plt.figure(figsize=(9,6))
-ax_m = f.add_subplot(121,title="Out-Sample Evaluation")
-ax_cr = f.add_subplot(122,title="Out-Sample Cummulative Returns")
-bulk_evals["metrics"].T.plot(kind="bar",ax=ax_m)
-bulk_evals["cum_ret"].plot(ax=ax_cr)
-```
-
-<img src="https://jp-quant.github.io/images/vol_2/a_vs_c_2.png">
 
 #### *Conclusions*
-- There are some discrepancies between our analytical & computational approaches, if anything a very small one. I theorize that this is due to either when approximating the inverse covariance matrix when solving analytically, or computational iteration approximations. I will add an explanation once I have empirically identified the problem.
+- The discrepancies between our analytical & computational approaches are very small. I theorize that this is due to either when approximating the inverse covariance matrix when solving analytically, or computational errors. I will add an explanation once I have empirically identified the problem.
 - It is **much faster to use the analytical method** to compute our Minimum Variance Portfolio, especially as M increases to which requires more combinations for iterations when utilizing computational approach.
 - We tend to opt for computation when we don't have the concrete mathematics to solve for the optimization problem, or that the constraint is neither linear or quadratic.
 
