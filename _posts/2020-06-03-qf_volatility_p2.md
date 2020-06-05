@@ -13,9 +13,9 @@ classes: wide
 # Overview & Preparation
 >*Optimization*, in general, is simply solving for minimum/maximum solution(s) of a *system of equation(s)*, satisfying given constraints.
 
-Recalling our brief overview on the basics of Modern Portfolio Theory in my [first QF post](https://jp-quant.github.io/qf_intro/ "first QF post"), one of the metric to which used in evaluating performance of any investment, mirroring somewhat of a standardization technique, is the **Sharpe Ratio**, to which we will dub it as <img src="https://latex.codecogs.com/gif.latex?\boldsymbol{I}" title="\boldsymbol{I}" />:
+Recalling our brief overview on the basics of Modern Portfolio Theory in my [first QF post](https://jp-quant.github.io/qf_intro/ "first QF post"), one of the metric to which used in evaluating performance of any investment, mirroring somewhat of a standardization technique, is the **Sharpe Ratio**, to which we will dub it as $$\boldsymbol{I}$$:
 
-><img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\boldsymbol{I}&space;=&space;\frac{\bar{R_p}&space;-&space;R_f}{\sigma_p}" title="\boldsymbol{I} = \frac{\bar{R_p} - R_f}{\sigma_p}" />, where in the perspective of evaluating a portfolio,
+>$$\boldsymbol{I} = \frac{\bar{R_p} - R_f}{\sigma_p}$$, where in the perspective of evaluating a portfolio,
 $$\bar{R_p}$$ = Average Returns
 $$\sigma_p$$ = Volatility = Standard Deviation of Returns
 
@@ -40,7 +40,7 @@ Before moving forward, we first need to address the context regarding *M securit
 		>Given we have set $$\hat{r_i} = \bar{r_i}$$ , this will simply be the **standard deviations** of $$\bar{r_i}$$. Thus, we set $$\sigma_{\hat{r_i}} = \sigma_{\bar{r_i}}$$.
 
 ---
-Unlike our [**previous post**](https://jp-quant.github.io/qf_volatility_p1/ " previous post") in this series on volatility, this time, we will start with a *N x M*  **daily close** $$RET$$ table of ~1,000 securities in the U.S. Equities market,  dating back approximately **2 years worth of data** since May 1st 2020, or 500-600 data points available.
+Unlike our [**previous post**](https://jp-quant.github.io/qf_volatility_p1/ "previous post") in this series on volatility, this time, we will start with a *N x M*  **daily close** $$RET$$ table of ~1,000 securities in the U.S. Equities market,  dating back approximately **2 years worth of data** since May 1st 2020, or 500-600 data points available.
 
 Before we proceed, it is important to note that we have over 1,000 securities available. This is dimensionally lacking in data as for our *N x M* returns table $$RET$$ (N < M). It is somewhat similar, although not completely accurate, to saying having 1-2 points when working with 3 assets. We will slightly touch base on this problem in later posts. Although, for now, when working with picking M assets,  we seek for **M < N** as much as we can, that being either:
 - Randomizing selection of any given M < N
@@ -567,9 +567,9 @@ def ioSampleSplit(df,inSample_pct=0.75):
 # Mean-Variance Optimization
 Given a selected M amount of securities, we obtain our Symmetric *M x M* Covariance Matrix ($$\boldsymbol{C_{\sigma}}$$), calculated from an *N x M* $$RET$$ returns table of *N* returns data of such M securities (again, details in [first QF post](https://jp-quant.github.io/qf_intro/ "first QF post") ), a portfolio's volatility (risk) is calculated as:
 
-><img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\sigma_p&space;=&space;\sqrt{w^\top&space;\cdot&space;\boldsymbol{C_{\sigma}}&space;\cdot&space;w}" title="\sigma_p = \sqrt{w^\top \cdot \boldsymbol{C_{\sigma}} \cdot w}" />
+>$$\sigma_p = \sqrt{w^\top \cdot \boldsymbol{C_{\sigma}} \cdot w}$$
 
-Thus, our objective is to **find an allocation weight** <img src="https://latex.codecogs.com/gif.latex?w&space;=&space;\begin{vmatrix}&space;w_1\\&space;w_2\\&space;\vdots\\&space;w_M&space;\end{vmatrix}" title="w = \begin{vmatrix} w_1\\ w_2\\ \vdots\\ w_M \end{vmatrix}" />  that would *minimize* <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\sigma_p" title="\sigma_p" />, or simply put will result in the **smallest possible** <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\sigma_p" title="\sigma_p" />, such that <img src="https://latex.codecogs.com/gif.latex?-1&space;\leq&space;w_{i}\leq&space;1" title="-1 \leq w_{i}\leq 1" /> and <img src="https://latex.codecogs.com/gif.latex?\sum_{1}^{M}w_i&space;=&space;1" title="\sum_{1}^{M}w_i = 1" /> 
+Thus, our objective is to **find an allocation weight** $$w = \begin{vmatrix} w_1\\ w_2\\ \vdots\\ w_M \end{vmatrix}$$ that would *minimize* $$\sigma_p$$, or simply put will result in the **smallest possible** $$\sigma_p$$, such that $$-1 \leq w_{i}\leq 1$$ and $$\sum_{1}^{M}w_i = 1$$
 
 We're just going to select our M securities as the *Utilities* sector for our demonstrative work, since it has the least amount to encompasses such sector. In addition, we split our full $$RET$$ data into 75% in-sample & 25% out-sample, letting the default variable **RET** as in-sample & **RET_outSample** as, of course, the out-sample data. Subsequent optimization steps in solving for the desired allocations weight $$w$$ will be performed on in-sample data:
 
@@ -601,41 +601,41 @@ RET.cov()
 ### 1a. Analytical Solutions
 >**Personal Commentary**: It is important to understand the mathematics behind methods of solving optimization problems, especially aiding in knowing the context of the problem and how solutions exist within a certain boundary, the convexity or linearity, as well as grasping the analytical abstraction drawn to describe any system. There might exist patterns within our analytical steps, to which could allow us to find out some invariances that are even more powerful than solving for such solution.
 
-Going back to my earlier remark above on solving optimization problems, we can simply construct this problem with constraints utilizing the [Lagrangian method](https://scholar.harvard.edu/files/david-morin/files/cmchap6.pdf "Lagrangian method") ($$\nabla$$). My personal exposure to such mathematical technique stemmed from my Physics background, specifically on the topic of [Lagrangian Mechanics](https://en.wikipedia.org/wiki/Lagrangian_mechanics); such modeling technique can be applied to any other system optimization problems in other fields, which in this case being finance.
->**IMPORTANT**: The subsequent analytical steps has to follow the fact that the Covariance Matrix <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\boldsymbol{C_{\sigma}}" title="\boldsymbol{C_{\sigma}}" /> has to be **invertible**, meaning it has to be positive definite, or that all our **real eigen values decomposed has to be all positive (>0)**
+Going back to my earlier remark above on solving optimization problems, we can simply construct this problem with constraints utilizing the [Lagrangian method](https://scholar.harvard.edu/files/david-morin/files/cmchap6.pdf "Lagrangian method") ($$\mathcal{L}$$). My personal exposure to such mathematical technique stemmed from my Physics background, specifically on the topic of [Lagrangian Mechanics](https://en.wikipedia.org/wiki/Lagrangian_mechanics); such modeling technique can be applied to any other system optimization problems in other fields, which in this case being finance.
+>**IMPORTANT**: The subsequent analytical steps has to follow the fact that the Covariance Matrix $$\boldsymbol{C_{\sigma}}$$ has to be **invertible**, meaning it has to be positive definite, or that all our **real eigen values decomposed has to be all positive (>0)**
 
 
 In finding the optimal allocations weight $$w$$ of a *Minimum Variance Portfolio*, we seek for the solution of:
 
-><img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\underset{w}{min}&space;(w^\top&space;\cdot&space;\boldsymbol{C_{\sigma}}&space;\cdot&space;w)" title="\underset{w}{min} (w^\top \cdot \boldsymbol{C_{\sigma}} \cdot w)" />
+>$$\underset{w}{min} (w^\top \cdot \boldsymbol{C_{\sigma}} \cdot w)$$
 
 Subjected to the constraint:
-><img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;w^T&space;\cdot&space;\boldsymbol{\vec{1}}&space;=&space;\begin{vmatrix}&space;w_1&space;&&space;w_2&space;&&space;\cdots&space;&&space;w_M&space;\end{vmatrix}&space;\cdot&space;\begin{vmatrix}&space;1\\&space;1\\&space;\vdots\\&space;1&space;\end{vmatrix}&space;=&space;\sum_{i=1}^{M}w_i&space;=&space;1" title="w^T \cdot \boldsymbol{\vec{1}} = \begin{vmatrix} w_1 & w_2 & \cdots & w_M \end{vmatrix} \cdot \begin{vmatrix} 1\\ 1\\ \vdots\\ 1 \end{vmatrix} = \sum_{i=1}^{M}w_i = 1" />
+>$$w^T \cdot \boldsymbol{\vec{1}} = \begin{vmatrix} w_1 & w_2 & \cdots & w_M \end{vmatrix} \cdot \begin{vmatrix} 1\\ 1\\ \vdots\\ 1 \end{vmatrix} = \sum_{i=1}^{M}w_i = 1$$
 
 Constructing a Lagrangian, we obtain:
 
-><img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\mathcal{L}(w,\lambda_{w})&space;=&space;(w^\top&space;\cdot&space;\boldsymbol{C_{\sigma}}&space;\cdot&space;w)&space;&plus;&space;\lambda_w[(w^T&space;\cdot&space;\boldsymbol{\vec{1}})&space;-&space;1]" title="\mathcal{L}(w,\lambda_{w}) = (w^\top \cdot \boldsymbol{C_{\sigma}} \cdot w) + \lambda_w[(w^T \cdot \boldsymbol{\vec{1}}) - 1]" />
+>$$\mathcal{L}(w,\lambda_{w}) = (w^\top \cdot \boldsymbol{C_{\sigma}} \cdot w) + \lambda_w[(w^T \cdot \boldsymbol{\vec{1}}) - 1]$$
 
 
-Recall we established that <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\boldsymbol{C_{\sigma}}" title="\boldsymbol{C_{\sigma}}" /> is an **invertible Hermitian Matrix**, following the property of their **eigen values being real**. Under the assumption of invertibility, the quadratic part is positive definite and there exists a unique minimizer (read more on Hermitian Matrices [here](https://mathworld.wolfram.com/HermitianMatrix.html "here")). Thus, in solving for $$w$$,the gradient of such Lagrangian follows:
-> <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\nabla&space;\mathcal{L}(w,\lambda_{w})&space;=&space;\begin{vmatrix}&space;0_1&space;&0_2&space;&\cdots&0_M&space;&&space;0_{\lambda_w}&space;\end{vmatrix}^T" title="\nabla \mathcal{L}(w,\lambda_{w}) = \begin{vmatrix} 0_1 &0_2 &\cdots&0_M & 0_{\lambda_w} \end{vmatrix}^T" />
+Recall we established that $$\boldsymbol{C_{\sigma}}$$ is an **invertible Hermitian Matrix**, following the property of their **eigen values being real**. Under the assumption of invertibility, the quadratic part is positive definite and there exists a unique minimizer (read more on Hermitian Matrices [here](https://mathworld.wolfram.com/HermitianMatrix.html "here")). Thus, in solving for $$w$$,the gradient of such Lagrangian follows:
+> $$\nabla \mathcal{L}(w,\lambda_{w}) = \begin{vmatrix} 0_1 &0_2 &\cdots&0_M & 0_{\lambda_w} \end{vmatrix}^T$$
 
 Representing the FOCs, with (M+1) dimensions (with the additional dimension being the constraint represented by the Langrage Multiplier $$\lambda_w$$)
 
 After solving the gradient equation through some algebra (I am dumping this down as much as possible, though for the specifics, check out this [**lecture notes**](https://faculty.washington.edu/ezivot/econ424/portfolioTheoryMatrix.pdf "lecture notes")), in addition to the initial constraint, we obtain the equation:
 
-><img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\boldsymbol{C_\sigma}\cdot&space;w&space;=&space;-\lambda_w&space;\boldsymbol{\vec{1}}" title="\boldsymbol{C_\sigma}\cdot w = -\lambda_w \boldsymbol{\vec{1}}" />
+>$$\boldsymbol{C_\sigma}\cdot w = -\lambda_w \boldsymbol{\vec{1}}$$
 
-Proceeding with the assumption that <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;\boldsymbol{C_{\sigma}}" title="\boldsymbol{C_{\sigma}}" /> is invertible, we have a unique solution:
+Proceeding with the assumption that $$\boldsymbol{C_{\sigma}}$$ is invertible, we have a unique solution:
 
-> <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;w&space;=&space;-\lambda_w\cdot&space;\boldsymbol{C_{\sigma}^{-1}}&space;\cdot&space;\boldsymbol{\vec{1}}&space;=&space;\frac{-\lambda_w\cdot&space;\boldsymbol{C_{\sigma}^{-1}}&space;\cdot&space;\boldsymbol{\vec{1}}}{1}" title="w = -\lambda_w\cdot \boldsymbol{C_{\sigma}^{-1}} \cdot \boldsymbol{\vec{1}} = \frac{-\lambda_w\cdot \boldsymbol{C_{\sigma}^{-1}} \cdot \boldsymbol{\vec{1}}}{1}" />
+> $$w = -\lambda_w\cdot \boldsymbol{C_{\sigma}^{-1}} \cdot \boldsymbol{\vec{1}} = \frac{-\lambda_w\cdot \boldsymbol{C_{\sigma}^{-1}} \cdot \boldsymbol{\vec{1}}}{1}$$
 
-Substituting the denominator **1** with our initial constraint equation <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;w^\top&space;\cdot&space;\boldsymbol{\vec{1}}&space;=&space;1" title="w^\top \cdot \boldsymbol{\vec{1}} = 1" />, we obtain:
+Substituting the denominator **1** with our initial constraint equation $$w^\top \cdot \boldsymbol{\vec{1}} = 1$$, we obtain:
 
-> <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;w&space;=&space;\frac{-\lambda_w\cdot&space;\boldsymbol{C_{\sigma}^{-1}}&space;\cdot&space;\boldsymbol{\vec{1}}}{w^\top&space;\cdot&space;\boldsymbol{\vec{1}}}&space;=&space;\frac{-\lambda_w\cdot&space;\boldsymbol{C_{\sigma}^{-1}}&space;\cdot&space;\boldsymbol{\vec{1}}}{(-\lambda_w\cdot&space;\boldsymbol{C_{\sigma}^{-1}}&space;\cdot&space;\boldsymbol{\vec{1}})^\top&space;\cdot&space;\boldsymbol{\vec{1}}}" title="w = \frac{-\lambda_w\cdot \boldsymbol{C_{\sigma}^{-1}} \cdot \boldsymbol{\vec{1}}}{w^\top \cdot \boldsymbol{\vec{1}}} = \frac{-\lambda_w\cdot \boldsymbol{C_{\sigma}^{-1}} \cdot \boldsymbol{\vec{1}}}{(-\lambda_w\cdot \boldsymbol{C_{\sigma}^{-1}} \cdot \boldsymbol{\vec{1}})^\top \cdot \boldsymbol{\vec{1}}}" />
+> $$w = \frac{-\lambda_w\cdot \boldsymbol{C_{\sigma}^{-1}} \cdot \boldsymbol{\vec{1}}}{w^\top \cdot \boldsymbol{\vec{1}}} = \frac{-\lambda_w\cdot \boldsymbol{C_{\sigma}^{-1}} \cdot \boldsymbol{\vec{1}}}{(-\lambda_w\cdot \boldsymbol{C_{\sigma}^{-1}} \cdot \boldsymbol{\vec{1}})^\top \cdot \boldsymbol{\vec{1}}}$$
 
 Thus, canceling the Lagrange Multiplier $$\lambda_w$$, we finally have our solution:
-> <img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;w&space;=&space;\frac{\boldsymbol{C_{\sigma}^{-1}}&space;\cdot&space;\boldsymbol{\vec{1}}}{(\boldsymbol{C_{\sigma}^{-1}}&space;\cdot&space;\boldsymbol{\vec{1}})^\top&space;\cdot&space;\boldsymbol{\vec{1}}}" title="w = \frac{\boldsymbol{C_{\sigma}^{-1}} \cdot \boldsymbol{\vec{1}}}{(\boldsymbol{C_{\sigma}^{-1}} \cdot \boldsymbol{\vec{1}})^\top \cdot \boldsymbol{\vec{1}}}" />
+> $$w = \frac{\boldsymbol{C_{\sigma}^{-1}} \cdot \boldsymbol{\vec{1}}}{(\boldsymbol{C_{\sigma}^{-1}} \cdot \boldsymbol{\vec{1}})^\top \cdot \boldsymbol{\vec{1}}}$$
 
 The Lagrangian Method can be further complexified, adding more constraints into the system, with each constraint associated with a Lagrange Multiplier, increasing the dimensionality of the FOCs, then proceed on solving it backwards:
 > We can establish an equality constraint(=) on the portfolio's return, then solve for the global minimum variance solution of such return. Iterating over a range of all possible returns and perform the same step will give you the [efficient frontier](https://en.wikipedia.org/wiki/Efficient_frontier "efficient frontier")
@@ -781,6 +781,7 @@ bulk_evals["cum_ret"][to_plot].plot(ax=ax_cr)
 
 http://web.eecs.umich.edu/~rajnrao/Acta05rmt.pdf
 
+
 ```python
 def _RMT_(RET,Q=None,sigma=None,include_plots=False,
                           exclude_plotting_outliers=True,auto_scale=True):
@@ -805,7 +806,7 @@ def _RMT_(RET,Q=None,sigma=None,include_plots=False,
     noise_eVals = eVals[eVals <= max_theoretical_eval]
     outlier_eVals = eVals[eVals > max_theoretical_eval]
     filtered_eVals = eVals.copy()
-    filtered_eVals[filtered_eVals <= max_theoretical_eval] = 0 #---| if u dont filter nothing changes...
+    filtered_eVals[filtered_eVals <= max_theoretical_eval] = 0
     #-----| Part 2b: Construct Filtered Correlation Matrix from Filtered eVals
     filtered_corr = np.dot(eVecs,np.dot(
                         np.diag(filtered_eVals),np.transpose(eVecs)
