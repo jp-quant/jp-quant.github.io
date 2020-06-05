@@ -232,18 +232,228 @@ def ioSampleSplit(df,inSample_pct=0.75):
     return (inSample,df.reindex([i for i in df.index if i not in inSample.index]))
 ```
 
----
-# Mean-Variance Optimization
-Given a selected M amount of securities, we obtain our Symmetric *M x M* Covariance Matrix ($$\boldsymbol{C_{\sigma}}$$), calculated from an *N x M* $$RET$$ returns table of *N* returns data of such M securities (again, details in [first QF post](https://jp-quant.github.io/qf_intro/ "first QF post") ), a portfolio's volatility ($$\sigma_p$$) is calculated as:
 
->$$\sigma_p = \sqrt{w^\top \cdot \boldsymbol{C_{\sigma}} \cdot w}$$
+Lastly, for daring purposes, as we will obtain results that are very much interesting & sensible, we are going to work with the **Others** sector, representing **all different funds & indexes**, comprising the entire "market" as much as we can, with components as independent they can. Observe the description of such sector of securities:
 
-Thus, our objective is to **find an allocation weight** $$w = \begin{vmatrix} w_1\\ w_2\\ \vdots\\ w_M \end{vmatrix}$$ that would *minimize* $$\sigma_p$$, or simply put will result in the **smallest possible** $$\sigma_p$$, such that $$-1 \leq w_{i}\leq 1$$ and $$\sum_{1}^{M}w_i = 1$$
 
-We're just going to select our M securities as the *Utilities* sector for our demonstrative work, since it has the least amount to encompasses such sector. In addition, we split our full $$RET$$ data into 75% in-sample & 25% out-sample, letting the default variable **RET** as in-sample & **RET_outSample** as, of course, the out-sample data. Subsequent optimization steps in solving for the desired allocations weight $$w$$ will be performed on in-sample data:
 
 ```python
-RET,RET_outSample = ioSampleSplit(_RET_[sectors["Utilities"]])
+universe_info.reindex(sectors["Others"]).sort_index()
+```
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>sector</th>
+    </tr>
+    <tr>
+      <th>symbol</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>DIA</th>
+      <td>SPDR DJIA TRUST</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>EEM</th>
+      <td>ISHARES MSCI EMERGING MARKET</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>EFA</th>
+      <td>ISHARES MSCI EAFE ETF</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>EWJ</th>
+      <td>ISHARES MSCI JAPAN ETF</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>FEZ</th>
+      <td>SPDR EURO STOXX 50 ETF</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>FXI</th>
+      <td>ISHARES CHINA LARGE-CAP ETF</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>GDX</th>
+      <td>VANECK GOLD MINERS</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>GLD</th>
+      <td>SPDR GOLD SHARES</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>HYG</th>
+      <td>ISHARES IBOXX HIGH YLD CORP</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>IBB</th>
+      <td>ISHARES NASDAQ BIOTECHNOLOGY</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>IEF</th>
+      <td>ISHARES 7-10 YEAR TREASURY B</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>IWM</th>
+      <td>ISHARES RUSSELL 2000 ETF</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>IYR</th>
+      <td>ISHARES US REAL ESTATE ETF</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>MDY</th>
+      <td>SPDR S&amp;P MIDCAP 400 ETF TRST</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>PFF</th>
+      <td>ISHARES PREFERRED &amp; INCOME S</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>QQQ</th>
+      <td>INVESCO QQQ TRUST SERIES 1</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>SHY</th>
+      <td>ISHARES 1-3 YEAR TREASURY BO</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>SMH</th>
+      <td>VANECK SEMICONDUCTOR</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>SPY</th>
+      <td>SPDR S&amp;P 500 ETF TRUST</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>TLT</th>
+      <td>ISHARES 20+ YEAR TREASURY BO</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>VNQ</th>
+      <td>VANGUARD REAL ESTATE ETF</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>XBI</th>
+      <td>SPDR S&amp;P BIOTECH ETF</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>XHB</th>
+      <td>SPDR S&amp;P HOMEBUILDERS ETF</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>XLB</th>
+      <td>MATERIALS SELECT SECTOR SPDR</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>XLE</th>
+      <td>ENERGY SELECT SECTOR SPDR</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>XLF</th>
+      <td>FINANCIAL SELECT SECTOR SPDR</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>XLI</th>
+      <td>INDUSTRIAL SELECT SECT SPDR</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>XLK</th>
+      <td>TECHNOLOGY SELECT SECT SPDR</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>XLP</th>
+      <td>CONSUMER STAPLES SPDR</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>XLU</th>
+      <td>UTILITIES SELECT SECTOR SPDR</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>XLV</th>
+      <td>HEALTH CARE SELECT SECTOR</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>XLY</th>
+      <td>CONSUMER DISCRETIONARY SELT</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>XME</th>
+      <td>SPDR S&amp;P METALS &amp; MINING ETF</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>XOP</th>
+      <td>SPDR S&amp;P OIL &amp; GAS EXP &amp; PR</td>
+      <td>Others</td>
+    </tr>
+    <tr>
+      <th>XRT</th>
+      <td>SPDR S&amp;P RETAIL ETF</td>
+      <td>Others</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+In addition, we split our full $$RET$$ data into 75% in-sample & 25% out-sample, letting the default variable **RET** as in-sample & **RET_outSample** as, of course, the out-sample data. Subsequent optimization steps in solving for the desired allocations weight $$w$$ will be performed on in-sample data:
+
+```python
+RET,RET_outSample = ioSampleSplit(_RET_[sectors["Others"]])
 ```
 
 ```python
@@ -253,7 +463,7 @@ RET.shape, RET_outSample.shape
 
 
 
-    ((476, 37), (159, 37))
+    ((476, 35), (159, 35))
 
 
 Like before, we will use pandas covariance function to calculated its sample covariance matrix $$\boldsymbol{C_{\sigma}}$$:
@@ -262,6 +472,15 @@ Like before, we will use pandas covariance function to calculated its sample cov
 ```python
 RET.cov()
 ```
+
+
+---
+# Mean-Variance Optimization
+Given a selected M amount of securities, we obtain our Symmetric *M x M* Covariance Matrix ($$\boldsymbol{C_{\sigma}}$$), calculated from an *N x M* $$RET$$ returns table of *N* returns data of such M securities (again, details in [first QF post](https://jp-quant.github.io/qf_intro/ "first QF post") ), a portfolio's volatility ($$\sigma_p$$) is calculated as:
+
+>$$\sigma_p = \sqrt{w^\top \cdot \boldsymbol{C_{\sigma}} \cdot w}$$
+
+Thus, our objective is to **find an allocation weight** $$w = \begin{vmatrix} w_1\\ w_2\\ \vdots\\ w_M \end{vmatrix}$$ that would *minimize* $$\sigma_p$$, or simply put will result in the **smallest possible** $$\sigma_p$$, such that $$-1 \leq w_{i}\leq 1$$ and $$\sum_{1}^{M}w_i = 1$$
 
 ---
 ## 1. Risk Minimization
@@ -369,7 +588,7 @@ allWeights["Computational"].plot(kind="bar",ax=ax_c)
 <img src="https://jp-quant.github.io/images/vol_2/a_vs_c_w.png">
 
 
-#### *Conclusions & Remarks*
+### *Conclusions & Remarks*
 - The discrepancies between our analytical & computational approaches are very small. I theorize that this is due to either when approximating the inverse covariance matrix when solving analytically, or computational errors. I will add an explanation once I have empirically identified the problem.
 - It is **much faster to use the analytical method** to compute our Minimum Variance Portfolio, especially as M increases to which requires more combinations for iterations when utilizing computational approach.
 - We tend to opt for computation when we don't have the concrete mathematics to solve for the optimization problem, or that the constraint is neither linear or quadratic, or even convex (harder to find global minimum/maximum solution).
@@ -377,7 +596,7 @@ allWeights["Computational"].plot(kind="bar",ax=ax_c)
 	> For example, instead of $$\sigma_p$$, maybe we can change it to $$\boldsymbol{I_p}$$, and perform maximization instead of minimization. Perhaps I will demonstrate this as well later, although it is fairly easy to change up the code (check out [**Scipy Optimization Documentation**](https://docs.scipy.org/doc/scipy/reference/tutorial/optimize.html "Scipy Optimization Documentation"))
 
 ---
-### 2. Eigen Portfolios
+## 2. Eigen Portfolios
 Recall our brief mention in the first post, eigen portfolios are simply the eigen vectors "scaled" by the summation of its components. We need to address the following **important** fundamental concepts & empirical findings:
 
 - The idea of an eigen portfolio is simply an **allocation vector** that **aligns itself in the exact direction of the eigen vector**.
@@ -390,48 +609,66 @@ Recall our brief mention in the first post, eigen portfolios are simply the eige
 
 - It is *empirically* proven, through other research works, that $$w_{e_1}$$, being the eigen portfolio associated with the eigen vector with the **largest eigen value**, is the **market portfolio**, given the universe of M securities comprising the market.
 
-Modifying our function written to extract the eigen pairs in the [**previous post**](https://jp-quant.github.io/qf_volatility_p1/ " previous post"), below function scaled the eigen vectors with their weights summation into eigen portfolios and return the portfolios' weights:
+Modifying our function written to extract the eigen pairs in the [**previous post**](https://jp-quant.github.io/qf_volatility_p1/ "previous post"), below function scaled the eigen vectors with their weights summation into eigen portfolios and return the portfolios' weights along with everything else:
 
 ```python
-def eigen_w(_ret_):
+def EIGEN(_ret_):
     _pca = PCA().fit(_ret_)
     eVecs = _pca.components_
     eVals = _pca.explained_variance_
     _eigenNames = ["eigen_"+str(e+1) for e in range(len(eVals))]
     _eigenValues = pd.Series(eVals,index=_eigenNames,name="eigenValues")
-    _eigenVectors = pd.DataFrame(eVecs.T,index=ret.columns,columns=_eigenNames)
-    return pd.DataFrame({e:(_eigenVectors[e]/_eigenVectors[e].sum()) for e in _eigenVectors})
+    _eigenVectors = pd.DataFrame(eVecs.T,index=_ret_.columns,columns=_eigenNames)
+    _eigenPortfolios = pd.DataFrame({e:(_eigenVectors[e]/_eigenVectors[e].sum()) for e in _eigenVectors})
+    return {"lambdas":_eigenValues,"vectors":_eigenVectors,"portfolios":_eigenPortfolios}
 ```
 
-In constructing our *allWeights* table of different allocations, to which in this case being all the eigen portfolios' weights, we will go ahead and **add the Minimum Variance Portfolio Weights** into it as well:
+In constructing our *allWeights* table of different allocations weights, to which in this case being all the eigen portfolios, we will go ahead and **add the Minimum Variance Portfolio** into it as well:
 
 ```python
-eigenWeights = eigen_w(RET)
-allWeights = pd.concat([eigenWeights,minVar(RET.cov()).reindex(eigenWeights.index)],1)
+_eigen_ = EIGEN(RET)
+eigenWeights = _eigen_["portfolios"]
+allWeights = pd.concat([eigenWeights,minVar(RET.cov(),True).reindex(eigenWeights.index)],1)
 ```
 
-Perform evaluations of the weights on **in-sample** data & plot the results of the **Top 5 with the LEAST Volatility**, we obtain:
+Briefly observe the first top 10 eigen values' **explained variances**:
+
 
 ```python
+(_eigen_["lambdas"].sort_values(ascending=False)/_eigen_["lambdas"].sum()).head(10)
+```
+
+
+
+
+    eigen_1     0.599924
+    eigen_2     0.076345
+    eigen_3     0.065515
+    eigen_4     0.044836
+    eigen_5     0.043632
+    eigen_6     0.028974
+    eigen_7     0.022040
+    eigen_8     0.018703
+    eigen_9     0.014721
+    eigen_10    0.012076
+    Name: eigenValues, dtype: float64
+
+
+Now that we have extracted the weights from **in-sample** data, we proceed on performing evaluations for **BOTH in-sample & out-sample**. Observe plot results for the evaluations of the **Top 5 Eigen Portfolios + Minimum Variance Portfolio**:
+
+```python
+to_plot = ["eigen_1","eigen_2","eigen_3","eigen_4","eigen_5","MinVar"]
+
+#----| In-Sample: RET
 bulk_evals = evaluate_bulk_w(RET,allWeights)
-to_plot = list(bulk_evals["metrics"].sort_values("std").index[:5])
-
 f = plt.figure(figsize=(9,6))
 ax_m = f.add_subplot(121,title="In-Sample Evaluation")
 ax_cr = f.add_subplot(122,title="In-Sample Cummulative Returns")
 bulk_evals["metrics"].T[to_plot].plot(kind="bar",ax=ax_m)
 bulk_evals["cum_ret"][to_plot].plot(ax=ax_cr)
-```
 
-<img src="https://jp-quant.github.io/images/vol_2/mv_vs_e_1.png">
-
-
-Now, if we evaluate the weights, extracted from in-sample, on **out-sample** data, again plotting the **Top 5 with the LEAST Volatility**:
-
-```python
+#---| Out-Sample: RET_outSample
 bulk_evals = evaluate_bulk_w(RET_outSample,allWeights)
-to_plot = list(bulk_evals["metrics"].sort_values("std").index[:5])
-
 f = plt.figure(figsize=(9,6))
 ax_m = f.add_subplot(121,title="Out-Sample Evaluation")
 ax_cr = f.add_subplot(122,title="Out-Sample Cummulative Returns")
@@ -439,10 +676,20 @@ bulk_evals["metrics"].T[to_plot].plot(kind="bar",ax=ax_m)
 bulk_evals["cum_ret"][to_plot].plot(ax=ax_cr)
 ```
 
+<img src="https://jp-quant.github.io/images/vol_2/mv_vs_e_1.png">
 <img src="https://jp-quant.github.io/images/vol_2/mv_vs_e_2.png">
 
+Recall that we are working with the sector **Others**, containing **35 securities** representing **a diverse pool of different funds & indexes**, comprising the entire "market" as much as we can, with components as independent they can, ranging from different asset classes (stocks, commodities, T-bills, etc) as well as domestic & foreign securities (refer to the table above in our Preparation section for information).
 
-[ANALYSIS IN-PROGRESS]
+The interesting thing to point out is the **out-sample result**, the timeframe to which when the latest *COVID-19 market crash* occured whereas only the **eigen_3** and **MinVar** portfolios exhibit positive performance, with **eigen_3** also having the highest sharpe ratio for **both** samples.
+
+If we plot out the weights for **eigen_1, eigen_2 and MinVar**, we obtain:
+<img src="https://jp-quant.github.io/images/vol_2/e_123.png">
+
+Notice how the **eigen_1** weights **have the majority of positive allocations in indexes affiliated with stocks!**. This confirms our statement above on it being the **market portfolio**. Notice how for *GLD & GDX*, being commodities, specifically gold, hedged out in weights, while indexes of foreign securities like *EWJ* have very little weights in comparison to the others; lastly, all our negative allocations, or short positions, are in Tresury Bills (IEF, SHY, TLT), all statistically exhibit negative correlation with the market!
+
+[MORE ANALYSIS CONTENT IN PROGRESS]
+
 
 ---
 # Random Matrix Theory
