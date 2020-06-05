@@ -698,7 +698,7 @@ allWeights["Analytical"].plot(kind="bar",ax=ax_a)
 allWeights["Computational"].plot(kind="bar",ax=ax_c)
 ```
 
-<img src="https://jp-quant.github.io/images/vol_2/a_vs_c_w.png" alt="1" border="0">
+<img src="https://jp-quant.github.io/images/vol_2/a_vs_c_w.png">
 
 We proceed on first observing the **in-sample** evaluation results between Analytical & Computational solutions, seeing how much they do line up with each other:
 
@@ -710,7 +710,7 @@ ax_cr = f.add_subplot(122,title="In-Sample Cummulative Returns")
 bulk_evals["metrics"].T.plot(kind="bar",ax=ax_m)
 bulk_evals["cum_ret"].plot(ax=ax_cr)
 ```
-<img src="https://jp-quant.github.io/images/vol_2/a_vs_c_1.png" alt="1" border="0">
+<img src="https://jp-quant.github.io/images/vol_2/a_vs_c_1.png">
 
 With the weights extracted from our in-sample, do the same thing for **out-sample**:
 
@@ -723,7 +723,7 @@ bulk_evals["metrics"].T.plot(kind="bar",ax=ax_m)
 bulk_evals["cum_ret"].plot(ax=ax_cr)
 ```
 
-<img src="https://jp-quant.github.io/images/vol_2/a_vs_c_2.png" alt="1" border="0">
+<img src="https://jp-quant.github.io/images/vol_2/a_vs_c_2.png">
 
 > **REMARK**: There are some discrepancies between our analytical & computational approaches, if anything a very small one. I theorize that this is due to either when approximating the inverse covariance matrix when solving analytically,or computational iteration approximations. I will add an explanation once I have empirically identified the problem.
 
@@ -770,7 +770,7 @@ bulk_evals["metrics"].T[to_plot].plot(kind="bar",ax=ax_m)
 bulk_evals["cum_ret"][to_plot].plot(ax=ax_cr)
 ```
 
-<img src="https://jp-quant.github.io/images/vol_2/mv_vs_e_1.png" alt="1" border="0">
+<img src="https://jp-quant.github.io/images/vol_2/mv_vs_e_1.png">
 
 
 Now, if we evaluate the weights on **out-sample** data, again plotting the **Top 5 with the LEAST Volatility**:
@@ -786,7 +786,7 @@ bulk_evals["metrics"].T[to_plot].plot(kind="bar",ax=ax_m)
 bulk_evals["cum_ret"][to_plot].plot(ax=ax_cr)
 ```
 
-<img src="https://jp-quant.github.io/images/vol_2/mv_vs_e_2.png" alt="1" border="0">
+<img src="https://jp-quant.github.io/images/vol_2/mv_vs_e_2.png">
 
 
 [ANALYSIS IN-PROGRESS]
@@ -863,6 +863,6 @@ def _RMT_(RET,Q=None,sigma=None,include_plots=False,
         result["FILTERED_ax"] = FILTERED_ax
     return result
 ```
-<img src="https://jp-quant.github.io/images/vol_2/rmt_0.png" alt="1" border="0">
-<img src="https://jp-quant.github.io/images/vol_2/rmt_1.png" alt="1" border="0">
-<img src="https://jp-quant.github.io/images/vol_2/rmt_2.png" alt="1" border="0">
+<img src="https://jp-quant.github.io/images/vol_2/rmt_0.png">
+<img src="https://jp-quant.github.io/images/vol_2/rmt_1.png">
+<img src="https://jp-quant.github.io/images/vol_2/rmt_2.png">
