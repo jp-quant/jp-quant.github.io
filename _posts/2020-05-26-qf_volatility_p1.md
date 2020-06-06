@@ -17,11 +17,11 @@ From basic statistics, for $$n=1,2,...,N$$ time indexes of $$r_{i_n}$$ and $$r_{
 - $$\sigma_{ij} = \frac{\sum_{1}^{N}(r_{i_n} - \bar{r_i})(r_{j_n} - \bar{r_j})}{N}$$ for **population size**
  
 When it comes to investment as a whole, I find most of my work tackling almost every problems related with risk management, or volatility. Recall our previous [brief overview](https://jp-quant.github.io/qf_intro/ "initial post") on the essential topics of this research series, given a constructed returns table $$RET$$, we obtain the de-meaned version:
-$$\overline{RET} = \begin{vmatrix} (r_{1_1} - \bar{r_{1}})&(r_{2_1} - \bar{r_{2}}) &\hdots &(r_{M_1} - \bar{r_{M}}) \\ (r_{1_2} - \bar{r_{1}}) &(r_{2_2} - \bar{r_{2}}) &\hdots &(r_{M_2} - \bar{r_{M}}) \\ \vdots&\vdots &\ddots &\vdots \\ (r_{1_N} - \bar{r_{1}})&(r_{2_N} - \bar{r_{2}}) &\hdots &(r_{M_N} - \bar{r_{M}}) \end{vmatrix}$$
+$$\overline{RET} = \begin{vmatrix} (r_{1_1} - \bar{r_{1}})&(r_{2_1} - \bar{r_{2}}) &\cdots &(r_{M_1} - \bar{r_{M}}) \\ (r_{1_2} - \bar{r_{1}}) &(r_{2_2} - \bar{r_{2}}) &\cdots &(r_{M_2} - \bar{r_{M}}) \\ \vdots&\vdots &\ddots &\vdots \\ (r_{1_N} - \bar{r_{1}})&(r_{2_N} - \bar{r_{2}}) &\cdots &(r_{M_N} - \bar{r_{M}}) \end{vmatrix}$$
 
 A *N x M* matrix representing N interval (hourly/daily/weekly/etc) returns of M securities, we can construct a **sample size** Covariance Matrix $$\boldsymbol{C}$$
 
-$$\boldsymbol{C} = \frac{\overline{RET}^\top \cdot \overline{RET}}{N-1} = \begin{vmatrix} \sigma_1^2 & \sigma_{12} & \hdots & \sigma_{1M} \\ \sigma_{21} & \sigma_2^2 & \hdots & \sigma_{2M}\\ \vdots &\vdots &\ddots &\vdots \\ \sigma_{M1} & \sigma_{M2} &\hdots &\sigma_M^2 \end{vmatrix}$$
+$$\boldsymbol{C} = \frac{\overline{RET}^\top \cdot \overline{RET}}{N-1} = \begin{vmatrix} \sigma_1^2 & \sigma_{12} & \cdots & \sigma_{1M} \\ \sigma_{21} & \sigma_2^2 & \cdots & \sigma_{2M}\\ \vdots &\vdots &\ddots &\vdots \\ \sigma_{M1} & \sigma_{M2} &\cdots &\sigma_M^2 \end{vmatrix}$$
 
 where $$\boldsymbol{C}$$ is a *M x M* **square matrix** such that:
 -$$\sigma_i^2$$ = **variances** of individual securities $$i = 1,2,...,M$$
@@ -420,14 +420,14 @@ In this work, we are exploring a mapping from N-dimensional space to another N-d
 
 Given our *M x M* covariance matrix $$\boldsymbol{C}$$ of M securities, as square matrix calculated from returns of *N* time indexes, we seek to find $$e_i$$ and $$\lambda_i$$ , respectively as the **eigen vectors** and **eigen values**, where for $$i = 1,2,...,M$$, comes with such **eigen pair** that satisfy the condition:
 $$\boldsymbol{C} \cdot e_i = \lambda_i e_i$$, such that:
-- $$e_{i} = \begin{vmatrix} e_{i_1}\\ e_{i_2}\\ \vdots\\ e_{i_M} \end{vmatrix}$$ , where we can construct an *M x M* matrix of the linearly independent eigen vectors as $$\boldsymbol{E} = \begin{vmatrix} e_1 &e_2 &\hdots &e_M \end{vmatrix} =\begin{vmatrix} e_{1_1} & e_{2_1} &\hdots &e_{M_1} \\ e_{1_2} & e_{2_2} &\hdots &e_{M_2} \\ \vdots &\vdots &\ddots &\vdots \\ e_{1_M} &e_{2_M} &\hdots &e_{M_M} \end{vmatrix}$$
+- $$e_{i} = \begin{vmatrix} e_{i_1}\\ e_{i_2}\\ \vdots\\ e_{i_M} \end{vmatrix}$$ , where we can construct an *M x M* matrix of the linearly independent eigen vectors as $$\boldsymbol{E} = \begin{vmatrix} e_1 &e_2 &\cdots &e_M \end{vmatrix} =\begin{vmatrix} e_{1_1} & e_{2_1} &\cdots &e_{M_1} \\ e_{1_2} & e_{2_2} &\cdots &e_{M_2} \\ \vdots &\vdots &\ddots &\vdots \\ e_{1_M} &e_{2_M} &\cdots &e_{M_M} \end{vmatrix}$$
 
 - $$\lambda_i$$ is a **real** value, each associated with $$e_i$$,  to which we can diagonalize it into another *M x M* square matrix:
-$$\boldsymbol{V} = \begin{vmatrix} \lambda_1 &0 &\hdots &0 \\ 0 &\lambda_2 &\hdots &0 \\ \vdots &\vdots &\ddots &\vdots \\ 0 &0 &\hdots &\lambda_M \end{vmatrix}$$
+$$\boldsymbol{V} = \begin{vmatrix} \lambda_1 &0 &\cdots &0 \\ 0 &\lambda_2 &\cdots &0 \\ \vdots &\vdots &\ddots &\vdots \\ 0 &0 &\cdots &\lambda_M \end{vmatrix}$$
 
 
 Due to the nature of $$\boldsymbol{C}$$ being not just as a square matrix, but also a **Hermitian Matrix**, our values will be **real** & the matrix is diagonalizable such that:
-$$\boldsymbol{C} = \boldsymbol{E^\top} \cdot \boldsymbol{V} \cdot \boldsymbol{E} = \begin{vmatrix} \sigma_1^2 & \sigma_{12} & \hdots & \sigma_{1M} \\ \sigma_{21} & \sigma_2^2 & \hdots & \sigma_{2M}\\ \vdots &\vdots &\ddots &\vdots \\ \sigma_{M1} & \sigma_{M2} &\hdots &\sigma_M^2 \end{vmatrix}$$
+$$\boldsymbol{C} = \boldsymbol{E^\top} \cdot \boldsymbol{V} \cdot \boldsymbol{E} = \begin{vmatrix} \sigma_1^2 & \sigma_{12} & \cdots & \sigma_{1M} \\ \sigma_{21} & \sigma_2^2 & \cdots & \sigma_{2M}\\ \vdots &\vdots &\ddots &\vdots \\ \sigma_{M1} & \sigma_{M2} &\cdots &\sigma_M^2 \end{vmatrix}$$
 
 To observe the significance of to why this is powerful when it comes to applying it on the covariance matrix, we will first highlight the significance of the eigen pairs ($$e_i$$ & $$\lambda_i$$)
 - Eigen vectors $$e_i$$ are **normalized independent vectors** from each other, meaning that they are **orthogonal** to each other with $$||e_i|| = 1$$
