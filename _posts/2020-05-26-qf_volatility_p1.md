@@ -430,7 +430,7 @@ Due to the nature of $$\boldsymbol{C}$$ being not just as a square matrix, but a
 $$\boldsymbol{C} = \boldsymbol{E^\top} \cdot \boldsymbol{V} \cdot \boldsymbol{E} = \begin{vmatrix} \sigma_1^2 & \sigma_{12} & \cdots & \sigma_{1M} \\ \sigma_{21} & \sigma_2^2 & \cdots & \sigma_{2M}\\ \vdots &\vdots &\ddots &\vdots \\ \sigma_{M1} & \sigma_{M2} &\cdots &\sigma_M^2 \end{vmatrix}$$
 
 To observe the significance of to why this is powerful when it comes to applying it on the covariance matrix, we will first highlight the significance of the eigen pairs ($$e_i$$ & $$\lambda_i$$)
-- Eigen vectors $$e_i$$ are **normalized independent vectors** from each other, meaning that they are **orthogonal** to each other with $$||e_i|| = 1$$
+- Eigen vectors $$e_i$$ are **normalized independent vectors** from each other, meaning that they are **orthogonal** to each other with $$\left \| e_i \right \| = 1$$
 - Since there are *M* eigen vectors $$e_i$$ extracted from an *M x M* matrix, their orthogonality means that they represent the **basis** of M-dimensional vector space.
 - Therefore, in other words, we perceive the eigen vectors as the directional vectors basis, the axis that builds the entire subspace that described by such matrix, or in this case the covariance matrix $$\boldsymbol{C}$$
 - Each eigen value $$\lambda_i$$ simply represents the **directional variance** of its associated eigen vector $$e_i$$ , independent from one another, such that together they **explain** the total volatility of *M* securities, without any specified allocations.
@@ -600,7 +600,7 @@ result["figure"].show()
 
 ### Eigen Portfolios Introduction
 Before we conclude this first section, I would like to shed light on some concepts that come up once observing this result:
- - Given we just explore PCA application on finding the **independent/orthogonal eigen vectors** that when each magnified by its respective eigen value, describes the shape of the universe's returns, with each eigen vector $$e_i$$ being normalized into a unit vector, such that $$||e_i|| = 1$$
+ - Given we just explore PCA application on finding the **independent/orthogonal eigen vectors** that when each magnified by its respective eigen value, describes the shape of the universe's returns, with each eigen vector $$e_i$$ being normalized into a unit vector, such that $$\left \| e_i \right \| = 1$$
  - For any allocations weight  of *M* amount of securities, whereas $$w = \begin{vmatrix} w_1\\ w_2\\ \vdots\\ w_M \end{vmatrix}$$ such that $$-1 \leq w_{i}\leq 1$$ and $$\sum_{1}^{M}w_i = 1$$ we are simply finding a **allocation vector** in M-dimensional space!
 
 We then pose the question:

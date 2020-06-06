@@ -599,7 +599,7 @@ The **Minimum Variance Portfolio** tells us to allocate the majority of our capi
 
 ---
 ## 2. Eigen Portfolios
-Recall our brief mention in the first post, eigen portfolios are simply the eigen vectors "scaled" by the summation of its components. We need to address the following **important** fundamental concepts & empirical findings:
+Recall our brief introduction in the first post, eigen portfolios are simply the eigen vectors "scaled" by the summation of its components. We need to address the following **important** fundamental concepts & empirical findings:
 
 - The idea of an eigen portfolio is simply an **allocation vector** that **aligns itself in the exact direction of the eigen vector**.
 
