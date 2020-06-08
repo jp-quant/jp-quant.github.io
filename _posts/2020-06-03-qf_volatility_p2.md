@@ -199,31 +199,8 @@ for s in sectors:
     Others: 35
     
 
-Before we proceed on finding the "optimal" $$w$$ solutions, it's useful to have a function that could take in any given allocation weight & the respective returns table to compute the some evaluation metrics & returns (as well as cummulative returns) data:
 
-```python
-def evaluate_w(RET,_w_):
-    portfolio_ret = RET.dot(_w_.reindex(RET.columns).values)
-    _cov_ = RET.cov() #---| to calculate std
-    _mean_ = portfolio_ret.mean()
-    _std_ = np.sqrt(np.dot(_w_.T,np.dot(_cov_,_w_)))
-    metrics = pd.Series(data=[_mean_,_std_,(_mean_/_std_),portfolio_ret.min()],
-                        index=["avg_ret","std","sharpe","max_drawdown"])
-    return {"returns":portfolio_ret,"cummulative_returns":(1+portfolio_ret).cumprod(),"metrics":metrics}
-```
-
-Since we are going to perform evaluations on multiple weights and compare them to each other, we also wrote a bulk evaluation function that takes in an *M x W* matrix, as *W* different weights of *M* securities, and an *N x M* returns table with N returns of such M securities:
-
-```python
-def evaluate_bulk_w(_RET_,all_w):
-    RESULTS = {w:evaluate_w(_RET_,all_w[w]) for w in all_w.columns}
-    all_metrics = pd.DataFrame({w:RESULTS[w]["metrics"] for w in RESULTS})
-    all_cumret = pd.DataFrame({w:RESULTS[w]["cummulative_returns"] for w in RESULTS})
-    return {"metrics":all_metrics.T,"cum_ret":all_cumret}
-```
-
-
-In addition, to further evaluate the performances of our extract allocations weights, we will need to split our $$RET$$ data into in-sample & out-sample. Performing calculations to find such weights on the in-sample, then using the weights to apply on the out-sample. This is equivalent to saying:
+Before we proceed, to evaluate the performances of our extract allocations weights, we will need to split our $$RET$$ data into in-sample & out-sample. Performing calculations to find such weights on the in-sample, then using the weights to apply on the out-sample. This is equivalent to saying:
 > If we use the "optimal" weights, calculated from in-sample data, being the latest possible date and invest at that date, *without any predictive features*, how well will such weight perform in the out-sample, or the future?
 
 ```python
@@ -233,7 +210,7 @@ def ioSampleSplit(df,inSample_pct=0.75):
 ```
 
 
-Lastly, for daring purposes, as we will obtain results that are very much interesting & sensible, we are going to work with the **Others** sector, representing **all different funds & indexes**, comprising the entire "market" as much as we can, with components as independent they can. Observe the description of such sector of securities:
+For demonstrative purposes, as we will obtain results that are very much interesting & sensible, we are going to work with the **Others** sector, representing **all different funds & indexes**, comprising the entire "market" as much as we can, with components as independent they can. Observe the description of such sector of securities:
 
 
 
@@ -450,7 +427,7 @@ universe_info.reindex(sectors["Others"]).sort_index()
 </div>
 
 
-In addition, we split our full $$RET$$ data into 75% in-sample & 25% out-sample, letting the default variable **RET** as in-sample & **RET_outSample** as, of course, the out-sample data. Subsequent optimization steps in solving for the desired allocations weight $$w$$ will be performed on in-sample data:
+Thus, lastly, we split our full $$RET$$ data into 75% in-sample & 25% out-sample, letting the default variable **RET** as in-sample & **RET_outSample** as, of course, the out-sample data. Subsequent optimization steps in solving for the desired allocations weight $$w$$ will be performed on in-sample data:
 
 ```python
 RET,RET_outSample = ioSampleSplit(_RET_[sectors["Others"]])
@@ -597,7 +574,7 @@ The **Minimum Variance Portfolio** tells us to allocate the majority of our capi
 - The mathematical rigour can get intensive the more we complexify our Lagrangian, so I will add them more if we have the time. For now, it's much easier to use the computational approach for **adding more constraints or changing optimization target**
 	> For example, instead of $$\sigma_p$$, maybe we can change it to $$\boldsymbol{I_p}$$, and perform maximization instead of minimization. Perhaps I will demonstrate this as well later, although it is fairly easy to change up the code (check out [**Scipy Optimization Documentation**](https://docs.scipy.org/doc/scipy/reference/tutorial/optimize.html "Scipy Optimization Documentation"))
 
----
+
 ## 2. Eigen Portfolios
 Recall our brief introduction in the first post, eigen portfolios are simply the eigen vectors "scaled" by the summation of its components. We need to address the following **important** fundamental concepts & empirical findings:
 
@@ -611,7 +588,7 @@ Recall our brief introduction in the first post, eigen portfolios are simply the
 
 - It is *empirically* proven, through other research works, that $$w_{e_1}$$, being the eigen portfolio associated with the eigen vector with the **largest eigen value**, is the **market portfolio**, given the universe of M securities comprising the market.
 
-Modifying our function written to extract the eigen pairs in the [**previous post**](https://jp-quant.github.io/qf_volatility_p1/ "previous post"), below function scaled the eigen vectors with their weights summation into eigen portfolios and return the portfolios' weights along with everything else:
+Modifying our function written to extract the eigen pairs in the [**previous post**](https://jp-quant.github.io/qf_volatility_p1/ "previous post"), below function scaled the eigen vectors with their weights summation into eigen portfolios and return the portfolios' weights along with everything else, with some extra information on the eigen values ($$\lambda_i$$):
 
 ```python
 def EIGEN(_ret_):
@@ -622,76 +599,154 @@ def EIGEN(_ret_):
     _eigenValues = pd.Series(eVals,index=_eigenNames,name="eigenValues")
     _eigenVectors = pd.DataFrame(eVecs.T,index=_ret_.columns,columns=_eigenNames)
     _eigenPortfolios = pd.DataFrame({e:(_eigenVectors[e]/_eigenVectors[e].sum()) for e in _eigenVectors})
-    return {"lambdas":_eigenValues,"vectors":_eigenVectors,"portfolios":_eigenPortfolios}
+    return {"vectors":_eigenVectors,"portfolios":_eigenPortfolios,
+            "lambdas":pd.DataFrame({
+                    "values":_eigenValues,
+                    "explained_ratio":pd.Series(data=_pca.explained_variance_ratio_, index=_eigenPortfolios.columns),
+                    "explained_cum_ratio":pd.Series(data=_pca.explained_variance_ratio_.cumsum(),
+                                                    index=_eigenPortfolios.columns)})}
 ```
-
-In constructing our *allWeights* table of different allocations weights, to which in this case being all the eigen portfolios, we will go ahead and **add the Minimum Variance Portfolio** into it as well:
-
-```python
-_eigen_ = EIGEN(RET)
-eigenWeights = _eigen_["portfolios"]
-allWeights = pd.concat([eigenWeights,minVar(RET.cov(),True).reindex(eigenWeights.index)],1)
-```
-
-Briefly observe the first top 10 eigen values' **explained variances**:
-
-
-```python
-(_eigen_["lambdas"].sort_values(ascending=False)/_eigen_["lambdas"].sum()).head(10)
-```
-
-
-
-
-    eigen_1     0.599924
-    eigen_2     0.076345
-    eigen_3     0.065515
-    eigen_4     0.044836
-    eigen_5     0.043632
-    eigen_6     0.028974
-    eigen_7     0.022040
-    eigen_8     0.018703
-    eigen_9     0.014721
-    eigen_10    0.012076
-    Name: eigenValues, dtype: float64
-
-
-Now that we have extracted the weights from **in-sample** data, we proceed on performing evaluations for **BOTH in-sample & out-sample**. Observe plot results for the evaluations of the **Top 5 Eigen Portfolios + Minimum Variance Portfolio**:
-
-```python
-to_plot = ["eigen_1","eigen_2","eigen_3","eigen_4","eigen_5","MinVar"]
-
-#----| In-Sample: RET
-bulk_evals = evaluate_bulk_w(RET,allWeights)
-f = plt.figure(figsize=(9,6))
-ax_m = f.add_subplot(121,title="In-Sample Evaluation")
-ax_cr = f.add_subplot(122,title="In-Sample Cummulative Returns")
-bulk_evals["metrics"].T[to_plot].plot(kind="bar",ax=ax_m)
-bulk_evals["cum_ret"][to_plot].plot(ax=ax_cr)
-
-#---| Out-Sample: RET_outSample
-bulk_evals = evaluate_bulk_w(RET_outSample,allWeights)
-f = plt.figure(figsize=(9,6))
-ax_m = f.add_subplot(121,title="Out-Sample Evaluation")
-ax_cr = f.add_subplot(122,title="Out-Sample Cummulative Returns")
-bulk_evals["metrics"].T[to_plot].plot(kind="bar",ax=ax_m)
-bulk_evals["cum_ret"][to_plot].plot(ax=ax_cr)
-```
-
-<img src="https://jp-quant.github.io/images/vol_2/mv_vs_e_1.png">
-<img src="https://jp-quant.github.io/images/vol_2/mv_vs_e_2.png">
 
 Recall that we are working with the sector **Others**, containing **35 securities** representing **a diverse pool of different funds & indexes**, comprising the entire "market" as much as we can, with components as independent they can, ranging from different asset classes (stocks, commodities, T-bills, etc) as well as domestic & foreign securities (refer to the table above in our Preparation section for information).
 
+Moving forward, in evaluating a certain portfolio's allocation weight, it's useful to have a function that could take in any given allocation weight & the respective returns table (in-sample or out-sample) to compute the some evaluation metrics & returns (as well as cummulative returns) data on such input returns table:
+
+```python
+def evaluate_w(RET,_w_):
+    portfolio_ret = RET.dot(_w_.reindex(RET.columns).values)
+    _cov_ = RET.cov() #---| to calculate std
+    _mean_ = portfolio_ret.mean()
+    _std_ = np.sqrt(np.dot(_w_.T,np.dot(_cov_,_w_)))
+    metrics = pd.Series(data=[_mean_,_std_,(_mean_/_std_),portfolio_ret.min()],
+                        index=["avg_ret","std","sharpe","max_drawdown"])
+    return {"returns":portfolio_ret,"cummulative_returns":(1+portfolio_ret).cumprod(),"metrics":metrics}
+```
+
+Since we are going to perform evaluations on multiple weights and compare them to each other, we also wrote a bulk evaluation function that takes in an *M x W* matrix, as *W* different weights of *M* securities, and an *N x M* returns table with N returns of such M securities:
+
+```python
+def evaluate_bulk_w(_RET_,all_w):
+    RESULTS = {w:evaluate_w(_RET_,all_w[w]) for w in all_w.columns}
+    all_metrics = pd.DataFrame({w:RESULTS[w]["metrics"] for w in RESULTS})
+    all_cumret = pd.DataFrame({w:RESULTS[w]["cummulative_returns"] for w in RESULTS})
+    return {"metrics":all_metrics.T,"cum_ret":all_cumret}
+```
+
+Lastly, we write a function that would **plot the evaluation results** obtained from *evaluate_bulk_w()*:
+
+```python
+#---| NOTE: This assumes %matplotlib inline is set at the beginning!
+def plot_bulk_evals(evals_result,to_plot=None,plot_title=None):
+    to_plot = list(evals_result["cum_ret"].columns)[:5] if (to_plot is None) else to_plot #---| default by first 5 of weights
+    assert len([i for i in to_plot if i not in evals_result["cum_ret"].columns]) == 0
+    #---| set up figure & grids
+    f = plt.figure(figsize=(15,6))
+    grid = plt.GridSpec(2, 6, wspace=0.5, hspace=0.2)
+
+    #---| cuumulative returns (line)
+    cumret_ax = f.add_subplot(grid[:,2:],title=plot_title)
+    evals_result["cum_ret"][to_plot].plot(ax=cumret_ax)
+    handles, labels = cumret_ax.get_legend_handles_labels()
+    colors = [i.get_color() for i in handles] #---| grab colors for other plots
+
+    #---| performance metrics (bar)
+    metrics_ax = {"mean(ret)":f.add_subplot(grid[0,0],title="mean(ret)")}
+    metrics_ax["std(ret)"] = f.add_subplot(grid[0,1],title="std(ret)",xticklabels=[],sharex=metrics_ax["mean(ret)"])
+    metrics_ax["min(ret)"] = f.add_subplot(grid[1,0],title="min(ret)",xticklabels=[],sharex=metrics_ax["mean(ret)"])
+    metrics_ax["sharpe"] = f.add_subplot(grid[1,1],title="sharpe",xticklabels=[],sharex=metrics_ax["mean(ret)"])
+    for i in metrics_ax:
+        evals_result["metrics"].T[to_plot].loc[i].plot(kind="bar",ax=metrics_ax[i],color=colors)    
+```
+
+Let's begin our analysis:
+
+First, we will obtain the eigen portfolios along with other informations computed from our *EIGEN()* function written above:
+```python
+_eigen_ = EIGEN(RET)
+```
+Observe the information of the first 10 eigen values $$\lambda_i$$:
+
+```python
+_eigen_["lambdas"].head(10)
+```
+
+[TABLE]
+
+Observe how ~50% of total variance can be "explained" by the **first eigen vector**. We interpret this as that if we align ourselves, as a portfolio, being an **eigen portfolio**, with such vector, we are exposing ourselves to the most volatility in such direction.
+
+
+Next, we proceed on constructing our *allWeights* table of different allocations weights, to which in this case being all the eigen portfolios, we will go ahead and **add the Minimum Variance Portfolio**. We will also calculate some information regatding the allocation weights, viewing it as **vectors** in M-dimensional space:
+
+```python
+_eigen_ = EIGEN(RET)
+allWeights = _eigen_["portfolios"]
+#---| weights info
+allWeights_info = pd.DataFrame({
+    "norm":pd.Series(data=[np.linalg.norm(allWeights[w]) for w in allWeights.columns],index=allWeights.columns),
+    "absolute_size":pd.Series(data=[abs(allWeights[w]).sum() for w in allWeights.columns],index=allWeights.columns)
+})
+```
+
+Observe the interesting result on how **long** the **eigen portfolio allocation vectors** are, especially through plotting them. Perhaps I will dive deeper into the interpretations and meaning of why some allocation vectors are extremely leveraged:
+
+```python
+allWeights_info.plot()
+```
+<img src="https://jp-quant.github.io/images/vol_2/e_w_info_plot.png">
+
+Now that we have extracted the weights from **in-sample** data, we proceed on performing evaluations for **BOTH in-sample & out-sample**:
+
+```python
+inSample_evals = evaluate_bulk_w(RET,allWeights)
+outSample_evals = evaluate_bulk_w(RET_outSample,allWeights)
+```
+
+Observe the correlational heatmap for the returns of the eigen portfolios, again **extracted from in-sample data**, on *in-sample* and *out-sample* data:
+
+```python
+f = plt.figure()
+inSample_ax = f.add_subplot(121,title="In-Sample")
+inSample_ax.imshow(inSample_evals["returns"].corr())
+outSample_ax = f.add_subplot(122,title="Out-Sample")
+a = outSample_ax.imshow(outSample_evals["returns"].corr())
+cbar = f.colorbar(a, ticks=[-1, 0, 1])
+```
+
+<img src="https://jp-quant.github.io/images/vol_2/e_corr_heatmap.png">
+
+Notice how the eigen portfolios exhibit **0 correlation** to each other on **in-sample** data, yet moving to out-sample, such effect is lost. We will access this effect later, though it might be resulted from the fundamental COVID-19 market crash.
+
+Next, observe plot results for the performance evaluations of the **Top 5 Eigen Portfolios**:
+
+```python
+to_plot = ["eigen_1","eigen_2","eigen_3","eigen_4","eigen_5"]
+plot_bulk_evals(inSample_evals,to_plot=to_plot,plot_title="In-Sample")
+plot_bulk_evals(outSample_evals,to_plot=to_plot,plot_title="Out-Sample")
+```
+
+<img src="https://jp-quant.github.io/images/vol_2/e_12345_in_sample.png">
+<img src="https://jp-quant.github.io/images/vol_2/e_12345_out_sample.png">
+
+
+
 The interesting thing to point out is the **out-sample result**, the timeframe to which when the latest *COVID-19 market crash* occured whereas only the **eigen_3** and **MinVar** portfolios exhibit positive performance, with **eigen_3** also having the highest sharpe ratio for **both** samples.
 
-If we plot out the weights for **eigen_1, eigen_2 and MinVar**, we obtain:
-<img src="https://jp-quant.github.io/images/vol_2/e_123.png">
+If we plot out the weights for **eigen_1**, we obtain:
+<img src="https://jp-quant.github.io/images/vol_2/e_1_w_bar.png">
 
-Notice how the **eigen_1** weights **have the majority of positive allocations in indexes affiliated with stocks!**. This confirms our statement above on it being the **market portfolio**. Notice how for *GLD & GDX*, being commodities, specifically gold, hedged out in weights, while indexes of foreign securities like *EWJ* have very little weights in comparison to the others; lastly, all our negative allocations, or short positions, are in Tresury Bills (IEF, SHY, TLT), all statistically exhibit negative correlation with the market!
+Notice how the **eigen_1** weights **have the majority of positive allocations in indexes affiliated with stocks!**. This confirms our statement above on it being the **market portfolio**. Notice how for *GLD & GDX*, being commodities, specifically gold, hedged out in weights, while indexes of foreign securities like *EWJ* have very little weights in comparison to the others; lastly, all our negative allocations, or short positions, are in Treasury Bills (IEF, SHY, TLT), all statistically exhibit negative correlation with the market!
 
-[MORE ANALYSIS CONTENT IN PROGRESS]
 
+Now, if we perform the same steps again, though this time,**adding Minimum Variance Portfolio** into *allWeights** and evaluate it with the **LAST eigen portfolio** (eigen_35), associating with the **smallest eigen value**. Plotting the performance evaluation results, we obtain:
+
+<img src="https://jp-quant.github.io/images/vol_2/mv_vs_e35_insample.png">
+<img src="https://jp-quant.github.io/images/vol_2/mv_vs_e35_outsample.png">
+
+They are very closely *"related"** with each other, though the Minimum Variance Portfolio still slightly beats the eigen_35 portfolio! Observe the weights bar plot, as well as the **dot product** between the two allocation vector, as well as their **angle from each other** (1 means they line up **exactly with each other**):
+
+<img src="https://jp-quant.github.io/images/vol_2/mv_vs_e35_w_bar.png">
+
+They are **almost aligned perfectly with each other**, with one allocation vector just basically *has a higher norm* than the other! This further confirmed out initial hypothesis on the *"meaning"* of eigen portfolios & eigen values!
 
 ---
 # Random Matrix Theory
