@@ -1,5 +1,5 @@
 ---
-title: "[QF] Probing Volatility II: Portfolio Optimization & Random Matrix Theory"
+title: "[QF] Probing Volatility II: Portfolio Optimization & Random Matrix Filter"
 date: 2020-06-03
 tags: [research]
 header:
@@ -1061,17 +1061,15 @@ Now, if we take a look at the evaluations of the **Minimum Variance Portfolio** 
 <img src="https://jp-quant.github.io/images/vol_2/mv_vs_e35_insample.png">
 <img src="https://jp-quant.github.io/images/vol_2/mv_vs_e35_outsample.png">
 
-They are very closely *"related"** with each other, though the Minimum Variance Portfolio still beating the eigen_35 portfolio. Observe the weights bar plot, as well as the **dot product** between the two allocation vector, as well as their **angle from each other**, represents at $$cos(\theta)$$ (1 means they line up **exactly with each other**):
+They are very closely *"related"* with each other, though the Minimum Variance Portfolio still beating the eigen_35 portfolio. Observe the weights bar plot, as well as the **dot product** between the two allocation vector, as well as their **angle from each other**, represents at $$cos(\theta)$$ (1 means they line up **exactly with each other**):
 
 <img src="https://jp-quant.github.io/images/vol_2/mv_vs_e35_w_bar.png">
 
 They are aligned **very close with each other**, with one allocation vector just basically *has a higher norm* than the other. This further supports our initial hypothesis on the *"meaning"* of eigen portfolios & eigen values.
 
 ---
-# Random Matrix Theory
-[CONTENT IN-PROGRESS]
-
-http://web.eecs.umich.edu/~rajnrao/Acta05rmt.pdf
+# Random Matrix Filter
+> This advanced mathematical technique belongs to a larger topic umbrella called [**Random Matrix Theory**](https://en.wikipedia.org/wiki/Random_matrix "**Random Matrix Theory**"), specifically inspired by Alan Edelman's [**lecture notes**](http://web.eecs.umich.edu/~rajnrao/Acta05rmt.pdf "lecture notes") for a class at MIT. There are much more to be learned & explore as per for myself as well, although what will be presented are implementations & testings, performed personally, that have yielded positive empirical results.
 
 
 ```python
