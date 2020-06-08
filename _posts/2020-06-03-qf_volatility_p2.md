@@ -993,7 +993,7 @@ eigenWeights["eigen_1"].sort_values().plot.bar(title="First Eigen Portfolio Weig
 
 <img src="https://jp-quant.github.io/images/vol_2/e_1_w_bar.png">
 
-Notice how the **eigen_1** weights have the majority of **positive allocations in various large market indexes**. This support our statement above on it being the **market portfolio**. Notice how 3/4 of our negative allocations, or short positions, are in Treasury Bills (IEF, SHY, TLT), all statistically exhibit negative correlation with the market. The last short resides in *GLD* , being specifically gold, not are just significantly smaller than the rest but also hedged out in weights with another gold index *GDX*.
+Notice how the **eigen_1** weights have the majority of **positive allocations in various large market indexes, specifically U.S. equities market**. This support our statement above on it being the **market portfolio**. Notice how 3/4 of our negative allocations, or short positions, are in Treasury Bills (IEF, SHY, TLT), all statistically exhibit negative correlation with the market. The last short resides in *GLD* , being specifically gold, not are just significantly smaller than the rest but also hedged out in weights with another gold index *GDX*.
 
 Meanwhile, if we plot the **eigen_2** portfolio weights, we have:
 
@@ -1002,7 +1002,7 @@ eigenWeights["eigen_2"].sort_values().plot.bar(title="Second Eigen Portfolio Wei
 ```
 <img src="https://jp-quant.github.io/images/vol_2/e_2_w_bar.png">
 
-The largest positive weights are now allocated towards ones that are negative & smaller in the first eigen portfolio, that being Treasury & Gold.
+The largest positive weights are now allocated towards ones that are negative & smaller in the first eigen portfolio, that being Treasury & Gold. In addition, subsequent majority of the weights go towards indexes of commodities & energy (XME,XLE,XOP,etc..) as well as foreign securities (EWJ, FXI)
 
 Now that we have extracted the eigen portfolios weights from **in-sample** data as *eigenWeights*, moving forward, we will construct an *allWeights* table, adding the **Minimum Variance Portfolio** into in addition with the *eigenWeights*, then proceed on recalculating the weights information:
 
