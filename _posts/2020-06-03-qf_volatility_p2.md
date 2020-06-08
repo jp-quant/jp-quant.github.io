@@ -1088,7 +1088,7 @@ $$\boldsymbol{D}^{1/2} = \begin{vmatrix}
 0 &0  &\cdots  &\sigma_{M} 
 \end{vmatrix}$$
 
-\boldsymbol{C_{\rho}} is also an *M x M*  **symmetric matrix**, where each entry represents the **correlation** value between two securities. For $$i,j = 1,2,...,M$$, where $$i \neq j$$, $$c_{ij} = \rho_{ij} = \frac{\sigma_{ij}}{\sigma_{i} \sigma_{j}}$$, thus by such definition, the diagonal entries $$c_{ii} = 1$$, as the correlation of a security to itself is 1, such that:
+$$\boldsymbol{C_{\rho}}$$ is also an *M x M*  **symmetric matrix**, where each entry represents the **correlation** value between two securities. For $$i,j = 1,2,...,M$$, where $$i \neq j$$, $$c_{ij} = \rho_{ij} = \frac{\sigma_{ij}}{\sigma_{i} \sigma_{j}}$$, thus by such definition, the diagonal entries $$c_{ii} = 1$$, as the correlation of a security to itself is 1, such that:
 
 $$\boldsymbol{C_{\rho}} = \begin{vmatrix}
 1 &\rho_{12}  &\cdots  &\rho_{1M} \\ 
