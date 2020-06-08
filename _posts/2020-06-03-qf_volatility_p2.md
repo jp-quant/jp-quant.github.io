@@ -1189,5 +1189,7 @@ def _RMT_(RET,Q=None,sigma=None,include_plots=False,
     return result
 ```
 <img src="https://jp-quant.github.io/images/vol_2/rmt_0.png">
+In-Sample
 <img src="https://jp-quant.github.io/images/vol_2/rmt_1.png">
+Out-Sample
 <img src="https://jp-quant.github.io/images/vol_2/rmt_2.png">
