@@ -1071,13 +1071,13 @@ They are aligned **very close with each other**, with one allocation vector just
 # Random Matrix Theory
 > The advanced mathematical technique to be presented belongs to a larger topic umbrella called [**Random Matrix Theory**](https://en.wikipedia.org/wiki/Random_matrix "**Random Matrix Theory**"), specifically inspired by Alan Edelman's [**lecture notes**](http://web.eecs.umich.edu/~rajnrao/Acta05rmt.pdf "lecture notes") for a class on such topic at MIT. There are much more to be learned & explore as per for myself as well, although what will be presented are implementations & testings, performed personally, that have yielded positive empirical results.
 
-The main concept we are addressing is directly related with portfolio optimization. Shortly put, a significant arena  within Random Matrix Theory (RMT) is understanding the **distribution of eigen values in any large random matrix, specifically a square matrix referred to as the [Wilshart Matrix](https://en.wikipedia.org/wiki/Wishart_distribution "Wilshart Matrix")**, stemming from fact of *Gaussian orthogonal ensemble* (or GOE) having its distribution being *invariant* under any orthogonal transformations, aka eigen decompositions we performed thus far.
+The main concept we are addressing is directly related with portfolio optimization. Shortly put, a significant arena within Random Matrix Theory (RMT) is understanding the **distribution of eigen values in any large random matrix**. What we are specifically working on is a square matrix referred to as the [Wilshart Matrix](https://en.wikipedia.org/wiki/Wishart_distribution "Wilshart Matrix"), having such distribution stemmed from fact of *Gaussian orthogonal ensemble* (or GOE) having its distribution being *invariant* under any orthogonal transformations, aka eigen decompositions we performed thus far.
 The bomb-shell of an application to our current objective lies under the belief that:
 > Under certain conditions, there exists a **theoretical range of eigen values**, followed by such distribution, such that the ones **outside of such theoretical range** are values that contain **actual useful information**, where the rest **inside are random noises** of interactions within the data.
 
 ## The Importance of Correlation Matrix
 As we have observed so far, Portfolio Optimization always involves the *Covariance Matrix*  $$\boldsymbol{C_{\sigma}}$$ being an *M x M* Hermitian Matrix that directly computed from any input *N x M* returns matrix $$RET$$, containing N data points of M securities.
-It is important to note that the entries of $$\boldsymbol{C_{\sigma}}$$ are **not bounded**. However, aside from PCA, $$\boldsymbol{C_{\sigma}}$$ can also be decomposed into a multiplication of other important matrices, specifically being the Standard Deviation Matrix $$D$$ and the Correlation Matrix $$\boldsymbol{C_{\rho}}$$
+It is important to note that the entries of $$\boldsymbol{C_{\sigma}}$$ are **not bounded**. However, aside from PCA, $$\boldsymbol{C_{\sigma}}$$ can also be decomposed into a multiplication of other important matrices, specifically being the Standard Deviation Matrix $$\boldsymbol{D}^{1/2}$$ and the Correlation Matrix $$\boldsymbol{C_{\rho}}$$
 
 $$\boldsymbol{D}^{1/2}$$ is an *M x M*  diagonal **symmetric matrix**, where for $$i,j = 1,2,...,M$$ of M securities, each diagonal entry $$d_{ii} = \sigma_{i}$$ represents the **standard deviation** of security i, while the other entries where $$i \neq j$$, $$d_{ij} = 0$$, such that:
 
@@ -1102,13 +1102,13 @@ Putting it together, we have our Covariance Matrix decomposed as:
 $$\boldsymbol{C_{\sigma}} = \boldsymbol{D}^{1/2} \cdot \boldsymbol{C_{\rho}} \cdot \boldsymbol{D}^{1/2}$$
 
 The importance lies in the fact that the Correlation Matrix $$\boldsymbol{C_{\rho}} $$ is **bounded** between (-1,1), such that it is viewed as a **"normalized version"** of the Covariance Matrix $$\boldsymbol{C_{\sigma}}$$.
-> This is equivalent to  **normalizing the returns $$r_i = \begin{vmatrix} r_{i_1}\\ r_{i_2}\\ \vdots\\ r_{i_N} \end{vmatrix}$$ of each stock $$i = 1,2,...,M$$ by its standard deviation** such that its variance $$\sigma_{i}^2 = 1$$ when constructing the Correlation Matrix.
+> This is equivalent to  **normalizing the returns $$r_i = \begin{vmatrix} r_{i_1}\\ r_{i_2}\\ \vdots\\ r_{i_N} \end{vmatrix}$$ of each stock by its standard deviation** such that its variance $$\sigma_{i}^2 = 1$$
 
 
-This is the assumption given for a **Wilshart Matrix**, as well as with the patterns found in any random matrix with entries distributed in $$\mathcal{N}(0,1)$$ following a circle called the [**Wigner's semi-circle**](https://en.wikipedia.org/wiki/Wigner_semicircle_distribution "**Wigner's semi-circle**") in free probability theory, directly leading to the development on the distribution of eigen values stated above. Such distribution is called the [**Marchenko-Pastur Distribution**](https://en.wikipedia.org/wiki/Marchenko%E2%80%93Pastur_distribution "**Marchenko-Pastur Distribution**")
+This is the assumption given for a **Wilshart Matrix**, as well as with the patterns found in any random matrix with entries distributed in $$\mathcal{N}(0,1)$$ having their eigen values distribution following a circle called the [**Wigner's semi-circle**](https://en.wikipedia.org/wiki/Wigner_semicircle_distribution "**Wigner's semi-circle**") in free probability theory, directly leading to the development on the distribution of eigen values stated above. Such distribution is called the [**Marchenko-Pastur Distribution**](https://en.wikipedia.org/wiki/Marchenko%E2%80%93Pastur_distribution "**Marchenko-Pastur Distribution**")
 
 ### Marchenko-Pastur Distribution
-Generally, the distribution of the entries of $$RET$$ can have any fixed $$\sigma$$, although in working with Correlation Matrices, constructed from such returns table, being standardized under the bound of (-1,1) we take $$\sigma = 1$$ without any loss of generality.
+Generally, the distribution of the matrix entries can have any fixed $$\sigma$$, although in working with Correlation Matrices, a square matrix being standardized under the bound of (-1,1) we take $$\sigma = 1$$ without any loss of generality.
 The distribution simply state that, for any random *N x M* $$RET$$ matrix with variance $$\sigma^2$$, where as the limit $$N,M \rightarrow \infty$$, such that we seek for the constant $$Q = \frac{N}{M} \geq 1$$, the probability density function (PDF) of the eigen values, called the Marchenko-Pastur Distribution, is given as:
 
 $$\rho (\lambda) = \frac{Q}{2\pi \sigma^2}\frac{\sqrt{(\lambda_{+} - \lambda)(\lambda_{-} - \lambda)}}{\lambda}$$
@@ -1117,7 +1117,7 @@ where $$\lambda_{+}$$ and $$\lambda_{-}$$, being the **theoretical maximum & min
 
 $$\lambda_{\pm} = \sigma^2(1 \pm \sqrt{\frac{1}{Q}})^2$$
 
-Values that lie inside of the theoretical range are perceived to be **noises of data interactions** thus we can **filter** of them out, keeping ones that remain **outside of such range** as eigen values that hold actual information, to which in our case being the **"true" correlational values.**
+Values that lie inside of the theoretical range are perceived to be **noises of data interactions** thus we can **filter** of them out, keeping ones that remain **outside of such range** as eigen values that hold actual information, to which in our case being the **true** correlational information.
 
 
 
