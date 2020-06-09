@@ -1109,7 +1109,7 @@ This is the assumption given for a **Wilshart Matrix**, as well as with the patt
 
 ### Marchenko-Pastur Distribution
 Generally, the distribution of the matrix entries can have any fixed $$\sigma$$, although in working with Correlation Matrices, a square matrix being standardized under the bound of (-1,1) we take $$\sigma = 1$$ without any loss of generality.
-The distribution simply state that, for any random *N x M* $$RET$$ matrix with variance $$\sigma^2$$, where as the limit $$N,M \rightarrow \infty$$, such that we seek for the constant $$Q = \frac{N}{M} \geq 1$$, the probability density function (PDF) of the eigen values, called the Marchenko-Pastur Distribution, is given as:
+The distribution simply state that, for any random *N x M* matrix with variance $$\sigma^2$$, where as the limit $$N,M \rightarrow \infty$$, such that we seek for the constant $$Q = \frac{N}{M} \geq 1$$, the probability density function (PDF) for the eigen values of its empirical *M x M* Correlation Matrix, called the Marchenko-Pastur Distribution, is given as:
 
 $$\rho (\lambda) = \frac{Q}{2\pi \sigma^2}\frac{\sqrt{(\lambda_{+} - \lambda)(\lambda_{-} - \lambda)}}{\lambda}$$
 
