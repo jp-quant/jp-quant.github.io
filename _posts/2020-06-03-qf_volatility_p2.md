@@ -31,7 +31,7 @@ Let there be *M* amount of securities selected to invest a set amount of capital
 
 Before moving forward, we first need to address the context regarding *M securities* we seek to allocate our capital towards:
 - At **this** moment in time $$t_N$$, as we are performing analysis to make decisions, being the latest timestamp (this is where back-testing will come in, as I will dedicate a series on building an event-driven one from scratch), we have *N* amount of data historically for *M* securities, hence the necessity for an *N x M* returns table.
-- **Looking towards the future**  $$t_{N + dN}$$ , before we seek to find the optimal weights $$w$$, to compute $$\sigma_p$$ & $$\bar{R_p}$$ (again please refer to my [first QF post](https://jp-quant.github.io/qf_intro/ "first QF post") for the intricate details), as we will not yet be touching base on such extensive topic that having to deal with prediction (I will dedicate another series for this topic), we need to determine the answers for:
+- **Looking towards the future**  $$t_{N + dN}$$ , before we seek to find the optimal weights $$W$$, to compute $$\sigma_p$$ & $$\bar{R_p}$$ (again please refer to my [first QF post](https://jp-quant.github.io/qf_intro/ "first QF post") for the intricate details), as we will not yet be touching base on such extensive topic that having to deal with prediction (I will dedicate another series for this topic), we need to determine the answers for:
 
 	- What is the returns $$\hat{r_i}$$ for each security $$i = 1,2...M$$?
 		>In our demonstrative work, as being used as a factor in various predictive models, we will set $$\hat{r_i} = \bar{r_i}$$ being the **average returns "so far"** (subjective)
@@ -428,7 +428,7 @@ universe_info.reindex(sectors["Others"]).sort_index()
 </div>
 
 
-Thus, we split our full $$RET$$ data into 75% in-sample & 25% out-sample, letting the default variable **RET** as in-sample & **RET_outSample** as, of course, the out-sample data. Subsequent optimization steps in solving for the desired allocations weight $$w$$ will be performed on in-sample data:
+Thus, we split our full $$RET$$ data into 75% in-sample & 25% out-sample, letting the default variable **RET** as in-sample & **RET_outSample** as, of course, the out-sample data. Subsequent optimization steps in solving for the desired allocations weight $$W$$ will be performed on in-sample data:
 
 ```python
 RET,RET_outSample = ioSampleSplit(_RET_[sectors["Others"]])
@@ -513,7 +513,7 @@ Going back to my earlier remark above on solving optimization problems, we can s
 >**IMPORTANT**: The subsequent analytical steps has to follow the fact that the Covariance Matrix $$\boldsymbol{C_{\sigma}}$$ has to be **invertible**, meaning it has to be positive definite, or that all our **real eigen values decomposed has to be all positive (>0)**
 
 
-In finding the optimal allocations weight $$w$$ of a *Minimum Variance Portfolio*, we seek for the solution of:
+In finding the optimal allocations weight $$W$$ of a *Minimum Variance Portfolio*, we seek for the solution of:
 
 >$$\underset{w}{min} (w^\top \cdot \boldsymbol{C_{\sigma}} \cdot w)$$
 
@@ -525,7 +525,7 @@ Constructing a Lagrangian, we obtain:
 >$$\mathcal{L}(w,\lambda_{w}) = (w^\top \cdot \boldsymbol{C_{\sigma}} \cdot w) + \lambda_w[(w^T \cdot \boldsymbol{\vec{1}}) - 1]$$
 
 
-Recall we established that $$\boldsymbol{C_{\sigma}}$$ is an **invertible Hermitian Matrix**, following the property of their **eigen values being real**. Under the assumption of invertibility, the quadratic part is positive definite and there exists a unique minimizer (read more on Hermitian Matrices [here](https://mathworld.wolfram.com/HermitianMatrix.html "here")). Thus, in solving for $$w$$,the gradient of such Lagrangian follows:
+Recall we established that $$\boldsymbol{C_{\sigma}}$$ is an **invertible Hermitian Matrix**, following the property of their **eigen values being real**. Under the assumption of invertibility, the quadratic part is positive definite and there exists a unique minimizer (read more on Hermitian Matrices [here](https://mathworld.wolfram.com/HermitianMatrix.html "here")). Thus, in solving for $$W$$,the gradient of such Lagrangian follows:
 > $$\nabla \mathcal{L}(w,\lambda_{w}) = \begin{vmatrix} 0_1 &0_2 &\cdots&0_M & 0_{\lambda_w} \end{vmatrix}^T$$
 
 Representing the FOCs, with (M+1) dimensions (with the additional dimension being the constraint represented by the Langrage Multiplier $$\lambda_w$$)
@@ -554,13 +554,13 @@ When establishing *inequality constraints(<,>,<=,>=)*, the mathematics can get v
 ### 1b. Computational Approach
 > As there already exist many posts online from different individuals showing methods of optimization utilizing CS algorithms, iterating over different potential solutions *smartly*, given an initial guess, to arrive at the solution needed. Therefore, I will not touch base on this approach in much details. [Here](https://kyle-stahl-mn.com/stock-portfolio-optimization "Here") is an example of such work, specifically on our current topic, if you need more ABC on each step.
 
-Simply put, we will utilize scipy's minimization function in seeking for the solution of our optimization problem, establishing constraints & boundaries for the input $$w$$ until we reach the global minimum. Since the symmetric covariance matrix, assumed invertible, contains quadratic components with a unique minimizer, we opt for the Sequential Least Square Programming (SLSQP) Algorithm for our computational approach.
+Simply put, we will utilize scipy's minimization function in seeking for the solution of our optimization problem, establishing constraints & boundaries for the input $$W$$ until we reach the global minimum. Since the symmetric covariance matrix, assumed invertible, contains quadratic components with a unique minimizer, we opt for the Sequential Least Square Programming (SLSQP) Algorithm for our computational approach.
 I encourage learning more on the details of different algorithms for optimization, specifically in knowing the context of the problem constructed (linearity, convexity, etc), as well as, again, the mathematics behind them as much as you can. Scipy offers alot of different optimization functions, as well as algorithms to be implemented when solving; learn about the mathematical optimization [here](http://scipy-lectures.org/advanced/mathematical_optimization/ "here")
 
 ---
 ### 1c. Implementations
 
-Below is our written function that both analytically & computationally, depends on input argument (analytical on default), solves for the global minimum variance weight $$w$$, a unique solution that minimizes portfolio's risk $$\sigma_p$$, requiring only an input of any *M x M* covariance matrix of M securities:
+Below is our written function that both analytically & computationally, depends on input argument (analytical on default), solves for the global minimum variance weight $$W$$, a unique solution that minimizes portfolio's risk $$\sigma_p$$, requiring only an input of any *M x M* covariance matrix of M securities:
 
 ```python
 def minVar(covariance_matrix,analytical_method=True):
@@ -1084,21 +1084,21 @@ The bomb-shell of an application to our current objective lies under the belief 
 
   
 
-## Correlation $\boldsymbol{C_{\rho}}$ & Covariance $\boldsymbol{C_{\sigma}}$
+## Correlation $$\boldsymbol{C_{\rho}}$$ & Covariance $$\boldsymbol{C_{\sigma}}$$
 
-As we have observed so far, Portfolio Optimization always involves the *Covariance Matrix* $\boldsymbol{C_{\sigma}}$ being an *M x M* Hermitian Matrix that directly computed from any input *N x M* returns matrix $RET$, containing N data points of M securities.
+As we have observed so far, Portfolio Optimization always involves the *Covariance Matrix* $$\boldsymbol{C_{\sigma}}$$ being an *M x M* Hermitian Matrix that directly computed from any input *N x M* returns matrix $$RET$$, containing N data points of M securities.
 
-It is important to note that the entries of $\boldsymbol{C_{\sigma}}$ are **not bounded**. However, aside from PCA, $\boldsymbol{C_{\sigma}}$ can also be decomposed into a multiplication of other important matrices, specifically being the Standard Deviation Matrix $\boldsymbol{D}^{1/2}$ and the Correlation Matrix $\boldsymbol{C_{\rho}}$
+It is important to note that the entries of $$\boldsymbol{C_{\sigma}}$$ are **not bounded**. However, aside from PCA, $$\boldsymbol{C_{\sigma}}$$ can also be decomposed into a multiplication of other important matrices, specifically being the Standard Deviation Matrix $$\boldsymbol{D}^{1/2}$$ and the Correlation Matrix $$\boldsymbol{C_{\rho}}$$
 
   
-$\boldsymbol{D}^{1/2}$ is an *M x M* diagonal **symmetric matrix**, where for $i,j = 1,2,...,M$ of M securities, each diagonal entry $d_{ii} = \sigma_{i}$ represents the **standard deviation** of security i, while the other entries where $i \neq j$, $d_{ij} = 0$, such that:
+$$\boldsymbol{D}^{1/2}$$ is an *M x M* diagonal **symmetric matrix**, where for $$i,j = 1,2,...,M$$ of M securities, each diagonal entry $$d_{ii} = \sigma_{i}$$ represents the **standard deviation** of security i, while the other entries where $$i \neq j$$, $$d_{ij} = 0$$, such that:
 
 
 $$\boldsymbol{D}^{1/2} = \begin{vmatrix} \sigma_{1} &0 &\cdots &0 \\ 0 &\sigma_{2} &\cdots &0 \\ \vdots &\vdots &\ddots &\vdots \\ 0 &0 &\cdots &\sigma_{M} \end{vmatrix}$$
 
   
 
-$\boldsymbol{C_{\rho}}$ is also an *M x M*  **symmetric matrix**, where each entry represents the **correlation** value between two securities. For $i,j = 1,2,...,M$, where $i \neq j$, $c_{ij} = \rho_{ij} = \frac{\sigma_{ij}}{\sigma_{i} \sigma_{j}}$, thus by such definition, the diagonal entries $c_{ii} = 1$, as the correlation of a security to itself is 1, such that:
+$$\boldsymbol{C_{\rho}}$$ is also an *M x M*  **symmetric matrix**, where each entry represents the **correlation** value between two securities. For $$i,j = 1,2,...,M$$, where $$i \neq j$$, $$c_{ij} = \rho_{ij} = \frac{\sigma_{ij}}{\sigma_{i} \sigma_{j}}$$, thus by such definition, the diagonal entries $$c_{ii} = 1$$, as the correlation of a security to itself is 1, such that:
 
 $$\boldsymbol{C_{\rho}} = \begin{vmatrix} 1 &\rho_{12} &\cdots &\rho_{1M} \\ \rho_{21} &1 &\cdots &\rho_{2M} \\ \vdots &\vdots &\ddots &\vdots \\ \rho_{M1} &\rho_{M2} &\cdots &1 \end{vmatrix}$$
 
@@ -1107,18 +1107,18 @@ Putting it together, we have our Covariance Matrix decomposed as:
 
 $$\boldsymbol{C_{\sigma}} = \boldsymbol{D}^{1/2} \cdot \boldsymbol{C_{\rho}} \cdot \boldsymbol{D}^{1/2}$$
 
-Similar to what we did before, performing PCA on $RET$, basically Eigen Decomposition on   $\boldsymbol{C_{\sigma}}$, this time, we instead proceed on applying Eigen Decomposition on $\boldsymbol{C_{\rho}}$.The result exhibit these important fundamentals:
-- The eigen vectors  $e_i$ obtained from  $\boldsymbol{C_{\rho}}$ is **the same** as  $\boldsymbol{C_{\sigma}}$
-- For $M$ securities, constructing the symmetric *M x M* Correlation Matrix, their eigen values will follow $\sum_{i=1}^{M}\lambda_i = M$
+Similar to what we did before, performing PCA on $$RET$$, basically Eigen Decomposition on   $$\boldsymbol{C_{\sigma}}$$, this time, we instead proceed on applying Eigen Decomposition on $$\boldsymbol{C_{\rho}}$$.The result exhibit these important fundamentals:
+- The eigen vectors  $$e_i$$ obtained from  $$\boldsymbol{C_{\rho}}$$ is **the same** as  $$\boldsymbol{C_{\sigma}}$$
+- For $$M$$ securities, constructing the symmetric *M x M* Correlation Matrix, their eigen values will follow $$\sum_{i=1}^{M}\lambda_i = M$$
 
 
  ## Wigner's Semi-Circle
 
-In short, according to the [**Wigner's semi-circle**](https://en.wikipedia.org/wiki/Wigner_semicircle_distribution  "**Wigner's semi-circle**") Law, for an *M x M* **square matrix** $\boldsymbol{\tilde{A}}$ with its entries distributed as $\tilde{a}_{ij} \sim \mathcal{N}(0,\sigma^2)$, we define:
+In short, according to the [**Wigner's semi-circle**](https://en.wikipedia.org/wiki/Wigner_semicircle_distribution  "**Wigner's semi-circle**") Law, for an *M x M* **square matrix** $$\boldsymbol{\tilde{A}}$$ with its entries distributed as $$\tilde{a}_{ij} \sim \mathcal{N}(0,\sigma^2)$$, we define:
 
 $$\boldsymbol{A}_{M} = \frac{1}{\sqrt{2M}}(\boldsymbol{\tilde{A}} + \boldsymbol{\tilde{A}}^\top )$$
 
-$\boldsymbol{A}_{M}$ is now a **symmetric matrix** with  entries $a_{ij}$ distributed with their variances $\sigma_{a_{ij}}^2$ as:
+$$\boldsymbol{A}_{M}$$ is now a **symmetric matrix** with  entries $$a_{ij}$$ distributed with their variances $$\sigma_{a_{ij}}^2$$ as:
 
 $$\sigma_{a_{ij}}^2 = \left\{\begin{matrix}
 \frac{\sigma^2}{M} \; \; \;if \; \; i \neq j\\
@@ -1126,7 +1126,7 @@ $$\sigma_{a_{ij}}^2 = \left\{\begin{matrix}
 \frac{2\sigma^2}{M} \; \; \;if \; \; i = j
 \end{matrix}\right.$$
 
-Wigner's semi-circle state that, as $M \rightarrow \infty$, the density of eigen values of $\boldsymbol{A}_{M}$ is given as:
+Wigner's semi-circle state that, as $$M \rightarrow \infty$$, the density of eigen values of $$\boldsymbol{A}_{M}$$ is given as:
 
 $$\rho(\lambda) := \left\{\begin{matrix}
 \frac{1}{2\pi \sigma^2} \sqrt{4\sigma^2 - \lambda^2}\; \; \; if\; \; \;\left | \lambda \right | \leq 2\sigma\\ 
@@ -1134,49 +1134,48 @@ $$\rho(\lambda) := \left\{\begin{matrix}
 0 \; \; \; if\; \; \;\ otherwise.
 \end{matrix}\right.$$
 
-This finding of modeling the distribution of a random square matrix under some *Gaussian Distribution* resulting in the universal constant $\pi$, connected with the idea of *Gaussian Orthogonal Ensemble* mentioned above leads to the next important theorem that we will apply to Portfolio Optimization
+This finding of modeling the distribution of a random square matrix under some *Gaussian Distribution* resulting in the universal constant $$\pi$$, connected with the idea of *Gaussian Orthogonal Ensemble* mentioned above leads to the next important theorem that we will apply to Portfolio Optimization
 
-## Wilshart & Correlation Matrix $\boldsymbol{C_{\rho}}$
+## Wilshart & Correlation Matrix $$\boldsymbol{C_{\rho}}$$
 
-Given any *N x M* matrix $X$, with its entry values being *real* & distributed in $x_{ij} \sim \mathcal{N}(0,\sigma^2)$, resulting in its conjugate being the tranpose, $X^* = X^\top$, we have:
+Given any *N x M* matrix $$X$$, with its entry values being *real* & distributed in $$x_{ij} \sim \mathcal{N}(0,\sigma^2)$$, resulting in its conjugate being the tranpose, $$X^* = X^\top$$, we have:
 $$W = X^* \cdot X = X^\top \cdot X$$
 
-$W$ here, being a **symmetric matrix** is called a *Wilshart Matrix*. 
+$$W$$ here, being a **symmetric matrix** is called a *Wilshart Matrix*. 
 
-Now, if we **normalize the returns matrix** $RET$ into $\widetilde{RET}$ such that:
+Now, if we **normalize the returns matrix** $$RET$$ into $$\widetilde{RET}$$ such that:
 
 $$\widetilde{RET} = \begin{vmatrix}
 \vec{\tilde{r_1}} & \vec{\tilde{r_2}}  & \cdots  &\vec{\tilde{r_M}} 
 \end{vmatrix}$$
 
-where $\vec{\widetilde{r_i}} = \begin{vmatrix}
+where $$\vec{\widetilde{r_i}} = \begin{vmatrix}
 \tilde{r_{i_1}}\\ 
 \tilde{r_{i_2}}\\ 
 \vdots\\ 
 \tilde{r_{i_N}}
-\end{vmatrix}$ being the *N* returns of security i **normalized by standard deviation so that** $\sigma_{\tilde{r_i}} = 1$,  then:
+\end{vmatrix}$$ being the *N* returns of security i **normalized by standard deviation so that** $$\sigma_{\tilde{r_i}} = 1$$,  then:
 
 $$\boldsymbol{C_{\rho}} = \widetilde{RET}^T \cdot \widetilde{RET}$$
-Just like the Wilshart Matrix, with $W=\boldsymbol{C_{\rho}}$ and $X = \widetilde{RET}$
+Just like the Wilshart Matrix, with $$W=\boldsymbol{C_{\rho}}$$ and $$X = \widetilde{RET}$$
 
 
 
-We know that the  Correlation Matrix $\boldsymbol{C_{\rho}}$, viewed as a *"normalized version"* of the Covariance Matrix $\boldsymbol{C_{\sigma}}$, being **bounded between (-1,1)** with entries being *real values*:
+We know that the  Correlation Matrix $$\boldsymbol{C_{\rho}}$$, viewed as a *"normalized version"* of the Covariance Matrix $$\boldsymbol{C_{\sigma}}$$, being **bounded between (-1,1)** with entries being *real values*:
 
 $$\boldsymbol{C_{\rho}} = \begin{vmatrix} 1 &\rho_{12} &\cdots &\rho_{1M} \\ \rho_{21} &1 &\cdots &\rho_{2M} \\ \vdots &\vdots &\ddots &\vdots \\ \rho_{M1} &\rho_{M2} &\cdots &1 \end{vmatrix}$$
 
-has its **diagonal entries always being 1**, can somewhat perceived to be a *Wilshart Matrix* under the assumption that the **True $\boldsymbol{C_{\rho}}$** is the **Identity Matrix**
+has its **diagonal entries always being 1**, can somewhat perceived to be a *Wilshart Matrix* under the assumption that the **True $$\boldsymbol{C_{\rho}}$$** is the **Identity Matrix**
 
 $$\boldsymbol{I} = \begin{vmatrix} 1 &0 &\cdots &0 \\ 0 &1 &\cdots &0 \\ \vdots &\vdots &\ddots &\vdots \\ 0 &0 &\cdots &1 \end{vmatrix}$$
 
-Equivalent to the definition of the entries of a *Wilshart Matrix* entries
-distributed in $x_{ij} \sim \mathcal{N}(0,\sigma^2)$, to which in the context of our Correlation Matrix $\boldsymbol{C_{\rho}}$,  we take $\sigma^2 = 1$ without loss of generality. Under such assumption, we have the next powerful theorem.
+Equivalent to the definition of the entries of a *Wilshart Matrix* entries distributed in $$x_{ij} \sim \mathcal{N}(0,\sigma^2)$$, to which in the context of our Correlation Matrix $$\boldsymbol{C_{\rho}}$$,  we take $$\sigma^2 = 1$$ without loss of generality. Under such assumption, we have the next powerful theorem.
 
 ## Marchenko-Pastur Theorem
 
 There exists a probability density function (PDF) called the [**Marchenko-Pastur Distribution**](https://en.wikipedia.org/wiki/Marchenko%E2%80%93Pastur_distribution  "**Marchenko-Pastur Distribution**"), stating that:
 
-As the limit $N,M \rightarrow \infty$, with the ratio $Q = \frac{N}{M} \geq 1$, the **density of eigen values** of the *Wilshart Matrix* $W$, or in our case being the Correlation Matrix $\boldsymbol{C_{\rho}}$,  is given as:
+As the limit $$N,M \rightarrow \infty$$, with the ratio $$Q = \frac{N}{M} \geq 1$$, the **density of eigen values** of the *Wilshart Matrix* $$W$$, or in our case being the Correlation Matrix $$\boldsymbol{C_{\rho}}$$,  is given as:
 
 $$\rho (\lambda) = \frac{Q}{2\pi \sigma^2}\frac{\sqrt{(\lambda_{+} - \lambda)(\lambda_{-} - \lambda)}}{\lambda}$$
 
