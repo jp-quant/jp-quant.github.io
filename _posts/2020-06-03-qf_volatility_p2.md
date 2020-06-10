@@ -1112,30 +1112,6 @@ Similar to what we did before, performing PCA on $$RET$$, basically Eigen Decomp
 - For $$M$$ securities, constructing the symmetric *M x M* Correlation Matrix, their eigen values will follow $$\sum_{i=1}^{M}\lambda_i = M$$
 
 
-## Wigner's Semi-Circle
-
-In short, according to the [**Wigner's semi-circle**](https://en.wikipedia.org/wiki/Wigner_semicircle_distribution  "**Wigner's semi-circle**") Law, for an *M x M* **square matrix** $$\boldsymbol{\bar{A}}$$ with its entries distributed as $$\bar{a}_{ij} \sim \mathcal{N}(0,\sigma^2)$$, we define:
-
-$$\boldsymbol{A}_{M} = \frac{1}{\sqrt{2M}}(\boldsymbol{\bar{A}} + \boldsymbol{\bar{A}}^\top )$$
-
-$$\boldsymbol{A}_{M}$$ is now a **symmetric matrix** with  entries $$a_{ij}$$ distributed with their variances $$\sigma_{a_{ij}}^2$$ as:
-
-$$\sigma_{a_{ij}}^2 = \left\{\begin{matrix}
-\frac{\sigma^2}{M} \; \; \;if \; \; i \neq j\\
-\\
-\frac{2\sigma^2}{M} \; \; \;if \; \; i = j
-\end{matrix}\right.$$
-
-Wigner's semi-circle state that, as $$M \rightarrow \infty$$, the density of eigen values of $$\boldsymbol{A}_{M}$$ is given as:
-
-$$\rho(\lambda) := \left\{\begin{matrix}
-\frac{1}{2\pi \sigma^2} \sqrt{4\sigma^2 - \lambda^2}\; \; \; if\; \; \;\left | \lambda \right | \leq 2\sigma\\ 
-\\
-0 \; \; \; if\; \; \;\ otherwise.
-\end{matrix}\right.$$
-
-This finding of modeling the distribution of a random square matrix under some *Gaussian Distribution* resulting in the universal constant $$\pi$$, connected with the idea of *Gaussian Orthogonal Ensemble* mentioned above leads to the next important theorem that we will apply to Portfolio Optimization
-
 ## Wilshart & Correlation Matrix $$\boldsymbol{C_{\rho}}$$
 
 Given any *N x M* matrix $$X$$, with its entry values being *real* & distributed in $$x_{ij} \sim \mathcal{N}(0,\sigma^2)$$, resulting in its conjugate being the tranpose, $$X^* = X^\top$$, we have:
@@ -1169,7 +1145,32 @@ has its **diagonal entries always being 1**, can somewhat perceived to be a *Wil
 
 $$\boldsymbol{I} = \begin{vmatrix} 1 &0 &\cdots &0 \\ 0 &1 &\cdots &0 \\ \vdots &\vdots &\ddots &\vdots \\ 0 &0 &\cdots &1 \end{vmatrix}$$
 
-Equivalent to the definition of the entries of a *Wilshart Matrix* entries distributed in $$x_{ij} \sim \mathcal{N}(0,\sigma^2)$$, to which in the context of our Correlation Matrix $$\boldsymbol{C_{\rho}}$$,  we take $$\sigma^2 = 1$$ without loss of generality. Under such assumption, we have the next powerful theorem.
+Equivalent to the definition of the entries of a *Wilshart Matrix* entries distributed in $$x_{ij} \sim \mathcal{N}(0,\sigma^2)$$, to which in the context of our Correlation Matrix $$\boldsymbol{C_{\rho}}$$,  we take $$\sigma^2 = 1$$ without loss of generality.
+
+
+## Wigner's Semi-Circle
+
+In short, according to the [**Wigner's semi-circle**](https://en.wikipedia.org/wiki/Wigner_semicircle_distribution  "**Wigner's semi-circle**") Law, for an *M x M* **square matrix** $$\boldsymbol{\bar{A}}$$ with its entries distributed as $$\bar{a}_{ij} \sim \mathcal{N}(0,\sigma^2)$$, we define:
+
+$$\boldsymbol{A}_{M} = \frac{1}{\sqrt{2M}}(\boldsymbol{\bar{A}} + \boldsymbol{\bar{A}}^\top )$$
+
+$$\boldsymbol{A}_{M}$$ is now a **symmetric matrix** with  entries $$a_{ij}$$ distributed with their variances $$\sigma_{a_{ij}}^2$$ as:
+
+$$\sigma_{a_{ij}}^2 = \left\{\begin{matrix}
+\frac{\sigma^2}{M} \; \; \;if \; \; i \neq j\\
+\\
+\frac{2\sigma^2}{M} \; \; \;if \; \; i = j
+\end{matrix}\right.$$
+
+Wigner's semi-circle state that, as $$M \rightarrow \infty$$, the density of eigen values of $$\boldsymbol{A}_{M}$$ is given as:
+
+$$\rho(\lambda) := \left\{\begin{matrix}
+\frac{1}{2\pi \sigma^2} \sqrt{4\sigma^2 - \lambda^2}\; \; \; if\; \; \;\left | \lambda \right | \leq 2\sigma\\ 
+\\
+0 \; \; \; if\; \; \;\ otherwise.
+\end{matrix}\right.$$
+
+This finding of modeling the distribution of a random square matrix under some *Gaussian Distribution* resulting in the universal constant $$\pi$$, connected with the idea of *Gaussian Orthogonal Ensemble* mentioned above leads to the next important theorem that we will apply to Portfolio Optimization
 
 ## Marchenko-Pastur Theorem
 
