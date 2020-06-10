@@ -1176,9 +1176,13 @@ This finding of modeling the distribution of a random square matrix under some *
 
 There exists a probability density function (PDF) called the [**Marchenko-Pastur Distribution**](https://en.wikipedia.org/wiki/Marchenko%E2%80%93Pastur_distribution  "**Marchenko-Pastur Distribution**"), stating that:
 
-As the limit $$N,M \rightarrow \infty$$, with the ratio $$Q = \frac{N}{M} \geq 1$$, the **density of eigen values** of the *Wilshart Matrix* $$W$$, with entries distributed in $$\mathcal{N}(0,\sigma^2)$$, is given as:
+For a symmetric *MxM* *Wilshart Matrix* $$W$$, constructed from any random *N x M* matrix $$X$$ with entries distributed in $$\mathcal{N}(0,\sigma^2)$$, such that $$W = X^* \cdot X = X^\top \cdot X$$, As the limit $$N,M \rightarrow \infty$$, with the ratio $$Q = \frac{N}{M} \geq 1$$, the **density of eigen values** of $$W$$ is given as:
 
-$$\rho (\lambda) = \frac{Q}{2\pi \sigma^2}\frac{\sqrt{(\lambda_{+} - \lambda)(\lambda_{-} - \lambda)}}{\lambda}$$
+$$\rho (\lambda) = \frac{Q}{2\pi \sigma^2}\frac{\sqrt{(\lambda_{+} - \lambda)(\lambda - \lambda_{-})}}{\lambda}$$
+
+Where $$\lambda_{+}$$ and $$\lambda_{-}$$ are the **maximum and minimum eigen values** respectively, given as:
+
+$$\lambda_{\pm} = \sigma^2(1 \pm \sqrt{\frac{1}{Q}})^2$$
 
 Values that lie inside of the theoretical range are perceived to be **noises of data interactions** thus we can **filter** of them out, keeping ones that remain **outside of such range** as eigen values that hold actual information, to which in our case being the **true correlational information**.
 
