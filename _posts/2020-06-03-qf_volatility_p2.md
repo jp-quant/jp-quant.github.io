@@ -1112,11 +1112,11 @@ Similar to what we did before, performing PCA on $$RET$$, basically Eigen Decomp
 - For $$M$$ securities, constructing the symmetric *M x M* Correlation Matrix, their eigen values will follow $$\sum_{i=1}^{M}\lambda_i = M$$
 
 
- ## Wigner's Semi-Circle
+## Wigner's Semi-Circle
 
-In short, according to the [**Wigner's semi-circle**](https://en.wikipedia.org/wiki/Wigner_semicircle_distribution  "**Wigner's semi-circle**") Law, for an *M x M* **square matrix** $$\boldsymbol{\tilde{A}}$$ with its entries distributed as $$\tilde{a}_{ij} \sim \mathcal{N}(0,\sigma^2)$$, we define:
+In short, according to the [**Wigner's semi-circle**](https://en.wikipedia.org/wiki/Wigner_semicircle_distribution  "**Wigner's semi-circle**") Law, for an *M x M* **square matrix** $$\boldsymbol{\bar{A}}$$ with its entries distributed as $$\bar{a}_{ij} \sim \mathcal{N}(0,\sigma^2)$$, we define:
 
-$$\boldsymbol{A}_{M} = \frac{1}{\sqrt{2M}}(\boldsymbol{\tilde{A}} + \boldsymbol{\tilde{A}}^\top )$$
+$$\boldsymbol{A}_{M} = \frac{1}{\sqrt{2M}}(\boldsymbol{\bar{A}} + \boldsymbol{\bar{A}}^\top )$$
 
 $$\boldsymbol{A}_{M}$$ is now a **symmetric matrix** with  entries $$a_{ij}$$ distributed with their variances $$\sigma_{a_{ij}}^2$$ as:
 
@@ -1143,21 +1143,21 @@ $$W = X^* \cdot X = X^\top \cdot X$$
 
 $$W$$ here, being a **symmetric matrix** is called a *Wilshart Matrix*. 
 
-Now, if we **normalize the returns matrix** $$RET$$ into $$\widetilde{RET}$$ such that:
+Now, if we **normalize the returns matrix** $$RET$$ into $$\bar{RET}$$ such that:
 
-$$\widetilde{RET} = \begin{vmatrix}
-\vec{\tilde{r_1}} & \vec{\tilde{r_2}}  & \cdots  &\vec{\tilde{r_M}} 
+$$\bar{RET} = \begin{vmatrix}
+\vec{\bar{r_1}} & \vec{\bar{r_2}}  & \cdots  &\vec{\bar{r_M}} 
 \end{vmatrix}$$
 
-where $$\vec{\widetilde{r_i}} = \begin{vmatrix}
-\tilde{r_{i_1}}\\ 
-\tilde{r_{i_2}}\\ 
+where $$\vec{\bar{r_i}} = \begin{vmatrix}
+\bar{r_{i_1}}\\ 
+\bar{r_{i_2}}\\ 
 \vdots\\ 
-\tilde{r_{i_N}}
-\end{vmatrix}$$ being the *N* returns of security i **normalized by standard deviation so that** $$\sigma_{\tilde{r_i}} = 1$$,  then:
+\bar{r_{i_N}}
+\end{vmatrix}$$ being the *N* returns of security i **normalized by standard deviation so that** $$\sigma_{\bar{r_i}} = 1$$,  then:
 
-$$\boldsymbol{C_{\rho}} = \widetilde{RET}^T \cdot \widetilde{RET}$$
-Just like the Wilshart Matrix, with $$W=\boldsymbol{C_{\rho}}$$ and $$X = \widetilde{RET}$$
+$$\boldsymbol{C_{\rho}} = \bar{RET}^T \cdot \bar{RET}$$
+Just like the Wilshart Matrix, with $$W=\boldsymbol{C_{\rho}}$$ and $$X = \bar{RET}$$
 
 
 
