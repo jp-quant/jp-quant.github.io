@@ -1176,7 +1176,7 @@ This finding of modeling the distribution of a random square matrix under some *
 
 There exists a probability density function (PDF) called the [**Marchenko-Pastur Distribution**](https://en.wikipedia.org/wiki/Marchenko%E2%80%93Pastur_distribution  "**Marchenko-Pastur Distribution**"), stating that:
 
-As the limit $$N,M \rightarrow \infty$$, with the ratio $$Q = \frac{N}{M} \geq 1$$, the **density of eigen values** of the *Wilshart Matrix* $$W$$, or in our case being the Correlation Matrix $$\boldsymbol{C_{\rho}}$$,  is given as:
+As the limit $$N,M \rightarrow \infty$$, with the ratio $$Q = \frac{N}{M} \geq 1$$, the **density of eigen values** of the *Wilshart Matrix* $$W$$, with entries distributed in $$\mathcal{N}(0,\sigma^2)$$, is given as:
 
 $$\rho (\lambda) = \frac{Q}{2\pi \sigma^2}\frac{\sqrt{(\lambda_{+} - \lambda)(\lambda_{-} - \lambda)}}{\lambda}$$
 
