@@ -1068,56 +1068,119 @@ They are very closely *"related"* with each other, though the Minimum Variance P
 They are aligned **very close with each other**, with one allocation vector just basically *has a higher norm* than the other. This further supports our initial hypothesis on the *"meaning"* of eigen portfolios & eigen values.
 
 ---
-# Random Matrix Theory
-> The advanced mathematical technique to be presented belongs to a larger topic umbrella called [**Random Matrix Theory**](https://en.wikipedia.org/wiki/Random_matrix "**Random Matrix Theory**"), specifically inspired by Alan Edelman's [**lecture notes**](http://web.eecs.umich.edu/~rajnrao/Acta05rmt.pdf "lecture notes") for a class on such topic at MIT. There are much more to be learned & explore as per for myself as well, although what will be presented are implementations & testings, performed personally, that have yielded positive empirical results.
 
-The main concept we are addressing is directly related with portfolio optimization. Shortly put, a significant arena within Random Matrix Theory (RMT) is understanding the **distribution of eigen values in any large random matrix**. What we are specifically working on is a square matrix referred to as the [Wilshart Matrix](https://en.wikipedia.org/wiki/Wishart_distribution "Wilshart Matrix"), having such distribution stemmed from fact of *Gaussian orthogonal ensemble* (or GOE) having its distribution being *invariant* under any orthogonal transformations, aka eigen decompositions we performed thus far.
+
+# Random Matrix Theory
+
+> The advanced mathematical technique to be presented belongs to a larger topic umbrella called [**Random Matrix Theory**](https://en.wikipedia.org/wiki/Random_matrix  "**Random Matrix Theory**"), specifically inspired by Alan Edelman's [**lecture notes**](http://web.eecs.umich.edu/~rajnrao/Acta05rmt.pdf  "lecture notes") for a class on such topic at MIT. There are much more to be learned & explore as per for myself as well, although what will be presented are implementations & testings, performed personally, that have yielded positive empirical results.
+
+  
+
+The main concept we are addressing is directly related with portfolio optimization. Shortly put, a significant arena within Random Matrix Theory (RMT) is understanding the **distribution of eigen values in any large random matrix**. What we are specifically working on is a square matrix referred to as the [Wilshart Matrix](https://en.wikipedia.org/wiki/Wishart_distribution  "Wilshart Matrix"), having such distribution stemmed from fact of *Gaussian orthogonal ensemble* (or GOE) having its distribution being *invariant* under any orthogonal transformations, aka eigen decompositions we performed thus far.
+
 The bomb-shell of an application to our current objective lies under the belief that:
+
 > Under certain conditions, there exists a **theoretical range of eigen values**, followed by such distribution, such that the ones **outside of such theoretical range** are values that contain **actual useful information**, where the rest **inside are random noises** of interactions within the data.
 
-## The Importance of Correlation Matrix
-As we have observed so far, Portfolio Optimization always involves the *Covariance Matrix*  $$\boldsymbol{C_{\sigma}}$$ being an *M x M* Hermitian Matrix that directly computed from any input *N x M* returns matrix $$RET$$, containing N data points of M securities.
-It is important to note that the entries of $$\boldsymbol{C_{\sigma}}$$ are **not bounded**. However, aside from PCA, $$\boldsymbol{C_{\sigma}}$$ can also be decomposed into a multiplication of other important matrices, specifically being the Standard Deviation Matrix $$\boldsymbol{D}^{1/2}$$ and the Correlation Matrix $$\boldsymbol{C_{\rho}}$$
+  
 
-$$\boldsymbol{D}^{1/2}$$ is an *M x M*  diagonal **symmetric matrix**, where for $$i,j = 1,2,...,M$$ of M securities, each diagonal entry $$d_{ii} = \sigma_{i}$$ represents the **standard deviation** of security i, while the other entries where $$i \neq j$$, $$d_{ij} = 0$$, such that:
+## Correlation $\boldsymbol{C_{\rho}}$ & Covariance $\boldsymbol{C_{\sigma}}$
 
-$$\boldsymbol{D}^{1/2} = \begin{vmatrix}
-\sigma_{1} &0  &\cdots  &0 \\ 
-0 &\sigma_{2}  &\cdots  &0 \\ 
-\vdots &\vdots  &\ddots  &\vdots \\ 
-0 &0  &\cdots  &\sigma_{M} 
-\end{vmatrix}$$
+As we have observed so far, Portfolio Optimization always involves the *Covariance Matrix* $\boldsymbol{C_{\sigma}}$ being an *M x M* Hermitian Matrix that directly computed from any input *N x M* returns matrix $RET$, containing N data points of M securities.
 
-$$\boldsymbol{C_{\rho}}$$ is also an *M x M*  **symmetric matrix**, where each entry represents the **correlation** value between two securities. For $$i,j = 1,2,...,M$$, where $$i \neq j$$, $$c_{ij} = \rho_{ij} = \frac{\sigma_{ij}}{\sigma_{i} \sigma_{j}}$$, thus by such definition, the diagonal entries $$c_{ii} = 1$$, as the correlation of a security to itself is 1, such that:
+It is important to note that the entries of $\boldsymbol{C_{\sigma}}$ are **not bounded**. However, aside from PCA, $\boldsymbol{C_{\sigma}}$ can also be decomposed into a multiplication of other important matrices, specifically being the Standard Deviation Matrix $\boldsymbol{D}^{1/2}$ and the Correlation Matrix $\boldsymbol{C_{\rho}}$
 
-$$\boldsymbol{C_{\rho}} = \begin{vmatrix}
-1 &\rho_{12}  &\cdots  &\rho_{1M} \\ 
-\rho_{21} &1  &\cdots  &\rho_{2M} \\ 
-\vdots &\vdots  &\ddots  &\vdots \\ 
-\rho_{M1} &\rho_{M2}  &\cdots  &1 
-\end{vmatrix}$$
+  
+$\boldsymbol{D}^{1/2}$ is an *M x M* diagonal **symmetric matrix**, where for $i,j = 1,2,...,M$ of M securities, each diagonal entry $d_{ii} = \sigma_{i}$ represents the **standard deviation** of security i, while the other entries where $i \neq j$, $d_{ij} = 0$, such that:
 
+
+$$\boldsymbol{D}^{1/2} = \begin{vmatrix} \sigma_{1} &0 &\cdots &0 \\ 0 &\sigma_{2} &\cdots &0 \\ \vdots &\vdots &\ddots &\vdots \\ 0 &0 &\cdots &\sigma_{M} \end{vmatrix}$$
+
+  
+
+$\boldsymbol{C_{\rho}}$ is also an *M x M*  **symmetric matrix**, where each entry represents the **correlation** value between two securities. For $i,j = 1,2,...,M$, where $i \neq j$, $c_{ij} = \rho_{ij} = \frac{\sigma_{ij}}{\sigma_{i} \sigma_{j}}$, thus by such definition, the diagonal entries $c_{ii} = 1$, as the correlation of a security to itself is 1, such that:
+
+$$\boldsymbol{C_{\rho}} = \begin{vmatrix} 1 &\rho_{12} &\cdots &\rho_{1M} \\ \rho_{21} &1 &\cdots &\rho_{2M} \\ \vdots &\vdots &\ddots &\vdots \\ \rho_{M1} &\rho_{M2} &\cdots &1 \end{vmatrix}$$
+
+ 
 Putting it together, we have our Covariance Matrix decomposed as:
 
 $$\boldsymbol{C_{\sigma}} = \boldsymbol{D}^{1/2} \cdot \boldsymbol{C_{\rho}} \cdot \boldsymbol{D}^{1/2}$$
 
-The importance lies in the fact that the Correlation Matrix $$\boldsymbol{C_{\rho}} $$ is **bounded** between (-1,1), such that it is viewed as a **"normalized version"** of the Covariance Matrix $$\boldsymbol{C_{\sigma}}$$.
-> This is equivalent to  **normalizing the returns $$r_i = \begin{vmatrix} r_{i_1}\\ r_{i_2}\\ \vdots\\ r_{i_N} \end{vmatrix}$$ of each stock by its standard deviation** such that its variance $$\sigma_{i}^2 = 1$$
+Similar to what we did before, performing PCA on $RET$, basically Eigen Decomposition on   $\boldsymbol{C_{\sigma}}$, this time, we instead proceed on applying Eigen Decomposition on $\boldsymbol{C_{\rho}}$.The result exhibit these important fundamentals:
+- The eigen vectors  $e_i$ obtained from  $\boldsymbol{C_{\rho}}$ is **the same** as  $\boldsymbol{C_{\sigma}}$
+- For $M$ securities, constructing the symmetric *M x M* Correlation Matrix, their eigen values will follow $\sum_{i=1}^{M}\lambda_i = M$
 
 
-This is the assumption given for a **Wilshart Matrix**, as well as with the patterns found in any random matrix with entries distributed in $$\mathcal{N}(0,1)$$ having their eigen values distribution following a circle called the [**Wigner's semi-circle**](https://en.wikipedia.org/wiki/Wigner_semicircle_distribution "**Wigner's semi-circle**") in free probability theory, directly leading to the development on the distribution of eigen values stated above. Such distribution is called the [**Marchenko-Pastur Distribution**](https://en.wikipedia.org/wiki/Marchenko%E2%80%93Pastur_distribution "**Marchenko-Pastur Distribution**")
+ ## Wigner's Semi-Circle
 
-### Marchenko-Pastur Distribution
-Generally, the distribution of the matrix entries can have any fixed $$\sigma$$, although in working with Correlation Matrices, a square matrix being standardized under the bound of (-1,1) we take $$\sigma = 1$$ without any loss of generality.
-The distribution simply state that, for any random *N x M* matrix with variance $$\sigma^2$$, where as the limit $$N,M \rightarrow \infty$$, such that we seek for the constant $$Q = \frac{N}{M} \geq 1$$, the probability density function (PDF) for the eigen values of its empirical *M x M* Correlation Matrix, called the Marchenko-Pastur Distribution, is given as:
+In short, according to the [**Wigner's semi-circle**](https://en.wikipedia.org/wiki/Wigner_semicircle_distribution  "**Wigner's semi-circle**") Law, for an *M x M* **square matrix** $\boldsymbol{\tilde{A}}$ with its entries distributed as $\tilde{a}_{ij} \sim \mathcal{N}(0,\sigma^2)$, we define:
+
+$$\boldsymbol{A}_{M} = \frac{1}{\sqrt{2M}}(\boldsymbol{\tilde{A}} + \boldsymbol{\tilde{A}}^\top )$$
+
+$\boldsymbol{A}_{M}$ is now a **symmetric matrix** with  entries $a_{ij}$ distributed with their variances $\sigma_{a_{ij}}^2$ as:
+
+$$\sigma_{a_{ij}}^2 = \left\{\begin{matrix}
+\frac{\sigma^2}{M} \; \; \;if \; \; i \neq j\\
+\\
+\frac{2\sigma^2}{M} \; \; \;if \; \; i = j
+\end{matrix}\right.$$
+
+Wigner's semi-circle state that, as $M \rightarrow \infty$, the density of eigen values of $\boldsymbol{A}_{M}$ is given as:
+
+$$\rho(\lambda) := \left\{\begin{matrix}
+\frac{1}{2\pi \sigma^2} \sqrt{4\sigma^2 - \lambda^2}\; \; \; if\; \; \;\left | \lambda \right | \leq 2\sigma\\ 
+\\
+0 \; \; \; if\; \; \;\ otherwise.
+\end{matrix}\right.$$
+
+This finding of modeling the distribution of a random square matrix under some *Gaussian Distribution* resulting in the universal constant $\pi$, connected with the idea of *Gaussian Orthogonal Ensemble* mentioned above leads to the next important theorem that we will apply to Portfolio Optimization
+
+## Wilshart & Correlation Matrix $\boldsymbol{C_{\rho}}$
+
+Given any *N x M* matrix $X$, with its entry values being *real* & distributed in $x_{ij} \sim \mathcal{N}(0,\sigma^2)$, resulting in its conjugate being the tranpose, $X^* = X^\top$, we have:
+$$W = X^* \cdot X = X^\top \cdot X$$
+
+$W$ here, being a **symmetric matrix** is called a *Wilshart Matrix*. 
+
+Now, if we **normalize the returns matrix** $RET$ into $\widetilde{RET}$ such that:
+
+$$\widetilde{RET} = \begin{vmatrix}
+\vec{\tilde{r_1}} & \vec{\tilde{r_2}}  & \cdots  &\vec{\tilde{r_M}} 
+\end{vmatrix}$$
+
+where $\vec{\widetilde{r_i}} = \begin{vmatrix}
+\tilde{r_{i_1}}\\ 
+\tilde{r_{i_2}}\\ 
+\vdots\\ 
+\tilde{r_{i_N}}
+\end{vmatrix}$ being the *N* returns of security i **normalized by standard deviation so that** $\sigma_{\tilde{r_i}} = 1$,  then:
+
+$$\boldsymbol{C_{\rho}} = \widetilde{RET}^T \cdot \widetilde{RET}$$
+Just like the Wilshart Matrix, with $W=\boldsymbol{C_{\rho}}$ and $X = \widetilde{RET}$
+
+
+
+We know that the  Correlation Matrix $\boldsymbol{C_{\rho}}$, viewed as a *"normalized version"* of the Covariance Matrix $\boldsymbol{C_{\sigma}}$, being **bounded between (-1,1)** with entries being *real values*:
+
+$$\boldsymbol{C_{\rho}} = \begin{vmatrix} 1 &\rho_{12} &\cdots &\rho_{1M} \\ \rho_{21} &1 &\cdots &\rho_{2M} \\ \vdots &\vdots &\ddots &\vdots \\ \rho_{M1} &\rho_{M2} &\cdots &1 \end{vmatrix}$$
+
+has its **diagonal entries always being 1**, can somewhat perceived to be a *Wilshart Matrix* under the assumption that the **True $\boldsymbol{C_{\rho}}$** is the **Identity Matrix**
+
+$$\boldsymbol{I} = \begin{vmatrix} 1 &0 &\cdots &0 \\ 0 &1 &\cdots &0 \\ \vdots &\vdots &\ddots &\vdots \\ 0 &0 &\cdots &1 \end{vmatrix}$$
+
+Equivalent to the definition of the entries of a *Wilshart Matrix* entries
+distributed in $x_{ij} \sim \mathcal{N}(0,\sigma^2)$, to which in the context of our Correlation Matrix $\boldsymbol{C_{\rho}}$,  we take $\sigma^2 = 1$ without loss of generality. Under such assumption, we have the next powerful theorem.
+
+## Marchenko-Pastur Theorem
+
+There exists a probability density function (PDF) called the [**Marchenko-Pastur Distribution**](https://en.wikipedia.org/wiki/Marchenko%E2%80%93Pastur_distribution  "**Marchenko-Pastur Distribution**"), stating that:
+
+As the limit $N,M \rightarrow \infty$, with the ratio $Q = \frac{N}{M} \geq 1$, the **density of eigen values** of the *Wilshart Matrix* $W$, or in our case being the Correlation Matrix $\boldsymbol{C_{\rho}}$,  is given as:
 
 $$\rho (\lambda) = \frac{Q}{2\pi \sigma^2}\frac{\sqrt{(\lambda_{+} - \lambda)(\lambda_{-} - \lambda)}}{\lambda}$$
 
-where $$\lambda_{+}$$ and $$\lambda_{-}$$, being the **theoretical maximum & minimum eigen values** are given as:
-
-$$\lambda_{\pm} = \sigma^2(1 \pm \sqrt{\frac{1}{Q}})^2$$
-
-Values that lie inside of the theoretical range are perceived to be **noises of data interactions** thus we can **filter** of them out, keeping ones that remain **outside of such range** as eigen values that hold actual information, to which in our case being the **true** correlational information.
+Values that lie inside of the theoretical range are perceived to be **noises of data interactions** thus we can **filter** of them out, keeping ones that remain **outside of such range** as eigen values that hold actual information, to which in our case being the **true correlational information**.
 
 
 
