@@ -22,10 +22,10 @@ $$\sigma_p$$ = Volatility = Standard Deviation of Returns
 In general, we want to **minimize** $$\sigma_p$$ & **maximize** $$\bar{R_p}$$, simply seeking to achieve not just as *highest* & as *consistent* of a returns rate as possible, but also having as little as possible in its maximum drawdown.
 >In regards to selecting the optimal assets to pick in a portfolio, this is an extensive topic requiring much empirical & fundamental research with additional knowledge on top of our current topic at hand (we will save this for another section).
 
-Let there be *M* amount of securities selected to invest a set amount of capital in, we seek for the optimal allocations, or weights, $$w = \begin{vmatrix} w_1\\ w_2\\ \vdots\\ w_M \end{vmatrix}$$  such that $$-1 \leq w_{i}\leq 1$$ and $$\sum_{1}^{M}w_i = 1$$, being 100% of our capital. 
+Let there be *M* amount of securities selected to invest a set amount of capital in, we seek for the optimal allocations, or weights, $$w = \begin{vmatrix} w_1\\ w_2\\ \vdots\\ w_M \end{vmatrix}$$  such that  $$\sum_{1}^{M}w_i = 1$$, being 100% of our capital. 
 
->-  If you want **long only** positions, simply set $$0 \leq w_{i}\leq 1$$ instead.
-- We are allowing short positions in all of our approaches since we want absolute returns & hedging opportunities, coming from a perspective of an institutional investor, hence each weight can be negative.
+>-  If you want **long only** positions, simply set $$0 \leq w_{i}\leq 1$$ as an additional constraint.
+- We are allowing short positions in all of our approaches since we want absolute returns & hedging opportunities, coming from a perspective of an institutional investor, hence each weight can be negative. However, having weight being negative as well although provide somewhat an easier leeway for the analytical solution as it is unconstrained optimization, this opens up to multiple solutions with inifinite potential of leverage. This topic will be assess at later time.
 
 ---
 
@@ -497,12 +497,12 @@ def plot_bulk_evals(evals_result,to_plot=None,plot_title=None):
 We will observe the results of these functions below.
 
 ---
-# Mean-Variance Optimization
+# Minimum Variance Portfolio
 Given a selected M amount of securities, we obtain our Symmetric *M x M* Covariance Matrix ($$\boldsymbol{C_{\sigma}}$$), calculated from an *N x M* $$RET$$ returns table of *N* returns data of such M securities (again, details in [first QF post](https://jp-quant.github.io/qf_intro/ "first QF post") ), a portfolio's volatility ($$\sigma_p$$) is calculated as:
 
 >$$\sigma_p = \sqrt{w^\top \cdot \boldsymbol{C_{\sigma}} \cdot w}$$
 
-Thus, our objective is to **find an allocation weight** $$w = \begin{vmatrix} w_1\\ w_2\\ \vdots\\ w_M \end{vmatrix}$$ that would *minimize* $$\sigma_p$$, or simply put will result in the **smallest possible** $$\sigma_p$$, such that $$-1 \leq w_{i}\leq 1$$ and $$\sum_{1}^{M}w_i = 1$$
+Thus, our objective is to **find an allocation weight** $$w = \begin{vmatrix} w_1\\ w_2\\ \vdots\\ w_M \end{vmatrix}$$ that would *minimize* $$\sigma_p$$, or simply put will result in the **smallest possible** $$\sigma_p$$, such that $$\sum_{1}^{M}w_i = 1$$
 
 ---
 ## 1. Risk Minimization
@@ -513,7 +513,7 @@ Going back to my earlier remark above on solving optimization problems, we can s
 >**IMPORTANT**: The subsequent analytical steps has to follow the fact that the Covariance Matrix $$\boldsymbol{C_{\sigma}}$$ has to be **invertible**, meaning it has to be positive definite, or that all our **real eigen values decomposed has to be all positive (>0)**
 
 
-In finding the optimal allocations weight $$W$$ of a *Minimum Variance Portfolio*, we seek for the solution of:
+In finding the optimal allocations weight $$W$$ of a *Minimum Variance Portfolio*, **without constraints on individual weights**, we seek for the solution of:
 
 >$$\underset{w}{min} (w^\top \cdot \boldsymbol{C_{\sigma}} \cdot w)$$
 
@@ -549,7 +549,7 @@ The Lagrangian Method can be further complexified, adding more constraints into 
 > We can establish an equality constraint(=) on the portfolio's return, then solve for the global minimum variance solution of such return. Iterating over a range of all possible returns and perform the same step will give you the [efficient frontier](https://en.wikipedia.org/wiki/Efficient_frontier "efficient frontier")
 For the additional mathematics on adding the returns equality constraint, again, check out this [lecture notes](https://faculty.washington.edu/ezivot/econ424/portfolioTheoryMatrix.pdf "lecture notes").
 
-When establishing *inequality constraints(<,>,<=,>=)*, the mathematics can get very arduous to go over, let alone an intricate list of equality constraints (=). This is where computational power comes in handy.
+When establishing *inequality constraints(<,>,<=,>=)*, the mathematics can get very tedious, if anything limited of optimal solutions, let alone an intricate list of equality constraints (=). This is where computational power comes in handy.
 
 ### 1b. Computational Approach
 > As there already exist many posts online from different individuals showing methods of optimization utilizing CS algorithms, iterating over different potential solutions *smartly*, given an initial guess, to arrive at the solution needed. Therefore, I will not touch base on this approach in much details. [Here](https://kyle-stahl-mn.com/stock-portfolio-optimization "Here") is an example of such work, specifically on our current topic, if you need more ABC on each step.
