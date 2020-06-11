@@ -618,8 +618,8 @@ plot_bulk_evals(evaluate_bulk_w(RET_outSample,allWeights))
 ### *Conclusions & Remarks*
 - The discrepancies between our analytical & computational approaches are very small. I theorize that this is due to either when approximating the inverse covariance matrix when solving analytically, or computational errors. I will add an explanation once I have empirically identified the problem.
 - It is **much faster to use the analytical method** to compute our Minimum Variance Portfolio, especially as M increases to which requires more combinations for iterations when utilizing computational approach.
-- We tend to opt for computation when we don't have the concrete mathematics to solve for the optimization problem, or that the constraint is neither linear or quadratic, or even convex (harder to find global minimum/maximum solution).
-- The mathematical rigour can get intensive the more we complexify our Lagrangian, so I will add them more if we have the time. For now, it's much easier to use the computational approach for **adding more constraints or changing optimization target**
+- We tend to opt for computation when we don't have the concrete mathematics to solve for the optimization problem, specifically when the constraint is not an equality constraint (=) but rather inequality constraints (<,>,<=,>=)
+- The mathematics can get laborious the more we complexify our Lagrangian, so I will add them more if we have the time. For now, **for demonstrative purposes** it's much easier to use the computational approach for adding more constraints or changing optimization target*
 	> For example, instead of $$\sigma_p$$, maybe we can change it to $$\boldsymbol{I_p}$$, and perform maximization instead of minimization. This is called the **tangency portfolio**. Perhaps I will demonstrate this as well later, although it is fairly easy to change up the code (check out [**Scipy Optimization Documentation**](https://docs.scipy.org/doc/scipy/reference/tutorial/optimize.html "Scipy Optimization Documentation"))
 
 
