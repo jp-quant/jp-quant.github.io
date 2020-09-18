@@ -221,9 +221,9 @@ Now, with all the defined components to model our $$\boldsymbol{G}(t)$$, we proc
 
 ---
 
-### Trend Model (with changepoints $$\delta$$) Demonstration & Example
+### Visual & Technical Decomposition for The Trend Model
 
-> **Remarks**: Following with our technical demonstrative work below, we will only showcase the effect of *Linear Trend*, as it's being the default & conventional approach in most cases. Though in short, we primarily seek to elucidate the importance of our defined priors & their transformed variables, the roles they play thus how, together, they construct our trend model as a component in the overarching GLM.
+> **Remarks**: Following with our technical demonstrative work below in Python, we will only showcase the effect of *Linear Trend*, as it's being the default & conventional approach in most cases. Though in short, we primarily seek to elucidate the importance of our defined priors & their transformed variables, the roles they play thus how, together, they construct our trend model as a component in the overarching GLM.
 
 ---
 
