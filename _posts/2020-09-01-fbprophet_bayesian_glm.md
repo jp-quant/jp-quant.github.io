@@ -5,13 +5,13 @@ After spending a couple weeks on my spare time reading Facebook's published [res
 
 In this post, we will:
 
-1. Mathematically understand the difference between **Ordinary v.s. Generalized** Linear Models (GLM).
+1. Mathematically understand the difference between **Ordinary v.s. Generalized** Linear Models (GLM) & why we are using GLM.
 2. Explore the concept of "going Bayesian" (Bayes' Theorem), the benefits from doing so & the extended philosophy behind it.
 3. Break down the mathematics of FBProphet. 
 4. Build our own version in Python with additional flexibility & creative concepts added, utilizing **PyMC3** instead of *Stan* (like fbprophet does) as backend.
  
 ---
-## 1. The Power of Generalized Linear Models
+## 1. The Superiority of Generalized Linear Models
 Linearity is the foundational language that explains the totality of composition for any reality we are trying to model, as regression becomes the basis for the overarching factor-modeling technique in the modern data-driven world, especially neural network models in Machine Learning.
 
   
@@ -55,7 +55,7 @@ However this is **not generally true when tackling problems from real-world data
 
 ---
 
-In short, a generalized linear model covers all possible ways of how different distributions of difference factors can "hierarchically" impact the defined distribution of the observed. This allows us to tackle complex time-series problems, especially ones that exhibit non-linearity, while not having to worry about data stationarity that classical models, such as ARIMA, heavily rely on.
+In short, a generalized linear model covers all possible ways of how different distributions of difference factors can "hierarchically" impact the defined distribution of the observed. This allows us to tackle complex time-series problems, especially ones that exhibit non-linearity, while not having to worry about data stationarity that classical time-series models, such as ARIMA, heavily rely on.
 
 
 ---
@@ -79,6 +79,6 @@ Without having to shed light much on the applications of such simple, yet powerf
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDg3OTY3Njg0LC05OTUzNTQ3NDgsLTExMz
-U3MjA1NDBdfQ==
+eyJoaXN0b3J5IjpbLTk0OTU5MDg1MywtOTk1MzU0NzQ4LC0xMT
+M1NzIwNTQwXX0=
 -->
