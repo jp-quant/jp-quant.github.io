@@ -83,9 +83,10 @@ Recalling from above:
 
 Shortly put in details, implementation of Bayesian Statistics on time-series GLM is powerful due to:
 
-1. The ability for us to define **priors** (initial beliefs) as *any distributions* $P(A), P(B),...$, whereas such priors $A, B, ...$ are variables/features that can be as abstract or realistic as we want, then update such priors with the arrival of new observed data, using Bayes' Theorem, specifically the concept of *conditional probability* $P(Observed \mid X)$ *(that if we define $A$ as the observed)*
+1. The ability for us to define **priors** (initial beliefs) as *any distributions* $P(A), P(B),...$, whereas such priors $A, B, ...$ are variables/features that can be as abstract or realistic as we want.
+2. We can then update such priors with the arrival of new observed data, using Bayes' Theorem, specifically the concept of *conditional probability* $P(Observed \mid X)$ *(where $X$ being the conditioned variable, either as priors or functions of priors)*
     
-2. We can formulate complex functions (link functions), as $f(A,B,...)$ with defined priors variables $A,B,...$ to the **posteriors**, being the observed, to which such observed values modeled as either a factor of predicted values, or predicted values themselves, *are also defined as a distribution.*
+3. We can formulate complex functions (link functions), as $f(A,B,...)$ with defined priors variables $A,B,...$ to the **posteriors**, being the observed, to which such observed values modeled as either a factor of predicted values, or predicted values themselves, *are also defined as a distribution.*
 
 We will demonstrate these implementations in the upcoming sections.
 To summarize:
@@ -99,7 +100,7 @@ The main **philosophy** behind Bayesian Statistics is that:
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjQ5NTUwMTMyLDQ4MjQxNDkyNCwxMTA2ND
-YwNDE1LDE3MzA0Mjc3OTEsMTA5ODk5MzQ0MCwtMTY0MDU1Nzgy
-NSwtOTk1MzU0NzQ4LC0xMTM1NzIwNTQwXX0=
+eyJoaXN0b3J5IjpbLTE0NDc2NDQwNjksNDgyNDE0OTI0LDExMD
+Y0NjA0MTUsMTczMDQyNzc5MSwxMDk4OTkzNDQwLC0xNjQwNTU3
+ODI1LC05OTUzNTQ3NDgsLTExMzU3MjA1NDBdfQ==
 -->
