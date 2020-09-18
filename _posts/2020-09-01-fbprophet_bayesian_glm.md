@@ -64,12 +64,12 @@ In short, a generalized linear model covers all possible ways of how different d
 All Bayesian techniques & implementations in modern days, even in machine learning neural networks, are built from the beautiful statistical foundation pioneered by Thomas Bayes himself, back in the late 1700s, called **Baye's Theorem**:
 $$ P(A \mid B) = \frac{P(A) P(B \mid A)}{P(B)}$$
 
-This approach of modeling variables, both the priors & posteriors, as distributions have not been heavily explored & implemented back then due to high computational demands. However, our
+This approach of modeling variables, both the priors & posteriors, as distributions have not been heavily explored & implemented back then due to high computational demands. However, our accelerating technological advancement has allowed Bayesians to pave themselves a vital role in 
 
   
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg0NDI2ODM4MF19
+eyJoaXN0b3J5IjpbODMwMjYwNzc0XX0=
 -->
