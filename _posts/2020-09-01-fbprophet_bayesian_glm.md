@@ -91,7 +91,7 @@ Shortly put in details, implementation of Bayesian Statistics on time-series GLM
 
 We will demonstrate these implementations in the upcoming sections.
 To summarize:
-- The observable is the unknown posterior, to which dependent conditionally on the defined priors beliefs, to which such priors are updated to "fit" the observable when new observable data arrive
+- The **observable is the unknown** posterior, to which **dependent conditionally on the defined priors** beliefs, to which such **priors are updated to "fit" the observable** when new observable data arrive
 
 The main **philosophy** behind Bayesian Statistics is that:
 > Our understanding of the **reality** we are trying to model through time, to predict its future values, **is never static & objective, but rather dynamic & conditional**. Going Bayesian means we are accepting that **we will never know the full picture of reality completely, and that we can only infer from the data of such reality we collected so far to forecast its future values with compounded uncertainty**, as per defining all of the parameters & functions of our entire model as distributions.
@@ -101,7 +101,7 @@ The main **philosophy** behind Bayesian Statistics is that:
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTUxODg4NzMxOSw0ODI0MTQ5MjQsMTEwNj
+eyJoaXN0b3J5IjpbMjA0Mjc4NDc0NSw0ODI0MTQ5MjQsMTEwNj
 Q2MDQxNSwxNzMwNDI3NzkxLDEwOTg5OTM0NDAsLTE2NDA1NTc4
 MjUsLTk5NTM1NDc0OCwtMTEzNTcyMDU0MF19
 -->
