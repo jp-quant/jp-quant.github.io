@@ -84,14 +84,14 @@ Shortly put in details, implementation of Bayesian Statistics on time-series GLM
     
 2. We can formulate complex functions (link functions) with defined priors variables to the observable(s) as **posteriors**, to which such observed values modeled as either a factor of predicted values, or predicted values themselves, *are also defined as a distribution.*
 
-We will demonstrate these implementations in the upcoming sections.
+We will demonstrate these implementations in the upcoming sections. The main philosophy beh
 
 ---
 ## 3. The Mathematics behind FBProphet
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MDU1OTc3MjksMTEwNjQ2MDQxNSwxNz
+eyJoaXN0b3J5IjpbLTEyMTE1MjUzNjMsMTEwNjQ2MDQxNSwxNz
 MwNDI3NzkxLDEwOTg5OTM0NDAsLTE2NDA1NTc4MjUsLTk5NTM1
 NDc0OCwtMTEzNTcyMDU0MF19
 -->
