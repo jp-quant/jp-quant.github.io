@@ -134,7 +134,7 @@ We now explore their relative meanings & dimensions in our trend model:
 
 Lastly, notice how $\delta$ is a vector of $N$ dimensions, where such *integer* value $N$ is **also a hyper-parameter**, though not as important, for tuning, we also need to define one last component for trend, although this will NOT be a prior distribution but rather a **matrix $A$** called the **determining matrix**.
 
-For every given $\boldsymbol{t}$ as the **scaled time vector** (we will explain this more) of $T$ dimensional length, and $\delta$ of $N$ dimensional length, we compute a matrix $A$ wit
+For every given $\boldsymbol{t}$ as the **scaled time vector** (we will explain this more) of $T$ dimensional length, and $\delta$ of $N$ dimensional length, we compute a matrix $A$ with the dimension $T$ x $N$
 
 
 With the priors, fbprophet's model use them to calculate **3 types of trends**:
@@ -142,7 +142,7 @@ With the priors, fbprophet's model use them to calculate **3 types of trends**:
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2NTEyMDYxMTgsLTU2MjI0NjYxNCwtMT
+eyJoaXN0b3J5IjpbLTE4MzY3MjQ2MDEsLTU2MjI0NjYxNCwtMT
 I5ODc4OTEyNCw0ODI0MTQ5MjQsMTEwNjQ2MDQxNSwxNzMwNDI3
 NzkxLDEwOTg5OTM0NDAsLTE2NDA1NTc4MjUsLTk5NTM1NDc0OC
 wtMTEzNTcyMDU0MF19
