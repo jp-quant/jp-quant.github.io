@@ -109,7 +109,7 @@ where, all as **tensors**  :
 > $\boldsymbol{G}$ = Trend/Growth
 > $\boldsymbol{S}_{m}$ = Multiplicative Seasonal Components
 > $\boldsymbol{S}_{a}$ = Additive Seasonal Components
-> $\boldsymbol{\epsilon}$ = Unknown Errors (e.g.:  $\sigma$ of the observed)
+> $\boldsymbol{\epsilon}$ = Unknown Errors (can set as  $\sigma$ of the observed )
 
 ---
 ### Modeling Trend $\boldsymbol{G}$
@@ -181,11 +181,11 @@ Now, with all the defined components to determine the trend $\boldsymbol{G}$ ten
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzOTc4ODQyMDYsLTcyNTM0ODUyMSwyMD
-M3ODE2MDQ1LDYzMTU4MTQ5OSwtMTQ1MjIyNDUzMywxNTQ4MTA1
-MTgsLTEyMDAyNjEzMzAsMTQxNTkyMTkzNCwxOTE0MTQ1MDY0LD
-I5NzM4MTI0NSw2MDAxMDUxMTQsLTg2ODUwMjYsLTU2MjI0NjYx
-NCwtMTI5ODc4OTEyNCw0ODI0MTQ5MjQsMTEwNjQ2MDQxNSwxNz
-MwNDI3NzkxLDEwOTg5OTM0NDAsLTE2NDA1NTc4MjUsLTk5NTM1
-NDc0OF19
+eyJoaXN0b3J5IjpbLTI0ODI0MTQyNiwtNzI1MzQ4NTIxLDIwMz
+c4MTYwNDUsNjMxNTgxNDk5LC0xNDUyMjI0NTMzLDE1NDgxMDUx
+OCwtMTIwMDI2MTMzMCwxNDE1OTIxOTM0LDE5MTQxNDUwNjQsMj
+k3MzgxMjQ1LDYwMDEwNTExNCwtODY4NTAyNiwtNTYyMjQ2NjE0
+LC0xMjk4Nzg5MTI0LDQ4MjQxNDkyNCwxMTA2NDYwNDE1LDE3Mz
+A0Mjc3OTEsMTA5ODk5MzQ0MCwtMTY0MDU1NzgyNSwtOTk1MzU0
+NzQ4XX0=
 -->
