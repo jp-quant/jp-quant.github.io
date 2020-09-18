@@ -67,8 +67,10 @@ After spending a month reading their published research paper, conducted by PhD 
 
 In this post, we will:
 
-1. Explore the core concept of a Generalized Linear Model (GLM). 2. Break down the mathematics of fbprophet's GLM. 3. Build our own version with additional flexibility & creative concepts added, utilizing *PyMC3* instead of *Stan* (like fbprophet does) as backend sampling
+1. Explore the concepts  Probabilistic Modelling & Generalized Linear Model (GLM).
+2. Break down the mathematics of fbprophet's GLM.
+3. Build our own version with additional flexibility & creative concepts added, utilizing *PyMC3* instead of *Stan* (like fbprophet does) as backend sampling
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwODYxMzYxNDRdfQ==
+eyJoaXN0b3J5IjpbMzE1MTc3MzkwXX0=
 -->
