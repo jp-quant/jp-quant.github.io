@@ -1,27 +1,3 @@
----
-
-title: "Predictive Modeling: Bayesian Statistics, Generalized Linear Model (GLM) & FBProphet's Magic"
-
-date: 2020-06-03
-
-tags: [research]
-
-header:
-
-image: "/images/qf_glm_banner.PNG"
-
-excerpt: "Building GLM predictive models on time-series as hierarchichal bayesian models, inspired by Facebook's time-series forecaster fbprophet"
-
-mathjax: "true"
-
-layout: single
-
-classes: wide
-
----
-
-  
-
 # From **General** to **Generalized** Linear with Hierarchichal Bayesian Modeling
 
   
@@ -100,5 +76,5 @@ In this post, we will:
 
 >3. Build our own version with additional flexibility & creative concepts added, utilizing *PyMC3* instead of *Stan* (like fbprophet does) as backend sampling
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTIyNTUwNzMxXX0=
+eyJoaXN0b3J5IjpbMTExMTg2MjgzOF19
 -->
