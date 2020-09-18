@@ -148,21 +148,17 @@ $$ \boldsymbol{t}, \boldsymbol{s}, A,\gamma$$
 > For every given $\boldsymbol{t}$ as the **time vector as integers or
 floats** (scaled) (we will explain this more in our demonstrative
 work) of $K$ dimensional length
-> $$\boldsymbol{t} =\begin{bmatrix} t_1 & t_2  &\cdots  & t_k
+$$\boldsymbol{t} =\begin{bmatrix} t_1 & t_2  &\cdots  & t_k
 \end{bmatrix}$$
 and $\delta$ of $N$ dimensional length, representing $N$ amount of changepoints occurring in $\boldsymbol{t}$, we subsequently compute those N changepoint values from $\boldsymbol{t}$, as tensor $\boldsymbol{s}$, being N-dimensional as well, such that:
 For $i = 1,2,...N$, where $s_i \in \boldsymbol{t}$ and $N \leq K$, we define $$\boldsymbol{s} =\begin{bmatrix} s_1 & s_2  &\cdots  & s_n \end{bmatrix}$$
 We then compute the matrix $A$ with dimension $T$ x $N$, with **boolean entries as binary integers** (1 = True, 0 = False), as:
->
-> $$A_t = \begin{bmatrix}
->     t_{1} \geq s_1  & t_{1} \geq s_2  & \dots  & t_{1} \geq s_n \\
->     t_{2} \geq s_1  & t_{2} \geq s_2  & \dots  & t_{2} \geq s_n \\
->     \vdots       & \vdots       & \ddots & \vdots      \\    t_{k} \geq s_1  & t_{k} \geq s_2 & \dots  & t_{k} \geq s_n \end{bmatrix}  $$
->
->
-> Lastly, from $\delta$ as the **changepoints adjustment** for the
-> **growth rate**, 
-> We define a transformed variable $\gamma$ being the **changepoints adjustment** for the **growth offset**: $$\gamma = -s \delta$$
+$$A_t = \begin{bmatrix}
+     t_{1} \geq s_1  & t_{1} \geq s_2  & \dots  & t_{1} \geq s_n \\
+     t_{2} \geq s_1  & t_{2} \geq s_2  & \dots  & t_{2} \geq s_n \\
+     \vdots       & \vdots       & \ddots & \vdots      \\    t_{k} \geq s_1  & t_{k} \geq s_2 & \dots  & t_{k} \geq s_n \end{bmatrix}  $$
+Lastly, from $\delta$ as the **changepoints adjustment** for the **growth rate**, 
+We define a transformed variable $\gamma$ being the **changepoints adjustment** for the **growth offset**: $$\gamma = -s \delta$$
 
 ---
 Now, with all the defined components to model our $\boldsymbol{G}(t)$, we proceed on using them to calculate **3 types of trends**:
@@ -188,11 +184,11 @@ In addition, we primarily seek to elucidate the importance of our defined priors
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1ODY4NDU0NjgsLTUxNTY1NzcxNCwtNz
-I1MzQ4NTIxLDIwMzc4MTYwNDUsNjMxNTgxNDk5LC0xNDUyMjI0
-NTMzLDE1NDgxMDUxOCwtMTIwMDI2MTMzMCwxNDE1OTIxOTM0LD
-E5MTQxNDUwNjQsMjk3MzgxMjQ1LDYwMDEwNTExNCwtODY4NTAy
-NiwtNTYyMjQ2NjE0LC0xMjk4Nzg5MTI0LDQ4MjQxNDkyNCwxMT
-A2NDYwNDE1LDE3MzA0Mjc3OTEsMTA5ODk5MzQ0MCwtMTY0MDU1
-NzgyNV19
+eyJoaXN0b3J5IjpbLTI3NzA4MzEzMiwtNTE1NjU3NzE0LC03Mj
+UzNDg1MjEsMjAzNzgxNjA0NSw2MzE1ODE0OTksLTE0NTIyMjQ1
+MzMsMTU0ODEwNTE4LC0xMjAwMjYxMzMwLDE0MTU5MjE5MzQsMT
+kxNDE0NTA2NCwyOTczODEyNDUsNjAwMTA1MTE0LC04Njg1MDI2
+LC01NjIyNDY2MTQsLTEyOTg3ODkxMjQsNDgyNDE0OTI0LDExMD
+Y0NjA0MTUsMTczMDQyNzc5MSwxMDk4OTkzNDQwLC0xNjQwNTU3
+ODI1XX0=
 -->
