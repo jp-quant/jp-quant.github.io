@@ -98,6 +98,8 @@ The main **philosophy** behind Bayesian Statistics is that:
 
 ---
 ## 3. The Mathematics behind FBProphet
+> The content below is somewhat a summary, or rather alternative explanation,
+---
 The overarching formula is:
 ### $$\boldsymbol{Y}(t) \sim [\boldsymbol{G}(t) \cdot(1 + \boldsymbol{S}_{m}(t)) +  \boldsymbol{S}_{a}(t)] \pm \boldsymbol{\epsilon}_{t}$$
 
@@ -172,10 +174,10 @@ Now, with all the defined components to determine the trend $\boldsymbol{G}$ ten
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjMxNTgxNDk5LC0xNDUyMjI0NTMzLDE1ND
-gxMDUxOCwtMTIwMDI2MTMzMCwxNDE1OTIxOTM0LDE5MTQxNDUw
-NjQsMjk3MzgxMjQ1LDYwMDEwNTExNCwtODY4NTAyNiwtNTYyMj
-Q2NjE0LC0xMjk4Nzg5MTI0LDQ4MjQxNDkyNCwxMTA2NDYwNDE1
-LDE3MzA0Mjc3OTEsMTA5ODk5MzQ0MCwtMTY0MDU1NzgyNSwtOT
-k1MzU0NzQ4LC0xMTM1NzIwNTQwXX0=
+eyJoaXN0b3J5IjpbMjAzNzgxNjA0NSw2MzE1ODE0OTksLTE0NT
+IyMjQ1MzMsMTU0ODEwNTE4LC0xMjAwMjYxMzMwLDE0MTU5MjE5
+MzQsMTkxNDE0NTA2NCwyOTczODEyNDUsNjAwMTA1MTE0LC04Nj
+g1MDI2LC01NjIyNDY2MTQsLTEyOTg3ODkxMjQsNDgyNDE0OTI0
+LDExMDY0NjA0MTUsMTczMDQyNzc5MSwxMDk4OTkzNDQwLC0xNj
+QwNTU3ODI1LC05OTUzNTQ3NDgsLTExMzU3MjA1NDBdfQ==
 -->
