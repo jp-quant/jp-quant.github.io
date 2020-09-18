@@ -85,14 +85,14 @@ Shortly put in details, implementation of Bayesian Statistics on time-series GLM
 2. We can formulate complex functions (link functions) with defined priors variables to the observable(s) as **posteriors**, to which such observed values modeled as either a factor of predicted values, or predicted values themselves, *are also defined as a distribution.*
 
 We will demonstrate these implementations in the upcoming sections. The main philosophy behind Bayesian Statistics is that:
-> The observable is the unknown posterior, to which dependent conditionally on the defined priors beliefs, to which such def  
+> The observable is the unknown posterior, to which dependent conditionally on the defined priors beliefs, to which such priors are updated to "fit" the observable when new data of the observable arrive.  
 
 ---
 ## 3. The Mathematics behind FBProphet
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIxMjAxMDU4NjQsMTEwNjQ2MDQxNSwxNz
+eyJoaXN0b3J5IjpbLTEyNzIxNjczNTcsMTEwNjQ2MDQxNSwxNz
 MwNDI3NzkxLDEwOTg5OTM0NDAsLTE2NDA1NTc4MjUsLTk5NTM1
 NDc0OCwtMTEzNTcyMDU0MF19
 -->
