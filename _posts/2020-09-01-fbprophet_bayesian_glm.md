@@ -134,7 +134,7 @@ We now explore their relative meanings & dimensions in our trend model:
 
 Notice how $\delta$ is an $N$ dimensional variable, where such *integer* value $N$ is **also a hyper-parameter**, though not as important, for tuning, we also need to define one last component for trend, although this will NOT be a prior distribution but rather a **matrix $A$** called the **determining matrix**.
 
-For every given $\boldsymbol{t}$ as the **time vector as integers or floats** (scaled) (we will explain this more ) of $K$ dimensional length:
+For every given $\boldsymbol{t}$ as the **time vector as integers or floats** (scaled) (we will explain this more in our demonstration below) of $K$ dimensional length:
 
 $$\boldsymbol{t} =\begin{bmatrix} t_1 & t_2  &\cdots  & t_k \end{bmatrix}$$
 
@@ -143,7 +143,7 @@ and $\delta$ of $N$ dimensional length, representing $N$ amount of changepoints:
 $$\boldsymbol{\delta} =\begin{bmatrix} s_1 & s_2  &\cdots  & s_n \end{bmatrix}$$
 
 
- we compute a matrix $A$ with dimension $T$ x $N$ , with boolean entries as binaries (1 = True, 0 = False), as:
+ we compute a matrix $A$ with dimension $T$ x $N$ , with **boolean entries as binary integers** (1 = True, 0 = False), as:
 
 $$A = \begin{bmatrix}
     t_{1} \geq s_1  & t_{1} \geq s_2  & \dots  & t_{1} \geq s_n \\
@@ -152,16 +152,15 @@ $$A = \begin{bmatrix}
    t_{k} \geq s_1  & t_{k} \geq s_2 & \dots  & t_{k} \geq s_n \end{bmatrix}
  $$
 
-
-With the priors, fbprophet's model use them to calculate **3 types of trends**:
+Now, with all the defined components to determine the trend $\boldsymbol{G}$ fbprophet's model use them to calculate **3 types of trends**:
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzc0MDQyMTM2LC0xMjAwMjYxMzMwLDE0MT
-U5MjE5MzQsMTkxNDE0NTA2NCwyOTczODEyNDUsNjAwMTA1MTE0
-LC04Njg1MDI2LC01NjIyNDY2MTQsLTEyOTg3ODkxMjQsNDgyND
-E0OTI0LDExMDY0NjA0MTUsMTczMDQyNzc5MSwxMDk4OTkzNDQw
-LC0xNjQwNTU3ODI1LC05OTUzNTQ3NDgsLTExMzU3MjA1NDBdfQ
-==
+eyJoaXN0b3J5IjpbLTE3NDUzNjE5MTEsLTEyMDAyNjEzMzAsMT
+QxNTkyMTkzNCwxOTE0MTQ1MDY0LDI5NzM4MTI0NSw2MDAxMDUx
+MTQsLTg2ODUwMjYsLTU2MjI0NjYxNCwtMTI5ODc4OTEyNCw0OD
+I0MTQ5MjQsMTEwNjQ2MDQxNSwxNzMwNDI3NzkxLDEwOTg5OTM0
+NDAsLTE2NDA1NTc4MjUsLTk5NTM1NDc0OCwtMTEzNTcyMDU0MF
+19
 -->
