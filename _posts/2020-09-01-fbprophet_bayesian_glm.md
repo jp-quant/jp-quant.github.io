@@ -73,12 +73,12 @@ Though I can spend time writing in details on the applications of such simple, y
 > - [**Demystifying Bayesian Deep Learning**](https://www.youtube.com/watch?v=s0S6HFdPtlA&t=906s&ab_channel=PyData) by Eric J. Ma (PyData)*
 
 ---
-Recalling our concept of *Generalized Linear Models* above:
+Recalling from above:
 > **Generalized Linear Models** allows for response variables that have arbitrary distributions, and for an arbitrary function of the response variable to vary linearly with the predicted values (rather than assuming that the response itself must vary linearly)
 
 Shortly put in details, implementation of Bayesian Statistics on time-series GLM is powerful due to:
 
-The ability for us to define *priors* (initial beliefs) & update such priors with newer data.
+The ability for us to define *priors* (initial beliefs) as any distributions & update such priors with newer data, using Bayes' Theorem, specifically **conditional probability** ($P(
 
 Formulate complex functions (link functions) from defined priors variables to 
 
@@ -89,6 +89,6 @@ Formulate complex functions (link functions) from defined priors variables to
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDM2NTk4MTIzLC0xNjQwNTU3ODI1LC05OT
-UzNTQ3NDgsLTExMzU3MjA1NDBdfQ==
+eyJoaXN0b3J5IjpbLTEwNzk5ODYzNzYsLTE2NDA1NTc4MjUsLT
+k5NTM1NDc0OCwtMTEzNTcyMDU0MF19
 -->
