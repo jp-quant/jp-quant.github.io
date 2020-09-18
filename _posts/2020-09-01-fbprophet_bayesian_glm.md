@@ -58,7 +58,7 @@ However this is **not generally true when tackling problems from real-world data
 
 ---
 
-In short, a generalized linear model covers all possible ways of how different distributions of difference factors, abstract or real, can "hierarchically" impact the defined distribution of the observed. This allows us to tackle complex time-series problems, especially ones that exhibit non-linearity, while retain uncertain not having to worry about data stationarity that classical time-series models, such as ARIMA, heavily rely on
+In short, a generalized linear model covers all possible ways of how different distributions of difference factors, abstract or real, can "hierarchically" impact the defined distribution of the observed. This allows us to tackle complex time-series problems, especially ones that exhibit non-linearity, while retain uncertainty in our models, as well as  not having to worry about data stationarity that classical time-series models, such as ARIMA, heavily rely on
 
 
 ---
@@ -99,7 +99,7 @@ The main **philosophy** behind Bayesian Statistics is that:
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2ODcxOTA5MjcsNDgyNDE0OTI0LDExMD
-Y0NjA0MTUsMTczMDQyNzc5MSwxMDk4OTkzNDQwLC0xNjQwNTU3
-ODI1LC05OTUzNTQ3NDgsLTExMzU3MjA1NDBdfQ==
+eyJoaXN0b3J5IjpbMTY4MzU1MjM4OSw0ODI0MTQ5MjQsMTEwNj
+Q2MDQxNSwxNzMwNDI3NzkxLDEwOTg5OTM0NDAsLTE2NDA1NTc4
+MjUsLTk5NTM1NDc0OCwtMTEzNTcyMDU0MF19
 -->
