@@ -86,14 +86,14 @@ Shortly put in details, implementation of Bayesian Statistics on time-series GLM
 
 We will demonstrate these implementations in the upcoming sections. The main philosophy behind Bayesian Statistics is that:
 > The observable is the unknown posterior, to which dependent conditionally on the defined priors beliefs, to which such priors are updated to "fit" the observable when new observable data arrive.
-> Simply put, our understanding of the reality we are trying to model through time, to predict its future is never static & objective, but rather dynamic & conditional.
+> Simply put, our understanding of the reality we are trying to model through time, to predict its future values, is never static & objective, but rather dynamic & conditional. Going Bayesian means we are accepting that we will never know the full picture of reality completely, and that we can only infer 
 
 ---
 ## 3. The Mathematics behind FBProphet
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY1NTkxMDczNSwxMTA2NDYwNDE1LDE3Mz
-A0Mjc3OTEsMTA5ODk5MzQ0MCwtMTY0MDU1NzgyNSwtOTk1MzU0
-NzQ4LC0xMTM1NzIwNTQwXX0=
+eyJoaXN0b3J5IjpbMzAwMDU3NTYyLDExMDY0NjA0MTUsMTczMD
+QyNzc5MSwxMDk4OTkzNDQwLC0xNjQwNTU3ODI1LC05OTUzNTQ3
+NDgsLTExMzU3MjA1NDBdfQ==
 -->
