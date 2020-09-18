@@ -102,12 +102,12 @@ The main **philosophy** behind Bayesian Statistics is that:
 ## 3. The Mathematics behind FBProphet
 > **Disclosure**: The content below is somewhat a detailed summary, or rather a concise alternative explanation based on my personal understanding of fbprophet's GLM. If you want to check out the original published paper, click [here](https://peerj.com/preprints/3190/).
 ---
-Starting with the overarching formula of :
+Starting with the model's overarching formula:
 
 ### $$\boldsymbol{Y}(t) \sim [\boldsymbol{G}(t) \cdot(1 + \boldsymbol{S}_{m}(t)) +  \boldsymbol{S}_{a}(t)] \pm \boldsymbol{\epsilon}_{t}$$
 
-where, all as **tensors**  :
->$\boldsymbol{Y}$ = Observed to fit & predict
+where, as **tensors**:
+>$\boldsymbol{Y}$ = Observable to fit & predict
 > $\boldsymbol{G}$ = Trend/Growth
 > $\boldsymbol{S}_{m}$ = Multiplicative Seasonal Components
 > $\boldsymbol{S}_{a}$ = Additive Seasonal Components
@@ -196,7 +196,7 @@ In addition, we primarily seek to elucidate the importance of our defined priors
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTUyNDQ4OTMxOCwtNzI1MzQ4NTIxLDIwMz
+eyJoaXN0b3J5IjpbMTMxMDEyMDYzMCwtNzI1MzQ4NTIxLDIwMz
 c4MTYwNDUsNjMxNTgxNDk5LC0xNDUyMjI0NTMzLDE1NDgxMDUx
 OCwtMTIwMDI2MTMzMCwxNDE1OTIxOTM0LDE5MTQxNDUwNjQsMj
 k3MzgxMjQ1LDYwMDEwNTExNCwtODY4NTAyNiwtNTYyMjQ2NjE0
