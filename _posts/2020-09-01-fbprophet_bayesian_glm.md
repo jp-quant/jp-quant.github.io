@@ -109,7 +109,7 @@ where, all as **tensors**  :
 > $\boldsymbol{\epsilon}$ = Unknown Errors (e.g.:  $\sigma$ of the observed)
 
 ---
-Modeling Trend $\boldsymbol{G}$
+Modeling Trend/Growth $\boldsymbol{G}$
 ---
 Without worrying about their meanings at the moment, We first define **3 priors**:
 $$ k \sim \mathcal{N}(0,\theta)$$
@@ -128,16 +128,16 @@ $$\tau = 0.05$$
 The effect of priors' scaling values will be demonstrated in our work later on, as well as an extended creative idea on defining scales as priors themselves, although for now, we stick with them being as default constants.
 
 We now explore their relative meanings in our trend model:
-- $k$ = Growth Rate
+- $k$ =  Growth Rate
 - $m$ = Growth Offset
-
+- $\delta$ = 
 With the priors, fbprophet's model use them to calculate **3 types of trends**:
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjAzMjk1Nzg4LC01NjIyNDY2MTQsLTEyOT
-g3ODkxMjQsNDgyNDE0OTI0LDExMDY0NjA0MTUsMTczMDQyNzc5
-MSwxMDk4OTkzNDQwLC0xNjQwNTU3ODI1LC05OTUzNTQ3NDgsLT
-ExMzU3MjA1NDBdfQ==
+eyJoaXN0b3J5IjpbLTE2MzMxOTgzMTQsLTU2MjI0NjYxNCwtMT
+I5ODc4OTEyNCw0ODI0MTQ5MjQsMTEwNjQ2MDQxNSwxNzMwNDI3
+NzkxLDEwOTg5OTM0NDAsLTE2NDA1NTc4MjUsLTk5NTM1NDc0OC
+wtMTEzNTcyMDU0MF19
 -->
