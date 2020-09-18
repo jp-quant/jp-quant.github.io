@@ -167,15 +167,16 @@ $$\gamma = -s \delta$$
 Now, with all the defined components to determine the trend $\boldsymbol{G}$ tensor, we will use them to calculate **3 types of trends**:
 
 **Linear Trend** (mainly used)
-> **$$ G(t) = (k + A_t \delta) \odot \vec{t} + (m + A_t \gamma) $$**
+> **$$ G(t) = (k + A_t \delta) \odot \boldsymbol{t} + (m + A_t \gamma) $$**
 
-**Logistic Trend** (like sigmoid)
-> $$G = \frac{C}{1 + exp[-(k + A^{\top} \delta) \cdot (t - (m + A^{\top} \gamma))]}$$
+**Logistic Trend**
+> $$G = \frac{C}{1 + exp[-(k + A_{t}^{\top} \delta) \cdot (\boldsymbol{t} - (m + A_{t}^{\top} \gamma))]}$$
+> where $C =$ cap/maximum value
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY3OTUzNTE3MiwyMDM3ODE2MDQ1LDYzMT
+eyJoaXN0b3J5IjpbMTA1OTg5MjU1NSwyMDM3ODE2MDQ1LDYzMT
 U4MTQ5OSwtMTQ1MjIyNDUzMywxNTQ4MTA1MTgsLTEyMDAyNjEz
 MzAsMTQxNTkyMTkzNCwxOTE0MTQ1MDY0LDI5NzM4MTI0NSw2MD
 AxMDUxMTQsLTg2ODUwMjYsLTU2MjI0NjYxNCwtMTI5ODc4OTEy
