@@ -134,11 +134,11 @@ We now explore their relative meanings & dimensions in our trend model:
 
 Notice how $\delta$ is an $N$ dimensional variable, where such *integer* value $N$ is **also a hyper-parameter**, though not as important, for tuning, we also need to define one last component for trend, although this will NOT be a prior distribution but rather a **matrix $A$** called the **determining matrix**.
 
-For every given $\boldsymbol{t}$ as the **time vector as integers or floats** (scaled) (we will explain this more in our demonstration below) of $K$ dimensional length:
+For every given $\boldsymbol{t}$ as the **time vector as integers or floats** (scaled) (we will explain this more in our demonstration below) of $K$ dimensional length
 
 $$\boldsymbol{t} =\begin{bmatrix} t_1 & t_2  &\cdots  & t_k \end{bmatrix}$$
 
-and $\delta$ of $N$ dimensional length, representing $N$ amount of changepoints:
+and $\delta$ of $N$ dimensional length, representing $N$ amount of changepoints assi:
 
 $$\boldsymbol{\delta} =\begin{bmatrix} s_1 & s_2  &\cdots  & s_n \end{bmatrix}$$
 
@@ -160,9 +160,10 @@ Now, with all the defined components to determine the trend $\boldsymbol{G}$ ten
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTcwMDU2MzIsLTEyMDAyNjEzMzAsMTQxNT
-kyMTkzNCwxOTE0MTQ1MDY0LDI5NzM4MTI0NSw2MDAxMDUxMTQs
-LTg2ODUwMjYsLTU2MjI0NjYxNCwtMTI5ODc4OTEyNCw0ODI0MT
-Q5MjQsMTEwNjQ2MDQxNSwxNzMwNDI3NzkxLDEwOTg5OTM0NDAs
-LTE2NDA1NTc4MjUsLTk5NTM1NDc0OCwtMTEzNTcyMDU0MF19
+eyJoaXN0b3J5IjpbOTk1NTY0MzU2LC0xMjAwMjYxMzMwLDE0MT
+U5MjE5MzQsMTkxNDE0NTA2NCwyOTczODEyNDUsNjAwMTA1MTE0
+LC04Njg1MDI2LC01NjIyNDY2MTQsLTEyOTg3ODkxMjQsNDgyND
+E0OTI0LDExMDY0NjA0MTUsMTczMDQyNzc5MSwxMDk4OTkzNDQw
+LC0xNjQwNTU3ODI1LC05OTUzNTQ3NDgsLTExMzU3MjA1NDBdfQ
+==
 -->
