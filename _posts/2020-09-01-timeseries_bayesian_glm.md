@@ -1,3 +1,17 @@
+# Introduction & Inspiration
+Facebook recently released an open-source tool called fbprophet allowing developers to not just tackle the complexity & non-linearity in time-series analysis, but also allow for a robust model-building to forecast any time-series data while accounting for *uncertainty* in every step of the way.
+
+ 
+After spending a month reading their published research paper, conducted by PhD mathematicians, as well as breaking down the codes from their open-source repository (Python), I was able to understand , in details, the mathematics & computational executions, thus built my own time-series forecaster with additional complexities added, utilizing the foundation of fbprophet.
+
+In this post, we will:
+
+1. Mathematically understand the concept of "going Bayesian" (Probabilistic Modelling).
+2. Explore Generalized Linear Models (GLM) & break down the mathematics of FBProphet's GLM. 
+3. Build our own version in Python with additional flexibility & creative concepts added, utilizing *PyMC3* instead of *Stan* (like fbprophet does) as backend sampling.
+
+
+
 # From **General** to **Generalized** Linear with Hierarchichal Bayesian Modeling
 
   
@@ -54,23 +68,6 @@ $$ P(A \mid B) = \frac{P(A) P(B \mid A)}{P(B)}$$
 
 This allows us to tackle complex time-series problems, especially ones that exhibit non-linearity, while not having to worry about data stationarity that classical models, such as ARIMA, heavily rely on.
 
-  
-
-# Inspiration
-
-  
-
-Facebook recently released an open-source tool called fbprophet allowing developers to not just tackle the complexity & non-linearity in time-series analysis, but also allow for a robust model-building to forecast any time-series data while accounting for *uncertainty* in every step of the way.
-
- 
-After spending a month reading their published research paper, conducted by PhD mathematicians, as well as breaking down the codes from their open-source repository (Python), I was able to understand , in details, the mathematics & computational executions, thus built my own time-series forecaster with additional complexities added, utilizing the foundation of fbprophet.
-
-In this post, we will:
-
-1. Understand the mathematics & applications of "going Bayesian" (Probabilistic Modelling)
-2. Explore Generalized Linear Models (GLM) & break down the mathematics of FBProphet's GLM. 
-3. Build our own version with additional flexibility & creative concepts added, utilizing *PyMC3* instead of *Stan* (like fbprophet does) as backend sampling
-
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzU0NDUxODU5XX0=
+eyJoaXN0b3J5IjpbLTE5MTI3MDQxNDhdfQ==
 -->
