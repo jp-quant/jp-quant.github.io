@@ -135,8 +135,8 @@ We now explore their relative meanings & dimensions in our trend model:
 - $\boldsymbol{m}$ [*1-Dimensional*] = Growth Offset
 - $\boldsymbol{\delta}$ [*N-Dimensional*] = Growth Rate Changepoints Adjustments
 
-Notice how $\delta$ is an $N$ dimensional variable, where such *integer* value $N$ is also a hyper-parameter, though not as important, for tuning.
-> The concept of $\delta$ is somewhat similar to the commonly known concept in mathematics called *Dirac Delta* to tackle problems with piece-wise regressions & step-functions. 
+Notice how $\delta$ is an $N$ dimensional variable, where such *integer* value $N$ is also a hyper-parameter, though not as important as scales (as advised by FB), for tuning.
+> Our $\delta$ here is somewhat similar to the commonly known concept in mathematics called *Dirac Delta*, used  to tackle problems with piece-wise regressions & step-functions. 
 
 We also need to define a couple last components for trend, although **these will NOT be a prior distribution needed to be sampled for fit** but rather most of which are **transformed variables** as **calculation results using the defined priors** above. These are:
 $$ \boldsymbol{t}, \boldsymbol{s}, A,\gamma$$
@@ -186,11 +186,11 @@ Moving forward with our technical demonstrative work below, we will only showcas
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc4MjU4MzI1NCwtNzI1MzQ4NTIxLDIwMz
-c4MTYwNDUsNjMxNTgxNDk5LC0xNDUyMjI0NTMzLDE1NDgxMDUx
-OCwtMTIwMDI2MTMzMCwxNDE1OTIxOTM0LDE5MTQxNDUwNjQsMj
-k3MzgxMjQ1LDYwMDEwNTExNCwtODY4NTAyNiwtNTYyMjQ2NjE0
-LC0xMjk4Nzg5MTI0LDQ4MjQxNDkyNCwxMTA2NDYwNDE1LDE3Mz
-A0Mjc3OTEsMTA5ODk5MzQ0MCwtMTY0MDU1NzgyNSwtOTk1MzU0
-NzQ4XX0=
+eyJoaXN0b3J5IjpbMjA2NzIzNDA0LC03MjUzNDg1MjEsMjAzNz
+gxNjA0NSw2MzE1ODE0OTksLTE0NTIyMjQ1MzMsMTU0ODEwNTE4
+LC0xMjAwMjYxMzMwLDE0MTU5MjE5MzQsMTkxNDE0NTA2NCwyOT
+czODEyNDUsNjAwMTA1MTE0LC04Njg1MDI2LC01NjIyNDY2MTQs
+LTEyOTg3ODkxMjQsNDgyNDE0OTI0LDExMDY0NjA0MTUsMTczMD
+QyNzc5MSwxMDk4OTkzNDQwLC0xNjQwNTU3ODI1LC05OTUzNTQ3
+NDhdfQ==
 -->
