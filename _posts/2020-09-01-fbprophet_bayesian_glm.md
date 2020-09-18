@@ -136,7 +136,7 @@ Notice how $\delta$ is an $N$ dimensional variable, where such *integer* value $
 
 For every given $\boldsymbol{t}$ as the **scaled time vector** (we will explain this more) of $k$ dimensional length, and $\delta$ of $N$ dimensional length:
 
-$$\boldsymbol{t} = $$
+$$\boldsymbol{t} =  $$
 
  we compute a matrix $A$ with dimension $T$ x $N$ as:
 
@@ -153,9 +153,10 @@ With the priors, fbprophet's model use them to calculate **3 types of trends**:
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyMDAyNjEzMzAsMTQxNTkyMTkzNCwxOT
-E0MTQ1MDY0LDI5NzM4MTI0NSw2MDAxMDUxMTQsLTg2ODUwMjYs
-LTU2MjI0NjYxNCwtMTI5ODc4OTEyNCw0ODI0MTQ5MjQsMTEwNj
-Q2MDQxNSwxNzMwNDI3NzkxLDEwOTg5OTM0NDAsLTE2NDA1NTc4
-MjUsLTk5NTM1NDc0OCwtMTEzNTcyMDU0MF19
+eyJoaXN0b3J5IjpbLTg2MDA1MTAxMiwtMTIwMDI2MTMzMCwxND
+E1OTIxOTM0LDE5MTQxNDUwNjQsMjk3MzgxMjQ1LDYwMDEwNTEx
+NCwtODY4NTAyNiwtNTYyMjQ2NjE0LC0xMjk4Nzg5MTI0LDQ4Mj
+QxNDkyNCwxMTA2NDYwNDE1LDE3MzA0Mjc3OTEsMTA5ODk5MzQ0
+MCwtMTY0MDU1NzgyNSwtOTk1MzU0NzQ4LC0xMTM1NzIwNTQwXX
+0=
 -->
