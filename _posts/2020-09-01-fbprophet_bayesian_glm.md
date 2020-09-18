@@ -140,11 +140,11 @@ $$\boldsymbol{t} =\begin{bmatrix} t_1 & t_2  &\cdots  & t_k \end{bmatrix}$$
 
 and $\delta$ of $N$ dimensional length, representing $N$ amount of changepoints occurring in $\boldsymbol{t}$, we subsequently compute those changepoints as N values of $\boldsymbol{t}$, as tensor $\boldsymbol{s}$, being N-dimensional as well.
 
-For $i = 1,2,...K$, where $s_i \in \boldsymbol{t}$,
+For $i = 1,2,...K$, where $s_i \in \boldsymbol{t}$, we define
 $$\boldsymbol{s} =\begin{bmatrix} s_1 & s_2  &\cdots  & s_n \end{bmatrix}$$
 
 
- we compute a matrix $A$ with dimension $T$ x $N$ , with **boolean entries as binary integers** (1 = True, 0 = False), as:
+We then compute the matrix $A$ with dimension $T$ x $N$ , with **boolean entries as binary integers** (1 = True, 0 = False), as:
 
 $$A = \begin{bmatrix}
     t_{1} \geq s_1  & t_{1} \geq s_2  & \dots  & t_{1} \geq s_n \\
@@ -156,15 +156,15 @@ $$A = \begin{bmatrix}
 Now, with all the defined components to determine the trend $\boldsymbol{G}$ tensor, fbprophet's model use them to calculate **3 types of trends**:
 
 > **Linear Trend**
-> $$ G = (k + A \delta) \odot \vec{t} + (m + A \gamma) $$
+> $$ G = (k + A \delta) \odot \vec{t} + [m + A(-s \delta] $$
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0NjQ4NjM1NTksLTEyMDAyNjEzMzAsMT
-QxNTkyMTkzNCwxOTE0MTQ1MDY0LDI5NzM4MTI0NSw2MDAxMDUx
-MTQsLTg2ODUwMjYsLTU2MjI0NjYxNCwtMTI5ODc4OTEyNCw0OD
-I0MTQ5MjQsMTEwNjQ2MDQxNSwxNzMwNDI3NzkxLDEwOTg5OTM0
-NDAsLTE2NDA1NTc4MjUsLTk5NTM1NDc0OCwtMTEzNTcyMDU0MF
-19
+eyJoaXN0b3J5IjpbMTA0NjQzMjE0NywtMTIwMDI2MTMzMCwxND
+E1OTIxOTM0LDE5MTQxNDUwNjQsMjk3MzgxMjQ1LDYwMDEwNTEx
+NCwtODY4NTAyNiwtNTYyMjQ2NjE0LC0xMjk4Nzg5MTI0LDQ4Mj
+QxNDkyNCwxMTA2NDYwNDE1LDE3MzA0Mjc3OTEsMTA5ODk5MzQ0
+MCwtMTY0MDU1NzgyNSwtOTk1MzU0NzQ4LC0xMTM1NzIwNTQwXX
+0=
 -->
