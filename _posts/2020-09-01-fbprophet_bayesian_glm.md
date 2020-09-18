@@ -170,16 +170,16 @@ Now, with all the defined components to determine the trend $\boldsymbol{G}$ ten
 > **$$ G = (k + A \delta) \odot \vec{t} + (m + A \gamma) $$**
 
 **Logistic Trend** (like sigmoid)
-> $$G = \frac{C}{1 + e}$$
+> $$G = \frac{C}{1 + e^{[-(k + A }}$$
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTI5MzQ4MTIwLDIwMzc4MTYwNDUsNjMxNT
-gxNDk5LC0xNDUyMjI0NTMzLDE1NDgxMDUxOCwtMTIwMDI2MTMz
-MCwxNDE1OTIxOTM0LDE5MTQxNDUwNjQsMjk3MzgxMjQ1LDYwMD
-EwNTExNCwtODY4NTAyNiwtNTYyMjQ2NjE0LC0xMjk4Nzg5MTI0
-LDQ4MjQxNDkyNCwxMTA2NDYwNDE1LDE3MzA0Mjc3OTEsMTA5OD
-k5MzQ0MCwtMTY0MDU1NzgyNSwtOTk1MzU0NzQ4LC0xMTM1NzIw
-NTQwXX0=
+eyJoaXN0b3J5IjpbLTE1NzYwOTQyMjEsMjAzNzgxNjA0NSw2Mz
+E1ODE0OTksLTE0NTIyMjQ1MzMsMTU0ODEwNTE4LC0xMjAwMjYx
+MzMwLDE0MTU5MjE5MzQsMTkxNDE0NTA2NCwyOTczODEyNDUsNj
+AwMTA1MTE0LC04Njg1MDI2LC01NjIyNDY2MTQsLTEyOTg3ODkx
+MjQsNDgyNDE0OTI0LDExMDY0NjA0MTUsMTczMDQyNzc5MSwxMD
+k4OTkzNDQwLC0xNjQwNTU3ODI1LC05OTUzNTQ3NDgsLTExMzU3
+MjA1NDBdfQ==
 -->
