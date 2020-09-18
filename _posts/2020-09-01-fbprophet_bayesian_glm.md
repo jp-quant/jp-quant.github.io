@@ -134,13 +134,13 @@ We now explore their relative meanings & dimensions in our trend model:
 
 Notice how $\delta$ is an $N$ dimensional variable, where such *integer* value $N$ is also a hyper-parameter, though not as important, for tuning.
 
-We also need to define a couple last components for trend, although **these will NOT be a prior distribution needed to be sampled for fit**, but rather a **matrix $A$** called the **determining matrix**, and **tensor $\boldsymbol{s}$** as our N changepoints in $\boldsymbol{t}$ given.
+We also need to define a couple last components for trend, although **these will NOT be a prior distribution needed to be sampled for fit** but rather as **transformed variables** using priors defined.
 
-For every given $\boldsymbol{t}$ as the **time vector as integers or floats** (scaled) (we will explain this more in our demonstration below) of $K$ dimensional length
+For every given $\boldsymbol{t}$ as the **time vector as integers or floats** (scaled) (we will explain this more in our demonstrative work) of $K$ dimensional length
 
 $$\boldsymbol{t} =\begin{bmatrix} t_1 & t_2  &\cdots  & t_k \end{bmatrix}$$
 
-and $\delta$ of $N$ dimensional length, representing $N$ amount of changepoints occurring in $\boldsymbol{t}$, we subsequently compute those changepoints as N values of $\boldsymbol{t}$, as tensor $\boldsymbol{s}$, being N-dimensional as well.
+and $\delta$ of $N$ dimensional length, representing $N$ amount of changepoints occurring in $\boldsymbol{t}$, we subsequently compute those changepointsN values from $\boldsymbol{t}$, as tensor $\boldsymbol{s}$, being N-dimensional as well.
 
 For $i = 1,2,...K$, where $s_i \in \boldsymbol{t}$, we define
 $$\boldsymbol{s} =\begin{bmatrix} s_1 & s_2  &\cdots  & s_n \end{bmatrix}$$
@@ -170,10 +170,10 @@ Now, with all the defined components to determine the trend $\boldsymbol{G}$ ten
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MjUxODk0NDMsLTE0NTIyMjQ1MzMsMT
-U0ODEwNTE4LC0xMjAwMjYxMzMwLDE0MTU5MjE5MzQsMTkxNDE0
-NTA2NCwyOTczODEyNDUsNjAwMTA1MTE0LC04Njg1MDI2LC01Nj
-IyNDY2MTQsLTEyOTg3ODkxMjQsNDgyNDE0OTI0LDExMDY0NjA0
-MTUsMTczMDQyNzc5MSwxMDk4OTkzNDQwLC0xNjQwNTU3ODI1LC
-05OTUzNTQ3NDgsLTExMzU3MjA1NDBdfQ==
+eyJoaXN0b3J5IjpbLTg0MjM4OTI5OCwtMTQ1MjIyNDUzMywxNT
+Q4MTA1MTgsLTEyMDAyNjEzMzAsMTQxNTkyMTkzNCwxOTE0MTQ1
+MDY0LDI5NzM4MTI0NSw2MDAxMDUxMTQsLTg2ODUwMjYsLTU2Mj
+I0NjYxNCwtMTI5ODc4OTEyNCw0ODI0MTQ5MjQsMTEwNjQ2MDQx
+NSwxNzMwNDI3NzkxLDEwOTg5OTM0NDAsLTE2NDA1NTc4MjUsLT
+k5NTM1NDc0OCwtMTEzNTcyMDU0MF19
 -->
