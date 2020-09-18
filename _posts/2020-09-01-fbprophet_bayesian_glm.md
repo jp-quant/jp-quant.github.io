@@ -71,12 +71,12 @@ Without having to shed light much on the mathematical details of such simple, ye
 https://www.youtube.com/watch?v=R13BD8qKeTg&ab_channel=Veritasium
 
 
-I **highly encourage** checking them out even if you already know the formula, since it is not about just knowing how to use it, but when & why we are using it in our 
+I **highly encourage** checking them out even if you already know the formula, since it is not about just knowing how to use it, but when & why we are using it. 
 
   
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQ1NzMyMjQ4OSwtMTEzNTcyMDU0MF19
+eyJoaXN0b3J5IjpbLTk5NTM1NDc0OCwtMTEzNTcyMDU0MF19
 -->
