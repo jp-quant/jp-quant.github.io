@@ -107,16 +107,16 @@ Starting with the model's overarching formula:
 ### $$\boldsymbol{Y}(t) \sim [\boldsymbol{G}(t) \cdot(1 + \boldsymbol{S}_{m}(t)) +  \boldsymbol{S}_{a}(t)] \pm \boldsymbol{\epsilon}_{t}$$
 
 where, as **tensors**:
->$\boldsymbol{Y}$ = Observable to fit & predict
-> $\boldsymbol{G}$ = Trend/Growth
-> $\boldsymbol{S}_{m}$ = Multiplicative Seasonal Components
-> $\boldsymbol{S}_{a}$ = Additive Seasonal Components
-> $\boldsymbol{\epsilon}$ = Unknown Errors (set as  $\sigma$ of the observed by fbprophet)
+>$\boldsymbol{Y}$ = Observable to fit & predict (data of prediction target)
+> $\boldsymbol{G}$ = Trend/Growth of $\boldsymbol{Y}$
+> $\boldsymbol{S}_{m}$ = Multiplicative Seasonal Components of $\boldsymbol{Y}$
+> $\boldsymbol{S}_{a}$ = Additive Seasonal Components of $\boldsymbol{Y}$
+> $\boldsymbol{\epsilon}$ = Unknown Errors (set as  $\sigma$ of the observed by fbprophet) of $\boldsymbol{Y}$
 
 ---
-### Modeling Trend $\boldsymbol{G}$
+### Modeling Trend [$\boldsymbol{G}(t)$]
 ---
-Without worrying about their meanings at the moment, We first define **3 priors**:
+Without worrying about their meanings at the moment, we first define **3 priors**:
 $$ k \sim \mathcal{N}(0,\theta)$$
 
 $$ m \sim \mathcal{N}(0,\theta) $$
@@ -196,11 +196,11 @@ In addition, we primarily seek to elucidate the importance of our defined priors
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTMxMDEyMDYzMCwtNzI1MzQ4NTIxLDIwMz
-c4MTYwNDUsNjMxNTgxNDk5LC0xNDUyMjI0NTMzLDE1NDgxMDUx
-OCwtMTIwMDI2MTMzMCwxNDE1OTIxOTM0LDE5MTQxNDUwNjQsMj
-k3MzgxMjQ1LDYwMDEwNTExNCwtODY4NTAyNiwtNTYyMjQ2NjE0
-LC0xMjk4Nzg5MTI0LDQ4MjQxNDkyNCwxMTA2NDYwNDE1LDE3Mz
-A0Mjc3OTEsMTA5ODk5MzQ0MCwtMTY0MDU1NzgyNSwtOTk1MzU0
-NzQ4XX0=
+eyJoaXN0b3J5IjpbNDQ4MDQ4Mzg1LC03MjUzNDg1MjEsMjAzNz
+gxNjA0NSw2MzE1ODE0OTksLTE0NTIyMjQ1MzMsMTU0ODEwNTE4
+LC0xMjAwMjYxMzMwLDE0MTU5MjE5MzQsMTkxNDE0NTA2NCwyOT
+czODEyNDUsNjAwMTA1MTE0LC04Njg1MDI2LC01NjIyNDY2MTQs
+LTEyOTg3ODkxMjQsNDgyNDE0OTI0LDExMDY0NjA0MTUsMTczMD
+QyNzc5MSwxMDk4OTkzNDQwLC0xNjQwNTU3ODI1LC05OTUzNTQ3
+NDhdfQ==
 -->
