@@ -101,7 +101,7 @@ The main **philosophy** behind Bayesian Statistics is that:
 
 ### $$\boldsymbol{Y}(t) = \boldsymbol{G}(t) \cdot(1 + \boldsymbol{S}_{m}(t)) +  \boldsymbol{S}_{a}(t) + \boldsymbol{\epsilon}_{t}$$
 
-where:
+where all variables :
 >$\boldsymbol{Y}$ = Observed values to fit & predict
 > $\boldsymbol{G}$ = Trend (piece-wise, linear, logistics, or flat)
 > $\boldsymbol{S}_{m}$ = Multiplicative Seasonal Components
@@ -117,7 +117,7 @@ A)  Modeling Trend $\boldsymbol{G}$
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA4MzY5NTI5MCw0ODI0MTQ5MjQsMTEwNj
-Q2MDQxNSwxNzMwNDI3NzkxLDEwOTg5OTM0NDAsLTE2NDA1NTc4
-MjUsLTk5NTM1NDc0OCwtMTEzNTcyMDU0MF19
+eyJoaXN0b3J5IjpbLTEyOTg3ODkxMjQsNDgyNDE0OTI0LDExMD
+Y0NjA0MTUsMTczMDQyNzc5MSwxMDk4OTkzNDQwLC0xNjQwNTU3
+ODI1LC05OTUzNTQ3NDgsLTExMzU3MjA1NDBdfQ==
 -->
