@@ -134,13 +134,13 @@ We now explore their relative meanings & dimensions in our trend model:
 
 Lastly, notice how $\delta$ is a vector of $N$ dimensions, where such *integer* value $N$ is **also a hyper-parameter**, though not as important, for tuning, we also need to define one last component for trend, although this will NOT be a prior distribution but rather a **matrix $A$** called the **determining matrix**.
 
-For every given $\boldsymbol{t}$ as the **scaled time vector** (we will explain this more) of $T$ dimensional length, and $\delta$ of $N$ dimensional length, we compute a matrix $A$ with dimension $T$ x $N$ as:
+For every given $\boldsymbol{t}$ as the **scaled time vector** (we will explain this more) of $k$ dimensional length, and $\delta$ of $N$ dimensional length, we compute a matrix $A$ with dimension $T$ x $N$ as:
 
 $$A = \begin{bmatrix}
     t_{1} \geq s_1  & t_{1} \geq s_2  & \dots  & t_{1} \geq s_n \\
     t_{2} \geq s_1  & t_{2} \geq s_2  & \dots  & t_{2} \geq s_n \\
     \vdots       & \vdots       & \ddots & \vdots      \\
-   t_{k} \geq s1  & t_{k} \geq s_2 & \dots  & t_{k} \geq s_n \end{bmatrix}=
+   t_{k} \geq s_1  & t_{k} \geq s_2 & \dots  & t_{k} \geq s_n \end{bmatrix}=
  \begin{bmatrix}
      1 \geq 2     & 1 \geq 5  & 1 \geq 8 \\
      2 \geq 2     & 2 \geq 5  & 2 \geq 8 \\
@@ -160,8 +160,8 @@ With the priors, fbprophet's model use them to calculate **3 types of trends**:
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg2ODUwMjYsLTU2MjI0NjYxNCwtMTI5OD
-c4OTEyNCw0ODI0MTQ5MjQsMTEwNjQ2MDQxNSwxNzMwNDI3Nzkx
-LDEwOTg5OTM0NDAsLTE2NDA1NTc4MjUsLTk5NTM1NDc0OCwtMT
-EzNTcyMDU0MF19
+eyJoaXN0b3J5IjpbMTAxODc0MzQ5NiwtODY4NTAyNiwtNTYyMj
+Q2NjE0LC0xMjk4Nzg5MTI0LDQ4MjQxNDkyNCwxMTA2NDYwNDE1
+LDE3MzA0Mjc3OTEsMTA5ODk5MzQ0MCwtMTY0MDU1NzgyNSwtOT
+k1MzU0NzQ4LC0xMTM1NzIwNTQwXX0=
 -->
