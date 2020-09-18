@@ -58,8 +58,10 @@ However this is **not generally true when tackling problems from real-world data
 In short, a generalized linear model covers all possible ways of how different distributions of difference factors can "hierarchically" impact the defined distribution of the observed. This allows us to tackle complex time-series problems, especially ones that exhibit non-linearity, while not having to worry about data stationarity that classical models, such as ARIMA, heavily rely on.
 
 
+---
+## 2. Going Bayesian
 
- hence the Bayesian approach, built from the amazing yet simple **Baye's Theorem**:
+All Bayesian techniques & implementations in modern days, even in machine learning neural networks, **Baye's Theorem**:
 
   
 
@@ -70,5 +72,5 @@ $$ P(A \mid B) = \frac{P(A) P(B \mid A)}{P(B)}$$
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTY5MzQyNDQwXX0=
+eyJoaXN0b3J5IjpbOTg4NDI1NTkzXX0=
 -->
