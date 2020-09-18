@@ -125,10 +125,11 @@ $$\sigma_g = 5$$
 
 $$\tau = 0.05$$
 
-The effect of priors' scaling values will be demonstrated in our work.
+The effect of priors' scaling values will be demonstrated in our work later on, as well as an extended creative idea on defining scales as priors themselves, although for now, we stick with them being as default constants.
+
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5OTA0MjA5MTAsLTU2MjI0NjYxNCwtMT
+eyJoaXN0b3J5IjpbLTE3NzQ1NzU0NzAsLTU2MjI0NjYxNCwtMT
 I5ODc4OTEyNCw0ODI0MTQ5MjQsMTEwNjQ2MDQxNSwxNzMwNDI3
 NzkxLDEwOTg5OTM0NDAsLTE2NDA1NTc4MjUsLTk5NTM1NDc0OC
 wtMTEzNTcyMDU0MF19
