@@ -138,9 +138,10 @@ For every given $\boldsymbol{t}$ as the **time vector as integers or floats** (s
 
 $$\boldsymbol{t} =\begin{bmatrix} t_1 & t_2  &\cdots  & t_k \end{bmatrix}$$
 
-and $\delta$ of $N$ dimensional length, representing $N$ amount of changepoints occurring in $\boldsymbol{t}$, we subsequently compute those changepoints as N values of $\boldsymbol{t}$, as tensor $\boldsymbol{s}$ of N-dimensional as well:
+and $\delta$ of $N$ dimensional length, representing $N$ amount of changepoints occurring in $\boldsymbol{t}$, we subsequently compute those changepoints as N values of $\boldsymbol{t}$, as tensor $\boldsymbol{s}$, being N-dimensional as well:
 
 $$\boldsymbol{s} =\begin{bmatrix} s_1 & s_2  &\cdots  & s_n \end{bmatrix}$$
+where $s_i \in \boldsymbol{t}$
 
 
  we compute a matrix $A$ with dimension $T$ x $N$ , with **boolean entries as binary integers** (1 = True, 0 = False), as:
@@ -160,10 +161,10 @@ Now, with all the defined components to determine the trend $\boldsymbol{G}$ ten
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDQ1NzM4NTMyLC0xMjAwMjYxMzMwLDE0MT
-U5MjE5MzQsMTkxNDE0NTA2NCwyOTczODEyNDUsNjAwMTA1MTE0
-LC04Njg1MDI2LC01NjIyNDY2MTQsLTEyOTg3ODkxMjQsNDgyND
-E0OTI0LDExMDY0NjA0MTUsMTczMDQyNzc5MSwxMDk4OTkzNDQw
-LC0xNjQwNTU3ODI1LC05OTUzNTQ3NDgsLTExMzU3MjA1NDBdfQ
-==
+eyJoaXN0b3J5IjpbMTY5MzQ2OTkwOCwtMTIwMDI2MTMzMCwxND
+E1OTIxOTM0LDE5MTQxNDUwNjQsMjk3MzgxMjQ1LDYwMDEwNTEx
+NCwtODY4NTAyNiwtNTYyMjQ2NjE0LC0xMjk4Nzg5MTI0LDQ4Mj
+QxNDkyNCwxMTA2NDYwNDE1LDE3MzA0Mjc3OTEsMTA5ODk5MzQ0
+MCwtMTY0MDU1NzgyNSwtOTk1MzU0NzQ4LC0xMTM1NzIwNTQwXX
+0=
 -->
