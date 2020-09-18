@@ -118,9 +118,11 @@ $$ m \sim \mathcal{N}(0,\sigma_{g}) $$
 
 $$\delta \sim Laplace(0,\tau)$$
 
+where $\sigma_{g}$ and $\tau$ being the **scales** of such defined priors' distributions. This is viewed as 
+
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTYyMDM5MTAxMCwtNTYyMjQ2NjE0LC0xMj
+eyJoaXN0b3J5IjpbLTQ3NTU0NTk5OCwtNTYyMjQ2NjE0LC0xMj
 k4Nzg5MTI0LDQ4MjQxNDkyNCwxMTA2NDYwNDE1LDE3MzA0Mjc3
 OTEsMTA5ODk5MzQ0MCwtMTY0MDU1NzgyNSwtOTk1MzU0NzQ4LC
 0xMTM1NzIwNTQwXX0=
