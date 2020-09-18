@@ -1,3 +1,4 @@
+
 In the recent years, Facebook released an open-source tool for Python & R, called [fbprophet](https://facebook.github.io/prophet/), allowing scientists & developers to not just tackle the complexity & non-linearity in time-series analysis, but also allow for a robust regression model-building process, to forecast any time-series data while accounting for *uncertainty* in every defined variables (priors & posteriors) of any built models.
 
  
@@ -11,8 +12,6 @@ As an attempt of mine to explain the model in more applicable details, and alter
 3. Break down the mathematics of FBProphet. 
 4. Build our own version in Python with additional flexibility & creative concepts added, utilizing *PyMC3* instead of *Stan* (like fbprophet does) as backend sampler (since I am not yet super fluent in Stan by the time I write this post).
  
----
-#-------| Let's Begin |------------------------------------#
 
 ---
 
@@ -148,17 +147,15 @@ $$ \boldsymbol{t}, \boldsymbol{s}, A,\gamma$$
 > For every given $\boldsymbol{t}$ as the **time vector as integers or
 floats** (scaled) (we will explain this more in our demonstrative
 work) of $K$ dimensional length
-$$\boldsymbol{t} =\begin{bmatrix} t_1 & t_2  &\cdots  & t_k
-\end{bmatrix}$$
+> $$\boldsymbol{t} =\begin{bmatrix} t_1 & t_2  &\cdots  & t_k \end{bmatrix}$$
 and $\delta$ of $N$ dimensional length, representing $N$ amount of changepoints occurring in $\boldsymbol{t}$, we subsequently compute those N changepoint values from $\boldsymbol{t}$, as tensor $\boldsymbol{s}$, being N-dimensional as well, such that:
-For $i = 1,2,...N$, where $s_i \in \boldsymbol{t}$ and $N \leq K$, we define $$\boldsymbol{s} =\begin{bmatrix} s_1 & s_2  &\cdots  & s_n \end{bmatrix}$$
+For $i = 1,2,...N$, where $s_i \in \boldsymbol{t}$ and $N \leq K$, we define
+> $$\boldsymbol{s} =\begin{bmatrix} s_1 & s_2  &\cdots  & s_n \end{bmatrix}$$
 We then compute the matrix $A$ with dimension $T$ x $N$, with **boolean entries as binary integers** (1 = True, 0 = False), as:
-$$A_t = \begin{bmatrix}
-     t_{1} \geq s_1  & t_{1} \geq s_2  & \dots  & t_{1} \geq s_n \\
-     t_{2} \geq s_1  & t_{2} \geq s_2  & \dots  & t_{2} \geq s_n \\
-     \vdots       & \vdots       & \ddots & \vdots      \\    t_{k} \geq s_1  & t_{k} \geq s_2 & \dots  & t_{k} \geq s_n \end{bmatrix}  $$
+> $$A_t = \begin{bmatrix} t_{1} \geq s_1  & t_{1} \geq s_2  & \dots  & t_{1} \geq s_n \\ t_{2} \geq s_1  & t_{2} \geq s_2  & \dots  & t_{2} \geq s_n \\ \vdots & \vdots & \ddots & \vdots \\ t_{k} \geq s_1  & t_{k} \geq s_2 & \dots & t_{k} \geq s_n \end{bmatrix}$$
 Lastly, from $\delta$ as the **changepoints adjustment** for the **growth rate**, 
-We define a transformed variable $\gamma$ being the **changepoints adjustment** for the **growth offset**: $$\gamma = -s \delta$$
+We define a transformed variable $\gamma$ being the **changepoints adjustment** for the **growth offset**:
+> $$\gamma = -s \delta$$
 
 ---
 Now, with all the defined components to model our $\boldsymbol{G}(t)$, we proceed on using them to calculate **3 types of trends**:
@@ -181,14 +178,12 @@ In addition, we primarily seek to elucidate the importance of our defined priors
 
 ---
 
-
-
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI3NzA4MzEzMiwtNTE1NjU3NzE0LC03Mj
-UzNDg1MjEsMjAzNzgxNjA0NSw2MzE1ODE0OTksLTE0NTIyMjQ1
-MzMsMTU0ODEwNTE4LC0xMjAwMjYxMzMwLDE0MTU5MjE5MzQsMT
-kxNDE0NTA2NCwyOTczODEyNDUsNjAwMTA1MTE0LC04Njg1MDI2
-LC01NjIyNDY2MTQsLTEyOTg3ODkxMjQsNDgyNDE0OTI0LDExMD
-Y0NjA0MTUsMTczMDQyNzc5MSwxMDk4OTkzNDQwLC0xNjQwNTU3
-ODI1XX0=
+eyJoaXN0b3J5IjpbMTg2NTg0MTgwNiwtMjc3MDgzMTMyLC01MT
+U2NTc3MTQsLTcyNTM0ODUyMSwyMDM3ODE2MDQ1LDYzMTU4MTQ5
+OSwtMTQ1MjIyNDUzMywxNTQ4MTA1MTgsLTEyMDAyNjEzMzAsMT
+QxNTkyMTkzNCwxOTE0MTQ1MDY0LDI5NzM4MTI0NSw2MDAxMDUx
+MTQsLTg2ODUwMjYsLTU2MjI0NjYxNCwtMTI5ODc4OTEyNCw0OD
+I0MTQ5MjQsMTEwNjQ2MDQxNSwxNzMwNDI3NzkxLDEwOTg5OTM0
+NDBdfQ==
 -->
