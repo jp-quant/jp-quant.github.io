@@ -174,7 +174,7 @@ $$ \boldsymbol{t}, \boldsymbol{s}, A,\gamma$$
 > We define a transformed variable $\gamma$ being the **changepoints adjustment** for the **growth offset**: $$\gamma = -s \delta$$
 
 ---
-Now, with all the defined components to determine the trend $\boldsymbol{G}$ tensor, we will use them to calculate **3 types of trends**:
+Now, with all the defined components to model our $\boldsymbol{G}(t)$, we proceed on using them to calculate **3 types of trends**:
 
 **Linear Trend** (mainly used)
 > **$$ G(t) = (k + A_t \delta) \boldsymbol{t} + (m + A_t \gamma) $$**
@@ -196,11 +196,11 @@ In addition, we primarily seek to elucidate the importance of our defined priors
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA0NzAwNTcxMCwtNzI1MzQ4NTIxLDIwMz
-c4MTYwNDUsNjMxNTgxNDk5LC0xNDUyMjI0NTMzLDE1NDgxMDUx
-OCwtMTIwMDI2MTMzMCwxNDE1OTIxOTM0LDE5MTQxNDUwNjQsMj
-k3MzgxMjQ1LDYwMDEwNTExNCwtODY4NTAyNiwtNTYyMjQ2NjE0
-LC0xMjk4Nzg5MTI0LDQ4MjQxNDkyNCwxMTA2NDYwNDE1LDE3Mz
-A0Mjc3OTEsMTA5ODk5MzQ0MCwtMTY0MDU1NzgyNSwtOTk1MzU0
-NzQ4XX0=
+eyJoaXN0b3J5IjpbLTIwMzAxNzQxNjAsLTcyNTM0ODUyMSwyMD
+M3ODE2MDQ1LDYzMTU4MTQ5OSwtMTQ1MjIyNDUzMywxNTQ4MTA1
+MTgsLTEyMDAyNjEzMzAsMTQxNTkyMTkzNCwxOTE0MTQ1MDY0LD
+I5NzM4MTI0NSw2MDAxMDUxMTQsLTg2ODUwMjYsLTU2MjI0NjYx
+NCwtMTI5ODc4OTEyNCw0ODI0MTQ5MjQsMTEwNjQ2MDQxNSwxNz
+MwNDI3NzkxLDEwOTg5OTM0NDAsLTE2NDA1NTc4MjUsLTk5NTM1
+NDc0OF19
 -->
