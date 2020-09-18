@@ -170,12 +170,12 @@ Now, with all the defined components to determine the trend $\boldsymbol{G}$ ten
 > **$$ G = (k + A \delta) \odot \vec{t} + (m + A \gamma) $$**
 
 **Logistic Trend** (like sigmoid)
-> $$G = \frac{C}{1 + exp{[-(k + A^{\top} \delta) \cdot}}$$
+> $$G = \frac{C}{1 + exp[-(k + A^{\top} \delta) \cdot (t - (m + A^{\top} \gamma))]}$$
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTYzMDM0ODg4NywyMDM3ODE2MDQ1LDYzMT
+eyJoaXN0b3J5IjpbLTcwOTczMDU2NCwyMDM3ODE2MDQ1LDYzMT
 U4MTQ5OSwtMTQ1MjIyNDUzMywxNTQ4MTA1MTgsLTEyMDAyNjEz
 MzAsMTQxNTkyMTkzNCwxOTE0MTQ1MDY0LDI5NzM4MTI0NSw2MD
 AxMDUxMTQsLTg2ODUwMjYsLTU2MjI0NjYxNCwtMTI5ODc4OTEy
