@@ -153,6 +153,8 @@ $$A = \begin{bmatrix}
    t_{k} \geq s_1  & t_{k} \geq s_2 & \dots  & t_{k} \geq s_n \end{bmatrix}
  $$
 
+In addition, we also will define another 
+
 Now, with all the defined components to determine the trend $\boldsymbol{G}$ tensor, fbprophet's model use them to calculate **3 types of trends**:
 
 > **Linear Trend**
@@ -161,7 +163,7 @@ Now, with all the defined components to determine the trend $\boldsymbol{G}$ ten
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA2NzcwOTMwMSwtMTIwMDI2MTMzMCwxND
+eyJoaXN0b3J5IjpbLTIzMzE0NDYwNywtMTIwMDI2MTMzMCwxND
 E1OTIxOTM0LDE5MTQxNDUwNjQsMjk3MzgxMjQ1LDYwMDEwNTEx
 NCwtODY4NTAyNiwtNTYyMjQ2NjE0LC0xMjk4Nzg5MTI0LDQ4Mj
 QxNDkyNCwxMTA2NDYwNDE1LDE3MzA0Mjc3OTEsMTA5ODk5MzQ0
