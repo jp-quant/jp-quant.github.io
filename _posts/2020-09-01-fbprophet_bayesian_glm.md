@@ -102,13 +102,11 @@ The main **philosophy** behind Bayesian Statistics is that:
 ### $$\boldsymbol{Y}(t) \sim [\boldsymbol{G}(t) \cdot(1 + \boldsymbol{S}_{m}(t)) +  \boldsymbol{S}_{a}(t)] \pm \boldsymbol{\epsilon}_{t}$$
 
 where, all as **tensors**  :
->$\boldsymbol{Y}$ = Observed values to fit & predict
-> $\boldsymbol{G}$ = Trend (piece-wise, linear, logistics, or flat)
+>$\boldsymbol{Y}$ = Observed to fit & predict
+> $\boldsymbol{G}$ = Trend/Growth
 > $\boldsymbol{S}_{m}$ = Multiplicative Seasonal Components
 > $\boldsymbol{S}_{a}$ = Additive Seasonal Components
 > $\boldsymbol{\epsilon}$ = Unknown Errors (e.g.:  $\sigma$ of the observed)
-
-
 
 ---
 A)  Modeling Trend $\boldsymbol{G}$
@@ -118,7 +116,7 @@ A)  Modeling Trend $\boldsymbol{G}$
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MDM4NzY0OTMsLTU2MjI0NjYxNCwtMT
+eyJoaXN0b3J5IjpbLTE4MjU4NDE0NjksLTU2MjI0NjYxNCwtMT
 I5ODc4OTEyNCw0ODI0MTQ5MjQsMTEwNjQ2MDQxNSwxNzMwNDI3
 NzkxLDEwOTg5OTM0NDAsLTE2NDA1NTc4MjUsLTk5NTM1NDc0OC
 wtMTEzNTcyMDU0MF19
