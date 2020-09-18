@@ -20,7 +20,7 @@ However, the main difference between a regular ordinary linear regression model 
 
   
 
-The intuition, as I summarize below, is best explained through this Wiki [page](https://en.wikipedia.org/wiki/Generalized_linear_model#Maximum_likelihood  "Wikipedia page"):
+The intuition, as I summarize below, is best explained from [Wikipedia](https://en.wikipedia.org/wiki/Generalized_linear_model#Maximum_likelihood  "Wikipedia page"):
 
   
 
@@ -65,5 +65,5 @@ $$ P(A \mid B) = \frac{P(A) P(B \mid A)}{P(B)}$$
 This allows us to tackle complex time-series problems, especially ones that exhibit non-linearity, while not having to worry about data stationarity that classical models, such as ARIMA, heavily rely on.
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTAwODYyNzk0XX0=
+eyJoaXN0b3J5IjpbLTIwNTkyOTQ1MDFdfQ==
 -->
