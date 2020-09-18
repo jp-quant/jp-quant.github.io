@@ -100,7 +100,9 @@ The main **philosophy** behind Bayesian Statistics is that:
 
 ---
 ## 3. The Mathematics behind FBProphet
+
 > **Disclosure**: The content below is somewhat a detailed summary, or rather a concise alternative explanation based on my personal understanding of fbprophet's GLM. If you want to check out the original published paper, click [here](https://peerj.com/preprints/3190/).
+
 ---
 Starting with the model's overarching formula:
 
@@ -144,8 +146,8 @@ Before finalizing our trend model, we also need to define a couple last componen
 $$ \boldsymbol{t}, \boldsymbol{s}, A,\gamma$$
 
 > For every given $\boldsymbol{t}$ as the **time vector as integers or
-> floats** (scaled) (we will explain this more in our demonstrative
-> work) of $K$ dimensional length
+floats** (scaled) (we will explain this more in our demonstrative
+work) of $K$ dimensional length
 > 
 > $$\boldsymbol{t} =\begin{bmatrix} t_1 & t_2  &\cdots  & t_k
 > \end{bmatrix}$$
@@ -197,11 +199,11 @@ In addition, we primarily seek to elucidate the importance of our defined priors
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTUxNTY1NzcxNCwtNzI1MzQ4NTIxLDIwMz
-c4MTYwNDUsNjMxNTgxNDk5LC0xNDUyMjI0NTMzLDE1NDgxMDUx
-OCwtMTIwMDI2MTMzMCwxNDE1OTIxOTM0LDE5MTQxNDUwNjQsMj
-k3MzgxMjQ1LDYwMDEwNTExNCwtODY4NTAyNiwtNTYyMjQ2NjE0
-LC0xMjk4Nzg5MTI0LDQ4MjQxNDkyNCwxMTA2NDYwNDE1LDE3Mz
-A0Mjc3OTEsMTA5ODk5MzQ0MCwtMTY0MDU1NzgyNSwtOTk1MzU0
-NzQ4XX0=
+eyJoaXN0b3J5IjpbOTQ2NzE2OTA2LC01MTU2NTc3MTQsLTcyNT
+M0ODUyMSwyMDM3ODE2MDQ1LDYzMTU4MTQ5OSwtMTQ1MjIyNDUz
+MywxNTQ4MTA1MTgsLTEyMDAyNjEzMzAsMTQxNTkyMTkzNCwxOT
+E0MTQ1MDY0LDI5NzM4MTI0NSw2MDAxMDUxMTQsLTg2ODUwMjYs
+LTU2MjI0NjYxNCwtMTI5ODc4OTEyNCw0ODI0MTQ5MjQsMTEwNj
+Q2MDQxNSwxNzMwNDI3NzkxLDEwOTg5OTM0NDAsLTE2NDA1NTc4
+MjVdfQ==
 -->
