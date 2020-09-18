@@ -146,8 +146,8 @@ Given such array $$D$$ containing $$N$$ amount of timestamp instances,
 $$D = \begin{bmatrix} d_1 & d_2  &\cdots  & d_n \end{bmatrix}$$
 
 Algorithmically speaking (summarized):
-- When fitting, we perform standardization on such array $$D$$, view as $$D_fit$$, to obtain $$\boldsymbol{t}$$ as a numeric array of values between (0,1), such that $$\boldsymbol{t} = \frac{D - min(D)}{max(D) - min(D)}$$. Notice how such transformation cancels out our units and left us with purely numeric values, while capturing information of the timeframe we are working with.
-- When predicting, we use the fitted $$min(D)$$ & $$max(D)$$ values, aka the $$min(D_fit)$$ & $$max(D_fit)$$ above, to perform the exact same scaling procedure on any given array $$D$$, to which in predictive context viewed as $$D_pred$$. The resulted $$\boldsymbol{t}$$ values that are out of bound (0,1) represents stamps before (<0) or after (>1) the timeframe of data we fitted (the priors of our model on). 
+- When fitting, we perform standardization on such array $$D$$, view as $$D_{fit}$$, to obtain $$\boldsymbol{t}$$ as a numeric array of values between (0,1), such that $$\boldsymbol{t} = \frac{D - min(D)}{max(D) - min(D)}$$. Notice how such transformation cancels out our units and left us with purely numeric values, while capturing information of the timeframe we are working with.
+- When predicting, we use the fitted $$min(D)$$ & $$max(D)$$ values, aka the $$min(D_{fit})$$ & $$max(D_{fit})$$ above, to perform the exact same scaling procedure on any given array $$D$$, to which in predictive context viewed as $$D_{pred}$$. The resulted $$\boldsymbol{t}$$ values that are out of bound (0,1) represents stamps before (<0) or after (>1) the timeframe of data we fitted (the priors of our model on). 
 
 ---
 ### Modeling Trend [$$\boldsymbol{G}(t)$$]
