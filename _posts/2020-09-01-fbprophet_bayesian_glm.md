@@ -61,10 +61,7 @@ In short, a generalized linear model covers all possible ways of how different d
 ---
 ## 2. Going Bayesian
 
-All Bayesian techniques & implementations in modern days, even in machine learning neural networks, **Baye's Theorem**:
-
-  
-
+All Bayesian techniques & implementations in modern days, even in machine learning neural networks, are built from the foundational statistical formula  called **Baye's Theorem**:
 $$ P(A \mid B) = \frac{P(A) P(B \mid A)}{P(B)}$$
 
   
@@ -72,5 +69,5 @@ $$ P(A \mid B) = \frac{P(A) P(B \mid A)}{P(B)}$$
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTg4NDI1NTkzXX0=
+eyJoaXN0b3J5IjpbMTU3MzIxMzM2Nl19
 -->
