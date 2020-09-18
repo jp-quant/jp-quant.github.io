@@ -175,12 +175,12 @@ Now, with all the defined components to determine the trend $\boldsymbol{G}$ ten
 
 **Flat Trend** (for simplicity)
 > $$G(t) = m \vec{\boldsymbol{1}}$$
-> No changepoints incorporated with purely a constant linear trend value as prior $m$ or $k$ with defined distribution $\mathcal{N}(0,\theta)$, or $\mathcal{N}(0,5)$ by default. 
+> No changepoints incorporated with purely a constant linear trend value as prior $m$ (or $k$) with defined distribution $\mathcal{N}(0,\theta)$, or $\mathcal{N}(0,5)$ by default. 
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA0Nzk3Mjc1OCwyMDM3ODE2MDQ1LDYzMT
+eyJoaXN0b3J5IjpbLTcyNTM0ODUyMSwyMDM3ODE2MDQ1LDYzMT
 U4MTQ5OSwtMTQ1MjIyNDUzMywxNTQ4MTA1MTgsLTEyMDAyNjEz
 MzAsMTQxNTkyMTkzNCwxOTE0MTQ1MDY0LDI5NzM4MTI0NSw2MD
 AxMDUxMTQsLTg2ODUwMjYsLTU2MjI0NjYxNCwtMTI5ODc4OTEy
