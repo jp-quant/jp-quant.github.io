@@ -77,10 +77,10 @@ Though I can spend time writing in details on the applications of such simple, y
 
 > - [**Bayes Theorem**](https://www.youtube.com/watch?v=HZGCoVF3YvM&t=528s&ab_channel=3Blue1Brown) *by 3Blue1Brown*
 > - [**The Bayesian Trap**](https://www.youtube.com/watch?v=R13BD8qKeTg&ab_channel=Veritasium) *by Veritasium*
-> - [**Demystifying Bayesian Deep Learning**] [Extra] (https://www.youtube.com/watch?v=s0S6HFdPtlA&t=906s&ab_channel=PyData) by Eric J. Ma (PyData)*
+> - [**Demystifying Bayesian Deep Learning**](https://www.youtube.com/watch?v=s0S6HFdPtlA&t=906s&ab_channel=PyData) [Extra] by Eric J. Ma (PyData)*
 
 ---
-Recalling from above:
+Let's start by recalling the brief explanation about GLM from above:
 > **Generalized Linear Models** allows for response variables that have arbitrary distributions, and for an arbitrary function of the response variable to vary linearly with the predicted values (rather than assuming that the response itself must vary linearly)
 
 Shortly put in details, implementation of Bayesian Statistics on time-series GLM is powerful due to:
@@ -196,7 +196,7 @@ In addition, we primarily seek to elucidate the importance of our defined priors
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODIzNzE0MDc3LC03MjUzNDg1MjEsMjAzNz
+eyJoaXN0b3J5IjpbNzY5MzQ2MjA0LC03MjUzNDg1MjEsMjAzNz
 gxNjA0NSw2MzE1ODE0OTksLTE0NTIyMjQ1MzMsMTU0ODEwNTE4
 LC0xMjAwMjYxMzMwLDE0MTU5MjE5MzQsMTkxNDE0NTA2NCwyOT
 czODEyNDUsNjAwMTA1MTE0LC04Njg1MDI2LC01NjIyNDY2MTQs
