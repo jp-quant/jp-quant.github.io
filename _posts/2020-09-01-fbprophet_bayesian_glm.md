@@ -152,15 +152,18 @@ $$A = \begin{bmatrix}
    t_{k} \geq s_1  & t_{k} \geq s_2 & \dots  & t_{k} \geq s_n \end{bmatrix}
  $$
 
-Now, with all the defined components to determine the trend $\boldsymbol{G}$ fbprophet's model use them to calculate **3 types of trends**:
+Now, with all the defined components to determine the trend $\boldsymbol{G}$ tensor, fbprophet's model use them to calculate **3 types of trends**:
+
+> **Linear Trend**
+> $$ \vec{G} = (k + A \vec{\delta}) \odot \vec{t} + (m + A \vec{\gamma}) $$
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3NDUzNjE5MTEsLTEyMDAyNjEzMzAsMT
-QxNTkyMTkzNCwxOTE0MTQ1MDY0LDI5NzM4MTI0NSw2MDAxMDUx
-MTQsLTg2ODUwMjYsLTU2MjI0NjYxNCwtMTI5ODc4OTEyNCw0OD
-I0MTQ5MjQsMTEwNjQ2MDQxNSwxNzMwNDI3NzkxLDEwOTg5OTM0
-NDAsLTE2NDA1NTc4MjUsLTk5NTM1NDc0OCwtMTEzNTcyMDU0MF
-19
+eyJoaXN0b3J5IjpbMTgzNDg3OTU5NCwtMTIwMDI2MTMzMCwxND
+E1OTIxOTM0LDE5MTQxNDUwNjQsMjk3MzgxMjQ1LDYwMDEwNTEx
+NCwtODY4NTAyNiwtNTYyMjQ2NjE0LC0xMjk4Nzg5MTI0LDQ4Mj
+QxNDkyNCwxMTA2NDYwNDE1LDE3MzA0Mjc3OTEsMTA5ODk5MzQ0
+MCwtMTY0MDU1NzgyNSwtOTk1MzU0NzQ4LC0xMTM1NzIwNTQwXX
+0=
 -->
