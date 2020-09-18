@@ -87,6 +87,8 @@ Shortly put in details, implementation of Bayesian Statistics on time-series GLM
     priors variables to the observable, to which such observed values
     being predicted values, **also defined as a distribution.**
 
+We will demonstrate this understanding 
+
   
 
   
@@ -94,7 +96,7 @@ Shortly put in details, implementation of Bayesian Statistics on time-series GLM
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTEwNjQ2MDQxNSwxNzMwNDI3NzkxLDEwOT
-g5OTM0NDAsLTE2NDA1NTc4MjUsLTk5NTM1NDc0OCwtMTEzNTcy
-MDU0MF19
+eyJoaXN0b3J5IjpbMTM1NDEwMDk3NSwxMTA2NDYwNDE1LDE3Mz
+A0Mjc3OTEsMTA5ODk5MzQ0MCwtMTY0MDU1NzgyNSwtOTk1MzU0
+NzQ4LC0xMTM1NzIwNTQwXX0=
 -->
