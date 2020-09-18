@@ -179,10 +179,12 @@ Now, with all the defined components to model our $$\boldsymbol{G}(t)$$, we proc
 
 **Logistic Trend** (Non-Linear & Saturating Growth Applications)
 > $$G(t) = \frac{C(t)}{1 + exp[-(k + A_{t} \delta)(\boldsymbol{t} - (m + A_{t} \gamma))]}$$
-> where $$C =$$ cap/maximum value for logistic convergence. This can be given or include in our model to fit.
+
+> Where $$C =$$ cap/maximum value for logistic convergence. This can be given or include in our model to fit.
 
 **Flat Trend** (for simplicity)
 > $$G(t) = m \vec{\boldsymbol{1}}$$
+
 > No changepoints incorporated with purely a constant linear trend value as prior $$m$$ (or $$k$$) with defined distribution $$\mathcal{N}(0,\theta)$$, or $$\mathcal{N}(0,5)$$ by default. 
 
 ---
@@ -191,6 +193,12 @@ Following with our technical demonstrative work below, we will only showcase the
 In addition, we primarily seek to elucidate the importance of our defined priors & their transformed variables, the roles they play thus how, together, they construct our trend model as a component in the overarching GLM.
 
 ---
+
+```python
+%matplotlib inline
+import matplotlib.pyplot as plt
+import numpy as np
+```
 
 ```python
 # GIVEN & ASSIGNED
