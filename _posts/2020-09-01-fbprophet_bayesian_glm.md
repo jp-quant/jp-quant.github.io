@@ -87,13 +87,13 @@ Shortly put in details, implementation of Bayesian Statistics on time-series GLM
 
 1. The ability for us to define **priors** (initial beliefs) as *any distributions* $P(A), P(B),...$, whereas such priors $A, B, ...$ are variables/features that can be as abstract or realistic as we want.
 
-2. We can formulate complex functions (link functions), as $f(A,B,...)$ with defined priors variables $A,B,...$ to the **posteriors**, being the observed, to which such observed values modeled as either a factor of predicted values, or predicted values themselves, *are also defined as a distribution.*
+2. We can formulate functions (link functions), as $f(A,B,...)$ with defined priors variables $A,B,...$, as transformed variables, to define the **posteriors**, being the observed, to which such observed values modeled as either a factor of predicted values, or predicted values themselves, *are also defined as a distribution.*
 
 3. We can then update such priors with the arrival of new observed data, using Bayes' Theorem, specifically the concept of *conditional probability* $P(Observed \mid X)$ *(where $X$ being a conditioned variable, either as a prior or a function of a group of priors)*
 
 We will demonstrate these implementations in the upcoming sections.
 To summarize:
-- The **observable is the unknown** posterior, to which **dependent conditionally on the defined priors** beliefs, to which such **priors are updated to "fit" the observable** when new observable data arrive
+- The **observable is the unknown** posterior, to which **dependent conditionally on the defined priors** beliefs, to which such **priors are updated to "fit" the observable** when new observable data arrive throughout time (henc
 
 The main **philosophy** behind Bayesian Statistics is that:
 > Our understanding of the **reality** we are trying to model through time, to predict its future values, **is never static & objective, but rather dynamic & conditional**. Going Bayesian means we are accepting that **we will never know the full picture of reality completely, and that we can only infer from the data of such reality we collected so far to forecast its future values with compounded uncertainty**, as per defining all of the parameters & functions of our entire model as distributions.
@@ -196,11 +196,11 @@ In addition, we primarily seek to elucidate the importance of our defined priors
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzY5MzQ2MjA0LC03MjUzNDg1MjEsMjAzNz
-gxNjA0NSw2MzE1ODE0OTksLTE0NTIyMjQ1MzMsMTU0ODEwNTE4
-LC0xMjAwMjYxMzMwLDE0MTU5MjE5MzQsMTkxNDE0NTA2NCwyOT
-czODEyNDUsNjAwMTA1MTE0LC04Njg1MDI2LC01NjIyNDY2MTQs
-LTEyOTg3ODkxMjQsNDgyNDE0OTI0LDExMDY0NjA0MTUsMTczMD
-QyNzc5MSwxMDk4OTkzNDQwLC0xNjQwNTU3ODI1LC05OTUzNTQ3
-NDhdfQ==
+eyJoaXN0b3J5IjpbLTk0MzQ2Nzg2NywtNzI1MzQ4NTIxLDIwMz
+c4MTYwNDUsNjMxNTgxNDk5LC0xNDUyMjI0NTMzLDE1NDgxMDUx
+OCwtMTIwMDI2MTMzMCwxNDE1OTIxOTM0LDE5MTQxNDUwNjQsMj
+k3MzgxMjQ1LDYwMDEwNTExNCwtODY4NTAyNiwtNTYyMjQ2NjE0
+LC0xMjk4Nzg5MTI0LDQ4MjQxNDkyNCwxMTA2NDYwNDE1LDE3Mz
+A0Mjc3OTEsMTA5ODk5MzQ0MCwtMTY0MDU1NzgyNSwtOTk1MzU0
+NzQ4XX0=
 -->
