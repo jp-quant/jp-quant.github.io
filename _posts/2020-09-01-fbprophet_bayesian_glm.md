@@ -11,7 +11,7 @@ In this post, we will:
 4. Build our own version in Python with additional flexibility & creative concepts added, utilizing **PyMC3** instead of *Stan* (like fbprophet does) as backend.
  
 ---
-## 1. Generalized Linear Models
+## 1. The Power of Generalized Linear Models
 Linearity is the foundational language that explains the totality of composition for any reality we are trying to model, as linear regression becomes the basis for the overarching factor-modeling technique in the modern data-driven world, especially neural network models in Machine Learning.
 
   
@@ -55,7 +55,9 @@ However this is **not generally true when tackling problems from real-world data
 
 ---
 
-In short, a generalized linear model covers all possible ways of how different distributions of difference factors can "hierarchically" impact the defined distribution of the observed, hence the Bayesian approach, built from the amazing yet simple **Baye's Theorem**:
+In short, a generalized linear model covers all possible ways of how different distributions of difference factors can "hierarchically" impact the defined distribution of the observed. This allows us to tackle complex time-series problems, especially ones that exhibit non-linearity, while not having to worry about data stationarity that classical models, such as ARIMA, heavily rely on.
+
+ hence the Bayesian approach, built from the amazing yet simple **Baye's Theorem**:
 
   
 
@@ -63,8 +65,8 @@ $$ P(A \mid B) = \frac{P(A) P(B \mid A)}{P(B)}$$
 
   
 
-This allows us to tackle complex time-series problems, especially ones that exhibit non-linearity, while not having to worry about data stationarity that classical models, such as ARIMA, heavily rely on.
+
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTcxMzk2NzldfQ==
+eyJoaXN0b3J5IjpbNzE2NjcwNDU4XX0=
 -->
