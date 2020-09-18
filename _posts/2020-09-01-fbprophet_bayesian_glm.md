@@ -99,9 +99,9 @@ The main **philosophy** behind Bayesian Statistics is that:
 ---
 ## 3. The Mathematics behind FBProphet
 
-### $$\boldsymbol{Y}(t) = \boldsymbol{G}(t) \cdot(1 + \boldsymbol{S}_{m}(t)) +  \boldsymbol{S}_{a}(t) + \boldsymbol{\epsilon}_{t}$$
+### $$\boldsymbol{Y}(t) \sim \boldsymbol{G}(t) \cdot(1 + \boldsymbol{S}_{m}(t)) +  \boldsymbol{S}_{a}(t) + \boldsymbol{\epsilon}_{t}$$
 
-where all variables :
+where, all as **tensors** :
 >$\boldsymbol{Y}$ = Observed values to fit & predict
 > $\boldsymbol{G}$ = Trend (piece-wise, linear, logistics, or flat)
 > $\boldsymbol{S}_{m}$ = Multiplicative Seasonal Components
@@ -118,8 +118,8 @@ A)  Modeling Trend $\boldsymbol{G}$
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU2MjI0NjYxNCwtMTI5ODc4OTEyNCw0OD
-I0MTQ5MjQsMTEwNjQ2MDQxNSwxNzMwNDI3NzkxLDEwOTg5OTM0
-NDAsLTE2NDA1NTc4MjUsLTk5NTM1NDc0OCwtMTEzNTcyMDU0MF
-19
+eyJoaXN0b3J5IjpbLTE4NDU2ODgyMjcsLTU2MjI0NjYxNCwtMT
+I5ODc4OTEyNCw0ODI0MTQ5MjQsMTEwNjQ2MDQxNSwxNzMwNDI3
+NzkxLDEwOTg5OTM0NDAsLTE2NDA1NTc4MjUsLTk5NTM1NDc0OC
+wtMTEzNTcyMDU0MF19
 -->
