@@ -187,8 +187,9 @@ Now, with all the defined components to model our $\boldsymbol{G}(t)$, we procee
 > $$G(t) = m \vec{\boldsymbol{1}}$$
 > No changepoints incorporated with purely a constant linear trend value as prior $m$ (or $k$) with defined distribution $\mathcal{N}(0,\theta)$, or $\mathcal{N}(0,5)$ by default. 
 
-
-Moving forward with our technical demonstrative work below, we will only showcase the effect of *Linear Trend*, as it's being the default & conventional approach in most cases.
+---
+***Remarks***:
+Following with our technical demonstrative work below, we will only showcase the effect of *Linear Trend*, as it's being the default & conventional approach in most cases.
 In addition, we primarily seek to elucidate the importance of our defined priors & their transformed variables, the roles they play thus how, together, they construct our trend model as a component in the overarching GLM.
 
 ---
@@ -196,11 +197,11 @@ In addition, we primarily seek to elucidate the importance of our defined priors
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMzAxNzQxNjAsLTcyNTM0ODUyMSwyMD
-M3ODE2MDQ1LDYzMTU4MTQ5OSwtMTQ1MjIyNDUzMywxNTQ4MTA1
-MTgsLTEyMDAyNjEzMzAsMTQxNTkyMTkzNCwxOTE0MTQ1MDY0LD
-I5NzM4MTI0NSw2MDAxMDUxMTQsLTg2ODUwMjYsLTU2MjI0NjYx
-NCwtMTI5ODc4OTEyNCw0ODI0MTQ5MjQsMTEwNjQ2MDQxNSwxNz
-MwNDI3NzkxLDEwOTg5OTM0NDAsLTE2NDA1NTc4MjUsLTk5NTM1
-NDc0OF19
+eyJoaXN0b3J5IjpbLTUxNTY1NzcxNCwtNzI1MzQ4NTIxLDIwMz
+c4MTYwNDUsNjMxNTgxNDk5LC0xNDUyMjI0NTMzLDE1NDgxMDUx
+OCwtMTIwMDI2MTMzMCwxNDE1OTIxOTM0LDE5MTQxNDUwNjQsMj
+k3MzgxMjQ1LDYwMDEwNTExNCwtODY4NTAyNiwtNTYyMjQ2NjE0
+LC0xMjk4Nzg5MTI0LDQ4MjQxNDkyNCwxMTA2NDYwNDE1LDE3Mz
+A0Mjc3OTEsMTA5ODk5MzQ0MCwtMTY0MDU1NzgyNSwtOTk1MzU0
+NzQ4XX0=
 -->
