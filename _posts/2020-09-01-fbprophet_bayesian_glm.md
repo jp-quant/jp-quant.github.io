@@ -10,10 +10,8 @@ In this post, we will:
 3. Break down the mathematics of FBProphet. 
 4. Build our own version in Python with additional flexibility & creative concepts added, utilizing **PyMC3** instead of *Stan* (like fbprophet does) as backend.
  
-
-
 ---
-## 1. Bayes' Theorem & Going Bayesian
+## 1. Ordinary 
 Linearity is the foundational language that explains the totality of composition for any reality we are trying to model, as linear regression becomes the basis for the overarching factor-modeling technique in the modern data-driven world, especially neural network models in Machine Learning.
 
   
@@ -67,5 +65,5 @@ $$ P(A \mid B) = \frac{P(A) P(B \mid A)}{P(B)}$$
 This allows us to tackle complex time-series problems, especially ones that exhibit non-linearity, while not having to worry about data stationarity that classical models, such as ARIMA, heavily rely on.
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwNjgyNTg4MjVdfQ==
+eyJoaXN0b3J5IjpbLTI1MTg3MTQwOF19
 -->
