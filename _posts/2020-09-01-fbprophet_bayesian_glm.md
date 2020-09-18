@@ -161,7 +161,7 @@ In addition, from $\delta$ as the **changepoints adjustment** for the **growth r
 $$\gamma = -s \delta$$
 
 ---
-Now, with all the defined components to determine the trend $\boldsymbol{G}$ tensor, fbprophet's model uses them to calculate **3 types of trends**:
+Now, with all the defined components to determine the trend $\boldsymbol{G}$ tensor, we will use them to calculate **3 types of trends**:
 
 #### Linear Trend
 > **$$ G = (k + A \delta) \odot \vec{t} + (m + A \gamma) $$**
@@ -172,10 +172,10 @@ Now, with all the defined components to determine the trend $\boldsymbol{G}$ ten
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMjk0OTYyMTEsLTE0NTIyMjQ1MzMsMT
-U0ODEwNTE4LC0xMjAwMjYxMzMwLDE0MTU5MjE5MzQsMTkxNDE0
-NTA2NCwyOTczODEyNDUsNjAwMTA1MTE0LC04Njg1MDI2LC01Nj
-IyNDY2MTQsLTEyOTg3ODkxMjQsNDgyNDE0OTI0LDExMDY0NjA0
-MTUsMTczMDQyNzc5MSwxMDk4OTkzNDQwLC0xNjQwNTU3ODI1LC
-05OTUzNTQ3NDgsLTExMzU3MjA1NDBdfQ==
+eyJoaXN0b3J5IjpbNjMxNTgxNDk5LC0xNDUyMjI0NTMzLDE1ND
+gxMDUxOCwtMTIwMDI2MTMzMCwxNDE1OTIxOTM0LDE5MTQxNDUw
+NjQsMjk3MzgxMjQ1LDYwMDEwNTExNCwtODY4NTAyNiwtNTYyMj
+Q2NjE0LC0xMjk4Nzg5MTI0LDQ4MjQxNDkyNCwxMTA2NDYwNDE1
+LDE3MzA0Mjc3OTEsMTA5ODk5MzQ0MCwtMTY0MDU1NzgyNSwtOT
+k1MzU0NzQ4LC0xMTM1NzIwNTQwXX0=
 -->
