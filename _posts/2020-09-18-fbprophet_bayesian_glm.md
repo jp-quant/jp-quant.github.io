@@ -124,9 +124,13 @@ Starting with the model's overarching formula:
 where, as **tensors**:
 
 >$$\boldsymbol{Y}$$ = Observable to fit & predict (data of prediction target)
+
 > $$\boldsymbol{G}$$ = Trend/Growth of $$\boldsymbol{Y}$$
+
 > $$\boldsymbol{S}_{m}$$ = Multiplicative Seasonal Components of $$\boldsymbol{Y}$$
+
 > $$\boldsymbol{S}_{a}$$ = Additive Seasonal Components of $$\boldsymbol{Y}$$
+
 > $$\boldsymbol{\epsilon}$$ = Unknown Errors (set as  $$\sigma$$ of the observed by fbprophet) of $$\boldsymbol{Y}$$
 
 ---
@@ -174,7 +178,7 @@ work) of $$K$$ dimensional length
 
 > $$\boldsymbol{s} =\begin{bmatrix} s_1 & s_2  &\cdots  & s_n \end{bmatrix}$$
 
-> We then compute the matrix $$A$$ with dimension $$T$$ x $$N$$, with **boolean entries as binary integers** (1 = True, 0 = False), as:
+> We then compute the matrix $$A$$ with dimension $$K$$ x $$N$$, with **boolean entries as binary integers** (1 = True, 0 = False), as:
 
 > $$A_t = \begin{bmatrix} t_{1} \geq s_1  & t_{1} \geq s_2  & \dots  & t_{1} \geq s_n \\ t_{2} \geq s_1  & t_{2} \geq s_2  & \dots  & t_{2} \geq s_n \\ \vdots & \vdots & \ddots & \vdots \\ t_{k} \geq s_1  & t_{k} \geq s_2 & \dots & t_{k} \geq s_n \end{bmatrix}$$
 
@@ -249,3 +253,5 @@ for t, f in zip(['Trend = Growth Rate + Growth Offset','Growth Rate', 'Growth Of
 ```
 
 <img src="https://jp-quant.github.io/images/glm_bayesian/demo_1.png">
+
+[MORE IN PROGRESS AS OF 9-18-2020]
