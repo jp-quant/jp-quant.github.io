@@ -116,7 +116,7 @@ where, as **tensors**:
 ---
 ### Modeling Trend [$\boldsymbol{G}(t)$]
 ---
-Without worrying about their meanings at the moment, we first define **3 priors**:
+Without worrying about their meanings at the moment, we first define **3 essential priors**:
 $$ k \sim \mathcal{N}(0,\theta)$$
 
 $$ m \sim \mathcal{N}(0,\theta) $$
@@ -137,7 +137,7 @@ We now explore their relative meanings & dimensions in our trend model:
 - $\boldsymbol{m}$ [*1-Dimensional*] = Growth Offset
 - $\boldsymbol{\delta}$ [*N-Dimensional*] = Growth Rate Changepoints Adjustments
 
-Notice how $\delta$ is an $N$ dimensional variable, where such *integer* value $N$ is also a hyper-parameter, though not as important as scales (as advised by FB), for tuning.
+Notice how while $k$ and $m$ are 1 dimensional, or simply as constants, $\delta$ is an $N$ dimensional variable, where such *integer* value $N$ is also a hyper-parameter, though not as important as scales (as advised by FB), for tuning.
 > Our $\delta$ here is somewhat similar to the commonly known concept in mathematics called *Dirac Delta* in differential equation, used to tackle problems with piece-wise regressions & step-functions. 
 
 Before finalizing our trend model, we also need to define a couple last components, although **these will NOT be as priors with distributions needed to be sampled for fit** but rather most of which are **transformed variables** as **calculation results using the defined priors** above. These are:
@@ -196,7 +196,7 @@ In addition, we primarily seek to elucidate the importance of our defined priors
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDQ4MDQ4Mzg1LC03MjUzNDg1MjEsMjAzNz
+eyJoaXN0b3J5IjpbNjI5MzUyODM3LC03MjUzNDg1MjEsMjAzNz
 gxNjA0NSw2MzE1ODE0OTksLTE0NTIyMjQ1MzMsMTU0ODEwNTE4
 LC0xMjAwMjYxMzMwLDE0MTU5MjE5MzQsMTkxNDE0NTA2NCwyOT
 czODEyNDUsNjAwMTA1MTE0LC04Njg1MDI2LC01NjIyNDY2MTQs
