@@ -132,7 +132,9 @@ We now explore their relative meanings & dimensions in our trend model:
 - $m$ [1-Dimensional] = Growth Offset
 - $\delta$ [n-Dimensional] = Growth Rate Changepoints Adjustments
 
-Lastly, notice how $\delta$ is a vector of $n$ dimensions, where such *integer* value $n$ is **also a hyperparameters**, though not as important, for tuning, we also need to define one last component for trend, although this will NOT be a prior distribution but rather a **matrix $A$** called the **determining matrix**:
+Lastly, notice how $\delta$ is a vector of $n$ dimensions, where such *integer* value $n$ is **also a hyper-parameter**, though not as important, for tuning, we also need to define one last component for trend, although this will NOT be a prior distribution but rather a **matrix $A$** called the **determining matrix**:
+
+- Given $t$ as the **scaled time vector** (we w
 
 
 With the priors, fbprophet's model use them to calculate **3 types of trends**:
@@ -140,8 +142,8 @@ With the priors, fbprophet's model use them to calculate **3 types of trends**:
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1ODk1NDIyNTksLTU2MjI0NjYxNCwtMT
-I5ODc4OTEyNCw0ODI0MTQ5MjQsMTEwNjQ2MDQxNSwxNzMwNDI3
-NzkxLDEwOTg5OTM0NDAsLTE2NDA1NTc4MjUsLTk5NTM1NDc0OC
-wtMTEzNTcyMDU0MF19
+eyJoaXN0b3J5IjpbMTQ1NTU4NzM0OSwtNTYyMjQ2NjE0LC0xMj
+k4Nzg5MTI0LDQ4MjQxNDkyNCwxMTA2NDYwNDE1LDE3MzA0Mjc3
+OTEsMTA5ODk5MzQ0MCwtMTY0MDU1NzgyNSwtOTk1MzU0NzQ4LC
+0xMTM1NzIwNTQwXX0=
 -->
