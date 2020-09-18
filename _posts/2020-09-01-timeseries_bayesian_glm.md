@@ -44,7 +44,7 @@ However this is **not generally true** for the observables when tackling real-wo
 
 ---
 
-In short, a generalized linear model covers all possible ways of how different distributions of difference factors can "hierarchichally" impact the defined distribution of the observed, hence the Bayesian approach, built from the amazing yet simple Baye's Theorem:
+In short, a generalized linear model covers all possible ways of how different distributions of difference factors can "hierarchically" impact the defined distribution of the observed, hence the Bayesian approach, built from the amazing yet simple **Baye's Theorem**:
 
   
 
@@ -52,7 +52,7 @@ $$ P(A \mid B) = \frac{P(A) P(B \mid A)}{P(B)}$$
 
   
 
-This allows us to model time-series data as complex as we can, while not having to worry about stationarity in data classical models, such as ARIMA, heavily rely on.
+This allows us to tackle complex time-series problems, especially ones that exhibit non-linearity, while not having to worry about stationarity in data classical models, such as ARIMA, heavily rely on.
 
   
 
@@ -76,5 +76,5 @@ In this post, we will:
 
 >3. Build our own version with additional flexibility & creative concepts added, utilizing *PyMC3* instead of *Stan* (like fbprophet does) as backend sampling
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTExMTg2MjgzOF19
+eyJoaXN0b3J5IjpbLTE3OTMzNTg1MDhdfQ==
 -->
