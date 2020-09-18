@@ -135,6 +135,7 @@ We now explore their relative meanings & dimensions in our trend model:
 - $\boldsymbol{\delta}$ [*N-Dimensional*] = Growth Rate Changepoints Adjustments
 
 Notice how $\delta$ is an $N$ dimensional variable, where such *integer* value $N$ is also a hyper-parameter, though not as important, for tuning.
+> The concept of $\delta$ is commonly known in mathematics as the 
 
 We also need to define a couple last components for trend, although **these will NOT be a prior distribution needed to be sampled for fit** but rather as **transformed variables** using priors defined, being:
 $$ \boldsymbol{t}, \boldsymbol{s}, A,\gamma$$
@@ -174,10 +175,11 @@ Now, with all the defined components to determine the trend $\boldsymbol{G}$ ten
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjAzNzgxNjA0NSw2MzE1ODE0OTksLTE0NT
-IyMjQ1MzMsMTU0ODEwNTE4LC0xMjAwMjYxMzMwLDE0MTU5MjE5
-MzQsMTkxNDE0NTA2NCwyOTczODEyNDUsNjAwMTA1MTE0LC04Nj
-g1MDI2LC01NjIyNDY2MTQsLTEyOTg3ODkxMjQsNDgyNDE0OTI0
-LDExMDY0NjA0MTUsMTczMDQyNzc5MSwxMDk4OTkzNDQwLC0xNj
-QwNTU3ODI1LC05OTUzNTQ3NDgsLTExMzU3MjA1NDBdfQ==
+eyJoaXN0b3J5IjpbOTMxODMzODA0LDIwMzc4MTYwNDUsNjMxNT
+gxNDk5LC0xNDUyMjI0NTMzLDE1NDgxMDUxOCwtMTIwMDI2MTMz
+MCwxNDE1OTIxOTM0LDE5MTQxNDUwNjQsMjk3MzgxMjQ1LDYwMD
+EwNTExNCwtODY4NTAyNiwtNTYyMjQ2NjE0LC0xMjk4Nzg5MTI0
+LDQ4MjQxNDkyNCwxMTA2NDYwNDE1LDE3MzA0Mjc3OTEsMTA5OD
+k5MzQ0MCwtMTY0MDU1NzgyNSwtOTk1MzU0NzQ4LC0xMTM1NzIw
+NTQwXX0=
 -->
