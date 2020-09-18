@@ -132,7 +132,7 @@ We now explore their relative meanings & dimensions in our trend model:
 - $\boldsymbol{m}$ [*1-Dimensional*] = Growth Offset
 - $\boldsymbol{\delta}$ [*N-Dimensional*] = Growth Rate Changepoints Adjustments
 
-Notice how $\delta$ is an $N$ dimensional variable, where such *integer* value $N$ is **also a hyper-parameter**, though not as important, for tuning, we also need to define one last pair of components for trend, although this will NOT be a prior distribution but rather a **matrix $A$** called the **determining matrix**, and **tensor $\boldsymbol{s}$** .
+Notice how $\delta$ is an $N$ dimensional variable, where such *integer* value $N$ is **also a hyper-parameter**, though not as important, for tuning, we also need to define one last pair of components for trend, although this will NOT be a prior distribution but rather a **matrix $A$** called the **determining matrix**, and **tensor $\boldsymbol{s}$** as our N changepoints in $\boldsymbol{t}$ given.
 
 For every given $\boldsymbol{t}$ as the **time vector as integers or floats** (scaled) (we will explain this more in our demonstration below) of $K$ dimensional length
 
@@ -160,7 +160,7 @@ Now, with all the defined components to determine the trend $\boldsymbol{G}$ ten
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTEwMjg2NjAwLC0xMjAwMjYxMzMwLDE0MT
+eyJoaXN0b3J5IjpbNDQ1NzM4NTMyLC0xMjAwMjYxMzMwLDE0MT
 U5MjE5MzQsMTkxNDE0NTA2NCwyOTczODEyNDUsNjAwMTA1MTE0
 LC04Njg1MDI2LC01NjIyNDY2MTQsLTEyOTg3ODkxMjQsNDgyND
 E0OTI0LDExMDY0NjA0MTUsMTczMDQyNzc5MSwxMDk4OTkzNDQw
