@@ -4,7 +4,7 @@ In the recent years, Facebook released an open-source tool for Python & R, calle
 After spending a couple weeks on my spare time reading Facebook's published [research paper](https://peerj.com/preprints/3190/) on fbprophet, conducted by PhD mathematicians, as well as breaking down the codes from their [open-source repository](https://github.com/facebook/prophet/tree/master/python) (Python), I was able to understand, in details, the mathematics & computational executions, thus built my own time-series forecaster with additional complexities added, utilizing their mathematical foundations.
 
 ---
-As an attempt to explain the model and In this post, we will:
+As an attempt of mine to explain the model in more applicable details, and alternatively recreate it with further implementations added, in this post, we will:
 
 1. Mathematically understand the difference between **Ordinary v.s. Generalized** Linear Models (GLM) & why we are using GLM to build time-series forecasters.
 2. Explore the concept of "going Bayesian" (Bayes' Theorem), the benefits from doing so & the extended philosophy behind it.
@@ -194,11 +194,11 @@ In addition, we primarily seek to elucidate the importance of our defined priors
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM2NTA2MDAzMiwtNzI1MzQ4NTIxLDIwMz
-c4MTYwNDUsNjMxNTgxNDk5LC0xNDUyMjI0NTMzLDE1NDgxMDUx
-OCwtMTIwMDI2MTMzMCwxNDE1OTIxOTM0LDE5MTQxNDUwNjQsMj
-k3MzgxMjQ1LDYwMDEwNTExNCwtODY4NTAyNiwtNTYyMjQ2NjE0
-LC0xMjk4Nzg5MTI0LDQ4MjQxNDkyNCwxMTA2NDYwNDE1LDE3Mz
-A0Mjc3OTEsMTA5ODk5MzQ0MCwtMTY0MDU1NzgyNSwtOTk1MzU0
-NzQ4XX0=
+eyJoaXN0b3J5IjpbLTE1NzI1Nzg1ODIsLTcyNTM0ODUyMSwyMD
+M3ODE2MDQ1LDYzMTU4MTQ5OSwtMTQ1MjIyNDUzMywxNTQ4MTA1
+MTgsLTEyMDAyNjEzMzAsMTQxNTkyMTkzNCwxOTE0MTQ1MDY0LD
+I5NzM4MTI0NSw2MDAxMDUxMTQsLTg2ODUwMjYsLTU2MjI0NjYx
+NCwtMTI5ODc4OTEyNCw0ODI0MTQ5MjQsMTEwNjQ2MDQxNSwxNz
+MwNDI3NzkxLDEwOTg5OTM0NDAsLTE2NDA1NTc4MjUsLTk5NTM1
+NDc0OF19
 -->
