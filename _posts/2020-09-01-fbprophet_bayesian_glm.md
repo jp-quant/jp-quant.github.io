@@ -34,11 +34,12 @@ $$Y = \sum \alpha_{i} X_{i}$$
 
   
 
-- This is **appropriate when the response variable can vary indefinitely in either direction**, thus when asked about the distribution of such predicted values, we only need $\mu$ and $\sigma$ to describe the symmetric property of its deviation.
+- This is **appropriate when the response variable can vary indefinitely in either direction**.
+- When asked about the distribution of such predicted values, we only need $\mu$ and $\sigma$ to describe the symmetric property of its deviation.
 
   
 
-However this is **not generally true** for the observables when tackling real-world problems. Most real-world data are *not* normally distributed on an absolute sense. For example (by Wiki):
+However this is **not generally true when tackling problems from real-world data**. Most real-world data are *not* normally distributed on an absolute sense. For example (by Wiki):
 
   
 
@@ -65,5 +66,5 @@ $$ P(A \mid B) = \frac{P(A) P(B \mid A)}{P(B)}$$
 This allows us to tackle complex time-series problems, especially ones that exhibit non-linearity, while not having to worry about data stationarity that classical models, such as ARIMA, heavily rely on.
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwNTkyOTQ1MDFdfQ==
+eyJoaXN0b3J5IjpbLTg2OTQ3ODcyXX0=
 -->
