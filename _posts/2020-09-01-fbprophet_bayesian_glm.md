@@ -141,28 +141,35 @@ Notice how $\delta$ is an $N$ dimensional variable, where such *integer* value $
 Before finalizing our trend model, we also need to define a couple last components, although **these will NOT be as priors with distributions needed to be sampled for fit** but rather most of which are **transformed variables** as **calculation results using the defined priors** above. These are:
 $$ \boldsymbol{t}, \boldsymbol{s}, A,\gamma$$
 
----
-For every given $\boldsymbol{t}$ as the **time vector as integers or floats** (scaled) (we will explain this more in our demonstrative work) of $K$ dimensional length
-
-$$\boldsymbol{t} =\begin{bmatrix} t_1 & t_2  &\cdots  & t_k \end{bmatrix}$$
-
-and $\delta$ of $N$ dimensional length, representing $N$ amount of changepoints occurring in $\boldsymbol{t}$, we subsequently compute those N changepoint values from $\boldsymbol{t}$, as tensor $\boldsymbol{s}$, being N-dimensional as well, such that:
-
-For $i = 1,2,...N$, where $s_i \in \boldsymbol{t}$ and $N \leq K$, we define
-$$\boldsymbol{s} =\begin{bmatrix} s_1 & s_2  &\cdots  & s_n \end{bmatrix}$$
-
-
-We then compute the matrix $A$ with dimension $T$ x $N$, with **boolean entries as binary integers** (1 = True, 0 = False), as:
-
-$$A_t = \begin{bmatrix}
-    t_{1} \geq s_1  & t_{1} \geq s_2  & \dots  & t_{1} \geq s_n \\
-    t_{2} \geq s_1  & t_{2} \geq s_2  & \dots  & t_{2} \geq s_n \\
-    \vdots       & \vdots       & \ddots & \vdots      \\
-   t_{k} \geq s_1  & t_{k} \geq s_2 & \dots  & t_{k} \geq s_n \end{bmatrix}
- $$
-
-In addition, from $\delta$ as the **changepoints adjustment** for the **growth rate**, we define a transformed variable $\gamma$ being the **changepoints adjustment** for the **growth offset**:
-$$\gamma = -s \delta$$
+> For every given $\boldsymbol{t}$ as the **time vector as integers or
+> floats** (scaled) (we will explain this more in our demonstrative
+> work) of $K$ dimensional length
+> 
+> $$\boldsymbol{t} =\begin{bmatrix} t_1 & t_2  &\cdots  & t_k
+> \end{bmatrix}$$
+> 
+> and $\delta$ of $N$ dimensional length, representing $N$ amount of
+> changepoints occurring in $\boldsymbol{t}$, we subsequently compute
+> those N changepoint values from $\boldsymbol{t}$, as tensor
+> $\boldsymbol{s}$, being N-dimensional as well, such that:
+> 
+> For $i = 1,2,...N$, where $s_i \in \boldsymbol{t}$ and $N \leq K$, we
+> define $$\boldsymbol{s} =\begin{bmatrix} s_1 & s_2  &\cdots  & s_n
+> \end{bmatrix}$$
+> 
+> 
+> We then compute the matrix $A$ with dimension $T$ x $N$, with
+> **boolean entries as binary integers** (1 = True, 0 = False), as:
+> 
+> $$A_t = \begin{bmatrix}
+>     t_{1} \geq s_1  & t_{1} \geq s_2  & \dots  & t_{1} \geq s_n \\
+>     t_{2} \geq s_1  & t_{2} \geq s_2  & \dots  & t_{2} \geq s_n \\
+>     \vdots       & \vdots       & \ddots & \vdots      \\    t_{k} \geq s_1  & t_{k} \geq s_2 & \dots  & t_{k} \geq s_n \end{bmatrix}  $$
+>
+>
+> Lastly, from $\delta$ as the **changepoints adjustment** for the
+> **growth rate**, 
+> we define a transformed variable $\gamma$ being the **changepoints adjustment** for the **growth offset**: $$\gamma = -s \delta$$
 
 ---
 Now, with all the defined components to determine the trend $\boldsymbol{G}$ tensor, we will use them to calculate **3 types of trends**:
@@ -186,7 +193,7 @@ Moving forward with our technical demonstrative work below, we will only showcas
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg0MTkzODc2NywtNzI1MzQ4NTIxLDIwMz
+eyJoaXN0b3J5IjpbMTE4MzkzNTczMCwtNzI1MzQ4NTIxLDIwMz
 c4MTYwNDUsNjMxNTgxNDk5LC0xNDUyMjI0NTMzLDE1NDgxMDUx
 OCwtMTIwMDI2MTMzMCwxNDE1OTIxOTM0LDE5MTQxNDUwNjQsMj
 k3MzgxMjQ1LDYwMDEwNTExNCwtODY4NTAyNiwtNTYyMjQ2NjE0
