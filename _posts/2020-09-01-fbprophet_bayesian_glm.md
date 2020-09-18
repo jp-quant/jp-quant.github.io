@@ -78,17 +78,23 @@ Recalling from above:
 
 Shortly put in details, implementation of Bayesian Statistics on time-series GLM is powerful due to:
 
-The ability for us to define *priors* (initial beliefs) as **any distributions** & update such priors with newer data, using Bayes' Theorem, specifically the concept of *conditional probability* $P(A \mid B)$
+ 1. The ability for us to define *priors* (initial beliefs) as **any
+    distributions** & update such priors with newer data, using Bayes'
+    Theorem, specifically the concept of *conditional probability* $P(A
+    \mid B)$
+    
+  2. We can formulate complex functions (link functions) with defined
+    priors variables to the observable, to which such observed values
+    being predicted values, **also defined as a distribution.**
 
-We can formulate complex functions (link functions) with defined priors variables to the observable, to which such observed values being predicted values, **also defined as a distribution.**
-
- such 
+  
 
   
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTczMDQyNzc5MSwxMDk4OTkzNDQwLC0xNj
-QwNTU3ODI1LC05OTUzNTQ3NDgsLTExMzU3MjA1NDBdfQ==
+eyJoaXN0b3J5IjpbMTEwNjQ2MDQxNSwxNzMwNDI3NzkxLDEwOT
+g5OTM0NDAsLTE2NDA1NTc4MjUsLTk5NTM1NDc0OCwtMTEzNTcy
+MDU0MF19
 -->
