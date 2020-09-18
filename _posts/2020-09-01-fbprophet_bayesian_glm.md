@@ -178,78 +178,14 @@ In addition, we primarily seek to elucidate the importance of our defined priors
 
 ---
 ```python
-# GIVEN & ASSIGNED
 
-t = np.arange(1000) #---| timesteps (though as integers for demonstration, this is scaled between (0,1) while fitting in fbprophet)
-
-n_changepoints =  10  #---| establish the amount of changepoints in our timesteps
-
-  
-
-# PRIORS
-
-k =  1  #---| fixed as constant for demonstration
-
-m =  5  #---| fixed as constant for demonstration
-
-delta = np.random.normal(size=n_changepoints) #----| Changepoints Adjustment for Growth Rate (k-term)
-
-  
-  
-
-# TRANSFORMED
-
-s = np.sort(np.random.choice(t, n_changepoints, replace=False)) #---| n_changepoints from such timesteps
-
-A = (t[:, None] > s) *  1  #---| Determining Matrix (*1 turns booleans into 1 & 0)
-
-gamma =  -s * delta #----| Changepoints Adjustment for Growth Offset (m-term)
-
-  
-  
-
-# FINALIZE
-
-growth = (k + np.dot(A,delta)) * t #---| Growth Rate (k-term)
-
-offset = m + np.dot(A,gamma) #---| Growth Offset (m-term)
-
-trend = growth + offset
-
-  
-
-# PLOT
-
-plt.figure(figsize=(16, 9))
-
-#----| 3 subplots indexing
-
-n =  310
-
-i =  0
-
-for t, f in  zip(['Trend = Growth Rate + Growth Offset','Growth Rate', 'Growth Offset'],
-
-[trend, growth, offset]):
-
-i +=  1
-
-plt.subplot(n + i)
-
-plt.title(t)
-
-plt.yticks([])
-
-plt.vlines(s, min(f), max(f), lw=0.75, linestyles='--')
-
-plt.plot(f)
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTgxNDQ4NzExMSwxODY1ODQxODA2LC0yNz
-cwODMxMzIsLTUxNTY1NzcxNCwtNzI1MzQ4NTIxLDIwMzc4MTYw
-NDUsNjMxNTgxNDk5LC0xNDUyMjI0NTMzLDE1NDgxMDUxOCwtMT
-IwMDI2MTMzMCwxNDE1OTIxOTM0LDE5MTQxNDUwNjQsMjk3Mzgx
-MjQ1LDYwMDEwNTExNCwtODY4NTAyNiwtNTYyMjQ2NjE0LC0xMj
-k4Nzg5MTI0LDQ4MjQxNDkyNCwxMTA2NDYwNDE1LDE3MzA0Mjc3
-OTFdfQ==
+eyJoaXN0b3J5IjpbLTE4NjY3NzkxMjIsMTg2NTg0MTgwNiwtMj
+c3MDgzMTMyLC01MTU2NTc3MTQsLTcyNTM0ODUyMSwyMDM3ODE2
+MDQ1LDYzMTU4MTQ5OSwtMTQ1MjIyNDUzMywxNTQ4MTA1MTgsLT
+EyMDAyNjEzMzAsMTQxNTkyMTkzNCwxOTE0MTQ1MDY0LDI5NzM4
+MTI0NSw2MDAxMDUxMTQsLTg2ODUwMjYsLTU2MjI0NjYxNCwtMT
+I5ODc4OTEyNCw0ODI0MTQ5MjQsMTEwNjQ2MDQxNSwxNzMwNDI3
+NzkxXX0=
 -->
