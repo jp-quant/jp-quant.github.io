@@ -178,15 +178,15 @@ Now, with all the defined components to determine the trend $\boldsymbol{G}$ ten
 > $$G(t) = m \vec{\boldsymbol{1}}$$
 > No changepoints incorporated with purely a constant linear trend value as prior $m$ (or $k$) with defined distribution $\mathcal{N}(0,\theta)$, or $\mathcal{N}(0,5)$ by default. 
 
-
+Moving forward, our technical demonstrative work will only showcase the effect of *Linear Trend*, as it's being the default & conventional approach
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDA3MTk2OTA5LC03MjUzNDg1MjEsMjAzNz
-gxNjA0NSw2MzE1ODE0OTksLTE0NTIyMjQ1MzMsMTU0ODEwNTE4
-LC0xMjAwMjYxMzMwLDE0MTU5MjE5MzQsMTkxNDE0NTA2NCwyOT
-czODEyNDUsNjAwMTA1MTE0LC04Njg1MDI2LC01NjIyNDY2MTQs
-LTEyOTg3ODkxMjQsNDgyNDE0OTI0LDExMDY0NjA0MTUsMTczMD
-QyNzc5MSwxMDk4OTkzNDQwLC0xNjQwNTU3ODI1LC05OTUzNTQ3
-NDhdfQ==
+eyJoaXN0b3J5IjpbMTQwOTk0MzYzMSwtNzI1MzQ4NTIxLDIwMz
+c4MTYwNDUsNjMxNTgxNDk5LC0xNDUyMjI0NTMzLDE1NDgxMDUx
+OCwtMTIwMDI2MTMzMCwxNDE1OTIxOTM0LDE5MTQxNDUwNjQsMj
+k3MzgxMjQ1LDYwMDEwNTExNCwtODY4NTAyNiwtNTYyMjQ2NjE0
+LC0xMjk4Nzg5MTI0LDQ4MjQxNDkyNCwxMTA2NDYwNDE1LDE3Mz
+A0Mjc3OTEsMTA5ODk5MzQ0MCwtMTY0MDU1NzgyNSwtOTk1MzU0
+NzQ4XX0=
 -->
