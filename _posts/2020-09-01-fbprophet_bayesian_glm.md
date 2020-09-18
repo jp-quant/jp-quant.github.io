@@ -157,10 +157,10 @@ In addition, from $\delta$, we also will define a transformed variable from such
 $$\gamma = -s \delta$$
 
 ---
-Now, with all the defined components to determine the trend $\boldsymbol{G}$ tensor, fbprophet's model use them to calculate **3 types of trends**:
+Now, with all the defined components to determine the trend $\boldsymbol{G}$ tensor, fbprophet's model uses them to calculate **3 types of trends**:
 
 #### Linear Trend
- $$ G = (k + A \delta) \odot \vec{t} + (m + A \gamma) $$
+> **$$ G = (k + A \delta) \odot \vec{t} + (m + A \gamma) $$**
 
 #### Logistic Trend
 
@@ -168,7 +168,7 @@ Now, with all the defined components to determine the trend $\boldsymbol{G}$ ten
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTkxNjg5NTI3LC0xMjAwMjYxMzMwLDE0MT
+eyJoaXN0b3J5IjpbMTU0ODEwNTE4LC0xMjAwMjYxMzMwLDE0MT
 U5MjE5MzQsMTkxNDE0NTA2NCwyOTczODEyNDUsNjAwMTA1MTE0
 LC04Njg1MDI2LC01NjIyNDY2MTQsLTEyOTg3ODkxMjQsNDgyND
 E0OTI0LDExMDY0NjA0MTUsMTczMDQyNzc5MSwxMDk4OTkzNDQw
