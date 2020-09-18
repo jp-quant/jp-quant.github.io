@@ -111,7 +111,7 @@ where, all as **tensors**  :
 ---
 Modeling Trend $\boldsymbol{G}$
 ---
-We first define **3 priors**:
+Without worrying about their meanings at the moment, We first define **3 priors**:
 $$ k \sim \mathcal{N}(0,\sigma_{g})$$
 
 $$ m \sim \mathcal{N}(0,\sigma_{g}) $$
@@ -127,11 +127,12 @@ $$\tau = 0.05$$
 
 The effect of priors' scaling values will be demonstrated in our work later on, as well as an extended creative idea on defining scales as priors themselves, although for now, we stick with them being as default constants.
 
-With the p
+With the priors, fbprophet's model  in **3 types of trends**:
+
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1MzEzNjM3MTIsLTU2MjI0NjYxNCwtMT
+eyJoaXN0b3J5IjpbLTE1MjgwNzgyMTAsLTU2MjI0NjYxNCwtMT
 I5ODc4OTEyNCw0ODI0MTQ5MjQsMTEwNjQ2MDQxNSwxNzMwNDI3
 NzkxLDEwOTg5OTM0NDAsLTE2NDA1NTc4MjUsLTk5NTM1NDc0OC
 wtMTEzNTcyMDU0MF19
