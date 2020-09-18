@@ -159,16 +159,19 @@ $$\gamma = -s \delta$$
 ---
 Now, with all the defined components to determine the trend $\boldsymbol{G}$ tensor, fbprophet's model use them to calculate **3 types of trends**:
 
-> Linear Trend
-> $$ G = (k + A \delta) \odot \vec{t} + (m + A \gamma) $$
+#### Linear Trend
+ $$ G = (k + A \delta) \odot \vec{t} + (m + A \gamma) $$
+
+#### Logistic Trend
+
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTMwMjQ2NTgzOCwtMTIwMDI2MTMzMCwxND
-E1OTIxOTM0LDE5MTQxNDUwNjQsMjk3MzgxMjQ1LDYwMDEwNTEx
-NCwtODY4NTAyNiwtNTYyMjQ2NjE0LC0xMjk4Nzg5MTI0LDQ4Mj
-QxNDkyNCwxMTA2NDYwNDE1LDE3MzA0Mjc3OTEsMTA5ODk5MzQ0
-MCwtMTY0MDU1NzgyNSwtOTk1MzU0NzQ4LC0xMTM1NzIwNTQwXX
-0=
+eyJoaXN0b3J5IjpbNTkxNjg5NTI3LC0xMjAwMjYxMzMwLDE0MT
+U5MjE5MzQsMTkxNDE0NTA2NCwyOTczODEyNDUsNjAwMTA1MTE0
+LC04Njg1MDI2LC01NjIyNDY2MTQsLTEyOTg3ODkxMjQsNDgyND
+E0OTI0LDExMDY0NjA0MTUsMTczMDQyNzc5MSwxMDk4OTkzNDQw
+LC0xNjQwNTU3ODI1LC05OTUzNTQ3NDgsLTExMzU3MjA1NDBdfQ
+==
 -->
