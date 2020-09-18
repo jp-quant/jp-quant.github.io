@@ -130,14 +130,15 @@ The effect of priors' scaling values will be demonstrated in our work later on, 
 We now explore their relative meanings in our trend model:
 - $k$ =  Growth Rate
 - $m$ = Growth Offset
-- $\delta$ = 
+- $\delta$ = Growth Rate Changepoints Adjustments
+
 With the priors, fbprophet's model use them to calculate **3 types of trends**:
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2MzMxOTgzMTQsLTU2MjI0NjYxNCwtMT
-I5ODc4OTEyNCw0ODI0MTQ5MjQsMTEwNjQ2MDQxNSwxNzMwNDI3
-NzkxLDEwOTg5OTM0NDAsLTE2NDA1NTc4MjUsLTk5NTM1NDc0OC
-wtMTEzNTcyMDU0MF19
+eyJoaXN0b3J5IjpbMzI1Nzc1ODQ4LC01NjIyNDY2MTQsLTEyOT
+g3ODkxMjQsNDgyNDE0OTI0LDExMDY0NjA0MTUsMTczMDQyNzc5
+MSwxMDk4OTkzNDQwLC0xNjQwNTU3ODI1LC05OTUzNTQ3NDgsLT
+ExMzU3MjA1NDBdfQ==
 -->
