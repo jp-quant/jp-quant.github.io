@@ -138,7 +138,7 @@ For every given $\boldsymbol{t}$ as the **time vector as integers or floats** (s
 
 $$\boldsymbol{t} =\begin{bmatrix} t_1 & t_2  &\cdots  & t_k \end{bmatrix}$$
 
-and $\delta$ of $N$ dimensional length, representing $N$ amount of changepoints occuring in $\boldsymbol{t}$, we subsequently compute those changepoints as values of $\boldsymbol{t:
+and $\delta$ of $N$ dimensional length, representing $N$ amount of changepoints occuring in $\boldsymbol{t}$, we subsequently compute those changepoints as N values of $\boldsymbol{t}$, as vec:
 
 $$\boldsymbol{\delta} =\begin{bmatrix} s_1 & s_2  &\cdots  & s_n \end{bmatrix}$$
 
@@ -160,10 +160,10 @@ Now, with all the defined components to determine the trend $\boldsymbol{G}$ ten
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwNjMyOTY5NjIsLTEyMDAyNjEzMzAsMT
-QxNTkyMTkzNCwxOTE0MTQ1MDY0LDI5NzM4MTI0NSw2MDAxMDUx
-MTQsLTg2ODUwMjYsLTU2MjI0NjYxNCwtMTI5ODc4OTEyNCw0OD
-I0MTQ5MjQsMTEwNjQ2MDQxNSwxNzMwNDI3NzkxLDEwOTg5OTM0
-NDAsLTE2NDA1NTc4MjUsLTk5NTM1NDc0OCwtMTEzNTcyMDU0MF
-19
+eyJoaXN0b3J5IjpbMjAzNjgwMTQxLC0xMjAwMjYxMzMwLDE0MT
+U5MjE5MzQsMTkxNDE0NTA2NCwyOTczODEyNDUsNjAwMTA1MTE0
+LC04Njg1MDI2LC01NjIyNDY2MTQsLTEyOTg3ODkxMjQsNDgyND
+E0OTI0LDExMDY0NjA0MTUsMTczMDQyNzc5MSwxMDk4OTkzNDQw
+LC0xNjQwNTU3ODI1LC05OTUzNTQ3NDgsLTExMzU3MjA1NDBdfQ
+==
 -->
