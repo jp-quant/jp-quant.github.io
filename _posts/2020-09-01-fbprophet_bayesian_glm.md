@@ -1,4 +1,3 @@
-# Introduction & Inspiration
 In the recent years, Facebook released an open-source tool for Python & R, called [fbprophet](https://facebook.github.io/prophet/), allowing scientists & developers to not just tackle the complexity & non-linearity in time-series analysis, but also allow for a robust model-building process to forecast any time-series data while accounting for *uncertainty* in every step of the way.
 
  
@@ -7,9 +6,9 @@ After spending a couple weeks on my spare time reading Facebook's published [res
 In this post, we will:
 
 1. Mathematically understand the difference between **Ordinary v.s. Generalized** Linear Models.
-1. Explore the concept of "going Bayesian" (Bayes'  the benefits from doing so.
+1. Explore the concept of "going Bayesian" (Bayes' Theorem), the benefits from doing so & the extended philosophy behind it.
 2. Break down the mathematics of FBProphet. 
-3. Build our own version in Python with additional flexibility & creative concepts added, utilizing **PyMC3** instead of *Stan* (like fbprophet does) as backend sampling.
+3. Build our own version in Python with additional flexibility & creative concepts added, utilizing **PyMC3** instead of *Stan* (like fbprophet does) as backend for sampling.
 
 
 ---
@@ -67,5 +66,5 @@ $$ P(A \mid B) = \frac{P(A) P(B \mid A)}{P(B)}$$
 This allows us to tackle complex time-series problems, especially ones that exhibit non-linearity, while not having to worry about data stationarity that classical models, such as ARIMA, heavily rely on.
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTE1MDQwMDIxN119
+eyJoaXN0b3J5IjpbLTEwMTAyMDAzNDhdfQ==
 -->
