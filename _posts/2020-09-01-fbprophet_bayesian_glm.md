@@ -68,8 +68,8 @@ This approach of modeling variables, both the priors & posteriors, as distributi
 
 Without having to shed light much on the applications of such simple, yet powerful, concept, below are video links explaining the meaning & power of Bayesian Statistics.
 
+- 3Blue1Borwn's Bayes
 - [Veritasium's The Bayesian Trap](https://www.youtube.com/watch?v=R13BD8qKeTg&ab_channel=Veritasium)
-- 
 
 
 I **highly encourage** checking them out even if you already know the mathematics, since it is not about just knowing what and how to use it, but when & why we are using it. 
@@ -79,6 +79,6 @@ I **highly encourage** checking them out even if you already know the mathematic
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY2NDI2Nzg4OCwtOTk1MzU0NzQ4LC0xMT
-M1NzIwNTQwXX0=
+eyJoaXN0b3J5IjpbMjczODY4MjAsLTk5NTM1NDc0OCwtMTEzNT
+cyMDU0MF19
 -->
