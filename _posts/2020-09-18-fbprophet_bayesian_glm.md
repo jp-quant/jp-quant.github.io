@@ -234,20 +234,23 @@ import numpy as np
 ```
 
 ```python
-# timestamps & hyperparams 
-t = np.linspace(0,1,666) #---| numeric timestep (scaled from stamps given)
-n_changepoints = 25 #---| establish the amount of changepoints in our timesteps
+# timestamps & hyper-params 
+t = np.linspace(0,1,500) #---| numeric timestep (scaled from datetime stamps given)
+n_changepoints = 25 #---| amount of changepoints (for s)
+tau = 0.05
+theta = 5
+
 
 # PRIORS
-k = 1 #---| fixed as constant for demonstration
-m = 5 #---| fixed as constant for demonstration
-delta = np.random.normal(size=n_changepoints) #----| Changepoints Adjustment for Growth Rate (k-term)
+k = np.random.normal(0,theta) 
+m = np.random.normal(0,theta)
+delta = np.random.laplace(tau,size=n_changepoints)
 
 
 # TRANSFORMED
 s = np.sort(np.random.choice(t, n_changepoints, replace=False)) #---| n_changepoints from such timesteps
 A = (t[:, None] > s) * 1 #---| Determining Matrix (*1 turns booleans into 1 & 0)
-gamma = -s * delta #----| Changepoints Adjustment for Growth Offset (m-term)
+gamma = -s * delta
 
 
 # LINEAR TREND FINALIZE
@@ -260,11 +263,12 @@ plt.figure(figsize=(16, 9))
 #----| 3 subplots indexing
 n = 310
 i = 0
-for title, f in zip(['Trend = Growth Rate + Growth Offset','Growth Rate', 'Growth Offset'],
+for title, f in zip(['Trend (Growth Rate + Growth Offset)','Growth Rate', 'Growth Offset'],
                 [trend, growth, offset]):
     i += 1
     plt.subplot(n + i)
     plt.title(title)
+    #plt.yticks([])
     plt.vlines(s, min(f), max(f), lw=0.75, linestyles='--')
     plt.plot(t,f)
 ```
