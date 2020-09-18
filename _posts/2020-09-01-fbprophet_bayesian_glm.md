@@ -89,14 +89,14 @@ To summarize:
 > The observable is the unknown posterior, to which dependent conditionally on the defined priors beliefs, to which such priors are updated to "fit" the observable when new observable data arrive.
 
 The main **philosophy** behind Bayesian Statistics is that:
-> Our understanding of the reality we are trying to model through time, to predict its future values, is never static & objective, but rather dynamic & conditional. Going Bayesian means we are accepting that we will never know the full picture of reality completely, and that we can only infer from the data of such reality we collected so far to forecast its future values with uncertainty, as per defining all of our parameters as distributions.
+> Our understanding of the **reality** we are trying to model through time, to predict its future values, **is never static & objective, but rather dynamic & conditional**. Going Bayesian means we are accepting that **we will never know the full picture of reality completely, and that we can only infer from the data of such reality we collected so far to forecast its future values with compounded uncertainty**, as per defining all of the parameters & functions of our entire model as distributions.
 
 ---
 ## 3. The Mathematics behind FBProphet
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk3Mzg0NTcxNywxMTA2NDYwNDE1LDE3Mz
-A0Mjc3OTEsMTA5ODk5MzQ0MCwtMTY0MDU1NzgyNSwtOTk1MzU0
-NzQ4LC0xMTM1NzIwNTQwXX0=
+eyJoaXN0b3J5IjpbNDgyNDE0OTI0LDExMDY0NjA0MTUsMTczMD
+QyNzc5MSwxMDk4OTkzNDQwLC0xNjQwNTU3ODI1LC05OTUzNTQ3
+NDgsLTExMzU3MjA1NDBdfQ==
 -->
