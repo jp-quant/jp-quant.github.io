@@ -122,6 +122,7 @@ Starting with the model's overarching formula:
 ### $$\boldsymbol{Y}(t) \sim [\boldsymbol{G}(t) \cdot(1 + \boldsymbol{S}_{m}(t)) +  \boldsymbol{S}_{a}(t)] \pm \boldsymbol{\epsilon}_{t}$$
 
 where, as **tensors**:
+
 >$$\boldsymbol{Y}$$ = Observable to fit & predict (data of prediction target)
 > $$\boldsymbol{G}$$ = Trend/Growth of $$\boldsymbol{Y}$$
 > $$\boldsymbol{S}_{m}$$ = Multiplicative Seasonal Components of $$\boldsymbol{Y}$$
@@ -132,6 +133,7 @@ where, as **tensors**:
 ### Modeling Trend [$$\boldsymbol{G}(t)$$]
 ---
 Without worrying about their meanings at the moment, we first define **3 essential priors**:
+
 $$ k \sim \mathcal{N}(0,\theta)$$
 
 $$ m \sim \mathcal{N}(0,\theta) $$
@@ -141,6 +143,7 @@ $$\delta \sim Laplace(0,\tau)$$
 where **$$\theta$$ and $$\tau$$ being the scales** of the priors' distributions (or simply $$\sigma_G$$ measuring the deviation of such priors). This is viewed as hyper-parameters for tuning with cross-validation (employed by fbprophet) or any other custom tuning methods.
 
 As default, set by fbprophet, we will opt with:
+
 $$\theta = 5$$
 
 $$\tau = 0.05$$
@@ -148,6 +151,7 @@ $$\tau = 0.05$$
 The effect of priors' scaling values will be demonstrated in our work later on, as well as an extended creative idea on defining scales as priors themselves, although for now, we stick with them being as default constants.
 
 We now explore their relative meanings & dimensions in our trend model:
+
 - $$\boldsymbol{k}$$ [*1-Dimensional*] = Growth Rate
 - $$\boldsymbol{m}$$ [*1-Dimensional*] = Growth Offset
 - $$\boldsymbol{\delta}$$ [*N-Dimensional*] = Growth Rate Changepoints Adjustments
