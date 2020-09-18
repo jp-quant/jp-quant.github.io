@@ -173,7 +173,7 @@ The effect of priors' scaling values will be demonstrated in our work later on, 
 We now explore their relative meanings & dimensions in our trend model:
 
 - $$\boldsymbol{k}$$ [*1-Dimensional*] = Growth Rate
-- $$\boldsymbol{m}$$ [*1-Dimensional*] = Growth Offset
+- $$\boldsymbol{m}$$ [*1-Dimensional*] = Growth Offset (or the "intercept" value)
 - $$\boldsymbol{\delta}$$ [*N-Dimensional*] = Growth Rate Changepoints Adjustments
 
 Notice how while $$k$$ and $$m$$ are 1 dimensional, or simply as constants, $$\delta$$ is an $$N$$ dimensional variable, where such *integer* value $$N$$ is also a hyper-parameter, though not as important as scales (as advised by Facebook), for tuning.
@@ -234,8 +234,8 @@ import numpy as np
 ```
 
 ```python
-# GIVEN & ASSIGNED
-t = np.arange(1000) #---| timesteps (though as integers for demonstration, this is scaled between (0,1) while fitting in fbprophet)
+# timestamps & hyperparams 
+t = np.linspace(0,1,666) #---| numeric timestep (scaled from stamps given)
 n_changepoints = 25 #---| establish the amount of changepoints in our timesteps
 
 # PRIORS
@@ -250,7 +250,7 @@ A = (t[:, None] > s) * 1 #---| Determining Matrix (*1 turns booleans into 1 & 0)
 gamma = -s * delta #----| Changepoints Adjustment for Growth Offset (m-term)
 
 
-# FINALIZE
+# LINEAR TREND FINALIZE
 growth = (k + np.dot(A,delta)) * t #---| Growth Rate (k-term)
 offset = m + np.dot(A,gamma) #---| Growth Offset (m-term)
 trend = growth + offset
@@ -260,17 +260,16 @@ plt.figure(figsize=(16, 9))
 #----| 3 subplots indexing
 n = 310
 i = 0
-for t, f in zip(['Trend = Growth Rate + Growth Offset','Growth Rate', 'Growth Offset'],
+for title, f in zip(['Trend = Growth Rate + Growth Offset','Growth Rate', 'Growth Offset'],
                 [trend, growth, offset]):
     i += 1
     plt.subplot(n + i)
-    plt.title(t)
-    plt.yticks([])
+    plt.title(title)
     plt.vlines(s, min(f), max(f), lw=0.75, linestyles='--')
-    plt.plot(f)
+    plt.plot(t,f)
 ```
 
-<img src="https://jp-quant.github.io/images/glm_bayesian/demo_1.png">
+<img src="https://jp-quant.github.io/images/glm_bayesian/demo_1.png" style="background-color: white;">
 
 Notice how the full Trend as an addition of Growth Rate & Offsets is basically a piece-wise regression of such pair of components, where the defined $$N$$ amount of changepoints (n_changepoints) resulted in our $$\delta$$ dictating the multiplicative magnitude of our two terms at those $$N$$ specific changepoints in numeric timesteps $$\boldsymbol{t}$$.
 
