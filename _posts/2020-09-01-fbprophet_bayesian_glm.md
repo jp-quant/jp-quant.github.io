@@ -73,7 +73,10 @@ Though I can spend time writing in details on the applications of such simple, y
 > - [**Demystifying Bayesian Deep Learning**](https://www.youtube.com/watch?v=s0S6HFdPtlA&t=906s&ab_channel=PyData) by Eric J. Ma (PyData)*
 
 In short, implementation of Bayesian Statistics on time-series predictive modelling is powerful due to:
-- The ability for us to define *priors* (initial beliefs) & update such priors with newer data.
+
+The ability for us to define *priors* (initial beliefs) & update such priors with newer data.
+
+Formulate complex functions (link functions) from defined priors variables to 
 
  such recalling our concept of *Generalized Linear Models* above:
 > **Generalized Linear Models** allows for response variables that have arbitrary distributions, and for an arbitrary function of the response variable to vary linearly with the predicted values (rather than assuming that the response itself must vary linearly)
@@ -82,6 +85,6 @@ In short, implementation of Bayesian Statistics on time-series predictive modell
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU2NzUzNjk0MSwtMTY0MDU1NzgyNSwtOT
+eyJoaXN0b3J5IjpbMTIxMDU0MDU1NiwtMTY0MDU1NzgyNSwtOT
 k1MzU0NzQ4LC0xMTM1NzIwNTQwXX0=
 -->
