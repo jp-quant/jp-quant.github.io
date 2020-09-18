@@ -19,11 +19,11 @@ Linearity is the foundational language that explains the totality of composition
 
   
 
-However, the main difference between a regular ordinary linear regression model and a generalized one falls under the concept of **symmetry & normality**, a *theoretical* zero-sum framework towards reality. 
+However, the main difference between a regular ordinary linear regression model and a generalized one falls under the concept of **symmetry & normality**, a *theoretical* zero-sum framework towards reality as a whole (not as what we observed incrementally through time).
 
   
 
-The intuition, as I summarize below, is best explained from [Wikipedia](https://en.wikipedia.org/wiki/Generalized_linear_model#Maximum_likelihood  "Wikipedia page"):
+The intuition, as I summarize below, is best explained by [Wikipedia](https://en.wikipedia.org/wiki/Generalized_linear_model#Maximum_likelihood  "Wikipedia page"):
 
   
 
@@ -99,7 +99,7 @@ The main **philosophy** behind Bayesian Statistics is that:
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2MzE0OTYzMjcsNDgyNDE0OTI0LDExMD
-Y0NjA0MTUsMTczMDQyNzc5MSwxMDk4OTkzNDQwLC0xNjQwNTU3
-ODI1LC05OTUzNTQ3NDgsLTExMzU3MjA1NDBdfQ==
+eyJoaXN0b3J5IjpbMTI4NTAyOTA2Nyw0ODI0MTQ5MjQsMTEwNj
+Q2MDQxNSwxNzMwNDI3NzkxLDEwOTg5OTM0NDAsLTE2NDA1NTc4
+MjUsLTk5NTM1NDc0OCwtMTEzNTcyMDU0MF19
 -->
