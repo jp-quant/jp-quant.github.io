@@ -70,7 +70,7 @@ Though I can spend time writing in details on the applications of such simple, y
 
 - [Bayes Theorem](https://www.youtube.com/watch?v=HZGCoVF3YvM&t=528s&ab_channel=3Blue1Brown)  *by 3Blue1Brown*
 - [The Bayesian Trap](https://www.youtube.com/watch?v=R13BD8qKeTg&ab_channel=Veritasium) *by Veritasium*
-- An Attempt At Demystifying Bayesian Deep Learning
+- [Demystifying Bayesian Deep Learning](https://www.youtube.com/watch?v=s0S6HFdPtlA&t=906s&ab_channel=PyData) *by Eric J. Ma from PyData*
 
 
 
@@ -79,6 +79,6 @@ Though I can spend time writing in details on the applications of such simple, y
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2NjI3ODgwNDUsLTk5NTM1NDc0OCwtMT
+eyJoaXN0b3J5IjpbLTE2NDA1NTc4MjUsLTk5NTM1NDc0OCwtMT
 EzNTcyMDU0MF19
 -->
