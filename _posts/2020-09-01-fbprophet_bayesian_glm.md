@@ -132,15 +132,15 @@ We now explore their relative meanings & dimensions in our trend model:
 - $\boldsymbol{m}$ [*1-Dimensional*] = Growth Offset
 - $\boldsymbol{\delta}$ [*N-Dimensional*] = Growth Rate Changepoints Adjustments
 
-Notice how $\delta$ is an $N$ dimensional variable, where such *integer* value $N$ is **also a hyper-parameter**, though not as important, for tuning, we also need to define one last component for trend, although this will NOT be a prior distribution but rather a **matrix $A$** called the **determining matrix**.
+Notice how $\delta$ is an $N$ dimensional variable, where such *integer* value $N$ is **also a hyper-parameter**, though not as important, for tuning, we also need to define one last pair of components for trend, although this will NOT be a prior distribution but rather a **matrix $A$** called the **determining matrix**, and **tensor $\boldsymbol{s}$** .
 
 For every given $\boldsymbol{t}$ as the **time vector as integers or floats** (scaled) (we will explain this more in our demonstration below) of $K$ dimensional length
 
 $$\boldsymbol{t} =\begin{bmatrix} t_1 & t_2  &\cdots  & t_k \end{bmatrix}$$
 
-and $\delta$ of $N$ dimensional length, representing $N$ amount of changepoints occuring in $\boldsymbol{t}$, we subsequently compute those changepoints as N values of $\boldsymbol{t}$, as vec:
+and $\delta$ of $N$ dimensional length, representing $N$ amount of changepoints occurring in $\boldsymbol{t}$, we subsequently compute those changepoints as N values of $\boldsymbol{t}$, as tensor $\boldsymbol{s}$ of N-dimensional as well:
 
-$$\boldsymbol{\delta} =\begin{bmatrix} s_1 & s_2  &\cdots  & s_n \end{bmatrix}$$
+$$\boldsymbol{s} =\begin{bmatrix} s_1 & s_2  &\cdots  & s_n \end{bmatrix}$$
 
 
  we compute a matrix $A$ with dimension $T$ x $N$ , with **boolean entries as binary integers** (1 = True, 0 = False), as:
@@ -160,7 +160,7 @@ Now, with all the defined components to determine the trend $\boldsymbol{G}$ ten
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjAzNjgwMTQxLC0xMjAwMjYxMzMwLDE0MT
+eyJoaXN0b3J5IjpbOTEwMjg2NjAwLC0xMjAwMjYxMzMwLDE0MT
 U5MjE5MzQsMTkxNDE0NTA2NCwyOTczODEyNDUsNjAwMTA1MTE0
 LC04Njg1MDI2LC01NjIyNDY2MTQsLTEyOTg3ODkxMjQsNDgyND
 E0OTI0LDExMDY0NjA0MTUsMTczMDQyNzc5MSwxMDk4OTkzNDQw
