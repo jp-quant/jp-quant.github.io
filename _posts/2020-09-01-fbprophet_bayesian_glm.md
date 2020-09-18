@@ -167,22 +167,23 @@ $$\gamma = -s \delta$$
 Now, with all the defined components to determine the trend $\boldsymbol{G}$ tensor, we will use them to calculate **3 types of trends**:
 
 **Linear Trend** (mainly used)
-> **$$ G(t) = (k + A_t \delta) \odot \boldsymbol{t} + (m + A_t \gamma) $$**
+> **$$ G(t) = (k + A_t \delta) \boldsymbol{t} + (m + A_t \gamma) $$**
 
 **Logistic Trend**
-> $$G(t) = \frac{C(t)}{1 + exp[-(k + A_{t}^{\top} \delta) \cdot (\boldsymbol{t} - (m + A_{t}^{\top} \gamma))]}$$
+> $$G(t) = \frac{C(t)}{1 + exp[-(k + A_{t} \delta)(\boldsymbol{t} - (m + A_{t} \gamma))]}$$
 > where $C =$ cap/maximum value for logistic convergence. This can be given or include in our model to fit.
 
+**Flat Trend**
 
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQyODc1Njc3OCwyMDM3ODE2MDQ1LDYzMT
-U4MTQ5OSwtMTQ1MjIyNDUzMywxNTQ4MTA1MTgsLTEyMDAyNjEz
-MzAsMTQxNTkyMTkzNCwxOTE0MTQ1MDY0LDI5NzM4MTI0NSw2MD
-AxMDUxMTQsLTg2ODUwMjYsLTU2MjI0NjYxNCwtMTI5ODc4OTEy
-NCw0ODI0MTQ5MjQsMTEwNjQ2MDQxNSwxNzMwNDI3NzkxLDEwOT
-g5OTM0NDAsLTE2NDA1NTc4MjUsLTk5NTM1NDc0OCwtMTEzNTcy
-MDU0MF19
+eyJoaXN0b3J5IjpbNTU5MjcwMTQwLDIwMzc4MTYwNDUsNjMxNT
+gxNDk5LC0xNDUyMjI0NTMzLDE1NDgxMDUxOCwtMTIwMDI2MTMz
+MCwxNDE1OTIxOTM0LDE5MTQxNDUwNjQsMjk3MzgxMjQ1LDYwMD
+EwNTExNCwtODY4NTAyNiwtNTYyMjQ2NjE0LC0xMjk4Nzg5MTI0
+LDQ4MjQxNDkyNCwxMTA2NDYwNDE1LDE3MzA0Mjc3OTEsMTA5OD
+k5MzQ0MCwtMTY0MDU1NzgyNSwtOTk1MzU0NzQ4LC0xMTM1NzIw
+NTQwXX0=
 -->
