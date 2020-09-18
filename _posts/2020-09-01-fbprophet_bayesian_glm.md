@@ -111,11 +111,16 @@ where, all as **tensors**  :
 ---
 Modeling Trend $\boldsymbol{G}$
 ---
-In modeling the trend component $\boldsymbol{G}$
+In modeling the trend component $\boldsymbol{G}$, we first define **3 priors**:
+$$ k \sim \mathcal{N}(0,5)$$
+
+$$ m \sim \mathcal{N}(0,5) $$
+
+
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0MjE5NDcxODcsLTU2MjI0NjYxNCwtMT
+eyJoaXN0b3J5IjpbLTEyNTU4OTA5ODIsLTU2MjI0NjYxNCwtMT
 I5ODc4OTEyNCw0ODI0MTQ5MjQsMTEwNjQ2MDQxNSwxNzMwNDI3
 NzkxLDEwOTg5OTM0NDAsLTE2NDA1NTc4MjUsLTk5NTM1NDc0OC
 wtMTEzNTcyMDU0MF19
