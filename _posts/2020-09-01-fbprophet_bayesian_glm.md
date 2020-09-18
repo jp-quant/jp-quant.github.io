@@ -102,9 +102,9 @@ The main **philosophy** behind Bayesian Statistics is that:
 ### $$\boldsymbol{Y}(t) = \boldsymbol{G}(t) + \sum{\boldsymbol{S}_{i}(t)} + \boldsymbol{\epsilon}_{t}$$
 
 ---
-## Trend $\boldsymbol{G}(t)$
+#### (a)  $\boldsymbol{G}(t)$ - Trend
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODM0NjUwOTQ4LDQ4MjQxNDkyNCwxMTA2ND
-YwNDE1LDE3MzA0Mjc3OTEsMTA5ODk5MzQ0MCwtMTY0MDU1Nzgy
-NSwtOTk1MzU0NzQ4LC0xMTM1NzIwNTQwXX0=
+eyJoaXN0b3J5IjpbLTEyODc5NDcwOTksNDgyNDE0OTI0LDExMD
+Y0NjA0MTUsMTczMDQyNzc5MSwxMDk4OTkzNDQwLC0xNjQwNTU3
+ODI1LC05OTUzNTQ3NDgsLTExMzU3MjA1NDBdfQ==
 -->
