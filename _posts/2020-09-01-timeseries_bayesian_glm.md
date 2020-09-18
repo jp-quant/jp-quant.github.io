@@ -64,7 +64,7 @@ Facebook recently released an open-source tool called fbprophet allowing develop
 
   
 
-After spending a month reading their published research paper, conducted by PhD mathematicians, as well as breaking down their
+After spending a month reading their published research paper, conducted by PhD mathematicians, as well as breaking down the codes from their open-source repository (Python), I was able to understand , in details, the mathematics & computational executions, thus built my own "
 
   
 
@@ -76,5 +76,5 @@ In this post, we will:
 
 3. Build our own version with additional flexibility & creative concepts added, utilizing *PyMC3* instead of *Stan* (like fbprophet does) as backend sampling
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwMDAyNDEzMzBdfQ==
+eyJoaXN0b3J5IjpbMTAyOTkxNzA2Nl19
 -->
