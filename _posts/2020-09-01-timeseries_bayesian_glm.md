@@ -1,0 +1,104 @@
+---
+
+title: "Predictive Modeling: Bayesian Statistics, Generalized Linear Model (GLM) & FBProphet's Magic"
+
+date: 2020-06-03
+
+tags: [research]
+
+header:
+
+image: "/images/qf_glm_banner.PNG"
+
+excerpt: "Building GLM predictive models on time-series as hierarchichal bayesian models, inspired by Facebook's time-series forecaster fbprophet"
+
+mathjax: "true"
+
+layout: single
+
+classes: wide
+
+---
+
+  
+
+# From **General** to **Generalized** Linear with Hierarchichal Bayesian Modeling
+
+  
+
+Linearity is the foundational language that explains the totality of composition for any reality we are trying to model, as linear regression becomes the basis for the overarching factor-modeling technique in the modern data-driven world, especially neural network models in Machine Learning.
+
+  
+
+However, the main difference between an ordinary linear regression model and a generalized one falls under the concept of **symmetry** and **normality**, a theoretical zero-sum framework towards reality.
+
+  
+
+The intuition, as I summarize below, is best explained through this Wiki [page](https://en.wikipedia.org/wiki/Generalized_linear_model#Maximum_likelihood  "Wikipedia page"):
+
+  
+
+---
+
+**Ordinary linear** regression predicts Y, the expected value of a given unknown quantity (the response variable, a random variable), as a linear combination of a set of observed values X's (predictors):
+
+  
+
+$$Y = \sum \alpha_{i} X_{i}$$
+
+  
+
+- This is **appropriate when the response variable can vary indefinitely in either direction**, thus when asked about the distribution of such predicted values, we only need $\mu$ and $\sigma$ to describe the symmetric property of its deviation.
+
+  
+
+However this is **not generally true** for the observables when tackling real-world problems. Most real-world data are *not* normally distributed on an absolute sense. For example (by Wiki):
+
+  
+
+>  -  *Suppose a linear prediction model learns from some data (perhaps primarily drawn from large beaches) that a 10 degree temperature decrease would lead to 1,000 fewer people visiting the beach. This model is unlikely to generalize well over different sized beaches.*
+
+  
+
+**Generalized linear** models cover all these situations by allowing for response variables that have arbitrary distributions (rather than simply normal distributions), and for an arbitrary function of the response variable (the link function) to vary linearly with the predicted values (rather than assuming that the response itself must vary linearly). For example (by Wiki):
+
+> The case above of predicted number of beach attendees would typically be modeled with a Poisson distribution and a log link, while the case of predicted probability of beach attendance would typically be modeled with a Bernoulli distribution (or binomial distribution, depending on exactly how the problem is phrased) and a log-odds (or logit) link function.
+
+  
+
+---
+
+In short, a generalized linear model covers all possible ways of how different distributions of difference factors can "hierarchichally" impact the defined distribution of the observed, hence the Bayesian approach, built from the amazing yet simple Baye's Theorem:
+
+  
+
+$$ P(A \mid B) = \frac{P(A) P(B \mid A)}{P(B)}$$
+
+  
+
+This allows us to model time-series data as complex as we can, while not having to worry about stationarity in data classical models, such as ARIMA, heavily rely on.
+
+  
+
+# Inspiration
+
+  
+
+Facebook recently released an open-source tool called fbprophet allowing developers to not just tackle the complexity & non-linearity in time-series analysis, but also allow for a robust model-building to forecast any time-series data while accounting for *uncertainty* in every step of the way.
+
+  
+
+After spending a month reading
+
+  
+
+In this post, we will:
+
+>1. Explore the core concept of a Generalized Linear Model (GLM).
+
+>2. Break down the mathematics of fbprophet's GLM.
+
+>3. Build our own version with additional flexibility & creative concepts added, utilizing *PyMC3* instead of *Stan* (like fbprophet does) as backend sampling
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbOTIyNTUwNzMxXX0=
+-->
