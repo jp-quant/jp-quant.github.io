@@ -177,13 +177,79 @@ Following with our technical demonstrative work below, we will only showcase the
 In addition, we primarily seek to elucidate the importance of our defined priors & their transformed variables, the roles they play thus how, together, they construct our trend model as a component in the overarching GLM.
 
 ---
+```python
+# GIVEN & ASSIGNED
 
+t = np.arange(1000) #---| timesteps (though as integers for demonstration, this is scaled between (0,1) while fitting in fbprophet)
+
+n_changepoints =  10  #---| establish the amount of changepoints in our timesteps
+
+  
+
+# PRIORS
+
+k =  1  #---| fixed as constant for demonstration
+
+m =  5  #---| fixed as constant for demonstration
+
+delta = np.random.normal(size=n_changepoints) #----| Changepoints Adjustment for Growth Rate (k-term)
+
+  
+  
+
+# TRANSFORMED
+
+s = np.sort(np.random.choice(t, n_changepoints, replace=False)) #---| n_changepoints from such timesteps
+
+A = (t[:, None] > s) *  1  #---| Determining Matrix (*1 turns booleans into 1 & 0)
+
+gamma =  -s * delta #----| Changepoints Adjustment for Growth Offset (m-term)
+
+  
+  
+
+# FINALIZE
+
+growth = (k + np.dot(A,delta)) * t #---| Growth Rate (k-term)
+
+offset = m + np.dot(A,gamma) #---| Growth Offset (m-term)
+
+trend = growth + offset
+
+  
+
+# PLOT
+
+plt.figure(figsize=(16, 9))
+
+#----| 3 subplots indexing
+
+n =  310
+
+i =  0
+
+for t, f in  zip(['Trend = Growth Rate + Growth Offset','Growth Rate', 'Growth Offset'],
+
+[trend, growth, offset]):
+
+i +=  1
+
+plt.subplot(n + i)
+
+plt.title(t)
+
+plt.yticks([])
+
+plt.vlines(s, min(f), max(f), lw=0.75, linestyles='--')
+
+plt.plot(f)
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTg2NTg0MTgwNiwtMjc3MDgzMTMyLC01MT
-U2NTc3MTQsLTcyNTM0ODUyMSwyMDM3ODE2MDQ1LDYzMTU4MTQ5
-OSwtMTQ1MjIyNDUzMywxNTQ4MTA1MTgsLTEyMDAyNjEzMzAsMT
-QxNTkyMTkzNCwxOTE0MTQ1MDY0LDI5NzM4MTI0NSw2MDAxMDUx
-MTQsLTg2ODUwMjYsLTU2MjI0NjYxNCwtMTI5ODc4OTEyNCw0OD
-I0MTQ5MjQsMTEwNjQ2MDQxNSwxNzMwNDI3NzkxLDEwOTg5OTM0
-NDBdfQ==
+eyJoaXN0b3J5IjpbLTgxNDQ4NzExMSwxODY1ODQxODA2LC0yNz
+cwODMxMzIsLTUxNTY1NzcxNCwtNzI1MzQ4NTIxLDIwMzc4MTYw
+NDUsNjMxNTgxNDk5LC0xNDUyMjI0NTMzLDE1NDgxMDUxOCwtMT
+IwMDI2MTMzMCwxNDE1OTIxOTM0LDE5MTQxNDUwNjQsMjk3Mzgx
+MjQ1LDYwMDEwNTExNCwtODY4NTAyNiwtNTYyMjQ2NjE0LC0xMj
+k4Nzg5MTI0LDQ4MjQxNDkyNCwxMTA2NDYwNDE1LDE3MzA0Mjc3
+OTFdfQ==
 -->
