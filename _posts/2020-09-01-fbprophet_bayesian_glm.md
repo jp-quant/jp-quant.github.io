@@ -66,12 +66,16 @@ $$ P(A \mid B) = \frac{P(A) P(B \mid A)}{P(B)}$$
 
 This approach of modeling variables, both the priors & posteriors, as distributions have not been heavily explored & implemented back then due to high computational demands. However, our accelerating technological advancement has allowed Bayesians to pave themselves a vital role for data modelling approaches in modern days, especially in building neural network models.
 
-Without having to shed light much on the mathematical details of such simple, yet powerful, concept, below are links explaining the meaning & power of Bayesian approach on modelling time-series data. I **highly encourage** checking them out even if you already know the formula, since it is not about just know
+Without having to shed light much on the mathematical details of such simple, yet powerful, concept, below are links explaining the meaning & power of Bayesian approach on modelling time-series data. 
+
+
+
+I **highly encourage** checking them out even if you already know the formula, since it is not about just knowing how to use it, but when & why we are using it in this context:
 
   
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTYxMzM5ODMzM119
+eyJoaXN0b3J5IjpbLTExMzU3MjA1NDBdfQ==
 -->
