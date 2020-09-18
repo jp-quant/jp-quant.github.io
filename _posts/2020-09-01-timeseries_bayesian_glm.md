@@ -52,7 +52,7 @@ $$ P(A \mid B) = \frac{P(A) P(B \mid A)}{P(B)}$$
 
   
 
-This allows us to tackle complex time-series problems, especially ones that exhibit non-linearity, while not having to worry about stationarity in data classical models, such as ARIMA, heavily rely on.
+This allows us to tackle complex time-series problems, especially ones that exhibit non-linearity, while not having to worry about data stationarity that classical models, such as ARIMA, heavily rely on.
 
   
 
@@ -64,17 +64,17 @@ Facebook recently released an open-source tool called fbprophet allowing develop
 
   
 
-After spending a month reading
+After spending a month reading their published research paper, conducted by PhD mathematicians, as well as breaking down their
 
   
 
 In this post, we will:
 
->1. Explore the core concept of a Generalized Linear Model (GLM).
+1. Explore the core concept of a Generalized Linear Model (GLM).
 
->2. Break down the mathematics of fbprophet's GLM.
+2. Break down the mathematics of fbprophet's GLM.
 
->3. Build our own version with additional flexibility & creative concepts added, utilizing *PyMC3* instead of *Stan* (like fbprophet does) as backend sampling
+3. Build our own version with additional flexibility & creative concepts added, utilizing *PyMC3* instead of *Stan* (like fbprophet does) as backend sampling
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3OTMzNTg1MDhdfQ==
+eyJoaXN0b3J5IjpbLTEwMDAyNDEzMzBdfQ==
 -->
