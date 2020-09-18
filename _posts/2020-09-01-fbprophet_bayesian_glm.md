@@ -99,16 +99,18 @@ The main **philosophy** behind Bayesian Statistics is that:
 ---
 ## 3. The Mathematics behind FBProphet
 
-### $$\boldsymbol{Y}(t) = \boldsymbol{G}(t) \cdot(1 + \boldsymbol{S}_{m}(t)) +  \boldsymbol{S}_{}(t) + \boldsymbol{\epsilon}_{t}$$
+### $$\boldsymbol{Y}(t) = \boldsymbol{G}(t) \cdot(1 + \boldsymbol{S}_{m}(t)) +  \boldsymbol{S}_{a}(t) + \boldsymbol{\epsilon}_{t}$$
 
-
+where:
+> $G(t)$ = Trend (piece-wise, linear, logistics, or flat)
+> 
 
 ---
 #### (a)  $\boldsymbol{G}(t)$ - Trend
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTE1Nzg3NzQ4OSw0ODI0MTQ5MjQsMTEwNj
+eyJoaXN0b3J5IjpbLTI1NDQ5MjAxNSw0ODI0MTQ5MjQsMTEwNj
 Q2MDQxNSwxNzMwNDI3NzkxLDEwOTg5OTM0NDAsLTE2NDA1NTc4
 MjUsLTk5NTM1NDc0OCwtMTEzNTcyMDU0MF19
 -->
