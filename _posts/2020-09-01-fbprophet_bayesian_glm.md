@@ -72,13 +72,13 @@ Though I can spend time writing in details on the applications of such simple, y
 > - [**The Bayesian Trap**](https://www.youtube.com/watch?v=R13BD8qKeTg&ab_channel=Veritasium) *by Veritasium*
 > - [**Demystifying Bayesian Deep Learning**](https://www.youtube.com/watch?v=s0S6HFdPtlA&t=906s&ab_channel=PyData) by Eric J. Ma (PyData)*
 
-In short, recalling our concept of *Generalized Linear Models* above:
+In short, implementation of Bayesian Statistics on time-series predictive modelling is powerful due to the ability for us to define **priors** (beliefs) & urecalling our concept of *Generalized Linear Models* above:
 > **Generalized Linear Models** allows for response variables that have arbitrary distributions, and for an arbitrary function of the response variable to vary linearly with the predicted values (rather than assuming that the response itself must vary linearly)
   
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM4ODUxMTkxNiwtMTY0MDU1NzgyNSwtOT
+eyJoaXN0b3J5IjpbMjAxMTA1MTY2MCwtMTY0MDU1NzgyNSwtOT
 k1MzU0NzQ4LC0xMTM1NzIwNTQwXX0=
 -->
