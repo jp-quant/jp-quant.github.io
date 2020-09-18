@@ -1,8 +1,8 @@
 # Introduction & Inspiration
-In the recent years, Facebook released an open-source tool for Python & R, called fbprophet, allowing scientists & developers to not just tackle the complexity & non-linearity in time-series analysis, but also allow for a robust model-building process to forecast any time-series data while accounting for *uncertainty* in every step of the way.
+In the recent years, Facebook released an open-source tool for Python & R, called [fbprophet](https://facebook.github.io/prophet/), allowing scientists & developers to not just tackle the complexity & non-linearity in time-series analysis, but also allow for a robust model-building process to forecast any time-series data while accounting for *uncertainty* in every step of the way.
 
  
-After spending a month reading Facebook's published research paper on the released forecaster, conducted by PhD mathematicians, as well as breaking down the codes from their open-source repository (Python), I was able to understand , in details, the mathematics & computational executions, thus built my own time-series forecaster with additional complexities added, utilizing the foundation of fbprophet.
+After spending a month reading Facebook's published research paper on the released forecaster, conducted by PhD mathematicians, as well as breaking down the codes from their open-source repository (Python), I was able to understand , in details, the mathematics & computational executions, thus built my own time-series forecaster with additional complexities added, utilizing their GLM mathematical foundations.
 
 In this post, we will:
 
@@ -69,5 +69,5 @@ $$ P(A \mid B) = \frac{P(A) P(B \mid A)}{P(B)}$$
 This allows us to tackle complex time-series problems, especially ones that exhibit non-linearity, while not having to worry about data stationarity that classical models, such as ARIMA, heavily rely on.
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTkyNTcwOTYxXX0=
+eyJoaXN0b3J5IjpbLTMxODI2OTMxOV19
 -->
