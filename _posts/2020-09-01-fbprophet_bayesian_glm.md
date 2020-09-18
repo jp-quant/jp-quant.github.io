@@ -166,20 +166,20 @@ $$\gamma = -s \delta$$
 ---
 Now, with all the defined components to determine the trend $\boldsymbol{G}$ tensor, we will use them to calculate **3 types of trends**:
 
-**Linear Trend (mainly used)
+**Linear Trend** (mainly used)
 > **$$ G = (k + A \delta) \odot \vec{t} + (m + A \gamma) $$**
 
-#### Logistic Trend
-> $$G = \frac{C}{}$$
+**Logistic Trend** (like sigmoid)
+> $$G = \frac{C}{1 + e}$$
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTExNDY2MTQ2MSwyMDM3ODE2MDQ1LDYzMT
-U4MTQ5OSwtMTQ1MjIyNDUzMywxNTQ4MTA1MTgsLTEyMDAyNjEz
-MzAsMTQxNTkyMTkzNCwxOTE0MTQ1MDY0LDI5NzM4MTI0NSw2MD
-AxMDUxMTQsLTg2ODUwMjYsLTU2MjI0NjYxNCwtMTI5ODc4OTEy
-NCw0ODI0MTQ5MjQsMTEwNjQ2MDQxNSwxNzMwNDI3NzkxLDEwOT
-g5OTM0NDAsLTE2NDA1NTc4MjUsLTk5NTM1NDc0OCwtMTEzNTcy
-MDU0MF19
+eyJoaXN0b3J5IjpbOTI5MzQ4MTIwLDIwMzc4MTYwNDUsNjMxNT
+gxNDk5LC0xNDUyMjI0NTMzLDE1NDgxMDUxOCwtMTIwMDI2MTMz
+MCwxNDE1OTIxOTM0LDE5MTQxNDUwNjQsMjk3MzgxMjQ1LDYwMD
+EwNTExNCwtODY4NTAyNiwtNTYyMjQ2NjE0LC0xMjk4Nzg5MTI0
+LDQ4MjQxNDkyNCwxMTA2NDYwNDE1LDE3MzA0Mjc3OTEsMTA5OD
+k5MzQ0MCwtMTY0MDU1NzgyNSwtOTk1MzU0NzQ4LC0xMTM1NzIw
+NTQwXX0=
 -->
