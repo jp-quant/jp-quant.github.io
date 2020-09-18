@@ -62,19 +62,13 @@ This allows us to tackle complex time-series problems, especially ones that exhi
 
 Facebook recently released an open-source tool called fbprophet allowing developers to not just tackle the complexity & non-linearity in time-series analysis, but also allow for a robust model-building to forecast any time-series data while accounting for *uncertainty* in every step of the way.
 
-  
-
-After spending a month reading their published research paper, conducted by PhD mathematicians, as well as breaking down the codes from their open-source repository (Python), I was able to understand , in details, the mathematics & computational executions, thus built my own "
-
-  
+ 
+After spending a month reading their published research paper, conducted by PhD mathematicians, as well as breaking down the codes from their open-source repository (Python), I was able to understand , in details, the mathematics & computational executions, thus built my own time-series forecaster with additional complexities added, utilizing the foundation of fbprophet.
 
 In this post, we will:
 
-1. Explore the core concept of a Generalized Linear Model (GLM).
+1. Explore the core concept of a Generalized Linear Model (GLM). 2. Break down the mathematics of fbprophet's GLM. 3. Build our own version with additional flexibility & creative concepts added, utilizing *PyMC3* instead of *Stan* (like fbprophet does) as backend sampling
 
-2. Break down the mathematics of fbprophet's GLM.
-
-3. Build our own version with additional flexibility & creative concepts added, utilizing *PyMC3* instead of *Stan* (like fbprophet does) as backend sampling
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTAyOTkxNzA2Nl19
+eyJoaXN0b3J5IjpbLTIwODYxMzYxNDRdfQ==
 -->
