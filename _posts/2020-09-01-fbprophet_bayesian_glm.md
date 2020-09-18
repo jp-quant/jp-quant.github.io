@@ -9,8 +9,9 @@ In this post, we will:
 1. Mathematically understand the difference between **Ordinary v.s. Generalized** Linear Models (GLM) & why we are using GLM to build time-series forecasters.
 2. Explore the concept of "going Bayesian" (Bayes' Theorem), the benefits from doing so & the extended philosophy behind it.
 3. Break down the mathematics of FBProphet. 
-4. Build our own version in Python with additional flexibility & creative concepts added, utilizing **PyMC3** instead of *Stan* (like fbprophet does) as backend sampler.
+4. Build our own version in Python with additional flexibility & creative concepts added, utilizing **PyMC3** instead of *Stan* (like fbprophet does) as backend sampler (since I am not yet super fluent in Stan by the time I write this post).
  
+---
 ---
 
 ## 1. The Superiority of Generalized Linear Models
@@ -18,7 +19,7 @@ Linearity is the foundational language that explains the totality of composition
 
   
 
-However, the main difference between a regular ordinary linear regression model and a generalized one falls under the concept of **symmetry & normality**, a *theoretical* zero-sum framework towards reality.
+However, the main difference between a regular ordinary linear regression model and a generalized one falls under the concept of **symmetry & normality**, a *theoretical* zero-sum framework towards reality. 
 
   
 
@@ -98,7 +99,7 @@ The main **philosophy** behind Bayesian Statistics is that:
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMDc4ODUwOTgsNDgyNDE0OTI0LDExMD
+eyJoaXN0b3J5IjpbLTE2MzE0OTYzMjcsNDgyNDE0OTI0LDExMD
 Y0NjA0MTUsMTczMDQyNzc5MSwxMDk4OTkzNDQwLC0xNjQwNTU3
 ODI1LC05OTUzNTQ3NDgsLTExMzU3MjA1NDBdfQ==
 -->
