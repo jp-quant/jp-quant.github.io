@@ -3,15 +3,15 @@ In the recent years, Facebook released an open-source tool for Python & R, calle
  
 After spending a couple weeks on my spare time reading Facebook's published [research paper](https://peerj.com/preprints/3190/) on the released forecaster, conducted by PhD mathematicians, as well as breaking down the codes from their [open-source repository](https://github.com/facebook/prophet/tree/master/python) (Python), I was able to understand, in details, the mathematics & computational executions, thus built my own time-series forecaster with additional complexities added, utilizing their mathematical foundations.
 
+---
 In this post, we will:
 
 1. Mathematically understand the difference between **Ordinary v.s. Generalized** Linear Models (GLM) & why we are using GLM to build time-series forecasters.
 2. Explore the concept of "going Bayesian" (Bayes' Theorem), the benefits from doing so & the extended philosophy behind it.
 3. Break down the mathematics of FBProphet. 
-4. Build our own version in Python with additional flexibility & creative concepts added, utilizing **PyMC3** instead of *Stan* (like fbprophet does) as backend.
+4. Build our own version in Python with additional flexibility & creative concepts added, utilizing **PyMC3** instead of *Stan* (like fbprophet does) as backend sampler.
  
-
-
+---
 
 ## 1. The Superiority of Generalized Linear Models
 Linearity is the foundational language that explains the totality of composition for any reality we are trying to model, as regression becomes the basis for the overarching factor-modeling technique in the modern data-driven world, especially neural network models in Machine Learning.
@@ -98,7 +98,7 @@ The main **philosophy** behind Bayesian Statistics is that:
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzQxMDAzNzQ2LDQ4MjQxNDkyNCwxMTA2ND
-YwNDE1LDE3MzA0Mjc3OTEsMTA5ODk5MzQ0MCwtMTY0MDU1Nzgy
-NSwtOTk1MzU0NzQ4LC0xMTM1NzIwNTQwXX0=
+eyJoaXN0b3J5IjpbLTIwMDc4ODUwOTgsNDgyNDE0OTI0LDExMD
+Y0NjA0MTUsMTczMDQyNzc5MSwxMDk4OTkzNDQwLC0xNjQwNTU3
+ODI1LC05OTUzNTQ3NDgsLTExMzU3MjA1NDBdfQ==
 -->
