@@ -221,9 +221,9 @@ Now, with all the defined components to model our $$\boldsymbol{G}(t)$$, we proc
 
 ---
 
-### Visual & Technical Decomposition for The Trend Model
+### Simple Visual & Technical Decomposition of Linear Trend Model
 
-> **Remarks**: Following with our technical demonstrative work below in Python, we will only showcase the effect of *Linear Trend*, as it's being the default & conventional approach in most cases. Though in short, we primarily seek to elucidate the importance of our defined priors & their transformed variables, the roles they play thus how, together, they construct our trend model as a component in the overarching GLM.
+> **Remarks**: All values are randomly generated to produce such result, as such result means nothing without observed data to fit the priors to. This is purely demonstrative work.
 
 ---
 
@@ -275,6 +275,8 @@ for title, f in zip(['Trend (Growth Rate + Growth Offset)','Growth Rate', 'Growt
 
 <img src="https://jp-quant.github.io/images/glm_bayesian/demo_1.png" style="background-color: white;">
 
-Notice how the full Trend as an addition of Growth Rate & Offsets is basically a piece-wise regression of such pair of components, where the defined $$N$$ amount of changepoints (n_changepoints) resulted in our $$\delta$$ dictating the multiplicative magnitude of our two terms at those $$N$$ specific changepoints in numeric timesteps $$\boldsymbol{t}$$.
+Notice how the trend, being an addition of Growth Rate & Offsets, is basically a piece-wise regression of the growth pairs, where the defined $$N$$ amount of changepoints (n_changepoints) resulted in our $$\delta$$ tensor of N-dimension, dictating the multiplicative magnitudes of our two terms, right at those $$N$$ specific changepoints in the numeric timesteps $$\boldsymbol{t}$$, or simply at $$\boldsymbol{s}$$.
+
+Now that we have understood the trend model $$\boldsymbol{G}(t)$$, we will now proceed to move on to the seasonal components $$S_m$$ & $$S_a$$. 
 
 [MORE IN PROGRESS AS OF 9-18-2020]
