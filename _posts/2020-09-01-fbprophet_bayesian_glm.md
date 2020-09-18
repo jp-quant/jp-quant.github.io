@@ -178,11 +178,11 @@ Now, with all the defined components to determine the trend $\boldsymbol{G}$ ten
 > $$G(t) = m \vec{\boldsymbol{1}}$$
 > No changepoints incorporated with purely a constant linear trend value as prior $m$ (or $k$) with defined distribution $\mathcal{N}(0,\theta)$, or $\mathcal{N}(0,5)$ by default. 
 
-Moving forward, our technical demonstrative work will only showcase the effect of *Linear Trend*, as it's being the default & conventional approach
+Moving forward with technical demonstrative work will only showcase the effect of *Linear Trend*, as it's being the default & conventional approach. In addition, we seek to elucidate the importance of our defined prior variables & their transformed variables, thus how they construct our trend model
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQwOTk0MzYzMSwtNzI1MzQ4NTIxLDIwMz
+eyJoaXN0b3J5IjpbLTkyNjU3Njg2NiwtNzI1MzQ4NTIxLDIwMz
 c4MTYwNDUsNjMxNTgxNDk5LC0xNDUyMjI0NTMzLDE1NDgxMDUx
 OCwtMTIwMDI2MTMzMCwxNDE1OTIxOTM0LDE5MTQxNDUwNjQsMj
 k3MzgxMjQ1LDYwMDEwNTExNCwtODY4NTAyNiwtNTYyMjQ2NjE0
