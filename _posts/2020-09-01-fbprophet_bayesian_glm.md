@@ -173,17 +173,18 @@ Now, with all the defined components to determine the trend $\boldsymbol{G}$ ten
 > $$G(t) = \frac{C(t)}{1 + exp[-(k + A_{t} \delta)(\boldsymbol{t} - (m + A_{t} \gamma))]}$$
 > where $C =$ cap/maximum value for logistic convergence. This can be given or include in our model to fit.
 
-**Flat Trend**
-> $$G(t) = m 
+**Flat Trend** (for simplicity)
+> $$G(t) = m \vec{\boldsymbol{1}}$$
+> No changepoints incorporated with purely a constant linear trend value as prior $m$
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTE0NjYxMDY4NCwyMDM3ODE2MDQ1LDYzMT
-U4MTQ5OSwtMTQ1MjIyNDUzMywxNTQ4MTA1MTgsLTEyMDAyNjEz
-MzAsMTQxNTkyMTkzNCwxOTE0MTQ1MDY0LDI5NzM4MTI0NSw2MD
-AxMDUxMTQsLTg2ODUwMjYsLTU2MjI0NjYxNCwtMTI5ODc4OTEy
-NCw0ODI0MTQ5MjQsMTEwNjQ2MDQxNSwxNzMwNDI3NzkxLDEwOT
-g5OTM0NDAsLTE2NDA1NTc4MjUsLTk5NTM1NDc0OCwtMTEzNTcy
-MDU0MF19
+eyJoaXN0b3J5IjpbLTIxMTYxMzA1ODksMjAzNzgxNjA0NSw2Mz
+E1ODE0OTksLTE0NTIyMjQ1MzMsMTU0ODEwNTE4LC0xMjAwMjYx
+MzMwLDE0MTU5MjE5MzQsMTkxNDE0NTA2NCwyOTczODEyNDUsNj
+AwMTA1MTE0LC04Njg1MDI2LC01NjIyNDY2MTQsLTEyOTg3ODkx
+MjQsNDgyNDE0OTI0LDExMDY0NjA0MTUsMTczMDQyNzc5MSwxMD
+k4OTkzNDQwLC0xNjQwNTU3ODI1LC05OTUzNTQ3NDgsLTExMzU3
+MjA1NDBdfQ==
 -->
