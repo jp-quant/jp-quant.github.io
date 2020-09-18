@@ -128,16 +128,16 @@ $$\tau = 0.05$$
 The effect of priors' scaling values will be demonstrated in our work later on, as well as an extended creative idea on defining scales as priors themselves, although for now, we stick with them being as default constants.
 
 We now explore their relative meanings & dimensions in our trend model:
-- $k$ =  Growth Rate **Constant**
-- $m$ = Growth Offset **Constant** (s
-- $\delta$ = Growth Rate Changepoints Adjustments
+- $k$ =  1-Dimensional Growth Rate
+- $m$ = 1-Dimensional Growth Offset
+- $\delta$ = N-Dimensional Growth Rate Changepoints Adjustments
 
 With the priors, fbprophet's model use them to calculate **3 types of trends**:
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTgwOTc3MzQ3MiwtNTYyMjQ2NjE0LC0xMj
+eyJoaXN0b3J5IjpbMTgzNTk1NDU1MSwtNTYyMjQ2NjE0LC0xMj
 k4Nzg5MTI0LDQ4MjQxNDkyNCwxMTA2NDYwNDE1LDE3MzA0Mjc3
 OTEsMTA5ODk5MzQ0MCwtMTY0MDU1NzgyNSwtOTk1MzU0NzQ4LC
 0xMTM1NzIwNTQwXX0=
