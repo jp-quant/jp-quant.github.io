@@ -99,7 +99,7 @@ The main **philosophy** behind Bayesian Statistics is that:
 ---
 ## 3. The Mathematics behind FBProphet
 
-### $$\boldsymbol{Y}(t) = \boldsymbol{G}(t) \cdot(1 +  \sum{\boldsymbol{S}_{i}(t)} + \boldsymbol{\epsilon}_{t}$$
+### $$\boldsymbol{Y}(t) = \boldsymbol{G}(t) \cdot(1 + \boldsymbol{S}_{m}(t)) +  \boldsymbol{S}_{}(t) + \boldsymbol{\epsilon}_{t}$$
 
 
 
@@ -108,7 +108,7 @@ The main **philosophy** behind Bayesian Statistics is that:
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc0NjYwOTAyNCw0ODI0MTQ5MjQsMTEwNj
+eyJoaXN0b3J5IjpbMTE1Nzg3NzQ4OSw0ODI0MTQ5MjQsMTEwNj
 Q2MDQxNSwxNzMwNDI3NzkxLDEwOTg5OTM0NDAsLTE2NDA1NTc4
 MjUsLTk5NTM1NDc0OCwtMTEzNTcyMDU0MF19
 -->
