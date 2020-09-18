@@ -128,11 +128,11 @@ $$\tau = 0.05$$
 The effect of priors' scaling values will be demonstrated in our work later on, as well as an extended creative idea on defining scales as priors themselves, although for now, we stick with them being as default constants.
 
 We now explore their relative meanings & dimensions in our trend model:
-- $\boldsymbol{k}$ [1-Dimensional] = Growth Rate
-- $\boldsymbol{m}$ [1-Dimensional] = Growth Offset
-- $\boldsymbol{\delta}$ [N-Dimensional] = Growth Rate Changepoints Adjustments
+- $\boldsymbol{k}$ [*1-Dimensional*] = Growth Rate
+- $\boldsymbol{m}$ [*1-Dimensional*] = Growth Offset
+- $\boldsymbol{\delta}$ [*N-Dimensional*] = Growth Rate Changepoints Adjustments
 
-Lastly, notice how $\delta$ is a vector of $N$ dimensions, where such *integer* value $N$ is **also a hyper-parameter**, though not as important, for tuning, we also need to define one last component for trend, although this will NOT be a prior distribution but rather a **matrix $A$** called the **determining matrix**.
+Notice how $\delta$ is an $N$ dimensional variable, where such *integer* value $N$ is **also a hyper-parameter**, though not as important, for tuning, we also need to define one last component for trend, although this will NOT be a prior distribution but rather a **matrix $A$** called the **determining matrix**.
 
 For every given $\boldsymbol{t}$ as the **scaled time vector** (we will explain this more) of $k$ dimensional length, and $\delta$ of $N$ dimensional length:
 
@@ -151,7 +151,7 @@ With the priors, fbprophet's model use them to calculate **3 types of trends**:
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM4MTc2MDcyOSwxOTE0MTQ1MDY0LDI5Nz
+eyJoaXN0b3J5IjpbMTQxNTkyMTkzNCwxOTE0MTQ1MDY0LDI5Nz
 M4MTI0NSw2MDAxMDUxMTQsLTg2ODUwMjYsLTU2MjI0NjYxNCwt
 MTI5ODc4OTEyNCw0ODI0MTQ5MjQsMTEwNjQ2MDQxNSwxNzMwND
 I3NzkxLDEwOTg5OTM0NDAsLTE2NDA1NTc4MjUsLTk5NTM1NDc0
