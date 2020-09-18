@@ -10,6 +10,8 @@ In this post, we will:
 3. Break down the mathematics of FBProphet. 
 4. Build our own version in Python with additional flexibility & creative concepts added, utilizing **PyMC3** instead of *Stan* (like fbprophet does) as backend.
  
+Let's go
+
 ---
 ## 1. The Superiority of Generalized Linear Models
 Linearity is the foundational language that explains the totality of composition for any reality we are trying to model, as regression becomes the basis for the overarching factor-modeling technique in the modern data-driven world, especially neural network models in Machine Learning.
@@ -96,7 +98,7 @@ The main **philosophy** behind Bayesian Statistics is that:
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDgyNDE0OTI0LDExMDY0NjA0MTUsMTczMD
-QyNzc5MSwxMDk4OTkzNDQwLC0xNjQwNTU3ODI1LC05OTUzNTQ3
-NDgsLTExMzU3MjA1NDBdfQ==
+eyJoaXN0b3J5IjpbLTE2OTQ2NDY2NzEsNDgyNDE0OTI0LDExMD
+Y0NjA0MTUsMTczMDQyNzc5MSwxMDk4OTkzNDQwLC0xNjQwNTU3
+ODI1LC05OTUzNTQ3NDgsLTExMzU3MjA1NDBdfQ==
 -->
