@@ -99,7 +99,7 @@ The main **philosophy** behind Bayesian Statistics is that:
 ---
 ## 3. The Mathematics behind FBProphet
 
-### $$\boldsymbol{Y}(t) \sim \boldsymbol{G}(t) \cdot(1 + \boldsymbol{S}_{m}(t)) +  \boldsymbol{S}_{a}(t) + \boldsymbol{\epsilon}_{t}$$
+### $$\boldsymbol{Y}(t) \sim [\boldsymbol{G}(t) \cdot(1 + \boldsymbol{S}_{m}(t)) +  \boldsymbol{S}_{a}(t) + \boldsymbol{\epsilon}_{t}$$
 
 where, all as **tensors** :
 >$\boldsymbol{Y}$ = Observed values to fit & predict
@@ -118,8 +118,8 @@ A)  Modeling Trend $\boldsymbol{G}$
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4NDU2ODgyMjcsLTU2MjI0NjYxNCwtMT
-I5ODc4OTEyNCw0ODI0MTQ5MjQsMTEwNjQ2MDQxNSwxNzMwNDI3
-NzkxLDEwOTg5OTM0NDAsLTE2NDA1NTc4MjUsLTk5NTM1NDc0OC
-wtMTEzNTcyMDU0MF19
+eyJoaXN0b3J5IjpbNzk0MzQ0MzIyLC01NjIyNDY2MTQsLTEyOT
+g3ODkxMjQsNDgyNDE0OTI0LDExMDY0NjA0MTUsMTczMDQyNzc5
+MSwxMDk4OTkzNDQwLC0xNjQwNTU3ODI1LC05OTUzNTQ3NDgsLT
+ExMzU3MjA1NDBdfQ==
 -->
