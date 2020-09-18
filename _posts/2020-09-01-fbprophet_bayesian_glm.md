@@ -98,7 +98,7 @@ The main **philosophy** behind Bayesian Statistics is that:
 
 ---
 ## 3. The Mathematics behind FBProphet
-> **Disclosure**: The content below is somewhat a detailed summary, or rather a concise alternative explanation based on my personal understanding of fbprophet's GLM. If you want to check out the original paper, click here.
+> **Disclosure**: The content below is somewhat a detailed summary, or rather a concise alternative explanation based on my personal understanding of fbprophet's GLM. If you want to check out the original published paper, click [here](https://peerj.com/preprints/3190/).
 ---
 The overarching formula is:
 
@@ -180,12 +180,13 @@ Now, with all the defined components to determine the trend $\boldsymbol{G}$ ten
 
 
 
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTEzNTk2NDMwMywtNzI1MzQ4NTIxLDIwMz
-c4MTYwNDUsNjMxNTgxNDk5LC0xNDUyMjI0NTMzLDE1NDgxMDUx
-OCwtMTIwMDI2MTMzMCwxNDE1OTIxOTM0LDE5MTQxNDUwNjQsMj
-k3MzgxMjQ1LDYwMDEwNTExNCwtODY4NTAyNiwtNTYyMjQ2NjE0
-LC0xMjk4Nzg5MTI0LDQ4MjQxNDkyNCwxMTA2NDYwNDE1LDE3Mz
-A0Mjc3OTEsMTA5ODk5MzQ0MCwtMTY0MDU1NzgyNSwtOTk1MzU0
-NzQ4XX0=
+eyJoaXN0b3J5IjpbNDA3MTk2OTA5LC03MjUzNDg1MjEsMjAzNz
+gxNjA0NSw2MzE1ODE0OTksLTE0NTIyMjQ1MzMsMTU0ODEwNTE4
+LC0xMjAwMjYxMzMwLDE0MTU5MjE5MzQsMTkxNDE0NTA2NCwyOT
+czODEyNDUsNjAwMTA1MTE0LC04Njg1MDI2LC01NjIyNDY2MTQs
+LTEyOTg3ODkxMjQsNDgyNDE0OTI0LDExMDY0NjA0MTUsMTczMD
+QyNzc5MSwxMDk4OTkzNDQwLC0xNjQwNTU3ODI1LC05OTUzNTQ3
+NDhdfQ==
 -->
