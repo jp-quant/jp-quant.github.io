@@ -138,7 +138,7 @@ We now explore their relative meanings & dimensions in our trend model:
 Notice how $\delta$ is an $N$ dimensional variable, where such *integer* value $N$ is also a hyper-parameter, though not as important, for tuning.
 > The concept of $\delta$ is somewhat similar to the commonly known concept in mathematics called *Dirac Delta* to tackle problems with piece-wise regressions & step-functions. 
 
-We also need to define a couple last components for trend, although **these will NOT be a prior distribution needed to be sampled for fit** but rather most of which are **transformed variables** as **results of  the defined priors** above. These are:
+We also need to define a couple last components for trend, although **these will NOT be a prior distribution needed to be sampled for fit** but rather most of which are **transformed variables** as **calculation results using the defined priors** above. These are:
 $$ \boldsymbol{t}, \boldsymbol{s}, A,\gamma$$
 
 ---
@@ -170,7 +170,7 @@ Now, with all the defined components to determine the trend $\boldsymbol{G}$ ten
 **Linear Trend** (mainly used)
 > **$$ G(t) = (k + A_t \delta) \boldsymbol{t} + (m + A_t \gamma) $$**
 
-**Logistic Trend** (Non-Linear)
+**Logistic Trend** (Non-Linear & Saturating Growth Applications)
 > $$G(t) = \frac{C(t)}{1 + exp[-(k + A_{t} \delta)(\boldsymbol{t} - (m + A_{t} \gamma))]}$$
 > where $C =$ cap/maximum value for logistic convergence. This can be given or include in our model to fit.
 
@@ -181,7 +181,7 @@ Now, with all the defined components to determine the trend $\boldsymbol{G}$ ten
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjAwMTA3NDE0NSwtNzI1MzQ4NTIxLDIwMz
+eyJoaXN0b3J5IjpbMTEzNTk2NDMwMywtNzI1MzQ4NTIxLDIwMz
 c4MTYwNDUsNjMxNTgxNDk5LC0xNDUyMjI0NTMzLDE1NDgxMDUx
 OCwtMTIwMDI2MTMzMCwxNDE1OTIxOTM0LDE5MTQxNDUwNjQsMj
 k3MzgxMjQ1LDYwMDEwNTExNCwtODY4NTAyNiwtNTYyMjQ2NjE0
