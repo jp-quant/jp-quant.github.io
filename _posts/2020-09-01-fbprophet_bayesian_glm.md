@@ -118,7 +118,7 @@ $$ m \sim \mathcal{N}(0,\theta) $$
 
 $$\delta \sim Laplace(0,\tau)$$
 
-where **$\theta$ and $\tau$ being the scales** of the priors' distributions (or simply $\sigma_G$ measuring the deviation of such prior. This is viewed as hyper-parameters for tuning with cross-validation (employed by fbprophet) or any custom tuning methods.
+where **$\theta$ and $\tau$ being the scales** of the priors' distributions (or simply $\sigma_G$ measuring the deviation of such priors). This is viewed as hyper-parameters for tuning with cross-validation (employed by fbprophet) or any other custom tuning methods.
 
 As default, set by fbprophet, we will opt with:
 $$\theta = 5$$
@@ -127,15 +127,16 @@ $$\tau = 0.05$$
 
 The effect of priors' scaling values will be demonstrated in our work later on, as well as an extended creative idea on defining scales as priors themselves, although for now, we stick with them being as default constants.
 
-We now explore their meanings in the 
+We now explore their relative meanings in our trend model:
+
 
 With the priors, fbprophet's model use them to calculate **3 types of trends**:
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY4MjMzMjAwNCwtNTYyMjQ2NjE0LC0xMj
-k4Nzg5MTI0LDQ4MjQxNDkyNCwxMTA2NDYwNDE1LDE3MzA0Mjc3
-OTEsMTA5ODk5MzQ0MCwtMTY0MDU1NzgyNSwtOTk1MzU0NzQ4LC
-0xMTM1NzIwNTQwXX0=
+eyJoaXN0b3J5IjpbMzc4Njk4NzY1LC01NjIyNDY2MTQsLTEyOT
+g3ODkxMjQsNDgyNDE0OTI0LDExMDY0NjA0MTUsMTczMDQyNzc5
+MSwxMDk4OTkzNDQwLC0xNjQwNTU3ODI1LC05OTUzNTQ3NDgsLT
+ExMzU3MjA1NDBdfQ==
 -->
