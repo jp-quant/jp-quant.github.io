@@ -153,7 +153,7 @@ $$A = \begin{bmatrix}
    t_{k} \geq s_1  & t_{k} \geq s_2 & \dots  & t_{k} \geq s_n \end{bmatrix}
  $$
 
-In addition, from $\delta$, we also will define a transformed variable from such prior with defined distribution, being the **changepoints adjustment for the offset**:
+In addition, from $\delta$ as the **changepoints adjustment** for the **growth rate**, we also will define a transformed variable from such prior with defined distribution, $\gamma$ being the **changepoints adjustment** for the **growth offset**:
 $$\gamma = -s \delta$$
 
 ---
@@ -168,10 +168,10 @@ Now, with all the defined components to determine the trend $\boldsymbol{G}$ ten
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU0ODEwNTE4LC0xMjAwMjYxMzMwLDE0MT
-U5MjE5MzQsMTkxNDE0NTA2NCwyOTczODEyNDUsNjAwMTA1MTE0
-LC04Njg1MDI2LC01NjIyNDY2MTQsLTEyOTg3ODkxMjQsNDgyND
-E0OTI0LDExMDY0NjA0MTUsMTczMDQyNzc5MSwxMDk4OTkzNDQw
-LC0xNjQwNTU3ODI1LC05OTUzNTQ3NDgsLTExMzU3MjA1NDBdfQ
-==
+eyJoaXN0b3J5IjpbMTUzNzg1MzA5NiwxNTQ4MTA1MTgsLTEyMD
+AyNjEzMzAsMTQxNTkyMTkzNCwxOTE0MTQ1MDY0LDI5NzM4MTI0
+NSw2MDAxMDUxMTQsLTg2ODUwMjYsLTU2MjI0NjYxNCwtMTI5OD
+c4OTEyNCw0ODI0MTQ5MjQsMTEwNjQ2MDQxNSwxNzMwNDI3Nzkx
+LDEwOTg5OTM0NDAsLTE2NDA1NTc4MjUsLTk5NTM1NDc0OCwtMT
+EzNTcyMDU0MF19
 -->
