@@ -101,6 +101,7 @@ The main **philosophy** behind Bayesian Statistics is that:
 > **Disclosure**: The content below is somewhat a detailed summary, or rather a concise alternative explanation based on my personal understanding of fbprophet's GLM. If you want to check out the original paper, click here.
 ---
 The overarching formula is:
+
 ### $$\boldsymbol{Y}(t) \sim [\boldsymbol{G}(t) \cdot(1 + \boldsymbol{S}_{m}(t)) +  \boldsymbol{S}_{a}(t)] \pm \boldsymbol{\epsilon}_{t}$$
 
 where, all as **tensors**  :
@@ -111,8 +112,8 @@ where, all as **tensors**  :
 > $\boldsymbol{\epsilon}$ = Unknown Errors (e.g.:  $\sigma$ of the observed)
 
 ---
-Modeling Trend/Growth $\boldsymbol{G}$
-
+### Modeling Trend $\boldsymbol{G}$
+---
 Without worrying about their meanings at the moment, We first define **3 priors**:
 $$ k \sim \mathcal{N}(0,\theta)$$
 
@@ -180,11 +181,11 @@ Now, with all the defined components to determine the trend $\boldsymbol{G}$ ten
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU1OTc4OTI2MiwtNzI1MzQ4NTIxLDIwMz
-c4MTYwNDUsNjMxNTgxNDk5LC0xNDUyMjI0NTMzLDE1NDgxMDUx
-OCwtMTIwMDI2MTMzMCwxNDE1OTIxOTM0LDE5MTQxNDUwNjQsMj
-k3MzgxMjQ1LDYwMDEwNTExNCwtODY4NTAyNiwtNTYyMjQ2NjE0
-LC0xMjk4Nzg5MTI0LDQ4MjQxNDkyNCwxMTA2NDYwNDE1LDE3Mz
-A0Mjc3OTEsMTA5ODk5MzQ0MCwtMTY0MDU1NzgyNSwtOTk1MzU0
-NzQ4XX0=
+eyJoaXN0b3J5IjpbLTEzOTc4ODQyMDYsLTcyNTM0ODUyMSwyMD
+M3ODE2MDQ1LDYzMTU4MTQ5OSwtMTQ1MjIyNDUzMywxNTQ4MTA1
+MTgsLTEyMDAyNjEzMzAsMTQxNTkyMTkzNCwxOTE0MTQ1MDY0LD
+I5NzM4MTI0NSw2MDAxMDUxMTQsLTg2ODUwMjYsLTU2MjI0NjYx
+NCwtMTI5ODc4OTEyNCw0ODI0MTQ5MjQsMTEwNjQ2MDQxNSwxNz
+MwNDI3NzkxLDEwOTg5OTM0NDAsLTE2NDA1NTc4MjUsLTk5NTM1
+NDc0OF19
 -->
