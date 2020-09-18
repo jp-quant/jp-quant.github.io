@@ -123,20 +123,20 @@ Starting with the model's overarching formula:
 
 where, as **tensors**:
 
->$$\boldsymbol{Y}$$ = Observable to fit & predict (data of prediction target)
+- $$\boldsymbol{Y}$$ = Observable to fit & predict (data of prediction target)
 
-> $$\boldsymbol{G}$$ = Trend/Growth of $$\boldsymbol{Y}$$
+- $$\boldsymbol{G}$$ = Trend/Growth
 
-> $$\boldsymbol{S}_{m}$$ = Multiplicative Seasonal Components of $$\boldsymbol{Y}$$
+- $$\boldsymbol{S}_{m}$$ = Multiplicative Seasonal Components
 
-> $$\boldsymbol{S}_{a}$$ = Additive Seasonal Components of $$\boldsymbol{Y}$$
+- $$\boldsymbol{S}_{a}$$ = Additive Seasonal Components
 
-> $$\boldsymbol{\epsilon}$$ = Unknown Errors (set as  $$\sigma$$ of the observed by fbprophet) of $$\boldsymbol{Y}$$
+- $$\boldsymbol{\epsilon}$$ = Unknown Errors (set as $$\sigma$$ of the observed by fbprophet)
 
 ---
 ### Modeling Trend [$$\boldsymbol{G}(t)$$]
 ---
-Without worrying about their meanings at the moment, we first define **3 essential priors**:
+Without worrying about their meanings at the moment, we first define **3 essential priors** for our trend model:
 
 $$ k \sim \mathcal{N}(0,\theta)$$
 
@@ -146,7 +146,7 @@ $$\delta \sim Laplace(0,\tau)$$
 
 where **$$\theta$$ and $$\tau$$ being the scales** of the priors' distributions (or simply $$\sigma_G$$ measuring the deviation of such priors). This is viewed as hyper-parameters for tuning with cross-validation (employed by fbprophet) or any other custom tuning methods.
 
-As default, set by fbprophet, we will opt with:
+As default, set by fbprophet:
 
 $$\theta = 5$$
 
@@ -178,13 +178,15 @@ work) of $$K$$ dimensional length
 
 > $$\boldsymbol{s} =\begin{bmatrix} s_1 & s_2  &\cdots  & s_n \end{bmatrix}$$
 
-> We then compute the matrix $$A$$ with dimension $$K$$ x $$N$$, with **boolean entries as binary integers** (1 = True, 0 = False), as:
+> We then compute the $$K$$ x $$N$$ matrix $$A$$, called the **Determining Matrix**, with **boolean entries as binaries** (1 = True, 0 = False):
 
 > $$A_t = \begin{bmatrix} t_{1} \geq s_1  & t_{1} \geq s_2  & \dots  & t_{1} \geq s_n \\ t_{2} \geq s_1  & t_{2} \geq s_2  & \dots  & t_{2} \geq s_n \\ \vdots & \vdots & \ddots & \vdots \\ t_{k} \geq s_1  & t_{k} \geq s_2 & \dots & t_{k} \geq s_n \end{bmatrix}$$
 
-> Lastly, from $$\delta$$ as the **changepoints adjustment** for the **growth rate**, we define a transformed variable $$\gamma$$ being the **changepoints adjustment** for the **growth offset**:
+> Lastly, from $$\delta$$ being the **changepoints adjustment for the growth rate**, we define a transformed variable:
 
 > $$\gamma = -s \delta$$
+
+> Where $$\gamma$$ being the **changepoints adjustment for the growth offset**.
 
 ---
 Now, with all the defined components to model our $$\boldsymbol{G}(t)$$, we proceed on using them to calculate **3 types of trends**:
@@ -200,12 +202,13 @@ Now, with all the defined components to model our $$\boldsymbol{G}(t)$$, we proc
 **Flat Trend** (for simplicity)
 > $$G(t) = m \vec{\boldsymbol{1}}$$
 
-> No changepoints incorporated with purely a constant linear trend value as prior $$m$$ (or $$k$$) with defined distribution $$\mathcal{N}(0,\theta)$$, or $$\mathcal{N}(0,5)$$ by default. 
+> No changepoints incorporated, defined purely with a constant linear trend value as prior $$m$$ (or $$k$$) following the distribution $$\mathcal{N}(0,\theta)$$, or $$\mathcal{N}(0,5)$$ by default. 
 
 ---
-***Remarks***:
-Following with our technical demonstrative work below, we will only showcase the effect of *Linear Trend*, as it's being the default & conventional approach in most cases.
-In addition, we primarily seek to elucidate the importance of our defined priors & their transformed variables, the roles they play thus how, together, they construct our trend model as a component in the overarching GLM.
+
+### Trend Model (with changepoints $$\delta$$) Demonstration & Example
+
+> **Remarks**: Following with our technical demonstrative work below, we will only showcase the effect of *Linear Trend*, as it's being the default & conventional approach in most cases. Though in short, we primarily seek to elucidate the importance of our defined priors & their transformed variables, the roles they play thus how, together, they construct our trend model as a component in the overarching GLM.
 
 ---
 
@@ -218,7 +221,7 @@ import numpy as np
 ```python
 # GIVEN & ASSIGNED
 t = np.arange(1000) #---| timesteps (though as integers for demonstration, this is scaled between (0,1) while fitting in fbprophet)
-n_changepoints = 10 #---| establish the amount of changepoints in our timesteps
+n_changepoints = 25 #---| establish the amount of changepoints in our timesteps
 
 # PRIORS
 k = 1 #---| fixed as constant for demonstration
@@ -253,5 +256,7 @@ for t, f in zip(['Trend = Growth Rate + Growth Offset','Growth Rate', 'Growth Of
 ```
 
 <img src="https://jp-quant.github.io/images/glm_bayesian/demo_1.png">
+
+Notice how the full Trend as an addition of Growth Rate & Offsets is basically a piece-wise regression of such pair of components, where the defined $$N$$ amount of changepoints (n_changepoints) resulted in our $$\delta$$ dictating the multiplicative magnitude of our two terms at those $$N$$ specific changepoints in numeric timesteps $$\boldsymbol{t}$$.
 
 [MORE IN PROGRESS AS OF 9-18-2020]
