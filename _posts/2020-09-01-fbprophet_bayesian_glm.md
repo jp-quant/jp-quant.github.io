@@ -118,11 +118,13 @@ $$ m \sim \mathcal{N}(0,\sigma_{g}) $$
 
 $$\delta \sim Laplace(0,\tau)$$
 
-where $\sigma_{g}$ and $\tau$ being the **scales** of such defined priors' distributions. This is viewed as 
+where $\sigma_{g}$ and $\tau$ being the **scales** of such defined priors' distributions. This is viewed as hyper-parameters for tuning with cross-validation (employed by fbprophet) or any custom tuning methods. As default, set by fbproph:
+$$\sigma_g = 5$$
+$$\tau = 0.05$$
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQ3NTU0NTk5OCwtNTYyMjQ2NjE0LC0xMj
+eyJoaXN0b3J5IjpbMTI5NTk2NzM2MywtNTYyMjQ2NjE0LC0xMj
 k4Nzg5MTI0LDQ4MjQxNDkyNCwxMTA2NDYwNDE1LDE3MzA0Mjc3
 OTEsMTA5ODk5MzQ0MCwtMTY0MDU1NzgyNSwtOTk1MzU0NzQ4LC
 0xMTM1NzIwNTQwXX0=
