@@ -22,7 +22,7 @@ As an attempt of mine to explain the model in more applicable details, and alter
 1. Mathematically understand the difference between **Ordinary v.s. Generalized** Linear Models (GLM) & why we are using GLM to build time-series forecasters.
 2. Explore the concept of "going Bayesian" (Bayes' Theorem), the benefits from doing so & the extended philosophy behind it.
 3. Break down the mathematics of FBProphet. 
-4. Build our own version in Python with additional flexibility & creative concepts added, utilizing *PyMC3* instead of *Stan* (like fbprophet does) as backend sampler (since I am not yet super fluent in Stan by the time I write this post).
+4. Build our own version in Python with additional flexibility & creative concepts added, utilizing *PyMC3* instead of *Stan* (like fbprophet does) as backend sampler (since I am not yet super fluent in Stan by the time I write this post). In addition, I will not spend much time talking about PyMC3, as you can navigate here to explore. It's an amazing probabilistic modeling module that implements frontier computational algorithms to perform MCMC simulations, along with a rich library of variational inferencing methods when dealing with massive amount of data, for regressions of various distributions in our built models. In short it performs sampling & fitting of our model for prediction purposes.
  
 
 ---
@@ -212,7 +212,7 @@ Now, with all the defined components to model our $$\boldsymbol{G}(t)$$, we proc
 **Logistic Trend** (Non-Linear & Saturating Growth Applications)
 > $$G(\boldsymbol{t}) = \frac{C(\boldsymbol{t})}{1 + exp[-(k + A_{\boldsymbol{t}} \delta)(\boldsymbol{t} - (m + A_{\boldsymbol{t}} \gamma))]}$$
 
-> Where $$C =$$ cap/maximum for logistic convergences/saturating point(s), can be given or include in our model to fit.
+> Where $$C =$$ cap/maximum for logistic convergences/saturating point(s), which can be given (fbprophet's) or include in our model as a prior to fit.
 
 **Flat Trend** (for simplicity)
 > $$G(\boldsymbol{t}) = m \vec{\boldsymbol{1}_{\boldsymbol{t}}}$$
@@ -223,7 +223,7 @@ Now, with all the defined components to model our $$\boldsymbol{G}(t)$$, we proc
 
 ### Simple Visual & Technical Decomposition of Linear Trend Model
 
-> **Remarks**: All values are randomly generated to produce such result, as such result means nothing without observed data to fit the priors to. This is purely demonstrative work.
+> **Remarks**: All values are randomly generated to produce such result, as such result means nothing without observed data to fit the priors to. This is purely demonstrative work. These lines of codes will be partially recycled for our final model built at the end. We primarily want to understand the components in pieces & how they come together.
 
 ---
 
@@ -275,8 +275,11 @@ for title, f in zip(['Trend (Growth Rate + Growth Offset)','Growth Rate', 'Growt
 
 <img src="https://jp-quant.github.io/images/glm_bayesian/demo_1.png" style="background-color: white;">
 
-Notice how the trend, being an addition of Growth Rate & Offsets, is basically a piece-wise regression of the growth pairs, where the defined $$N$$ amount of changepoints (n_changepoints) resulted in our $$\delta$$ tensor of N-dimension, dictating the multiplicative magnitudes of our two terms, right at those $$N$$ specific changepoints in the numeric timesteps $$\boldsymbol{t}$$, or simply at $$\boldsymbol{s}$$.
+---
+**Analysis & Explanations**
 
-Now that we have understood the trend model $$\boldsymbol{G}(t)$$, we will now proceed to move on to the seasonal components $$S_m$$ & $$S_a$$. 
+Notice that where the defined $$N$$ amount of changepoints (*n_changepoints*) resulted in the N-dimensional $$\delta$$ tensor, dictating the "magnitudes" of our two terms, Growth Rate & Offsets, at those $$N$$ specific changepoints in the numeric timesteps $$\boldsymbol{t}$$, or simply at $$\boldsymbol{s}$$. Together, they additively combined to produce the predicted "trend" of the observed.
+
+That concludes the mathematical details of the FBProphet's Trend Model.
 
 [MORE IN PROGRESS AS OF 9-18-2020]
