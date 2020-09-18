@@ -1,6 +1,6 @@
 ---
 title: "Time-Series Forecasting: FBProphet & Going Bayesian with Generalized Linear Models (GLM)"
-date: 2020-06-03
+date: 2020-09-18
 tags: [research, development, time-series, predictive-modeling]
 header:
   image: "/images/qf_glm_banner.PNG"
@@ -51,7 +51,7 @@ $$Y = \sum \alpha_{i} X_{i}$$
   
 
 - This is **appropriate when the response variable can vary indefinitely in either direction**.
-- When asked about the distribution of such predicted values, we only need $\mu$ and $\sigma$ to describe the symmetric property of its deviation.
+- When asked about the distribution of such predicted values, we only need $$\mu$$ and $$\sigma$$ to describe the symmetric property of its deviation.
 
   
 
@@ -98,11 +98,11 @@ Let's start by recalling the brief explanation about GLM from above:
 
 Shortly put in details, implementation of Bayesian Statistics on time-series GLM is powerful due to:
 
-1. The ability for us to define **priors** (initial beliefs) as *any distributions* $P(A), P(B),...$, whereas such priors $A, B, ...$ are variables/features that can be as abstract or realistic as we want.
+1. The ability for us to define **priors** (initial beliefs) as *any distributions* $$P(A), P(B),...$$, whereas such priors $$A, B, ...$$ are variables/features that can be as abstract or realistic as we want.
 
-2. We can formulate functions (link functions), as $f(A,B,...)$ with defined priors variables $A,B,...$, as transformed variables, to define the **posteriors**, being the observed, to which such observed values modeled as either a factor of predicted values, or predicted values themselves, *are also defined as a distribution.*
+2. We can formulate functions (link functions), as $$f(A,B,...)$$ with defined priors variables $$A,B,...$$, as transformed variables, to define the **posteriors**, being the observed, to which such observed values modeled as either a factor of predicted values, or predicted values themselves, *are also defined as a distribution.*
 
-3. We can then update such priors with the arrival of new observed data, using Bayes' Theorem, specifically the concept of *conditional probability* $P(Observed \mid X)$ *(where $X$ being a conditioned variable, either as a prior or a function of a group of priors)*
+3. We can then update such priors with the arrival of new observed data, using Bayes' Theorem, specifically the concept of *conditional probability* $$P(Observed \mid X)$$ *(where $$X$$ being a conditioned variable, either as a prior or a function of a group of priors)*
 
 We will demonstrate these implementations in the upcoming sections.
 To summarize:
@@ -122,14 +122,14 @@ Starting with the model's overarching formula:
 ### $$\boldsymbol{Y}(t) \sim [\boldsymbol{G}(t) \cdot(1 + \boldsymbol{S}_{m}(t)) +  \boldsymbol{S}_{a}(t)] \pm \boldsymbol{\epsilon}_{t}$$
 
 where, as **tensors**:
->$\boldsymbol{Y}$ = Observable to fit & predict (data of prediction target)
-> $\boldsymbol{G}$ = Trend/Growth of $\boldsymbol{Y}$
-> $\boldsymbol{S}_{m}$ = Multiplicative Seasonal Components of $\boldsymbol{Y}$
-> $\boldsymbol{S}_{a}$ = Additive Seasonal Components of $\boldsymbol{Y}$
-> $\boldsymbol{\epsilon}$ = Unknown Errors (set as  $\sigma$ of the observed by fbprophet) of $\boldsymbol{Y}$
+>$$\boldsymbol{Y}$$ = Observable to fit & predict (data of prediction target)
+> $$\boldsymbol{G}$$ = Trend/Growth of $$\boldsymbol{Y}$$
+> $$\boldsymbol{S}_{m}$$ = Multiplicative Seasonal Components of $$\boldsymbol{Y}$$
+> $$\boldsymbol{S}_{a}$$ = Additive Seasonal Components of $$\boldsymbol{Y}$$
+> $$\boldsymbol{\epsilon}$$ = Unknown Errors (set as  $$\sigma$$ of the observed by fbprophet) of $$\boldsymbol{Y}$$
 
 ---
-### Modeling Trend [$\boldsymbol{G}(t)$]
+### Modeling Trend [$$\boldsymbol{G}(t)$$]
 ---
 Without worrying about their meanings at the moment, we first define **3 essential priors**:
 $$ k \sim \mathcal{N}(0,\theta)$$
@@ -138,7 +138,7 @@ $$ m \sim \mathcal{N}(0,\theta) $$
 
 $$\delta \sim Laplace(0,\tau)$$
 
-where **$\theta$ and $\tau$ being the scales** of the priors' distributions (or simply $\sigma_G$ measuring the deviation of such priors). This is viewed as hyper-parameters for tuning with cross-validation (employed by fbprophet) or any other custom tuning methods.
+where **$$\theta$$ and $$\tau$$ being the scales** of the priors' distributions (or simply $$\sigma_G$$ measuring the deviation of such priors). This is viewed as hyper-parameters for tuning with cross-validation (employed by fbprophet) or any other custom tuning methods.
 
 As default, set by fbprophet, we will opt with:
 $$\theta = 5$$
@@ -148,42 +148,42 @@ $$\tau = 0.05$$
 The effect of priors' scaling values will be demonstrated in our work later on, as well as an extended creative idea on defining scales as priors themselves, although for now, we stick with them being as default constants.
 
 We now explore their relative meanings & dimensions in our trend model:
-- $\boldsymbol{k}$ [*1-Dimensional*] = Growth Rate
-- $\boldsymbol{m}$ [*1-Dimensional*] = Growth Offset
-- $\boldsymbol{\delta}$ [*N-Dimensional*] = Growth Rate Changepoints Adjustments
+- $$\boldsymbol{k}$$ [*1-Dimensional*] = Growth Rate
+- $$\boldsymbol{m}$$ [*1-Dimensional*] = Growth Offset
+- $$\boldsymbol{\delta}$$ [*N-Dimensional*] = Growth Rate Changepoints Adjustments
 
-Notice how while $k$ and $m$ are 1 dimensional, or simply as constants, $\delta$ is an $N$ dimensional variable, where such *integer* value $N$ is also a hyper-parameter, though not as important as scales (as advised by Facebook), for tuning.
-> Our $\delta$ here is somewhat similar to the commonly known concept in mathematics called *Dirac Delta* in differential equation, used to tackle problems with piece-wise regressions & step-functions. 
+Notice how while $$k$$ and $$m$$ are 1 dimensional, or simply as constants, $$\delta$$ is an $$N$$ dimensional variable, where such *integer* value $$N$$ is also a hyper-parameter, though not as important as scales (as advised by Facebook), for tuning.
+> Our $$\delta$$ here is somewhat similar to the commonly known concept in mathematics called *Dirac Delta* in differential equation, used to tackle problems with piece-wise regressions & step-functions. 
 
-Before finalizing our trend model, we also need to define a couple last components, although **these will NOT be as priors with distributions needed to be sampled for fit** but rather **most of which are transformed variables**, being **calculation results using the defined priors & hyper-parameters** above (except $t$, being given as time). These are:
+Before finalizing our trend model, we also need to define a couple last components, although **these will NOT be as priors with distributions needed to be sampled for fit** but rather **most of which are transformed variables**, being **calculation results using the defined priors & hyper-parameters** above (except $$t$$, being given as time). These are:
 $$ \boldsymbol{t}, \boldsymbol{s}, A,\gamma$$
 
-> For every given $\boldsymbol{t}$ as the **time vector as integers or
+> For every given $$\boldsymbol{t}$$ as the **time vector as integers or
 floats** (scaled) (we will explain this more in our demonstrative
-work) of $K$ dimensional length
+work) of $$K$$ dimensional length
 > $$\boldsymbol{t} =\begin{bmatrix} t_1 & t_2  &\cdots  & t_k \end{bmatrix}$$
-and $\delta$ of $N$ dimensional length, representing $N$ amount of changepoints occurring in $\boldsymbol{t}$, we subsequently compute those N changepoint values from $\boldsymbol{t}$, as tensor $\boldsymbol{s}$, being N-dimensional as well, such that:
-For $i = 1,2,...N$, where $s_i \in \boldsymbol{t}$ and $N \leq K$, we define
+and $$\delta$$ of $$N$$ dimensional length, representing $$N$$ amount of changepoints occurring in $$\boldsymbol{t}$$, we subsequently compute those N changepoint values from $$\boldsymbol{t}$$, as tensor $$\boldsymbol{s}$$, being N-dimensional as well, such that:
+For $$i = 1,2,...N$$, where $$s_i \in \boldsymbol{t}$$ and $$N \leq K$$, we define
 > $$\boldsymbol{s} =\begin{bmatrix} s_1 & s_2  &\cdots  & s_n \end{bmatrix}$$
-We then compute the matrix $A$ with dimension $T$ x $N$, with **boolean entries as binary integers** (1 = True, 0 = False), as:
+We then compute the matrix $$A$$ with dimension $$T$$ x $$N$$, with **boolean entries as binary integers** (1 = True, 0 = False), as:
 > $$A_t = \begin{bmatrix} t_{1} \geq s_1  & t_{1} \geq s_2  & \dots  & t_{1} \geq s_n \\ t_{2} \geq s_1  & t_{2} \geq s_2  & \dots  & t_{2} \geq s_n \\ \vdots & \vdots & \ddots & \vdots \\ t_{k} \geq s_1  & t_{k} \geq s_2 & \dots & t_{k} \geq s_n \end{bmatrix}$$
-Lastly, from $\delta$ as the **changepoints adjustment** for the **growth rate**, 
-We define a transformed variable $\gamma$ being the **changepoints adjustment** for the **growth offset**:
+Lastly, from $$\delta$$ as the **changepoints adjustment** for the **growth rate**, 
+We define a transformed variable $$\gamma$$ being the **changepoints adjustment** for the **growth offset**:
 > $$\gamma = -s \delta$$
 
 ---
-Now, with all the defined components to model our $\boldsymbol{G}(t)$, we proceed on using them to calculate **3 types of trends**:
+Now, with all the defined components to model our $$\boldsymbol{G}(t)$$, we proceed on using them to calculate **3 types of trends**:
 
 **Linear Trend** (mainly used)
 > **$$ G(t) = (k + A_t \delta) \boldsymbol{t} + (m + A_t \gamma) $$**
 
 **Logistic Trend** (Non-Linear & Saturating Growth Applications)
 > $$G(t) = \frac{C(t)}{1 + exp[-(k + A_{t} \delta)(\boldsymbol{t} - (m + A_{t} \gamma))]}$$
-> where $C =$ cap/maximum value for logistic convergence. This can be given or include in our model to fit.
+> where $$C =$$ cap/maximum value for logistic convergence. This can be given or include in our model to fit.
 
 **Flat Trend** (for simplicity)
 > $$G(t) = m \vec{\boldsymbol{1}}$$
-> No changepoints incorporated with purely a constant linear trend value as prior $m$ (or $k$) with defined distribution $\mathcal{N}(0,\theta)$, or $\mathcal{N}(0,5)$ by default. 
+> No changepoints incorporated with purely a constant linear trend value as prior $$m$$ (or $$k$$) with defined distribution $$\mathcal{N}(0,\theta)$$, or $$\mathcal{N}(0,5)$$ by default. 
 
 ---
 ***Remarks***:
