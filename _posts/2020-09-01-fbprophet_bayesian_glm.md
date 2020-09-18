@@ -140,18 +140,7 @@ $$A = \begin{bmatrix}
     t_{1} \geq s_1  & t_{1} \geq s_2  & \dots  & t_{1} \geq s_n \\
     t_{2} \geq s_1  & t_{2} \geq s_2  & \dots  & t_{2} \geq s_n \\
     \vdots       & \vdots       & \ddots & \vdots      \\
-   t_{k} \geq s_1  & t_{k} \geq s_2 & \dots  & t_{k} \geq s_n \end{bmatrix}=
- \begin{bmatrix}
-     1 \geq 2     & 1 \geq 5  & 1 \geq 8 \\
-     2 \geq 2     & 2 \geq 5  & 2 \geq 8 \\
-     \vdots       & \vdots    & \vdots   \\
-     10 \geq 2    & 10 \geq 5 & 10 \geq 8
- \end{bmatrix}=
- \begin{bmatrix}
-     0       &  0        & 0 \\
-     1       &  0        & 0 \\
-     \vdots  & \vdots    & \vdots   \\
-     1       &  1        & 1 \end{bmatrix}
+   t_{k} \geq s_1  & t_{k} \geq s_2 & \dots  & t_{k} \geq s_n \end{bmatrix}
  $$
 
 
@@ -160,8 +149,8 @@ With the priors, fbprophet's model use them to calculate **3 types of trends**:
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTAxODc0MzQ5NiwtODY4NTAyNiwtNTYyMj
-Q2NjE0LC0xMjk4Nzg5MTI0LDQ4MjQxNDkyNCwxMTA2NDYwNDE1
-LDE3MzA0Mjc3OTEsMTA5ODk5MzQ0MCwtMTY0MDU1NzgyNSwtOT
-k1MzU0NzQ4LC0xMTM1NzIwNTQwXX0=
+eyJoaXN0b3J5IjpbNjAwMTA1MTE0LC04Njg1MDI2LC01NjIyND
+Y2MTQsLTEyOTg3ODkxMjQsNDgyNDE0OTI0LDExMDY0NjA0MTUs
+MTczMDQyNzc5MSwxMDk4OTkzNDQwLC0xNjQwNTU3ODI1LC05OT
+UzNTQ3NDgsLTExMzU3MjA1NDBdfQ==
 -->
