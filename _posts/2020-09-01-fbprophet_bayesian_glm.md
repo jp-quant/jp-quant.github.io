@@ -87,7 +87,7 @@ Shortly put in details, implementation of Bayesian Statistics on time-series GLM
 
 2. We can formulate complex functions (link functions), as $f(A,B,...)$ with defined priors variables $A,B,...$ to the **posteriors**, being the observed, to which such observed values modeled as either a factor of predicted values, or predicted values themselves, *are also defined as a distribution.*
 
-3. We can then update such priors with the arrival of new observed data, using Bayes' Theorem, specifically the concept of *conditional probability* $P(Observed \mid X)$ *(where $X$ being a conditioned variable, either as one of the priors or functions of a selection of priors)*
+3. We can then update such priors with the arrival of new observed data, using Bayes' Theorem, specifically the concept of *conditional probability* $P(Observed \mid X)$ *(where $X$ being a conditioned variable, either as a prior or a function of a group of priors)*
 
 We will demonstrate these implementations in the upcoming sections.
 To summarize:
@@ -101,7 +101,7 @@ The main **philosophy** behind Bayesian Statistics is that:
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY5NjkzMzM3Nyw0ODI0MTQ5MjQsMTEwNj
-Q2MDQxNSwxNzMwNDI3NzkxLDEwOTg5OTM0NDAsLTE2NDA1NTc4
-MjUsLTk5NTM1NDc0OCwtMTEzNTcyMDU0MF19
+eyJoaXN0b3J5IjpbNzQ0MDQ4NTI4LDQ4MjQxNDkyNCwxMTA2ND
+YwNDE1LDE3MzA0Mjc3OTEsMTA5ODk5MzQ0MCwtMTY0MDU1Nzgy
+NSwtOTk1MzU0NzQ4LC0xMTM1NzIwNTQwXX0=
 -->
