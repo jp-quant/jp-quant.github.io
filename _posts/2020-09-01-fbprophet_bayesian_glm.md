@@ -140,7 +140,7 @@ We now explore their relative meanings & dimensions in our trend model:
 Notice how while $k$ and $m$ are 1 dimensional, or simply as constants, $\delta$ is an $N$ dimensional variable, where such *integer* value $N$ is also a hyper-parameter, though not as important as scales (as advised by Facebook), for tuning.
 > Our $\delta$ here is somewhat similar to the commonly known concept in mathematics called *Dirac Delta* in differential equation, used to tackle problems with piece-wise regressions & step-functions. 
 
-Before finalizing our trend model, we also need to define a couple last components, although **these will NOT be as priors with distributions needed to be sampled for fit** but rather **most of which are transformed variables** as **calculation results using the defined priors** above (except $t$, being given as time). These are:
+Before finalizing our trend model, we also need to define a couple last components, although **these will NOT be as priors with distributions needed to be sampled for fit** but rather **most of which are transformed variables**, being **calculation results using the defined priors & hyper-parameters** above (except $t$, being given as time). These are:
 $$ \boldsymbol{t}, \boldsymbol{s}, A,\gamma$$
 
 > For every given $\boldsymbol{t}$ as the **time vector as integers or
@@ -196,7 +196,7 @@ In addition, we primarily seek to elucidate the importance of our defined priors
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU0NDEyODYzMCwtNzI1MzQ4NTIxLDIwMz
+eyJoaXN0b3J5IjpbMTA0NzAwNTcxMCwtNzI1MzQ4NTIxLDIwMz
 c4MTYwNDUsNjMxNTgxNDk5LC0xNDUyMjI0NTMzLDE1NDgxMDUx
 OCwtMTIwMDI2MTMzMCwxNDE1OTIxOTM0LDE5MTQxNDUwNjQsMj
 k3MzgxMjQ1LDYwMDEwNTExNCwtODY4NTAyNiwtNTYyMjQ2NjE0
