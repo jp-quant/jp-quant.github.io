@@ -109,7 +109,7 @@ where, all as **tensors**  :
 > $\boldsymbol{G}$ = Trend/Growth
 > $\boldsymbol{S}_{m}$ = Multiplicative Seasonal Components
 > $\boldsymbol{S}_{a}$ = Additive Seasonal Components
-> $\boldsymbol{\epsilon}$ = Unknown Errors (can set as  $\sigma$ of the observed )
+> $\boldsymbol{\epsilon}$ = Unknown Errors (set as  $\sigma$ of the observed by fbprophet)
 
 ---
 ### Modeling Trend $\boldsymbol{G}$
@@ -136,9 +136,9 @@ We now explore their relative meanings & dimensions in our trend model:
 - $\boldsymbol{\delta}$ [*N-Dimensional*] = Growth Rate Changepoints Adjustments
 
 Notice how $\delta$ is an $N$ dimensional variable, where such *integer* value $N$ is also a hyper-parameter, though not as important, for tuning.
-> The concept of $\delta$ is somewhat similar to the commonly known concept in mathematics called *Dirac Delta* to tackle problems with piece-wise functions/regressions. 
+> The concept of $\delta$ is somewhat similar to the commonly known concept in mathematics called *Dirac Delta* to tackle problems with piece-wise regressions & step-functions. 
 
-We also need to define a couple last components for trend, although **these will NOT be a prior distribution needed to be sampled for fit** but rather as **transformed variables** using priors defined, being:
+We also need to define a couple last components for trend, although **these will NOT be a prior distribution needed to be sampled for fit** but rather most of which are **transformed variables** using priors defined, being:
 $$ \boldsymbol{t}, \boldsymbol{s}, A,\gamma$$
 
 ---
@@ -181,11 +181,11 @@ Now, with all the defined components to determine the trend $\boldsymbol{G}$ ten
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI0ODI0MTQyNiwtNzI1MzQ4NTIxLDIwMz
-c4MTYwNDUsNjMxNTgxNDk5LC0xNDUyMjI0NTMzLDE1NDgxMDUx
-OCwtMTIwMDI2MTMzMCwxNDE1OTIxOTM0LDE5MTQxNDUwNjQsMj
-k3MzgxMjQ1LDYwMDEwNTExNCwtODY4NTAyNiwtNTYyMjQ2NjE0
-LC0xMjk4Nzg5MTI0LDQ4MjQxNDkyNCwxMTA2NDYwNDE1LDE3Mz
-A0Mjc3OTEsMTA5ODk5MzQ0MCwtMTY0MDU1NzgyNSwtOTk1MzU0
-NzQ4XX0=
+eyJoaXN0b3J5IjpbLTE1MzQwMzg2NjYsLTcyNTM0ODUyMSwyMD
+M3ODE2MDQ1LDYzMTU4MTQ5OSwtMTQ1MjIyNDUzMywxNTQ4MTA1
+MTgsLTEyMDAyNjEzMzAsMTQxNTkyMTkzNCwxOTE0MTQ1MDY0LD
+I5NzM4MTI0NSw2MDAxMDUxMTQsLTg2ODUwMjYsLTU2MjI0NjYx
+NCwtMTI5ODc4OTEyNCw0ODI0MTQ5MjQsMTEwNjQ2MDQxNSwxNz
+MwNDI3NzkxLDEwOTg5OTM0NDAsLTE2NDA1NTc4MjUsLTk5NTM1
+NDc0OF19
 -->
