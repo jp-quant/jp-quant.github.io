@@ -1,18 +1,18 @@
 In the recent years, Facebook released an open-source tool for Python & R, called [fbprophet](https://facebook.github.io/prophet/), allowing scientists & developers to not just tackle the complexity & non-linearity in time-series analysis, but also allow for a robust model-building process to forecast any time-series data while accounting for *uncertainty* in every step of the way.
 
  
-After spending a couple weeks on my spare time reading Facebook's published [research paper](https://peerj.com/preprints/3190/) on the released forecaster, conducted by PhD mathematicians, as well as breaking down the codes from their [open-source repository](https://github.com/facebook/prophet/tree/master/python) (Python), I was able to understand, in details, the mathematics & computational executions, thus built my own time-series forecaster with additional complexities added, utilizing their GLM mathematical foundations.
+After spending a couple weeks on my spare time reading Facebook's published [research paper](https://peerj.com/preprints/3190/) on the released forecaster, conducted by PhD mathematicians, as well as breaking down the codes from their [open-source repository](https://github.com/facebook/prophet/tree/master/python) (Python), I was able to understand, in details, the mathematics & computational executions, thus built my own time-series forecaster with additional complexities added, utilizing their mathematical foundations.
 
 In this post, we will:
 
-1. Mathematically understand the difference between **Ordinary v.s. Generalized** Linear Models.
+1. Mathematically understand the difference between **Ordinary v.s. Generalized** Linear Models (GLM).
 2. Explore the concept of "going Bayesian" (Bayes' Theorem), the benefits from doing so & the extended philosophy behind it.
 3. Break down the mathematics of FBProphet. 
 4. Build our own version in Python with additional flexibility & creative concepts added, utilizing **PyMC3** instead of *Stan* (like fbprophet does) as backend.
  
 ---
 ## 1. The Power of Generalized Linear Models
-Linearity is the foundational language that explains the totality of composition for any reality we are trying to model, as linear regression becomes the basis for the overarching factor-modeling technique in the modern data-driven world, especially neural network models in Machine Learning.
+Linearity is the foundational language that explains the totality of composition for any reality we are trying to model, as regression becomes the basis for the overarching factor-modeling technique in the modern data-driven world, especially neural network models in Machine Learning.
 
   
 
@@ -68,5 +68,5 @@ $$ P(A \mid B) = \frac{P(A) P(B \mid A)}{P(B)}$$
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzE2NjcwNDU4XX0=
+eyJoaXN0b3J5IjpbNzIxOTUxNzEyXX0=
 -->
