@@ -6,16 +6,14 @@ After spending a couple weeks on my spare time reading Facebook's published [res
 
 In this post, we will:
 
+1. Mathematically understand the difference between Ordinary Linear & Generalized Linear Models.
 1. Mathematically understand the concept of "going Bayesian" (Probabilistic Modelling).
 2. Explore Generalized Linear Models (GLM) & break down the mathematics of FBProphet's GLM. 
 3. Build our own version in Python with additional flexibility & creative concepts added, utilizing *PyMC3* instead of *Stan* (like fbprophet does) as backend sampling.
 
 
-
-# 1. Bayes' Theorem & Going Bay
-
-  
-
+---
+## 1. Bayes' Theorem & Going Bayesian
 Linearity is the foundational language that explains the totality of composition for any reality we are trying to model, as linear regression becomes the basis for the overarching factor-modeling technique in the modern data-driven world, especially neural network models in Machine Learning.
 
   
@@ -69,5 +67,5 @@ $$ P(A \mid B) = \frac{P(A) P(B \mid A)}{P(B)}$$
 This allows us to tackle complex time-series problems, especially ones that exhibit non-linearity, while not having to worry about data stationarity that classical models, such as ARIMA, heavily rely on.
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1MDQ3MzAzNzJdfQ==
+eyJoaXN0b3J5IjpbLTQ1NjA2MjYyXX0=
 -->
