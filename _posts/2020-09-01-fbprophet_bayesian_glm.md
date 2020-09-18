@@ -111,17 +111,17 @@ where, all as **tensors**  :
 ---
 Modeling Trend $\boldsymbol{G}$
 ---
-In modeling the trend component $\boldsymbol{G}$, we first define **3 priors** & their **scales as hyper-parameters** :
-$$ k \sim \mathcal{N}(0,\g)$$
+In modeling the trend component $\boldsymbol{G}$, we first define **3 priors** :
+$$ k \sim \mathcal{N}(0,\sigma_{g})$$
 
-$$ m \sim \mathcal{N}(0,5) $$
+$$ m \sim \mathcal{N}(0,\sigma_{g}) $$
 
 $$\delta \sim Laplace(0,\tau)$$
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjYyNzQ0ODcwLC01NjIyNDY2MTQsLTEyOT
-g3ODkxMjQsNDgyNDE0OTI0LDExMDY0NjA0MTUsMTczMDQyNzc5
-MSwxMDk4OTkzNDQwLC0xNjQwNTU3ODI1LC05OTUzNTQ3NDgsLT
-ExMzU3MjA1NDBdfQ==
+eyJoaXN0b3J5IjpbLTYyMDM5MTAxMCwtNTYyMjQ2NjE0LC0xMj
+k4Nzg5MTI0LDQ4MjQxNDkyNCwxMTA2NDYwNDE1LDE3MzA0Mjc3
+OTEsMTA5ODk5MzQ0MCwtMTY0MDU1NzgyNSwtOTk1MzU0NzQ4LC
+0xMTM1NzIwNTQwXX0=
 -->
