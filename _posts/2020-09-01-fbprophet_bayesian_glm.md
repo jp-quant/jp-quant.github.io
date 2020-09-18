@@ -39,7 +39,7 @@ $$Y = \sum \alpha_{i} X_{i}$$
 
   
 
-However this is **not generally true when tackling problems from real-world data**. Most real-world data are *not* normally distributed on an absolute sense. For example (by Wiki):
+However this is **not generally true when tackling problems from real-world data**, as such data typically are *not* normally distributed, as many exhibit certain properties aside from just skewness & kurtosis, but rather fatter tails or positively bounded, etc...For example (by Wiki):
 
   
 
@@ -66,5 +66,5 @@ $$ P(A \mid B) = \frac{P(A) P(B \mid A)}{P(B)}$$
 This allows us to tackle complex time-series problems, especially ones that exhibit non-linearity, while not having to worry about data stationarity that classical models, such as ARIMA, heavily rely on.
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg2OTQ3ODcyXX0=
+eyJoaXN0b3J5IjpbLTYyNzc4NzU2M119
 -->
