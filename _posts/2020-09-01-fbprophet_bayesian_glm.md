@@ -153,7 +153,7 @@ $$\boldsymbol{s} =\begin{bmatrix} s_1 & s_2  &\cdots  & s_n \end{bmatrix}$$
 
 We then compute the matrix $A$ with dimension $T$ x $N$, with **boolean entries as binary integers** (1 = True, 0 = False), as:
 
-$$A = \begin{bmatrix}
+$$A_t = \begin{bmatrix}
     t_{1} \geq s_1  & t_{1} \geq s_2  & \dots  & t_{1} \geq s_n \\
     t_{2} \geq s_1  & t_{2} \geq s_2  & \dots  & t_{2} \geq s_n \\
     \vdots       & \vdots       & \ddots & \vdots      \\
@@ -167,7 +167,7 @@ $$\gamma = -s \delta$$
 Now, with all the defined components to determine the trend $\boldsymbol{G}$ tensor, we will use them to calculate **3 types of trends**:
 
 **Linear Trend** (mainly used)
-> **$$ G = (k + A \delta) \odot \vec{t} + (m + A \gamma) $$**
+> **$$ G(t) = (k + A_t \delta) \odot \vec{t} + (m + A_t \gamma) $$**
 
 **Logistic Trend** (like sigmoid)
 > $$G = \frac{C}{1 + exp[-(k + A^{\top} \delta) \cdot (t - (m + A^{\top} \gamma))]}$$
@@ -175,7 +175,7 @@ Now, with all the defined components to determine the trend $\boldsymbol{G}$ ten
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTcwOTczMDU2NCwyMDM3ODE2MDQ1LDYzMT
+eyJoaXN0b3J5IjpbMTY3OTUzNTE3MiwyMDM3ODE2MDQ1LDYzMT
 U4MTQ5OSwtMTQ1MjIyNDUzMywxNTQ4MTA1MTgsLTEyMDAyNjEz
 MzAsMTQxNTkyMTkzNCwxOTE0MTQ1MDY0LDI5NzM4MTI0NSw2MD
 AxMDUxMTQsLTg2ODUwMjYsLTU2MjI0NjYxNCwtMTI5ODc4OTEy
