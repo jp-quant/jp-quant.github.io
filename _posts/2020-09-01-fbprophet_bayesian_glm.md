@@ -153,17 +153,19 @@ $$A = \begin{bmatrix}
    t_{k} \geq s_1  & t_{k} \geq s_2 & \dots  & t_{k} \geq s_n \end{bmatrix}
  $$
 
-In addition, from $\delta$, we also will define a transformed variable from such prior with defined distribution, being $\gamma = -s \delta$
+In addition, from $\delta$, we also will define a transformed variable from such prior with defined distribution, being the **changepoints adjustment for the offset**:
+$$\gamma = -s \delta$$
 
+---
 Now, with all the defined components to determine the trend $\boldsymbol{G}$ tensor, fbprophet's model use them to calculate **3 types of trends**:
 
-> **Linear Trend**
+> Linear Trend
 > $$ G = (k + A \delta) \odot \vec{t} + (m + A \gamma) $$
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU1MzAwNzI1NywtMTIwMDI2MTMzMCwxND
+eyJoaXN0b3J5IjpbLTMwMjQ2NTgzOCwtMTIwMDI2MTMzMCwxND
 E1OTIxOTM0LDE5MTQxNDUwNjQsMjk3MzgxMjQ1LDYwMDEwNTEx
 NCwtODY4NTAyNiwtNTYyMjQ2NjE0LC0xMjk4Nzg5MTI0LDQ4Mj
 QxNDkyNCwxMTA2NDYwNDE1LDE3MzA0Mjc3OTEsMTA5ODk5MzQ0
