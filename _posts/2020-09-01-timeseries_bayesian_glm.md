@@ -67,10 +67,10 @@ After spending a month reading their published research paper, conducted by PhD 
 
 In this post, we will:
 
-1. Understand the mathematics & applications of "going Bayesian" 
-2. Break down the mathematics of fbprophet's GLM.
+1. Understand the mathematics & applications of "going Bayesian" (Probabilistic Modelling)
+2. Explore Generalized Linear Models (GLM) & break down the mathematics of FBProphet's GLM. 
 3. Build our own version with additional flexibility & creative concepts added, utilizing *PyMC3* instead of *Stan* (like fbprophet does) as backend sampling
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTgzMjkzOTc5XX0=
+eyJoaXN0b3J5IjpbNzU0NDUxODU5XX0=
 -->
