@@ -98,15 +98,15 @@ The main **philosophy** behind Bayesian Statistics is that:
 
 ---
 ## 3. The Mathematics behind FBProphet
-
+The overarching formula is:
 ### $$\boldsymbol{Y}(t) \sim [\boldsymbol{G}(t) \cdot(1 + \boldsymbol{S}_{m}(t)) +  \boldsymbol{S}_{a}(t)] \pm \boldsymbol{\epsilon}_{t}$$
 
 where, all as **tensors**  :
->$\boldsymbol{Y}$ = Observed to fit & predict
-> $\boldsymbol{G}$ = Trend/Growth
-> $\boldsymbol{S}_{m}$ = Multiplicative Seasonal Components
-> $\boldsymbol{S}_{a}$ = Additive Seasonal Components
-> $\boldsymbol{\epsilon}$ = Unknown Errors (e.g.:  $\sigma$ of the observed)
+>$\boldsymbol{Y}$ ~ Observed to fit & predict
+> $\boldsymbol{G}$ ~ Trend/Growth
+> $\boldsymbol{S}_{m}$ ~ Multiplicative Seasonal Components
+> $\boldsymbol{S}_{a}$ ~ Additive Seasonal Components
+> $\boldsymbol{\epsilon}$ ~ Unknown Errors (e.g.:  $\sigma$ of the observed)
 
 ---
 A)  Modeling Trend $\boldsymbol{G}$
@@ -116,8 +116,8 @@ A)  Modeling Trend $\boldsymbol{G}$
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4MjU4NDE0NjksLTU2MjI0NjYxNCwtMT
-I5ODc4OTEyNCw0ODI0MTQ5MjQsMTEwNjQ2MDQxNSwxNzMwNDI3
-NzkxLDEwOTg5OTM0NDAsLTE2NDA1NTc4MjUsLTk5NTM1NDc0OC
-wtMTEzNTcyMDU0MF19
+eyJoaXN0b3J5IjpbNTA5MDA1MTgzLC01NjIyNDY2MTQsLTEyOT
+g3ODkxMjQsNDgyNDE0OTI0LDExMDY0NjA0MTUsMTczMDQyNzc5
+MSwxMDk4OTkzNDQwLC0xNjQwNTU3ODI1LC05OTUzNTQ3NDgsLT
+ExMzU3MjA1NDBdfQ==
 -->
