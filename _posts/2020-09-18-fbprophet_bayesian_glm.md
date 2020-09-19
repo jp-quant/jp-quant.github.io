@@ -22,9 +22,8 @@ As an attempt of mine to explain the model in more applicable details, and alter
 1. Mathematically understand the difference between **Ordinary v.s. Generalized** Linear Models (GLM) & why we are using GLM to build time-series forecasters.
 2. Explore the concept of "going Bayesian" (Bayes' Theorem), the benefits from doing so & the extended philosophy behind it.
 3. Break down the mathematics of FBProphet. 
-4. Build our own version in Python with additional flexibility & creative concepts added, utilizing *PyMC3* instead of *Stan* (like fbprophet does) as backend sampler (since I am not yet super fluent in Stan by the time I write this post). In addition, I will not spend much time talking about PyMC3, as you can navigate here to explore. It's an amazing probabilistic modeling module that implements frontier computational algorithms to perform MCMC simulations, along with a rich library of variational inferencing methods when dealing with massive amount of data, for regressions of various distributions in our built models. In short it performs sampling & fitting of our model for prediction purposes.
+4. Build our own version in Python with additional flexibility & creative concepts added, utilizing *PyMC3* instead of *Stan* (like fbprophet does) as backend sampler (since I am not yet super fluent in Stan by the time I write this post). In addition, I will not spend much time talking about PyMC3, as you can navigate [here](https://docs.pymc.io/) to explore. It's an amazing sampler for probabilistic models built in Python, that implements frontier computational algorithms for regressions of various distributions in our built models. In addition with a rich library of variational inferencing method, it also use them to accelerate its MCMC simulations, for sampling & fitting purposes.
  
-
 ---
 
 ## 1. The Superiority of Generalized Linear Models
@@ -199,7 +198,7 @@ $$\boldsymbol{s}, A,\gamma$$
 
 > Lastly, from $$\delta$$ being the **changepoints adjustment for the growth rate**, we define a transformed variable:
 
-> $$\gamma = -s \delta$$
+> $$\gamma = -\boldsymbol{s} \delta$$
 
 > Where $$\gamma$$ being the **changepoints adjustment for the growth offset**.
 
@@ -215,13 +214,13 @@ Now, with all the defined components to model our $$\boldsymbol{G}(t)$$, we proc
 > Where $$C =$$ cap/maximum for logistic convergences/saturating point(s), which can be given (fbprophet's) or include in our model as a prior to fit.
 
 **Flat Trend** (for simplicity)
-> $$G(\boldsymbol{t}) = m \vec{\boldsymbol{1}_{\boldsymbol{t}}}$$
+> $$G(\boldsymbol{t}) = m \boldsymbol{1}_{\boldsymbol{t}}$$
 
 > No changepoints incorporated, defined purely with a constant linear trend value as prior $$m$$ (or $$k$$) following the distribution $$\mathcal{N}(0,\theta)$$, or $$\mathcal{N}(0,5)$$ by default. 
 
 ---
 
-### Simple Visual & Technical Decomposition of Linear Trend Model
+### Demonstrating Linear Trend Model w/ Changepoints $$\delta$$
 
 > **Remarks**: All values are randomly generated to produce such result, as such result means nothing without observed data to fit the priors to. This is purely demonstrative work. These lines of codes will be partially recycled for our final model built at the end. We primarily want to understand the components in pieces & how they come together.
 
@@ -280,6 +279,3 @@ for title, f in zip(['Trend (Growth Rate + Growth Offset)','Growth Rate', 'Growt
 
 Notice that where the defined $$N$$ amount of changepoints (*n_changepoints*) resulted in the N-dimensional $$\delta$$ tensor, dictating the "magnitudes" of our two terms, Growth Rate & Offsets, at those $$N$$ specific changepoints in the numeric timesteps $$\boldsymbol{t}$$, or simply at $$\boldsymbol{s}$$. Together, they additively combined to produce the predicted "trend" of the observed.
 
-That concludes the mathematical details of the FBProphet's Trend Model.
-
-[MORE IN PROGRESS AS OF 9-18-2020]
