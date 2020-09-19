@@ -80,10 +80,10 @@ All Bayesian techniques & implementations in modern days, even in machine learni
 
 $$ P(A \mid B) = \frac{P(A) P(B \mid A)}{P(B)}$$
 
-> **Interesting Fact**: Bayes never officially publish such theorem but rather assumed it was intuitive. It was Laplace who later on wrote about it when, after stumbling on Bayes' publication, utilizing the theorem in his own mathematical work
+> **Interesting Fact**: Bayes never officially published such theorem but rather assumed it was intuitive. It was Laplace who later on wrote about it when, after stumbling on Bayes' publication, utilizing the theorem in his own mathematical work
 
 
-This approach of **modeling variables**, both the priors & posteriors, **as distributions** have not been heavily explored & implemented back then due to high computational demands. However, our accelerating technological advancement has allowed Bayesians to find themselves a vital role for data modelling approaches in modern days, especially in building neural network models.
+This approach of **modeling variables**, both the priors & posteriors, **as distributions** has not been heavily explored & implemented back then due to high computational demands. However, our accelerating technological advancement has allowed Bayesians to find themselves a vital role for data modelling approaches in modern days, especially in building neural network models.
 
 Though I can spend time writing in details on the applications of such simple, yet powerful, concept of Bayesian Statistics, there exist many informational & captivating explanations already conducted by much more credible individuals than me. I **highly encourage** checking them out even if you already know the mathematics, since *it is not about just knowing what and how to use it, but also when & why we are using it*: 
 
