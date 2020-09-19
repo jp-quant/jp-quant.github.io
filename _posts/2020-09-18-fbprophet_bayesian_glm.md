@@ -1,9 +1,9 @@
 ---
 title: "Time-Series Forecasting: FBProphet & Going Bayesian with Generalized Linear Models (GLM)"
 date: 2020-09-18
-tags: [research, development, time-series, predictive-modeling]
+tags: [time-series, predictive-modeling, bayesian-statistics]
 header:
-  image: "/images/qf_glm_banner.PNG"
+  image: "/images/glm_bayesian/banner.PNG"
 excerpt: "Building time-series forecaster as hierarchichal GLM bayesian models with PyMC3 as backend sampler, inspired by Facebook's open-source powerful tool for R & Python, called fbprophet"
 mathjax: "true"
 layout: single
