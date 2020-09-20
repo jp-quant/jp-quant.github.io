@@ -58,13 +58,13 @@ In short, a generalized linear model covers all possible ways of how different d
 
 # 2. Going Bayesian
 
-All Bayesian techniques & implementations in modern days, even in machine learning neural networks, are built from the beautiful statistical foundation pioneered by Thomas Bayes himself, back in the late 1700s, called **Bayes Theorem**:
+All Bayesian techniques & implementations in modern days, even in machine learning neural networks, are built from the beautiful statistical foundation pioneered by Thomas Bayes himself, back in the late 1700s, called *Bayes Theorem*:
 
 $$ P(A \mid B) = \frac{P(A) P(B \mid A)}{P(B)}$$
 
 > **Interesting Fact**: Bayes never officially published such theorem but rather assumed it was intuitive. It was Laplace who later on wrote about it when, after stumbling on Bayes' publication, utilizing the theorem in his own mathematical work
 
-This approach of **modeling variables**, both the priors & posteriors, **as distributions** has not been heavily explored & implemented back then due to high computational demands. However, our accelerating technological advancement has allowed Bayesians to find themselves a vital role for data modelling approaches in modern days, especially in building neural network models.
+This approach of **modeling variables**, both the priors & posteriors, **as distributions** was not been heavily explored & implemented back then due to high computational demands. However in the last century, the recent accelerating technological advancement in both hardware & software, alongside with continuously improved ML learning algorithms, has allowed Bayesians to find themselves a vital role for data modelling approaches in modern days, especially in building complex models, like neural network, or multi-dimensional hierarchical GLM like what we are doing.
 
 Though I can spend time writing in details on the applications of such simple, yet powerful, concept of Bayesian Statistics, there exist many informational & captivating explanations already conducted by much more credible individuals than me. I **highly encourage** checking them out even if you already know the mathematics, since *it is not about just knowing what and how to use it, but also when & why we are using it*:
 
@@ -87,23 +87,23 @@ Shortly put in details, implementation of Bayesian Statistics on time-series GLM
 We will demonstrate these implementations in this post.
 To summarize:
 
-- The **observable is the unknown** posterior, to which **conditionally dependent on the defined priors** beliefs, to which such **priors are updated to "fit" the observable** when new observable data arrive throughout time (hence variable t).
+- The **observable is the unknown** posterior, to which **conditionally dependent on the defined priors** beliefs, where such **priors are updated to "fit" the observable** when new observable data arrive throughout time (hence variable t).
 
 The main **philosophy** behind Bayesian Statistics is that:
-> Our understanding of the **reality** we are trying to model through time, to predict its future values, **is never static & objective, but rather dynamic & conditionally sensitive to initial conditions** (related with *chaos theory*, which we will save this for another post). Going Bayesian means we are accepting that **we will never know the full picture of reality completely**, and that **we can only infer from the data we collected so far of such reality to forecast its future values/states under compounded uncertainties**, as per defining all parameters & functions of our entire model hierarchically as distributions. This is much more superior than point estimates in classical models, even in Deep Machine Learning models, as it reflects much more on our actual reality & the quantifiable uncertainties in the prediction process of its future.
+> Our understanding of the **reality** we are trying to model through time, to predict its future values/states, **is never static & objective, but rather dynamic & conditional** (*when model discrete time (maps) this concept is related to modeling chaos (fractals, FeigenBaum, etc), which we might potentially explore in another post*).
+> **Going Bayesian** $$\sim$$ *Entering the limbo of compromise between determinism (point estimates) & chaos*
+> Simply put, we are accepting that **we will never know the full picture of reality completely**, and that **we can only infer from the data we collected so far of such reality to forecast its future values/states under compounded uncertainties**, as per defining all parameters & functions of our entire model hierarchically as distributions. This is much more superior than point estimates in classical models, even in Deep Machine Learning models, as it reflects much more on our actual reality & the quantifiable uncertainties in the prediction process of its future.
 
 # 3. The Mathematics behind FBProphet
 
-> **Disclosure**: The content below is somewhat a detailed summary, or rather a concise alternative explanation based on my personal understanding of fbprophet's GLM. If you want to check out the original published paper, click [**here**](https://peerj.com/preprints/3190/).
+> **Disclosure**: The content below is somewhat a detailed summary, or rather a concise alternative explanation, based on my personal understanding of fbprophet's GLM from reading their publication & repositories. If you want to check out the original published paper, click [**here**](https://peerj.com/preprints/3190/).
 
 ---
-Starting with the model's overarching formula:
+Given $$\boldsymbol{Y}$$ as the observable to fit & predict (data of prediction target), I often express the overarching model as:
 
 $$\boldsymbol{Y}(t) \sim [\boldsymbol{G}(t) \cdot(1 + \boldsymbol{S}_{m}(t)) +  \boldsymbol{S}_{a}(t)] \pm \boldsymbol{\epsilon}_{t}$$
 
-where, as **tensors** (except $$\boldsymbol{\epsilon}$$):
-
-- $$\boldsymbol{Y}$$ = Observable to fit & predict (data of prediction target)
+where:
 
 - $$\boldsymbol{G}$$ = Trend/Growth
 
@@ -115,18 +115,22 @@ where, as **tensors** (except $$\boldsymbol{\epsilon}$$):
 
 ## Scaling timestamps to $$\boldsymbol{t}$$ (for "time-series"?)
 
-As we are obviously trying to build a predictive model on time-series data, which under our assumptions moving forward, being all real numbers, or, simply put, such data are numeric data (integers & floats). As time is basically the essence of our model-building, before we touch base on any components of our model, **we need to define a numeric transformation on a given array of timestamp instances (they are not numbers)**, that, the aftermath result from such transformation, sortedly **retains the periodicity & frequency** of the original sorted array of timestamps given.
+As we are obviously trying to build a predictive model on time-series data, which under our assumptions moving forward, being all real numbers, or, simply put, such data are numeric data, aka integers & real numbers(floats). As time is basically the essence of our model-building, before we touch base on any components of our model, **we need to define a numeric transformation on a given array of timestamp instances (they are not numbers)**, that, the aftermath result from such transformation, sortedly **retains the periodicity & frequency** of the original sorted array of timestamps given.
 
-There are many ways of approaching this while avoiding look-ahead bias. Some can define it as the integers field. I personally opt for the same method fbprophet employs, scaling it directly through min-max standardization, into a "Gaussian-like" bound:
+There are many ways of approaching this while avoiding look-ahead bias. I notice some  define it as the integers field, though I personally opt for the same method fbprophet employs, scaling it directly through min-max standardization, into a "Gaussian-like" bound:
 
 Given such array $$D$$ containing $$N$$ amount of timestamp instances,
 
 $$D = \begin{bmatrix} d_1 & d_2  &\cdots  & d_n \end{bmatrix}$$
 
-Algorithmically speaking (summarized):
+The **numeric transformation** can be algorithmically defined as a **standardizing** procedure, taking in our timestamps array $$D$$ and returning the numeric array $$\boldsymbol{t}$$ with values between (0,1), such that:
 
-- When fitting, we perform standardization on such array $$D$$, view as $$D_{fit}$$, to obtain $$\boldsymbol{t}$$ as a numeric array of values between (0,1), such that $$\boldsymbol{t} = \frac{D - min(D)}{max(D) - min(D)}$$. Notice how such transformation cancels out our units and left us with purely numeric values, while capturing information of the timeframe we are working with.
-- When predicting, we use the fitted $$min(D)$$ & $$max(D)$$ values, aka the $$min(D_{fit})$$ & $$max(D_{fit})$$ above, to perform the exact same scaling procedure on any given array $$D$$, to which in predictive context viewed as $$D_{pred}$$. The resulted $$\boldsymbol{t}$$ values that are out of bound (0,1) represents stamps before (<0) or after (>1) the timeframe of data we fitted (the priors of our model on). 
+- When fitting, we perform standardization on such array $$D$$, as $$D_{fit}$$, being a Min-Max scaling procedure:
+
+$$\boldsymbol{t} = \frac{D - min(D)}{max(D) - min(D)}$$
+> Notice how such process cancels out our units and left us with purely numeric values, while capturing information of the timeframe we are working with.
+
+- When predicting, we use the fitted $$min(D)$$ & $$max(D)$$ values, aka $$min(D_{fit})$$ & $$max(D_{fit})$$ above, to perform the exact same scaling procedure on any given array $$D$$, to which in predictive context viewed as $$D_{pred}$$. The resulted $$\boldsymbol{t}$$ values that are out of bound (0,1) represents stamps before (<0) or after (>1) the timeframe of data we fitted (the priors of our model on).
 
 ## Modeling Trend [$$\boldsymbol{G}(t)$$]
 
@@ -196,7 +200,7 @@ Now, finally, with all the defined components to model our $$\boldsymbol{G}(t)$$
 **Flat Trend** (for simplicity)
 > $$G(\boldsymbol{t}) = m \boldsymbol{1}_{\boldsymbol{t}}$$
 >
-> No changepoints incorporated, defined purely with a constant linear trend value as prior $$m$$ (or $$k$$) following the distribution $$\mathcal{N}(0,\theta)$$, or $$\mathcal{N}(0,5)$$ by default. 
+> No changepoints incorporated, defined purely with a constant linear trend value as prior $$m$$ (or $$k$$) following the distribution $$\mathcal{N}(0,\theta)$$, or $$\mathcal{N}(0,5)$$ by default.
 
 ---
 
@@ -213,7 +217,7 @@ import numpy as np
 ```
 
 ```python
-# timestamps & hyper-params 
+# timestamps & hyper-params
 t = np.linspace(0,1,500) #---| numeric timestep (scaled from datetime stamps given)
 n_changepoints = 25 #---| amount of changepoints (for s)
 tau = 0.05
@@ -221,7 +225,7 @@ theta = 5
 
 
 # PRIORS
-k = np.random.normal(0,theta) 
+k = np.random.normal(0,theta)
 m = np.random.normal(0,theta)
 delta = np.random.laplace(tau,size=n_changepoints)
 
@@ -305,13 +309,13 @@ Thus, the seasonality component, in fourier series, $$F_{\lambda,N}(t)$$, with t
 
 $$X(t) \boldsymbol{\beta} = \sum_{n=1}^{N}(a_{n} cos(\frac{2\pi nt}{\lambda}) + b_{n}sin(\frac{2\pi nt}{\lambda}))$$
 
-or simply put:
+or simply put, given a choice of $$\lambda,N$$ resulted in $$X(t),\boldsymbol{\beta}$$, we have:
 
 $$F_{\lambda,N}(t) = X(t) \boldsymbol{\beta}$$
 
 ### Demonstrating Seasonality as Fourier Series
 
-We first prepare a function that takes in $$\boldsymbol{t}$$, along with the fourier properties **$$\lambda$$ (period) & $$N$$ (order)** as arguments to calculate the fourier series:
+We first prepare a function that takes in $$\boldsymbol{t}$$ as an array of scaled timesteps with length $$K$$, along with the fourier properties **$$\lambda$$ (period) & $$N$$ (order)** as single values, to calculate the fourier series and return it as an array of dimension $$K$$ x $$2N$$:
 
 ```python
 def fourier_series(t, period, order):
@@ -329,10 +333,12 @@ With hyperparams set as:
 - $$N=4$$ *(fbprophet sets it at 10 for annual seasonality)*
 - $$\phi = 10$$ *(fbprophet's default)*
 
-To obtain $$F_{\lambda,N}(t)$$, using $$X(t)$$ & $$\boldsymbol{\beta}$$, as a seasonality component with given numeric timestep(s):
+To obtain $$F_{\lambda,N}(t)$$ as $$X(t) \boldsymbol{\beta}$$, a single seasonality component with given numeric timestep(s) $$\boldsymbol{t}$$, we demonstrate this by:
 
-1. Randomly generate a sample of our $$2N$$-dimensional $$\beta$$ prior defined above as a demonstration.
-2. Perform fourier calculations using the function written above to obtain $$X(t)$$
+1. Randomly generate a sample of our $$2N$$-dimensional $$\beta$$ prior defined with specified scale $$\phi$$ ($$=10$$ by default).
+2. Perform fourier calculations using the *fourier_series* function written above to obtain $$X(t)$$ with dimension $$K$$ x $$2N$$
+
+Performing matrix multiplication $$X(t) \boldsymbol{\beta}$$ will resulted in a 1D array of length  $$K$$, or basically $$K$$ x $$1$$ as its matrix dimension, **representing a singular sample (using generated $$\boldsymbol{\beta}$$ sample) of the seasonality component $$s_i$$ with given the choice of $$\lambda,N$$**, in our overarching seasonality model, either as multiplicative or additive ($$s_i \in $$S_m$$ (or $$S_a$$)).
 
 ```python
 t = np.arange(1000) #--| scaled timestep
