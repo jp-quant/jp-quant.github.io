@@ -337,7 +337,7 @@ beta = np.random.normal(0,phi,size=2 * order)
 plt.figure(figsize=(16, 9))
 n = ((order+1)*100) + 11
 plt.subplot(n)
-plt.title("Fourier Series | period = " + str(period) + " | order = " + str(order))
+plt.title("Fourier | period = " + str(period) + " | order = " + str(order))
 plt.xticks([])
 plt.plot(t,np.dot(X,beta), lw=1.5, color="green")
 
@@ -346,7 +346,7 @@ for o in range(order):
     i +=1
     idx = o*2
     plt.subplot(n + i)
-    plt.title("Components #%s" %str(o + 1))
+    plt.title("Component #%s" %str(o + 1))
     plt.xticks([])
     plt.plot(t,np.dot(X[:,idx:(idx+2)],beta[idx:(idx+2)]),alpha=0.6)
 ```
