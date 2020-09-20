@@ -90,11 +90,11 @@ To summarize:
 - The **observable is the unknown** posterior, to which **conditionally dependent on the defined priors** beliefs, to which such **priors are updated to "fit" the observable** when new observable data arrive throughout time (hence variable t).
 
 The main **philosophy** behind Bayesian Statistics is that:
-> Our understanding of the **reality** we are trying to model through time, to predict its future values, **is never static & objective, but rather dynamic & conditionally sensitive to initial condition** (related with *chaos theory*, which we will save this for another post). Going Bayesian means we are accepting that **we will never know the full picture of reality completely**, and that **we can only infer from the data we collected so far of such reality to forecast its future values/states under compounded uncertainties**, as per defining all parameters & functions of our entire model hierarchically as distributions. This is much more superior than point estimates in classical models, even in Deep Machine Learning models, as it reflects much more on our reality & the mathematical logic in the prediction process of its future.
+> Our understanding of the **reality** we are trying to model through time, to predict its future values, **is never static & objective, but rather dynamic & conditionally sensitive to initial conditions** (related with *chaos theory*, which we will save this for another post). Going Bayesian means we are accepting that **we will never know the full picture of reality completely**, and that **we can only infer from the data we collected so far of such reality to forecast its future values/states under compounded uncertainties**, as per defining all parameters & functions of our entire model hierarchically as distributions. This is much more superior than point estimates in classical models, even in Deep Machine Learning models, as it reflects much more on our actual reality & the quantifiable uncertainties in the prediction process of its future.
 
 # 3. The Mathematics behind FBProphet
 
-> **Disclosure**: The content below is somewhat a detailed summary, or rather a concise alternative explanation based on my personal understanding of fbprophet's GLM. If you want to check out the original published paper, click [here](https://peerj.com/preprints/3190/).
+> **Disclosure**: The content below is somewhat a detailed summary, or rather a concise alternative explanation based on my personal understanding of fbprophet's GLM. If you want to check out the original published paper, click [**here**](https://peerj.com/preprints/3190/).
 
 ---
 Starting with the model's overarching formula:
@@ -115,9 +115,9 @@ where, as **tensors** (except $$\boldsymbol{\epsilon}$$):
 
 ## Scaling timestamps to $$\boldsymbol{t}$$ (for "time-series"?)
 
-As we are obviously trying to build a predictive model on time-series data, which under our assumptions moving forward, being all real numbers, or, simply put, such data are numeric data (integers & floats). As time is basically the essence of our model-building, before we touch base on any components of our model, **we need to define a numeric transformation on a given array of timestamp instances (they are not numbers), that, the aftermath result from such transformation, sortedly retains the periodicity & frequency of the original sorted array of timestamps given**.
+As we are obviously trying to build a predictive model on time-series data, which under our assumptions moving forward, being all real numbers, or, simply put, such data are numeric data (integers & floats). As time is basically the essence of our model-building, before we touch base on any components of our model, **we need to define a numeric transformation on a given array of timestamp instances (they are not numbers)**, that, the aftermath result from such transformation, sortedly **retains the periodicity & frequency** of the original sorted array of timestamps given.
 
-There are many ways of approaching this while avoiding look-ahead bias. Some can define it as the integers field. I personally opt for the same method fbprophet employs, scaling it directly through min-max standardization, into a "Gaussian-like" bound (as I like to call it):
+There are many ways of approaching this while avoiding look-ahead bias. Some can define it as the integers field. I personally opt for the same method fbprophet employs, scaling it directly through min-max standardization, into a "Gaussian-like" bound:
 
 Given such array $$D$$ containing $$N$$ amount of timestamp instances,
 
@@ -154,11 +154,11 @@ We now explore their relative meanings & dimensions in our trend model:
 - $$\boldsymbol{m}$$ [*1-Dimensional*] = Growth Offset (or the "intercept" value)
 - $$\boldsymbol{\delta}$$ [*N-Dimensional*] = Growth Rate Changepoints Adjustments
 
-Notice how while $$k$$ and $$m$$ are 1 dimensional, or simply as constants, $$\delta$$ is an $$N$$ dimensional variable, where such *integer* value $$N$$ is also a hyper-parameter, though not as important as scales (as advised by Facebook), for tuning.
+Notice how while $$k$$ and $$m$$ are 1 dimensional, or simply as constants, $$\delta$$ is an $$N$$-dimensional variable, where such *integer* $$N$$ is also a hyper-parameter, though not as important as prior scales, for tuning.
 
-> Our $$\delta$$ here is somewhat similar to the commonly known concept in mathematics called *Dirac Delta* in differential equation, used to tackle problems with piece-wise regressions & step-functions. 
+> Our $$\delta$$ here is somewhat similar to the commonly known concept in mathematics called *Dirac Delta* in differential equations, used to tackle problems with piece-wise regressions & step-functions.
 
-Before finalizing our trend model, we also need to define a couple last components, although **these will NOT be as priors with distributions needed to be sampled for fit** but rather **most of which are transformed variables**, being **calculation results using the defined priors & hyper-parameters** above. These are:
+Before finalizing our trend model, we also need to define a couple last components, although **these will NOT be as priors with distributions needed to be sampled for fit** but rather *most of which are transformed variables and link functions*, being calculation results *using the defined priors & hyper-parameters* above:
 
 $$\boldsymbol{s}, A,\gamma$$
 
@@ -320,6 +320,7 @@ def fourier_series(t, period, order):
     x = np.concatenate((np.cos(x), np.sin(x)), axis=1)
     return x
 ```
+
 Below for demonstrative purposes only, we set $$N=4$$ and $$\lambda=365.25$$ for our fourier series $$X(t)$$. Then uses the default $$\phi = 10$$ to generate our multi-dimensional prior $$\beta$$. We then perform calculations on each components separately as well as them added together to construct the fourier series result:
 
 ```python
