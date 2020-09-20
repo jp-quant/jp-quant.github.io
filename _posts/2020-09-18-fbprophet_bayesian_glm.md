@@ -362,7 +362,8 @@ i = 0
 for o in range(order):
     i +=1
     idx = o*2
-    plt.plot(t,np.dot(X[:,idx:(idx+2)],beta[idx:(idx+2)]),"--",alpha=0.42, label = ("$wave_{%s}$" %str(o + 1)))
+    _latex = "$wave_{" + str(o + 1) + "}$"
+    plt.plot(t,np.dot(X[:,idx:(idx+2)],beta[idx:(idx+2)]),"--",alpha=0.42, label = _latex) 
 
 plt.legend(loc="upper right",fontsize='large')
 plt.autoscale(True)
