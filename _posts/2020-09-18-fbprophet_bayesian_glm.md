@@ -279,3 +279,45 @@ for title, f in zip(['Trend (Growth Rate + Growth Offset)','Growth Rate', 'Growt
 
 Notice that where the defined $$N$$ amount of changepoints (*n_changepoints*) resulted in the N-dimensional $$\delta$$ tensor, dictating the "magnitudes" of our two terms, Growth Rate & Offsets, at those $$N$$ specific changepoints in the numeric timesteps $$\boldsymbol{t}$$, or simply at $$\boldsymbol{s}$$. Together, they additively combined to produce the predicted "trend" of the observed.
 
+---
+### Modeling Seasonal Components [$$\boldsymbol{S}_{m}(t)$$ & $$\boldsymbol{S}_{a}(t)$$]
+---
+
+It is important to clarify that we actually are addressing **more than one** particular component (not $$m$$ vs $$a$$, though we will touch base on that soon). The seasonal components, by fbprophet's point of view, although grouped as one, breaks down into **2** categories:
+
+- **Seasonality**: Cyclic nature of a given feature, such as a business operation exhibiting seasonal effects of sales due to certain periodic timeframe throughout the years, months or week. (*e.g.: sales increase during summer & decrease during winter*)
+
+- **Holidays & Special Timeframes**: Thanksgiving, New Year, Independence Day, Major Sport Events (SuperBowl, World Cup, etc), and many many more. These are somewhat seasonal & periodic, but they can also be a singular timeframe of a significant event in history (subjective to judgment), like COVID-19 & its impact on the financial market, or any special days we'd like to add that are relevant to the problem at hand.
+
+Moving forward, we will primarily focus on the Seasonality aspect as Holidays & Special Timeframes are much easier to understand once we grasp trend & seasonality.
+
+#### Seasonality & Fourier Series
+
+From harmonics in pendulum & vibrations, even in light waves & string theory itself, the power of $\pi$ as a universal constant, representing circles & waves (euler's famous equation), is reflective as to the way physicists & mathematicians see the world (full of circles they say).
+
+In mathematics, the **fourier series** is an extremely powerful series that, in short, without me having to explain in details, **fit any mathematically defined entity** through **adding pairs of sine & cosine wave functions,** which are just combinations of drawing many circles under different initial conditions (aka where we place our pencils to start).
+
+> To observe the power of the fourier series, I highly recommend checking out this amazing [clip](https://www.youtube.com/watch?v=ds0cmAV-Yek&t=416s&ab_channel=SmarterEveryDay), showing how fourier series can be used, through iterative regressions, to draw any given thing.
+
+To compute a fourier series as a seasonal effect *through time*, as per our time-series modeling, we simply set our independent variable as $$\boldsymbol{t}$$, the scaled timestep, as that being the only information needed to make predictions. Although during the process of fitting & designing our model, for **each fourier series representing a seasonlity component**, we need to specify its **period & order**, such that:
+
+For $$f_{\lambda,N}(t)$$ being **a singular seasonality component in fourier series**, $$\lambda$$ as **period** (*365.25 = annual, 7 = weekly, etc), and $$\N$$ as **order** (the amount of sine & consine pairs to add together to fit our objective), we have:
+
+$$f_{\lambda,N}(t) = \sum_{n=1}^{N}(a_{n} cos(\frac{2\pi nt}{\lambda}) + b_{n}sin(\frac{2\pi nt}{\lambda}))$$
+
+where $$a_n$$ and $b_n$$ are the pairs of coefficients for each term in the total of N pairs, thus an order $$N=1$$ would resulted in 2 coefficients. Using the advantage of matrices, to define our seasonality model, we set the coefficients $$a_n$$'s and $b_n$$'s as a **prior**, such that for each seasonal component:
+
+$$f_{\lambda,N}(t) = X_{\lambda,N}(t) \boldsymbol(\beta)$$
+
+where:
+
+$$X_{\lambda,N}(t) = [cos(\frac{2\pi 1t}{\lambda}), sin(\frac{2\pi 1t}{\lambda}),…,cos(\frac{2\pi Nt}{\lambda}),sin(\frac{2\pi Nt}{\lambda})]$$
+
+$$\boldsymbol{\beta} \in \mathbb{R}^{2N}, \boldsymbol{\beta} = a_1, b_1, …, a_n, b_n$$
+
+
+
+
+
+
+that we will set as a **prior** $$\beta$$
