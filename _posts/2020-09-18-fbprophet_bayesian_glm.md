@@ -329,22 +329,22 @@ $$X(t) \boldsymbol{\beta} = \sum_{n=1}^{N}(a_{n} cos(\frac{2\pi nt}{\lambda}) + 
 
 ### Demonstrating Seasonality as Fourier Series
 
-We first prepare a function that takes in $$\boldsymbol{t}$, and specified **period & n** as arguments to calculate the fourier series:
+We first prepare a function that takes in $$\boldsymbol{t}$$, along with the fourier properties **$$\lambda$$ (period) & $$N$$ (order)** as arguments to calculate the fourier series:
 
 ```python
-def fourier_series(t, period, n):
+def fourier_series(t, period, order):
     # 2 pi n / p
-    x = 2 * np.pi * np.arange(1, n + 1) / period
+    x = 2 * np.pi * np.arange(1, order + 1) / period
     # 2 pi n / p * t
     x = x * t[:, None]
     x = np.concatenate((np.cos(x), np.sin(x)), axis=1)
     return x
 ```
-Below for demonstrative purposes only, we set $$N=3$$ and $$\lambda=365.25$$ for our fourier series $$X(t)$$. Then uses the default $$\phi = 10$$ to generate our multi-dimensional prior $$\beta$$. We then perform calculations on each components separately as well as them added together to construct the fourier series result:
+Below for demonstrative purposes only, we set $$N=4$$ and $$\lambda=365.25$$ for our fourier series $$X(t)$$. Then uses the default $$\phi = 10$$ to generate our multi-dimensional prior $$\beta$$. We then perform calculations on each components separately as well as them added together to construct the fourier series result:
 
 ```python
 t = np.arange(1000) #--| scaled timestep
-order = 3 #---| fourier order
+order = 4 #---| fourier order
 period = 365.25 #---| fourier period
 phi = 10 #---| beta's prior scale
 
@@ -356,7 +356,7 @@ beta = np.random.normal(0,phi,size=2 * order)
 plt.figure(figsize=(16, 9))
 n = ((order+1)*100) + 11
 plt.subplot(n)
-plt.title("Fourier Series Result (adding all components together)")
+plt.title("Fourier Series | period = " + str(period) + " | order = " + str(order))
 plt.xticks([])
 plt.plot(t,np.dot(X,beta), lw=1.5, color="green")
 
@@ -365,7 +365,7 @@ for o in range(order):
     i +=1
     idx = o*2
     plt.subplot(n + i)
-    plt.title("Fourier Order Components #%s" %str(o + 1))
+    plt.title("Components #%s" %str(o + 1))
     plt.xticks([])
     plt.plot(t,np.dot(X[:,idx:(idx+2)],beta[idx:(idx+2)]),alpha=0.6)
 ```
