@@ -314,10 +314,3 @@ where:
 $$X_{\lambda,N}(t) = [cos(\frac{2\pi 1t}{\lambda}), sin(\frac{2\pi 1t}{\lambda}),…,cos(\frac{2\pi Nt}{\lambda}),sin(\frac{2\pi Nt}{\lambda})]$$
 
 $$\boldsymbol{\beta} \in \mathbb{R}^{2N}, \boldsymbol{\beta} = a_1, b_1, …, a_n, b_n$$
-
-
-
-
-
-
-that we will set as a **prior** $$\beta$$
