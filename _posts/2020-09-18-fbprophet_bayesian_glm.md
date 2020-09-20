@@ -301,7 +301,7 @@ In mathematics, the **fourier series** is an extremely powerful series that, in 
 
 To compute a fourier series as a seasonal effect *through time*, as per our time-series modeling, we simply set our independent variable as $$\boldsymbol{t}$$, the scaled timestep, as that being the only information needed to make predictions. Although during the process of fitting & designing our model, for **each fourier series representing a seasonlity component**, we need to specify its **period & order**, such that:
 
-For $$f_{\lambda,N}(t)$$ being **a singular seasonality component in fourier series**, $$\lambda$$ as **period** (*365.25 = annual, 7 = weekly, etc), and $$\N$$ as **order** (the amount of sine & consine pairs to add together to fit our objective), we have:
+For $$f_{\lambda,N}(t)$$ being **a singular seasonality component in fourier series**, $$\lambda$$ as **period** (*365.25 = annual, 7 = weekly, etc*), and $$\N$$ as **order** (*N amount of sine & consine pairs to add together to fit our objective*), we have:
 
 $$f_{\lambda,N}(t) = \sum_{n=1}^{N}(a_{n} cos(\frac{2\pi nt}{\lambda}) + b_{n}sin(\frac{2\pi nt}{\lambda}))$$
 
