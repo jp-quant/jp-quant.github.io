@@ -26,7 +26,7 @@ As an attempt of mine to explain the model in more applicable details, and alter
  
 ---
 
-## 1. The Superiority of Generalized Linear Models
+# 1. The Superiority of Generalized Linear Models
 Linearity is the foundational language that explains the totality of composition for any reality we are trying to model, as regression becomes the basis for the overarching factor-modeling technique in the modern data-driven world, especially neural network models in Machine Learning.
 
   
@@ -74,7 +74,7 @@ In short, a generalized linear model covers all possible ways of how different d
 
 
 ---
-## 2. Going Bayesian
+# 2. Going Bayesian
 
 All Bayesian techniques & implementations in modern days, even in machine learning neural networks, are built from the beautiful statistical foundation pioneered by Thomas Bayes himself, back in the late 1700s, called **Bayes Theorem**:
 
@@ -111,7 +111,7 @@ The main **philosophy** behind Bayesian Statistics is that:
 > Our understanding of the **reality** we are trying to model through time, to predict its future values, **is never static & objective, but rather dynamic & conditionally sensitive to initial condition** (related with *chaos theory*, which we will save this for another post). Going Bayesian means we are accepting that **we will never know the full picture of reality completely**, and that **we can only infer from the data we collected so far of such reality to forecast its future values/states under compounded uncertainties**, as per defining all parameters & functions of our entire model hierarchically as distributions. This is much more superior than point estimates in classical models, even in Deep Machine Learning models, as it reflects much more on our reality & the mathematical logic in the prediction process of its future.
 
 ---
-## 3. The Mathematics behind FBProphet
+# 3. The Mathematics behind FBProphet
 
 > **Disclosure**: The content below is somewhat a detailed summary, or rather a concise alternative explanation based on my personal understanding of fbprophet's GLM. If you want to check out the original published paper, click [here](https://peerj.com/preprints/3190/).
 
@@ -133,8 +133,8 @@ where, as **tensors** (except $$\boldsymbol{\epsilon}$$):
 - $$\boldsymbol{\epsilon}$$ = Unknown Errors (set as $$\sigma$$ of the observed by fbprophet)
 
 
-----
-### Scaling timestamps to $$\boldsymbol{t}$$ (for "time-series"?)
+---
+## Scaling timestamps to $$\boldsymbol{t}$$ (for "time-series"?)
 ---
 As we are obviously trying to build a predictive model on time-series data, which under our assumptions moving forward, being all real numbers, or, simply put, such data are numeric data (integers & floats). As time is basically the essence of our model-building, before we touch base on any components of our model, **we need to define a numeric transformation on a given array of timestamp instances (they are not numbers), that, the aftermath result from such transformation, sortedly retains the periodicity & frequency of the original sorted array of timestamps given**.
 
@@ -149,7 +149,7 @@ Algorithmically speaking (summarized):
 - When predicting, we use the fitted $$min(D)$$ & $$max(D)$$ values, aka the $$min(D_{fit})$$ & $$max(D_{fit})$$ above, to perform the exact same scaling procedure on any given array $$D$$, to which in predictive context viewed as $$D_{pred}$$. The resulted $$\boldsymbol{t}$$ values that are out of bound (0,1) represents stamps before (<0) or after (>1) the timeframe of data we fitted (the priors of our model on). 
 
 ---
-### Modeling Trend [$$\boldsymbol{G}(t)$$]
+## Modeling Trend [$$\boldsymbol{G}(t)$$]
 ---
 Without worrying about their meanings at the moment, we first define **3 essential priors** for our trend model:
 
@@ -280,7 +280,9 @@ for title, f in zip(['Trend (Growth Rate + Growth Offset)','Growth Rate', 'Growt
 Notice that where the defined $$N$$ amount of changepoints (*n_changepoints*) resulted in the N-dimensional $$\delta$$ tensor, dictating the "magnitudes" of our two terms, Growth Rate & Offsets, at those $$N$$ specific changepoints in the numeric timesteps $$\boldsymbol{t}$$, or simply at $$\boldsymbol{s}$$. Together, they additively combined to produce the predicted "trend" of the observed.
 
 ---
-### Modeling Seasonal Components [$$\boldsymbol{S}_{m}(t)$$ & $$\boldsymbol{S}_{a}(t)$$]
+
+## Modeling Seasonal Components [$$\boldsymbol{S}_{m}(t)$$ & $$\boldsymbol{S}_{a}(t)$$]
+
 ---
 
 It is important to clarify that we actually are addressing **more than one** particular component (not $$m$$ vs $$a$$, though we will touch base on that soon). The seasonal components, by fbprophet's point of view, although grouped as one, breaks down into **2** categories:
@@ -291,7 +293,7 @@ It is important to clarify that we actually are addressing **more than one** par
 
 Moving forward, we will primarily focus on the Seasonality aspect as Holidays & Special Timeframes are much easier to understand once we grasp trend & seasonality.
 
-#### Seasonality & Fourier Series
+### Seasonality & Fourier Series
 
 From harmonics in pendulum & vibrations, even in light waves & string theory itself, the power of $\pi$ as a universal constant, representing circles & waves (euler's famous equation), is reflective as to the way physicists & mathematicians see the world (full of circles they say).
 
