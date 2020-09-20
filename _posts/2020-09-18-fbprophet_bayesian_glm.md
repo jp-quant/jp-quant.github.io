@@ -150,7 +150,7 @@ Algorithmically speaking (summarized):
 
 ---
 ## Modeling Trend [$$\boldsymbol{G}(t)$$]
----
+
 Without worrying about their meanings at the moment, we first define **3 essential priors** for our trend model:
 
 $$ k \sim \mathcal{N}(0,\theta)$$
@@ -297,19 +297,29 @@ From harmonics in pendulum & vibrations, even in light waves & string theory its
 
 In mathematics, the **fourier series** is an extremely powerful series that, in short, without me having to explain in details, **fit any mathematically defined entity** through **adding pairs of sine & cosine wave functions,** which are just combinations of drawing many circles under different initial conditions (aka where we place our pencils to start).
 
-> To observe the power of the fourier series, I highly recommend checking out this amazing [clip](https://www.youtube.com/watch?v=ds0cmAV-Yek&t=416s&ab_channel=SmarterEveryDay), showing how fourier series can be used, through iterative regressions, to draw any given thing.
+> To observe the power of the fourier series, I highly recommend checking out this amazing [**clip**](https://www.youtube.com/watch?v=ds0cmAV-Yek&t=416s&ab_channel=SmarterEveryDay), showing how fourier series can be used, through iterative regressions, to draw any given thing.
 
-To compute a fourier series as a seasonal effect *through time*, as per our time-series modeling, we simply set our independent variable as $$\boldsymbol{t}$$, the scaled timestep, as that being the only information needed to make predictions. Although during the process of fitting & designing our model, for **each fourier series representing a seasonlity component**, we need to specify its **period & order**, such that:
+To compute a fourier series as a seasonal effect *through time*, as per our time-series modeling, we simply set our independent variable as $$\boldsymbol{t}$$, the scaled timestep, as that being the only information needed to make predictions. Although during the process of fitting & designing our model, for **each seasonality component as a fourier series**, we need to specify the series' **period & order**, such that:
 
-For $$F_{\lambda,N}(t)$$ being **a singular seasonality component in fourier series**, $$\lambda$$ as **period** (*365.25 = annual, 7 = weekly, etc*), and $$N$$ as **order** (*N amount of sine & consine pairs to add together to fit our objective*), we have:
+For $$F_{\lambda,N}(t)$$ being **a singular seasonality component in fourier series**,
+- $$\lambda$$ = **period** (*365.25 = annual, 7 = weekly, etc*)
+- $$N$$ = **order** (*amount of sine & consine pairs to add together to fit our objective*)
+
+We have:
 
 $$F_{\lambda,N}(t) = \sum_{n=1}^{N}(a_{n} cos(\frac{2\pi nt}{\lambda}) + b_{n}sin(\frac{2\pi nt}{\lambda}))$$
 
-where $$a_n$$ and $$b_n$$ are the pairs of coefficients for each term in the total of N pairs, thus an order $$N=1$$ would resulted in 2 coefficients. Using the advantage of matrices, we set the coefficients $$a_n$$'s and $$b_n$$'s as a multi-dimensional **prior** in our seasonality model (like $$\delta$$ in trend), namely $$\boldsymbol{\beta}$$, such that:
+where $$a_n$$ and $$b_n$$ are the pairs of coefficients for each term in the total of N pairs, where for an order $$N$$ would resulted in $$2N$$ coefficients. Using the advantage of matrices, we set the coefficients $$a_n$$ and $$b_n$$ as a *multi-dimensional* **prior** in our seasonality model (like $$\delta$$ in the trend model) as:
+
+$$\boldsymbol{\beta} \sim \mathcal{N}(0,\phi)$$
+
+where $$\phi$$ is the scale hyperparameter, similar to $$\theta$$ in our trend model above. Like $$\theta = 5$$ being recommended as default by fbprophet, $$\boldsymbol{\beta}$$'s scale $$\phi$$ is defaulted as $$\phi = 10$$, thus we define our prior $$\boldsymbol{\beta}$$, with the default scale, as:
+
+$$\boldsymbol{\beta} \sim \mathcal{N}(0,10)$$
 
 $$\boldsymbol{\beta} \in \mathbb{R}^{2N}, \boldsymbol{\beta} = a_1, b_1, …, a_n, b_n$$
 
-where for **each seasonal component** of defined $$\lambda$$ & $$N$$, we define:
+where for **each seasonality component** as a fourier series with specified $$\lambda$$ & $$N$$, we define:
 
 $$X(t) = [cos(\frac{2\pi 1t}{\lambda}), sin(\frac{2\pi 1t}{\lambda}),…,cos(\frac{2\pi Nt}{\lambda}),sin(\frac{2\pi Nt}{\lambda})]$$
 
@@ -317,4 +327,47 @@ Thus, the seasonality component, in fourier series, $$F_{\lambda,N}(t)$$ is simp
 
 $$X(t) \boldsymbol{\beta} = \sum_{n=1}^{N}(a_{n} cos(\frac{2\pi nt}{\lambda}) + b_{n}sin(\frac{2\pi nt}{\lambda}))$$
 
+### Demonstrating Seasonality as Fourier Series
 
+We first prepare a function that takes in $$\boldsymbol{t}$, and specified **period & n** as arguments to calculate the fourier series:
+
+```python
+def fourier_series(t, period, n):
+    # 2 pi n / p
+    x = 2 * np.pi * np.arange(1, n + 1) / period
+    # 2 pi n / p * t
+    x = x * t[:, None]
+    x = np.concatenate((np.cos(x), np.sin(x)), axis=1)
+    return x
+```
+Below for demonstrative purposes only, we set $$N=3$$ and $$\lambda=365.25$$ for our fourier series $$X(t)$$. Then uses the default $$\phi = 10$$ to generate our multi-dimensional prior $$\beta$$. We then perform calculations on each components separately as well as them added together to construct the fourier series result:
+
+```python
+t = np.arange(1000) #--| scaled timestep
+order = 3 #---| fourier order
+period = 365.25 #---| fourier period
+phi = 10 #---| beta's prior scale
+
+#----| Compute X & Beta
+X = fourier_series(t,period,order)
+beta = np.random.normal(0,phi,size=2 * order)
+
+#----| Plot
+plt.figure(figsize=(16, 9))
+n = ((order+1)*100) + 11
+plt.subplot(n)
+plt.title("Fourier Series Result (adding all components together)")
+plt.xticks([])
+plt.plot(t,np.dot(X,beta), lw=1.5, color="green")
+
+i = 0
+for o in range(order):
+    i +=1
+    idx = o*2
+    plt.subplot(n + i)
+    plt.title("Fourier Order Components #%s" %str(o + 1))
+    plt.xticks([])
+    plt.plot(t,np.dot(X[:,idx:(idx+2)],beta[idx:(idx+2)]),alpha=0.6)
+```
+
+<img src="https://jp-quant.github.io/images/glm_bayesian/demo_2.png" style="background-color: white;">
