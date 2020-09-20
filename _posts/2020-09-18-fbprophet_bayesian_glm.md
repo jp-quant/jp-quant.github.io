@@ -339,7 +339,7 @@ To obtain $$F_{\lambda,N}(t)$$ as $$X(t) \boldsymbol{\beta}$$, a single seasonal
 1. Randomly generate a sample of our $$2N$$-dimensional $$\beta$$ prior defined with specified scale $$\phi$$ ($$=10$$ by default).
 2. Perform fourier calculations using the *fourier_series* function written above to obtain $$X(t)$$ with dimension $$K$$ x $$2N$$
 
-Performing matrix multiplication $$X(t) \boldsymbol{\beta}$$ will resulted in a 1D array of length  $$K$$, or basically $$K$$ x $$1$$ as its matrix dimension, **representing a singular sample (using generated $$\boldsymbol{\beta}$$ sample) of the seasonality component $$s_i$$ with given the choice of $$\lambda,N$$**, in our overarching seasonality model, either as multiplicative or additive ($$s_i \in $$S_m$$ (or $$S_a$$)).
+Performing matrix multiplication $$X(t) \boldsymbol{\beta}$$ will resulted in a 1D array of length  $$K$$, or basically $$K$$ x $$1$$ as its matrix dimension, **representing a singular sample (using generated $$\boldsymbol{\beta}$$ sample) of the seasonality component $$s_i$$ with given the choice of $$\lambda,N$$**, in our overarching seasonality model, either as multiplicative or additive ($$s_i \in S_m$$ (or $$S_a$$)).
 > In addition, I also include the $$N$$ order of wave components ($$wave_i$$), constructing our result (in green) , to show the additive contributions that allows for complexities by the fourier series.
 
 ```python
