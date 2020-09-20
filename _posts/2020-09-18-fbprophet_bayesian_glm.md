@@ -127,8 +127,9 @@ The **numeric transformation** can be algorithmically defined as a **standardizi
 
 - When fitting, we perform standardization on such array $$D$$, as $$D_{fit}$$, being a Min-Max scaling procedure:
 
-$$\boldsymbol{t} = \frac{D - min(D)}{max(D) - min(D)}$$
-> Notice how such process cancels out our units and left us with purely numeric values, while capturing information of the timeframe we are working with.
+> $$\boldsymbol{t} = \frac{D - min(D)}{max(D) - min(D)}$$
+>
+> *Notice how such process cancels out our units and left us with purely numeric values, while capturing information of the timeframe we are working with.*
 
 - When predicting, we use the fitted $$min(D)$$ & $$max(D)$$ values, aka $$min(D_{fit})$$ & $$max(D_{fit})$$ above, to perform the exact same scaling procedure on any given array $$D$$, to which in predictive context viewed as $$D_{pred}$$. The resulted $$\boldsymbol{t}$$ values that are out of bound (0,1) represents stamps before (<0) or after (>1) the timeframe of data we fitted (the priors of our model on).
 
