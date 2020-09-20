@@ -309,11 +309,11 @@ where $$a_n$$ and $$b_n$$ are the pairs of coefficients for each term in the tot
 
 $$\boldsymbol{\beta} \in \mathbb{R}^{2N}, \boldsymbol{\beta} = a_1, b_1, …, a_n, b_n$$
 
-Such that for each seasonal component of defined $$\lambda$$ & $$N$$, we define:
+where for **each seasonal component** of defined $$\lambda$$ & $$N$$, we define:
 
 $$X(t) = [cos(\frac{2\pi 1t}{\lambda}), sin(\frac{2\pi 1t}{\lambda}),…,cos(\frac{2\pi Nt}{\lambda}),sin(\frac{2\pi Nt}{\lambda})]$$
 
-such that the seasonal component $$F_{\lambda,N}(t)$$ is simply represented as:
+Thus, the seasonality component, in fourier series, $$F_{\lambda,N}(t)$$ is simply represented as:
 
 $$X(t) \boldsymbol{\beta} = \sum_{n=1}^{N}(a_{n} cos(\frac{2\pi nt}{\lambda}) + b_{n}sin(\frac{2\pi nt}{\lambda}))$$
 
