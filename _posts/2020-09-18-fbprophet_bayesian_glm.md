@@ -315,6 +315,6 @@ $$X(t) = [cos(\frac{2\pi 1t}{\lambda}), sin(\frac{2\pi 1t}{\lambda}),…,cos(\fr
 
 such that the seasonal component $$F_{\lambda,N}(t)$$ is simply represented as:
 
-$$X(t) \boldsymbol(\beta) = \sum_{n=1}^{N}(a_{n} cos(\frac{2\pi nt}{\lambda}) + b_{n}sin(\frac{2\pi nt}{\lambda}))$$
+$$X(t) \boldsymbol{\beta} = \sum_{n=1}^{N}(a_{n} cos(\frac{2\pi nt}{\lambda}) + b_{n}sin(\frac{2\pi nt}{\lambda}))$$
 
 
