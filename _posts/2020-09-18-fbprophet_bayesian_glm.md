@@ -330,7 +330,7 @@ def fourier_series(t, period, order):
 
 With hyperparams set as:
 
-- $$\lambda=365.25$$ *(annually if freq="1D")*
+- $$\lambda=365.25$$ *(annually at daily interval)*
 - $$N=4$$ *(fbprophet sets it at 10 for annual seasonality)*
 - $$\phi = 10$$ *(fbprophet's default)*
 
