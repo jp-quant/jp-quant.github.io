@@ -340,7 +340,7 @@ To obtain $$F_{\lambda,N}(t)$$ as $$X(t) \boldsymbol{\beta}$$, a single seasonal
 2. Perform fourier calculations using the *fourier_series* function written above to obtain $$X(t)$$ with dimension $$K$$ x $$2N$$
 
 Performing matrix multiplication $$X(t) \boldsymbol{\beta}$$ will resulted in a 1D array of length  $$K$$, or basically $$K$$ x $$1$$ as its matrix dimension, **representing a singular sample (using generated $$\boldsymbol{\beta}$$ sample) of the seasonality component $$s_i$$ with given the choice of $$\lambda,N$$**, in our overarching seasonality model, either as multiplicative or additive ($$s_i \in S_m$$ (or $$S_a$$)).
-> In addition, I also include the $$N$$ order of wave components ($$wave_i$$), constructing our result (in green) , to show the additive contributions that allows for complexities by the fourier series.
+> In addition, I also include the $$N$$ order of wave components ($$wave_i$$), constructing our result (in green), to show the additive contributions that allows for complexities by the fourier series.
 
 ```python
 t = np.arange(1000) #--| scaled timesteps in days for demonstration (1000 = 1000 date stamps per daily interval)
@@ -363,7 +363,7 @@ for o in range(order):
     i +=1
     idx = o*2
     _latex = "$wave_{" + str(o + 1) + "}$"
-    plt.plot(t,np.dot(X[:,idx:(idx+2)],beta[idx:(idx+2)]),"--",alpha=0.42, label = _latex) 
+    plt.plot(t,np.dot(X[:,idx:(idx+2)],beta[idx:(idx+2)]),"--",alpha=0.42, label = _latex)
 
 plt.legend(loc="upper right",fontsize='large')
 plt.autoscale(True)
