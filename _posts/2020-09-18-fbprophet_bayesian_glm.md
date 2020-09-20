@@ -307,12 +307,14 @@ For $$f_{\lambda,N}(t)$$ being **a singular seasonality component in fourier ser
 
 $$f_{\lambda,N}(t) = \sum_{n=1}^{N}(a_{n} cos(\frac{2\pi nt}{\lambda}) + b_{n}sin(\frac{2\pi nt}{\lambda}))$$
 
-where $$a_n$$ and $$b_n$$ are the pairs of coefficients for each term in the total of N pairs, thus an order $$N=1$$ would resulted in 2 coefficients. Using the advantage of matrices, to define our seasonality model, we set the coefficients $$a_n$$'s and $$b_n$$'s as a **prior**, such that for each seasonal component:
-
-$$f_{\lambda,N}(t) = X_{\lambda,N}(t) \boldsymbol(\beta)$$
-
-where:
+where $$a_n$$ and $$b_n$$ are the pairs of coefficients for each term in the total of N pairs, thus an order $$N=1$$ would resulted in 2 coefficients. Using the advantage of matrices, to define our seasonality model, we set the coefficients $$a_n$$'s and $$b_n$$'s as a **prior**, such that for each seasonal component, we define:
 
 $$X_{\lambda,N}(t) = [cos(\frac{2\pi 1t}{\lambda}), sin(\frac{2\pi 1t}{\lambda}),…,cos(\frac{2\pi Nt}{\lambda}),sin(\frac{2\pi Nt}{\lambda})]$$
 
 $$\boldsymbol{\beta} \in \mathbb{R}^{2N}, \boldsymbol{\beta} = a_1, b_1, …, a_n, b_n$$
+
+such that:
+
+$$f_{\lambda,N}(t) = X_{\lambda,N}(t) \boldsymbol(\beta)$$
+
+
