@@ -328,11 +328,11 @@ def fourier_series(t, period, order):
     return x
 ```
 
-With hyperparams set as:
+With hyperparams set as fbprophet's defaults for *annual seasonality* (at daily interval):
 
-- $$\lambda=365.25$$ *(annually at daily interval)*
-- $$N=4$$ *(fbprophet sets it at 10 for annual seasonality)*
-- $$\phi = 10$$ *(fbprophet's default)*
+- $$\lambda=365.25$$
+- $$N=10$$
+- $$\phi = 10$$
 
 To obtain $$F_{\lambda,N}(t)$$ as $$X(t) \boldsymbol{\beta}$$, a single seasonality component with given numeric timestep(s) $$\boldsymbol{t}$$, we demonstrate this by:
 
