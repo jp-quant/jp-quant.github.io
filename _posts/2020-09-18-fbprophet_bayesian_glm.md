@@ -343,7 +343,7 @@ Performing matrix multiplication $$X(t) \boldsymbol{\beta}$$ will resulted in a 
 > In addition, I also include the $$N$$ order of wave components ($$wave_i$$), constructing our result (in green) , to show the additive contributions that allows for complexities by the fourier series.
 
 ```python
-t = np.arange(1000) #--| scaled timesteps (1000 = 1000 date stamps, for daily interval)
+t = np.arange(1000) #--| scaled timesteps in days for demonstration (1000 = 1000 date stamps per daily interval)
 order = 10 #---| fourier order (N)
 period = 365.25 #---| fourier period (lambda)
 phi = 10 #---| beta's prior scale (a_n, b_n)
