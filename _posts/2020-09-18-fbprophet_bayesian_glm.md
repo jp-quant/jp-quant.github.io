@@ -323,7 +323,16 @@ def fourier_series(t, period, order):
     return x
 ```
 
-Below for demonstrative purposes only, we set $$N=4$$ and $$\lambda=365.25$$ for our fourier series $$X(t)$$. Then uses the default $$\phi = 10$$ to generate our multi-dimensional prior $$\beta$$. We then perform calculations on each components separately as well as them added together to construct the fourier series result:
+With hyperparams set as:
+
+- $$\lambda=365.25$$ *(annually if freq="1D")*
+- $$N=4$$ *(fbprophet sets it at 10 for annual seasonality)*
+- $$\phi = 10$$ *(fbprophet's default)*
+
+To obtain $$F_{\lambda,N}(t)$$, using $$X(t)$$ & $$\boldsymbol{\beta}$$, as a seasonality component with given numeric timestep(s):
+
+1. Randomly generate a sample of our $$2N$$-dimensional $$\beta$$ prior defined above as a demonstration.
+2. Perform fourier calculations using the function written above to obtain $$X(t)$$
 
 ```python
 t = np.arange(1000) #--| scaled timestep
