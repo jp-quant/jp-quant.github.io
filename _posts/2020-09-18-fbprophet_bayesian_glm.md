@@ -293,7 +293,7 @@ Moving forward, we will primarily focus on the Seasonality aspect as Holidays & 
 
 ### Seasonality & Fourier Series
 
-From harmonics in pendulum & vibrations, even in light waves & string theory itself, the power of $\pi$ as a universal constant, representing circles & waves (euler's famous equation), is reflective as to the way physicists & mathematicians see the world (full of circles they say).
+From harmonics in pendulum & vibrations, even in light waves & string theory itself, the power of $$\pi$$ as a universal constant, representing circles & waves (euler's famous equation), is reflective as to the way physicists & mathematicians see the world (full of circles they say).
 
 In mathematics, the **fourier series** is an extremely powerful series that, in short, without me having to explain in details, **fit any mathematically defined entity** through **adding pairs of sine & cosine wave functions,** which are just combinations of drawing many circles under different initial conditions (aka where we place our pencils to start).
 
@@ -301,18 +301,18 @@ In mathematics, the **fourier series** is an extremely powerful series that, in 
 
 To compute a fourier series as a seasonal effect *through time*, as per our time-series modeling, we simply set our independent variable as $$\boldsymbol{t}$$, the scaled timestep, as that being the only information needed to make predictions. Although during the process of fitting & designing our model, for **each fourier series representing a seasonlity component**, we need to specify its **period & order**, such that:
 
-For $$f_{\lambda,N}(t)$$ being **a singular seasonality component in fourier series**, $$\lambda$$ as **period** (*365.25 = annual, 7 = weekly, etc*), and $$N$$ as **order** (*N amount of sine & consine pairs to add together to fit our objective*), we have:
+For $$F_{\lambda,N}(t)$$ being **a singular seasonality component in fourier series**, $$\lambda$$ as **period** (*365.25 = annual, 7 = weekly, etc*), and $$N$$ as **order** (*N amount of sine & consine pairs to add together to fit our objective*), we have:
 
-$$f_{\lambda,N}(t) = \sum_{n=1}^{N}(a_{n} cos(\frac{2\pi nt}{\lambda}) + b_{n}sin(\frac{2\pi nt}{\lambda}))$$
+$$F_{\lambda,N}(t) = \sum_{n=1}^{N}(a_{n} cos(\frac{2\pi nt}{\lambda}) + b_{n}sin(\frac{2\pi nt}{\lambda}))$$
 
-where $$a_n$$ and $$b_n$$ are the pairs of coefficients for each term in the total of N pairs, thus an order $$N=1$$ would resulted in 2 coefficients. Using the advantage of matrices, to define our seasonality model, we set the coefficients $$a_n$$'s and $$b_n$$'s as a **prior**, such that for each seasonal component, we define:
+where $$a_n$$ and $$b_n$$ are the pairs of coefficients for each term in the total of N pairs, thus an order $$N=1$$ would resulted in 2 coefficients. Using the advantage of matrices, to define our seasonality model, we set the coefficients $$a_n$$'s and $$b_n$$'s as a **prior**, such that for each seasonal component of defined $$\lambda$$ & $$N$$, we define:
 
-$$X_{\lambda,N}(t) = [cos(\frac{2\pi 1t}{\lambda}), sin(\frac{2\pi 1t}{\lambda}),…,cos(\frac{2\pi Nt}{\lambda}),sin(\frac{2\pi Nt}{\lambda})]$$
+$$X(t) = [cos(\frac{2\pi 1t}{\lambda}), sin(\frac{2\pi 1t}{\lambda}),…,cos(\frac{2\pi Nt}{\lambda}),sin(\frac{2\pi Nt}{\lambda})]$$
 
 $$\boldsymbol{\beta} \in \mathbb{R}^{2N}, \boldsymbol{\beta} = a_1, b_1, …, a_n, b_n$$
 
-such that:
+such that the seasonal component $$F_{\lambda,N}(t)$$ is simply represented as:
 
-$$f_{\lambda,N}(t) = X_{\lambda,N}(t) \boldsymbol(\beta)$$
+$$X(t) \boldsymbol(\beta) = \sum_{n=1}^{N}(a_{n} cos(\frac{2\pi nt}{\lambda}) + b_{n}sin(\frac{2\pi nt}{\lambda}))$$
 
 
