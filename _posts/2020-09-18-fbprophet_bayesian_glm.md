@@ -283,8 +283,6 @@ Notice that where the defined $$N$$ amount of changepoints (*n_changepoints*) re
 
 ## Modeling Seasonal Components [$$\boldsymbol{S}_{m}(t)$$ & $$\boldsymbol{S}_{a}(t)$$]
 
----
-
 It is important to clarify that we actually are addressing **more than one** particular component (not $$m$$ vs $$a$$, though we will touch base on that soon). The seasonal components, by fbprophet's point of view, although grouped as one, breaks down into **2** categories:
 
 - **Seasonality**: Cyclic nature of a given feature, such as a business operation exhibiting seasonal effects of sales due to certain periodic timeframe throughout the years, months or week. (*e.g.: sales increase during summer & decrease during winter*)
