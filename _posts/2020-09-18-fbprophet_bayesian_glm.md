@@ -305,7 +305,7 @@ Thus, the seasonality component, in fourier series, $$F_{\lambda,N}(t)$$, with t
 
 $$X(t) \boldsymbol{\beta} = \sum_{n=1}^{N}(a_{n} cos(\frac{2\pi nt}{\lambda}) + b_{n}sin(\frac{2\pi nt}{\lambda}))$$
 
-or simmply put:
+or simply put:
 
 $$F_{\lambda,N}(t) = X(t) \boldsymbol{\beta}$$
 
