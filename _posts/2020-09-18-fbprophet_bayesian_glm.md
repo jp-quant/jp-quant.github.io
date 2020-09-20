@@ -369,3 +369,13 @@ plt.autoscale(True)
 ```
 
 <img src="https://jp-quant.github.io/images/glm_bayesian/demo_2.png" style="background-color: white;">
+
+---
+
+> **Quick Visual Example of Combining Trend & Seasonality**
+>
+> As a quick recall of our overarching model being an additive linear of Trend & Seasonal Components, each is a model in itself, below is an example plot showing the two coming together to formulate the predicted Y.
+>
+> Note that, again, this is just *purely for demonstration* where **priors data are randomly generated**, as there being no specific Y to fit our priors to:
+>
+> <img src="https://jp-quant.github.io/images/glm_bayesian/demo_3.png" style="background-color: white;">
