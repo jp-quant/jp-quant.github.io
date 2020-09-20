@@ -281,18 +281,18 @@ In mathematics, the **fourier series** is an extremely powerful series that, sho
 
 > **Cool Highlight:** I highly recommend checking out this amazing [**clip**](https://www.youtube.com/watch?v=ds0cmAV-Yek&t=416s&ab_channel=SmarterEveryDay), showing how fourier series can be used, through iterative regressions, to draw any given outlines .
 
-To compute a fourier series as a seasonal effect *throughout time*, we simply set our independent variable as $$\boldsymbol{t}$$, the scaled timestep, as that being the only information needed to make predictions. Although during the process of designing our model, we need to specify the series' **period & order** for **each seasonality component as a fourier series**.
+To compute a fourier series as a seasonal effect *throughout time*, we simply set our independent variable as $$\boldsymbol{t}$$, the scaled timestep, as that being the only information needed to make predictions. Although during the process of designing our model, we need to specify the series' **period & order** for **each seasonality component**.
 
-Define $$F_{\lambda,N}(t)$$ being **a singular seasonality component in fourier series**, where
+**As each singular seasonality component being a fourier series with certain choice of period & order**, we define it as $$F_{\lambda,N}(t)$$, where:
 
 - $$\lambda$$ = **period** (*365.25 = annual, 7 = weekly, etc*)
 - $$N$$ = **order** (*amount of sine & consine pairs to add together to fit our objective*)
 
-We have:
+Thus, we have:
 
 $$F_{\lambda,N}(t) = \sum_{n=1}^{N}(a_{n} cos(\frac{2\pi nt}{\lambda}) + b_{n}sin(\frac{2\pi nt}{\lambda}))$$
 
-where $$a_n$$ and $$b_n$$ are the pairs of coefficients for each term in the total of N pairs, where for an order of $$N$$ would resulted in $$2N$$ coefficients for $$N$$ components of wave-pairs. Using the advantage of matrices, we set the coefficients $$a_n$$ and $$b_n$$ as a *$$2N$$-dimensional* **prior** in our seasonality model (like $$\delta$$ in the trend model) as:
+where $$a_n$$ and $$b_n$$ are the pairs of coefficients for each term in the total of N pairs, whereas an order of $$N$$ would resulted in $$2N$$ coefficients for $$N$$ components of wave-pairs. Using the advantage of matrices (like $$\delta$$ dimension = the amount of changepoints in the trend model above), we seek to find the coefficients $$a_n$$ and $$b_n$$ as a *$$2N$$-dimensional* **prior** in our seasonality model with:
 
 $$\boldsymbol{\beta} \sim \mathcal{N}(0,\phi)$$
 
@@ -302,7 +302,7 @@ $$\boldsymbol{\beta} \sim \mathcal{N}(0,10)$$
 
 $$\boldsymbol{\beta} \in \mathbb{R}^{2N}, \boldsymbol{\beta} = a_1, b_1, …, a_n, b_n$$
 
-As **each seasonality component $$\sim$$ each fourier series with specified $$\lambda$$ & $$N$$**, for any given $$t$$, each component will have a transformed tensor from such $$t$$, being
+As **each seasonality component $$F_{\lambda,N}(t) \sim$$ a fourier series with specified $$\lambda$$ & $$N$$**, with the separated $$a_n,b_n$$ with prior $$\boldsymbol{\beta}$$, for any given $$t$$, each component will have a transformed tensor from such $$t$$, representing the sine & cosine terms, being
 
 $$X(t) = [ cos(\frac{2\pi 1t}{\lambda}), sin(\frac{2\pi 1t}{\lambda}),…,cos(\frac{2\pi Nt}{\lambda}),sin(\frac{2\pi Nt}{\lambda}) ]$$
 
