@@ -93,22 +93,22 @@ Though I can spend time writing in details on the applications of such simple, y
 
 ---
 Let's start by recalling the brief explanation about GLM from above:
-> **Generalized Linear Models** allows for response variables that have arbitrary distributions, and for an arbitrary function of the response variable to vary linearly with the predicted values (rather than assuming that the response itself must vary linearly)
+> **Generalized Linear Models** allow for response variables that have arbitrary distributions, and for an arbitrary function of the response variable to vary linearly with the predicted values (rather than assuming that the response itself must vary linearly)
 
 Shortly put in details, implementation of Bayesian Statistics on time-series GLM is powerful due to:
 
-1. The ability for us to define **priors** (initial beliefs) as *any distributions* $$P(A), P(B),...$$, whereas such priors $$A, B, ...$$ are variables/features that can be as abstract or realistic as we want.
+1. The ability for us to define **priors** (initial beliefs) as *any distributions* with probability functions, thus $$P(A), P(B),...$$, whereas such priors $$A, B, ...$$ are variables/features that can be as abstract or realistic as we want.
 
-2. We can formulate functions (link functions), as $$f(A,B,...)$$ with defined priors variables $$A,B,...$$, as transformed variables, to define the **posteriors**, being the observed, to which such observed values modeled as either a factor of predicted values, or predicted values themselves, *are also defined as a distribution.*
+2. We can formulate functions (link functions), as $$f(A,B,...)$$ with defined priors variables $$A,B,...$$, as transformed variables, to define our **posteriors**, being the observables. Thus, modeled as either a factor in a model to predict a selected target, or even the targets themselves, the posteriors *can also be defined as distributions.*
 
-3. We can then update such priors with the arrival of new observed data, using Bayes' Theorem, specifically the concept of *conditional probability* $$P(Observed \mid X)$$ *(where $$X$$ being a conditioned variable, either as a prior or a function of a group of priors)*
+3. We can then update our prior beliefs with the arrival of new observed data, using Bayes' Theorem, specifically the concept of *conditional probability* $$P(Y \mid X)$$ *(where $$X$$ being a conditioned variable, either as a prior or a function of a group of priors)*, and vice versa as $$P(X \mid Y)$$
 
-We will demonstrate these implementations in the upcoming sections.
+We will demonstrate these implementations in this post.
 To summarize:
-- The **observable is the unknown** posterior, to which **dependent conditionally on the defined priors** beliefs, to which such **priors are updated to "fit" the observable** when new observable data arrive throughout time (hence variable t).
+- The **observable is the unknown** posterior, to which **conditionally dependent on the defined priors** beliefs, to which such **priors are updated to "fit" the observable** when new observable data arrive throughout time (hence variable t).
 
 The main **philosophy** behind Bayesian Statistics is that:
-> Our understanding of the **reality** we are trying to model through time, to predict its future values, **is never static & objective, but rather dynamic & conditional**. Going Bayesian means we are accepting that **we will never know the full picture of reality completely, and that we can only infer from the data of such reality we collected so far to forecast its future values with compounded uncertainty**, as per defining all of the parameters & functions of our entire model hierarchically as distributions.
+> Our understanding of the **reality** we are trying to model through time, to predict its future values, **is never static & objective, but rather dynamic & conditionally sensitive to initial condition** (related with *chaos theory*, which we will save this for another post). Going Bayesian means we are accepting that **we will never know the full picture of reality completely**, and that **we can only infer from the data we collected so far of such reality to forecast its future values/states under compounded uncertainties**, as per defining all parameters & functions of our entire model hierarchically as distributions. This is much more superior than point estimates in classical models, even in Deep Machine Learning models, as it reflects much more on our reality & the mathematical logic in the prediction process of its future.
 
 ---
 ## 3. The Mathematics behind FBProphet
@@ -203,9 +203,9 @@ $$\boldsymbol{s}, A,\gamma$$
 > Where $$\gamma$$ being the **changepoints adjustment for the growth offset**.
 
 ---
-Now, with all the defined components to model our $$\boldsymbol{G}(t)$$, we proceed on using them to calculate **3 types of trends**:
+Now, finally, with all the defined components to model our $$\boldsymbol{G}(t)$$, we proceed on using them to calculate **3 types of trends**:
 
-**Linear Trend** (mainly used)
+**Linear Trend** (mainly used & demonstrated below)
 > **$$ G(\boldsymbol{t}) = (k + A_{\boldsymbol{t}} \delta) \boldsymbol{t} + (m + A_{\boldsymbol{t}} \gamma) $$**
 
 **Logistic Trend** (Non-Linear & Saturating Growth Applications)
@@ -220,9 +220,9 @@ Now, with all the defined components to model our $$\boldsymbol{G}(t)$$, we proc
 
 ---
 
-### Demonstrating Linear Trend Model w/ Changepoints $$\delta$$
+### Demonstrating Linear Trend Model With $$\delta$$ Changepoints
 
-> **Remarks**: All values are randomly generated to produce such result, as such result means nothing without observed data to fit the priors to. This is purely demonstrative work. These lines of codes will be partially recycled for our final model built at the end. We primarily want to understand the components in pieces & how they come together.
+> **Remarks**: All values are randomly generated to produce such result, as such result means nothing without observed data to fit the priors to. This is purely demonstrative work. These lines of codes will be partially recycled for our final model built at the end. We primarily want to understand the components in pieces & how they come together, especially the role $$\delta$$ plays in our trend model.
 
 ---
 
@@ -275,7 +275,7 @@ for title, f in zip(['Trend (Growth Rate + Growth Offset)','Growth Rate', 'Growt
 <img src="https://jp-quant.github.io/images/glm_bayesian/demo_1.png" style="background-color: white;">
 
 ---
-**Analysis & Explanations**
+### **Analysis & Explanations**
 
 Notice that where the defined $$N$$ amount of changepoints (*n_changepoints*) resulted in the N-dimensional $$\delta$$ tensor, dictating the "magnitudes" of our two terms, Growth Rate & Offsets, at those $$N$$ specific changepoints in the numeric timesteps $$\boldsymbol{t}$$, or simply at $$\boldsymbol{s}$$. Together, they additively combined to produce the predicted "trend" of the observed.
 
