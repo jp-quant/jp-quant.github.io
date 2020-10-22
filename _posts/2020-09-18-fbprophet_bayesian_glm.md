@@ -398,7 +398,7 @@ We construct the binary vector of the same length as $$Dt$$, called $$H_{ny}$$, 
 
 $$ H_{ny} = \begin{bmatrix} 1 \\ 0 \\ \vdots \\ 1 \\ \vdots \\ 1 \\ 0 \end{bmatrix}$$
 
-Regressively, after performing multiplication with the element $$b_ny$$ in our $$\boldsymbol{\beta}$$ prior, we obtain our New Year's holiday effect, additive or multiplicative.
+Regressively, after performing multiplication with the element $$b_{ny}$$ in our $$\boldsymbol{\beta}$$ prior, we obtain our New Year's holiday effect, additive or multiplicative.
 
 > As I tried to keep this section as brief as possible due to its simplicity, if you want more information and examples, you can visit FBProphet's documentation [here](https://facebook.github.io/prophet/docs/seasonality,_holiday_effects,_and_regressors.html#modeling-holidays-and-special-events).
 
