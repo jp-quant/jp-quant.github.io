@@ -273,20 +273,24 @@ It is important to clarify that we actually are addressing **more than one** par
 
 - **Holidays & Special Timeframes**: Thanksgiving, New Year, Independence Day, Major Sport Events (SuperBowl, World Cup, etc), and many many more. These are somewhat seasonal & periodic, but they can also be a singular timeframe of a significant event in history (subjective to judgment), like COVID-19 & its impact on the financial market, or any special days we'd like to add that are relevant to the problem at hand.
 
+Where
+- $$S_a = $$ Additive Seasonal Components
+- $$S_m = $$ Multiplicative Seasonal Components
+
 Moving forward, we will primarily focus on the Seasonality aspect as Holidays & Special Timeframes are much easier to understand once we grasp trend & seasonality.
 
 ### Seasonality & Fourier Series
 
 In mathematics, the **fourier series** is an extremely powerful series that, shortly put, **can represent any linear functions** through **regressing $$N$$ (order) amount of factors of sine & cosine pairs,** which are just combinations of drawing many circles under different initial conditions (aka where we place our pencils to start) then scale it to the center.
 
-> **Cool Highlight:** I highly recommend checking out this amazing [**clip**](https://www.youtube.com/watch?v=ds0cmAV-Yek&t=416s&ab_channel=SmarterEveryDay), showing how fourier series can be used, through iterative regressions, to draw any given outlines .
+> **Cool Highlight:** I highly recommend checking out this amazing [**clip**](https://www.youtube.com/watch?v=ds0cmAV-Yek&t=416s&ab_channel=SmarterEveryDay), showing how fourier series can be used, through iterative regressions, to draw any given outlines.
 
 To compute a fourier series as a seasonal effect *throughout time*, we simply set our independent variable as $$\boldsymbol{t}$$, the scaled timestep, as that being the only information needed to make predictions. Although during the process of designing our model, we need to specify the series' **period & order** for **each seasonality component**.
 
 **As each singular seasonality component being a fourier series with certain choice of period & order**, we define it as $$F_{\lambda,N}(t)$$, where:
 
 - $$\lambda$$ = **period** (*365.25 = annual, 7 = weekly, etc*)
-- $$N$$ = **order** (*amount of sine & consine pairs to add together to fit our objective*)
+- $$N$$ = **fourier order** (*amount of sine & consine pairs to add together to fit our objective*)
 
 Thus, we have:
 
@@ -373,10 +377,29 @@ plt.autoscale(True)
 
 ---
 
-> **Quick Visual Example of Combining Trend & Seasonality**
+> **Quick Visual Example of Combining Trend & Fourier Seasonality**
 >
 > As a quick recall of our overarching model being an additive linear of Trend & Seasonal Components, each is a model in itself, below is an example plot showing the two coming together to formulate the predicted Y.
 >
 > Note that, again, this is just *purely for demonstration* where **priors data are randomly generated**, as there being no specific Y to fit our priors to:
 >
 > <img src="https://jp-quant.github.io/images/glm_bayesian/demo_3.png" style="background-color: white;">
+
+
+### Holidays & Special Timeframes
+
+Compare to Fourier Seasonality model above, modeling holidays (and special timeframes) is very much similar, both additive and multiplicative. The difference simply resides in that instead of using the components of fourier series that described above in $$X(t)$$, we will instead use binaries to indicate **when**, or simply the timeframe(s), the holidays occur. We then proceed to perform multiplication with a regressed value in $$\boldsymbol{\beta}$$ prior to obtain the Holidays & Special Timeframes component.
+
+**For example**, if we have our time-series data with timestamps $$Dt$$ (for datetime), before we perform numerical transformation into $$t$$, such that:
+
+$$ Dt = \begin{bmatrix} Jan-1-2018 & Jan-2-2018 & Jan-3-2018 &\cdots & Dec-30-2018 & Dec-31-2018 &\cdots Jan-1-2020 \end{bmatrix}$$
+
+We construct the binary vector of the same length as $$Dt$$, called $$H_{ny}$$, such that we can model the New Year's effect by defining the New Year's timeframe starting from Dec-30 to Jan-2, thus assign those stamps with the value $$1$$, and others as $$0$$. FBprophet refers to it as the upper & lower window:
+
+$$ H_{ny} = \begin{bmatrix} 1 & 1 & 0 &\cdots & 1 & 1 &\cdots & 1 \end{bmatrix}$$
+
+Regressively, after performing multiplication with the element $$b_ny$$ in our $$\boldsymbol{\beta}$$ prior, we obtain our New Year's holiday effect, additive or multiplicative.
+
+As I tried to keep this section as brief as possible due to its simplicity, if you want more information, you can visit FBProphet's documentation [here](https://facebook.github.io/prophet/docs/seasonality,_holiday_effects,_and_regressors.html#modeling-holidays-and-special-events).
+
+
