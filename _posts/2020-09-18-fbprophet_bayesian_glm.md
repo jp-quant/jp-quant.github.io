@@ -392,11 +392,11 @@ Compare to Fourier Seasonality model above, modeling holidays (and special timef
 
 **For example**, if we have our time-series data with timestamps $$Dt$$ (for datetime), before we perform numerical transformation into $$t$$, such that:
 
-$$ Dt = \begin{bmatrix}& 1-2-2018 & 1-3-2018 &\cdots & 12-31-2018 & \cdots 1-2-2020 & 1-3-2020 \end{bmatrix}$$
+$$ Dt = \begin{bmatrix} 1-2-2018 \\ 1-3-2018 \\ \vdots \\ 12-31-2018 \\ \vdots \\ 1-2-2020 \\ 1-3-2020 \end{bmatrix}$$
 
 We construct the binary vector of the same length as $$Dt$$, called $$H_{ny}$$, such that we can model the New Year's effect by defining the New Year's timeframe starting from Dec-30 to Jan-2, thus assign those stamps with the value $$1$$, and others as $$0$$. FBprophet refers to it as the upper & lower window:
 
-$$ H_{ny} = \begin{bmatrix} 1 & 0 & \cdots & 1 &\cdots & 1 & 0 \end{bmatrix}$$
+$$ H_{ny} = \begin{bmatrix} 1 \\ 0 \\ \vdots \\ 1 \\ \vdots \\ 1 \\ 0 \end{bmatrix}$$
 
 Regressively, after performing multiplication with the element $$b_ny$$ in our $$\boldsymbol{\beta}$$ prior, we obtain our New Year's holiday effect, additive or multiplicative.
 
