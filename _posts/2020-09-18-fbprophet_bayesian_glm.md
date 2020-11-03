@@ -16,12 +16,14 @@ In the recent years, Facebook released an open-source tool for Python & R, calle
 After spending some time reading Facebook's published [research paper](https://peerj.com/preprints/3190/) on fbprophet, conducted by their mathematicians, as well as breaking down the developers' codes from their [open-source repository](https://github.com/facebook/prophet/tree/master/python) (Python), I was able to understand, in details, the mathematics & computational executions, thus built my own time-series forecaster with additional complexities added, utilizing their mathematical foundations.
 
 ---
-As an attempt of mine to explain the model in more applicable details, and alternatively recreate it with further implementations added, in this post, we will:
+As an attempt of mine to explain the model in more applicable details, and alternatively recreate it with further implementations added, in this post, we will explore:
 
-1. Mathematically understand the difference between **Ordinary v.s. Generalized** Linear Models (GLM) & why we are using GLM to build time-series forecasters.
-2. Explore the concept of "going Bayesian" (Bayes' Theorem), the benefits from doing so & the extended philosophy behind it.
-3. Break down the mathematics of FBProphet. 
-4. Build our own version in Python with additional flexibility & creative concepts added, utilizing *PyMC3* instead of *Stan* (like fbprophet does) as backend sampler (since I am not yet super fluent in Stan by the time I write this post). In addition, I will not spend much time talking about PyMC3, as you can navigate [here](https://docs.pymc.io/) to explore. It's an amazing sampler for probabilistic models built in Python, that implements frontier computational algorithms for regressions of various distributions in our built models. In addition with a rich library of variational inferencing methods, it also use them to accelerate MCMC simulations for sampling/fitting purposes.
+1. The difference between **Ordinary v.s. Generalized** Linear Models (GLM) & why we are using GLM to build time-series forecasters.
+2. The benefits of "going Bayesian"
+3. The mathematics and backend code of FBProphet. 
+
+Such that, at the end, we aim to build our own version in Python with additional flexibility & creative concepts added, utilizing *PyMC3* instead of *Stan* (like fbprophet does) as backend sampler.
+> In addition, I will not spend much time talking about PyMC3, as you can navigate [here](https://docs.pymc.io/) to explore. It's an amazing sampler for probabilistic models built in Python, that implements frontier computational algorithms for regressions of various distributions in our built models. In addition with a rich library of variational inferencing methods, it also use them to accelerate MCMC simulations for sampling/fitting purposes.
 
 ---
 
@@ -89,12 +91,7 @@ To summarize:
 
 - The **observable is the unknown** posterior, to which **conditionally dependent on the defined priors** beliefs, where such **priors are updated to "fit" the observable** when new observable data arrive throughout time (hence variable t).
 
-The main **philosophy** behind Bayesian Statistics is that:
-> Our understanding of the **reality** we are trying to model through time, to predict its future values/states, **is never static & objective, but rather dynamic & conditional** (*when model discrete time (maps) this concept is related to modeling chaos (fractals, FeigenBaum, etc), which we might potentially explore in another post*).
-> **Going Bayesian** $$\sim$$ *Entering the limbo of compromise between determinism (point estimates) & chaos*
-> Simply put, we are accepting that **we will never know the full picture of reality completely**, and that **we can only infer from the data we collected so far of such reality to forecast its future values/states under compounded uncertainties**, as per defining all parameters & functions of our entire model hierarchically as distributions. This is much more superior than point estimates in classical models, even in Deep Machine Learning models, as it reflects much more on our actual reality & the quantifiable uncertainties in the prediction process of its future.
-
-# 3. The Mathematics behind FBProphet
+# 3. The Mathematics of FBProphet's Model
 
 > **Disclosure**: The content below is somewhat a detailed summary, or rather a concise alternative explanation, based on my personal understanding of fbprophet's GLM from reading their publication & repositories. If you want to check out the original published paper, click [**here**](https://peerj.com/preprints/3190/).
 
@@ -113,17 +110,22 @@ where:
 
 - $$\boldsymbol{\epsilon}$$ = Unknown Errors (set as $$\sigma$$ of the observed by fbprophet)
 
-## Scaling timestamps to $$\boldsymbol{t}$$ (for "time-series"?)
+## Numerically Scaling Timestamps $$\boldsymbol{t}$$
 
 As we are obviously trying to build a predictive model on time-series data, which under our assumptions moving forward, being all real numbers, or, simply put, such data are numeric data, aka integers & real numbers(floats). As time is basically the essence of our model-building, before we touch base on any components of our model, **we need to define a numeric transformation on a given array of timestamp instances (they are not numbers)**, that, the aftermath result from such transformation, sortedly **retains the periodicity & frequency** of the original sorted array of timestamps given.
 
 There are many ways of approaching this while avoiding look-ahead bias. I notice some  define it as the integers field, though I personally opt for the same method fbprophet employs, scaling it directly through min-max standardization, into a "Gaussian-like" bound:
 
-Given such array $$D$$ containing $$N$$ amount of timestamp instances,
+Given such array $$D$$ containing $$N$$ amount of timestamp instances, such that *for example*:
 
-$$D = \begin{bmatrix} d_1 & d_2  &\cdots  & d_n \end{bmatrix}$$
+$$D = \begin{bmatrix} 1-3-2018 & 1-4-2018  &\cdots  & 1-3-2020 \end{bmatrix}$$
 
-The **numeric transformation** can be algorithmically defined as a **standardizing** procedure, taking in our timestamps array $$D$$ and returning the numeric array $$\boldsymbol{t}$$ with values between (0,1), such that:
+
+The **numeric transformation** can be algorithmically defined as a **standardizing** procedure, taking in our timestamps array $$D$$ and returning the numeric array $$\boldsymbol{t}$$ with values between (0,1):
+
+$$\boldsymbol{t} = \begin{bmatrix} 0  &\cdots  & 1 \end{bmatrix}$$
+
+Such that:
 
 - When fitting, we perform standardization on such array $$D$$, as $$D_{fit}$$, being a Min-Max scaling procedure:
 
@@ -259,7 +261,7 @@ for title, f in zip(['Trend (Growth Rate + Growth Offset)','Growth Rate', 'Growt
 
 <img src="https://jp-quant.github.io/images/glm_bayesian/demo_1.png" style="background-color: white;">
 
-### **Analysis & Explanations**
+### **Explanations**
 
 Notice that where the defined $$N$$ amount of changepoints (*n_changepoints*) resulted in the N-dimensional $$\delta$$ tensor, dictating the "magnitudes" of our two terms, Growth Rate & Offsets, at those $$N$$ specific changepoints in the numeric timesteps $$\boldsymbol{t}$$, or simply at $$\boldsymbol{s}$$. Together, they additively combined to produce the predicted "trend" of the observed.
 
@@ -377,7 +379,7 @@ plt.autoscale(True)
 
 ---
 
-> **Quick Visual Example of Combining Trend & Fourier Seasonality**
+> **Visual Example of Combining Trend & Fourier Seasonality**
 >
 > As a quick recall of our overarching model being an additive linear of Trend & Seasonal Components, each is a model in itself, below is an example plot showing the two coming together to formulate the predicted Y.
 >
@@ -385,20 +387,20 @@ plt.autoscale(True)
 >
 > <img src="https://jp-quant.github.io/images/glm_bayesian/demo_3.png" style="background-color: white;">
 
-
+---
 ### Holidays & Special Timeframes
 
-Compare to Fourier Seasonality model above, modeling holidays (and special timeframes) is very much similar, both additive and multiplicative. The difference simply resides in that instead of using the components of fourier series that described above in $$X(t)$$, we will instead use binaries to indicate **when**, or simply the timeframe(s), the holidays occur. We then proceed to perform multiplication with a regressed value in $$\boldsymbol{\beta}$$ prior to obtain the Holidays & Special Timeframes component.
+The difference compared to the Seasonlity model above simply resides in that instead of using the components of fourier series, $$F_{\lambda,N}$$, that described above in $$X(t)$$, we will instead use binaries to indicate **when**, or simply the timeframe(s), the holidays occur. We then proceed to perform multiplication with a regressed value in $$\boldsymbol{\beta}$$ prior to obtain the Holidays & Special Timeframes component.
 
-**For example**, if we have our time-series data with timestamps $$Dt$$ (for datetime), before we perform numerical transformation into $$t$$, such that:
+Using the example above, if we have our time-series data with timestamps $$D$$ (for datetime), before we perform numerical transformation into $$t$$, such that:
 
-$$ Dt = \begin{bmatrix} 1-2-2018 \\ 1-3-2018 \\ \vdots \\ 12-31-2018 \\ \vdots \\ 1-2-2020 \\ 1-3-2020 \end{bmatrix}$$
+$$ D = \begin{bmatrix} 1-2-2018 \\ 1-3-2018 \\ \vdots \\ 12-31-2018 \\ \vdots \\ 1-2-2020 \\ 1-3-2020 \end{bmatrix}$$
 
-We construct the binary vector of the same length as $$Dt$$, called $$H_{ny}$$, such that we can model the New Year's effect by defining the New Year's timeframe starting from Dec-30 to Jan-2, thus assign those stamps with the value $$1$$, and others as $$0$$. FBprophet refers to it as the upper & lower window:
+We construct the binary vector of the same length as $$D$$, called $$H_{ny}$$, such that we can model the New Year's effect by defining the New Year's timeframe starting from Dec-30 to Jan-2, thus assign those stamps with the value $$1$$, and others as $$0$$:
 
 $$ H_{ny} = \begin{bmatrix} 1 \\ 0 \\ \vdots \\ 1 \\ \vdots \\ 1 \\ 0 \end{bmatrix}$$
 
-Regressively, after performing multiplication with the element $$b_{ny}$$ in our $$\boldsymbol{\beta}$$ prior, we obtain our New Year's holiday effect, additive or multiplicative.
+Regressively, after performing multiplication with a value in our $$\boldsymbol{\beta}$$ prior, we obtain our New Year's holiday effect, additive or multiplicative.
 
 > As I tried to keep this section as brief as possible due to its simplicity, if you want more information and examples, you can visit FBProphet's documentation [here](https://facebook.github.io/prophet/docs/seasonality,_holiday_effects,_and_regressors.html#modeling-holidays-and-special-events).
 
