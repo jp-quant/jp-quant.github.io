@@ -1,6 +1,6 @@
 ---
 title: "[QF] Probing Volatility I: Covariance Matrix & Eigen Decomposition"
-date: 2020-05-26
+date: 2020-06-26
 tags: [research]
 header:
   image: "/images/qf_vol_part1_banner.PNG"

@@ -1,6 +1,6 @@
 ---
 title: "[QF] Probing Volatility II: Portfolio Optimization & Applications of Random Matrix Theory "
-date: 2020-06-03
+date: 2020-08-03
 tags: [research]
 header:
   image: "/images/qf_vol_part1_banner.PNG"
