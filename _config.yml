@@ -85,7 +85,7 @@ analytics:
 # Site Author
 author:
   name             : "Jack Pham"
-  avatar           : "/images/profile_pic.jpeg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/images/profile_pic.jfif" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Portfolio of Independent Data Science Projects + Notes on Quantitative Research & Development"
   location         : "United States"
   email            :

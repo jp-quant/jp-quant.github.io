@@ -4,15 +4,16 @@ permalink: /about/
 header:
   image: "/images/about_me.jpg"
 ---
-Algorithmic Trading | Quantitative Analytics | Finance & Accounting | Research & Development
+Quantitative Analytics | Finance & Accounting | Investment Management | Algorithmic Trading
 
 - Bachelor's Degree: Mathematics (Physics Minor) @ UCSB
-- CFA Level II Candidate (Progress towards completion)
-- 2+ years of experience in quantitative research & development, specifically in modeling data for investment & business strategies
+- CFA Progress towards completion (Level II Candidate)
+- Professional Experience & Career in Investment Management and Quantitative Finance.
+
 
 ## Languages:
 - Python
+- SQL
 - C++
 - R
-- MySQL (Relational Database)
-- NoSQL (Non-Relational Database)
+- Matlab
