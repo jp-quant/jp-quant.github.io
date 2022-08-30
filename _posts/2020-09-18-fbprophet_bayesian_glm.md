@@ -60,7 +60,7 @@ In short, a generalized linear model covers all possible ways of how different d
 
 # 2. Going Bayesian
 
-All Bayesian techniques & implementations in modern days, even in machine learning neural networks, are built from the beautiful statistical foundation pioneered by Thomas Bayes himself, back in the late 1700s, called *Bayes Theorem*:
+All Bayesian techniques & implementations in modern days, even in machine learning neural networks, are built from statistical foundation pioneered by Thomas Bayes himself, back in the late 1700s, called *Bayes Theorem*:
 
 $$ P(A \mid B) = \frac{P(A) P(B \mid A)}{P(B)}$$
 
@@ -93,7 +93,7 @@ To summarize:
 
 # 3. The Mathematics of FBProphet's Model
 
-> **Disclosure**: The content below is somewhat a detailed summary, or rather a concise alternative explanation, based on my personal understanding of fbprophet's GLM from reading their publication & repositories. If you want to check out the original published paper, click [**here**](https://peerj.com/preprints/3190/).
+> **Disclosure**: The content below is somewhat a detailed summary, or rather a concise alternative explanation, based on my personal understanding of fbprophet's GLM from reading their publication & repositories to build one of my own from scratch. If you want to check out the original published paper, click [**here**](https://peerj.com/preprints/3190/).
 
 ---
 Given $$\boldsymbol{Y}$$ as the observable to fit & predict (data of prediction target), I often express the overarching model as:
