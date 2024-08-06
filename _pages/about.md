@@ -4,11 +4,12 @@ permalink: /about/
 header:
   image: "/images/about_me.jpg"
 ---
-Quantitative Research & Development | Financial Engineering | Data Science | Data Engineering
+Quantitative Modeling | Financial Engineering | Data Science | Software Development
 
-- Bachelor's Degree in Mathematics, Minor in Physics @ UCSB
-- Extensive "full-stack" experiences in finance and technology, with a focus on analytics research and development
-- Domain knowledge in Energy, Commodities & Real Estate
+- B.S. in Mathematics & Physics @ UCSB
+- Full-stack quantitative analytics developer & researcher
+- Extensive experiences in equities and structured products
+- Enjoys solving math problems and building cool tech
 
 ## Languages:
 - Python

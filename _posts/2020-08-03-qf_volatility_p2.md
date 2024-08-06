@@ -11,9 +11,7 @@ classes: wide
 ---
 
 # Overview
->*Optimization*, in general, is simply solving for minimum/maximum solution(s) of a *system of equation(s)*, satisfying given constraints.
-
-Recalling our brief overview on the basics of Modern Portfolio Theory in my [first QF post](https://jp-quant.github.io/qf_intro/ "first QF post"), one of the metric to which used in evaluating performance of any investment, mirroring somewhat of a standardization technique, is the **Sharpe Ratio**, to which we will dub it as $$\boldsymbol{I_p}$$:
+One of the metric to which used in evaluating performance of any investment strategies, mirroring somewhat of a standardization technique, is the **Sharpe Ratio**, to which we will dub it as $$\boldsymbol{I_p}$$:
 
 >$$\boldsymbol{I_p} = \frac{\bar{R_p} - R_f}{\sigma_p}$$, where
 $$\bar{R_p}$$ = Average Returns
@@ -31,7 +29,7 @@ Let there be *M* amount of securities selected to invest a set amount of capital
 
 Before moving forward, we first need to address the context regarding *M securities* we seek to allocate our capital towards:
 - At **this** moment in time $$t_N$$, as we are performing analysis to make decisions, being the latest timestamp (this is where back-testing will come in, as I will dedicate a series on building an event-driven one from scratch), we have *N* amount of data historically for *M* securities, hence the necessity for an *N x M* returns table.
-- **Looking towards the future**  $$t_{N + dN}$$ , before we seek to find the optimal weights $$W$$, to compute $$\sigma_p$$ & $$\bar{R_p}$$ (again please refer to my [first QF post](https://jp-quant.github.io/qf_intro/ "first QF post") for the intricate details), as we will not yet be touching base on such extensive topic that having to deal with prediction (I will dedicate another series for this topic), we need to determine the answers for:
+- **Looking towards the future**  $$t_{N + dN}$$ , before we seek to find the optimal weights $$W$$, to compute $$\sigma_p$$ & $$\bar{R_p}$$, as we will not yet be touching base on such extensive topic that having to deal with prediction (I will dedicate another series for this topic), we need to determine the answers for:
 
 	- What is the returns $$\hat{r_i}$$ for each security $$i = 1,2...M$$?
 		>In our demonstrative work, as being used as a factor in various predictive models, we will set $$\hat{r_i} = \bar{r_i}$$ being the **average returns "so far"** (subjective)
